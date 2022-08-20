@@ -21,7 +21,6 @@ M.general = {
 
     -- luasnip change choice 
     ["<C-u>"] = {"<Plug>luasnip-next-choice", "change luasnip choice"},
-
   },
 
   n = {
@@ -79,6 +78,13 @@ M.general = {
       end,
       "toggle theme",
     },
+
+    -- luasnip edit snippets
+    ["<leader>se"] = {
+      function()
+        require("luasnip.loaders").edit_snippet_files()
+      end,
+      "luasnip edit snippets"},
 
     -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
     -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -397,7 +403,7 @@ M.nvterm = {
       function()
         require("nvterm.terminal").toggle "float"
       end,
-      "toggle floating term",
+      "toggle floatinvg term",
     },
 
     ["<A-h>"] = {
@@ -405,13 +411,6 @@ M.nvterm = {
         require("nvterm.terminal").toggle "horizontal"
       end,
       "toggle horizontal term",
-    },
-
-    ["<A-v>"] = {
-      function()
-        require("nvterm.terminal").toggle "vertical"
-      end,
-      "toggle vertical term",
     },
   },
 

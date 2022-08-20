@@ -35,5 +35,8 @@ return {
       }
     end
   },
-  ["honza/vim-snippets"] = {}
+  ["honza/vim-snippets"] = {
+    module = {"cmp", "cmp_nvim_lsp"},
+    event = "InsertEnter",
+  }
 }
