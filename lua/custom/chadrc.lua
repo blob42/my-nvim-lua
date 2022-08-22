@@ -17,10 +17,6 @@ M.ui = {
 
 M.plugins = {
   user = require "custom.plugins",
-  override = {
-    ["nvim-treesitter/nvim-treesitter"] = {
-    }
-  }
 }
 
 return M

@@ -137,6 +137,7 @@ M.general = {--{{{
 
 
     ["g."] = {":cwd<CR>", "change dir to current file", opts = { remap = true}},
+    ["<leader>g."] = {":Gcd<CR>", "change dir to git root"},
 
     -- Packer commands
     ["<leader>ps"] = {"<cmd> PackerSync <CR>", "packer sync"},

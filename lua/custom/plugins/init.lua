@@ -21,6 +21,7 @@ return {
      disable = true
   },
   ["ibhagwan/fzf-lua"] = {
+    lock = true,
     after = "ui",
     config = function()
       require("custom.plugins.configs.fzflua")
@@ -41,9 +42,17 @@ return {
   ["tpope/vim-fugitive"] = {
     cmd = "G*"
   },
+
   -- restore view
   ["vim-scripts/restore_view.vim"] = {},
-
+  ["rmagatti/auto-session"] = {
+    config = function ()
+        require("auto-session").setup {
+          log_level = "error",
+          auto_session_suppress_dirs = {"~/", "~/projects", "/"}
+        }
+    end
+  },
   -- repeat operator for plugin commands
   ["tpope/vim-repeat"] = {
     keys = {"."},
@@ -56,7 +65,6 @@ return {
       ]]
     end
   },
-
   -- Read info files
   ["https://gitlab.com/HiPhish/info.vim.git"] = {
     cmd = "Info",
@@ -84,5 +92,8 @@ return {
   ["honza/vim-snippets"] = {
     module = {"cmp", "cmp_nvim_lsp"},
     event = "InsertEnter",
-  }
+  },
+  -- ["ray-x/navigator.lua"] = {
+  --   after = "nvim-lspconfig"
+  -- }
 }
