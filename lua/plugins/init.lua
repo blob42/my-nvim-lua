@@ -2,7 +2,7 @@ vim.cmd "packadd packer.nvim"
 
 local plugins = {
 
-  ["nvim-lua/plenary.nvim"] = { module = "plenary" },
+  ["nvim-lua/plenary.nvim"] = { module = "plenary", lock = true },
   ["wbthomason/packer.nvim"] = {
     cmd = require("core.lazy_load").packer_cmds,
     config = function()
@@ -28,15 +28,15 @@ local plugins = {
     end,
   },
 
-  ["NvChad/nvterm"] = {
-    module = "nvterm",
-    config = function()
-      require "plugins.configs.nvterm"
-    end,
-    setup = function()
-      require("core.utils").load_mappings "nvterm"
-    end,
-  },
+  -- ["NvChad/nvterm"] = {
+  --   module = "nvterm",
+  --   config = function()
+  --     require "plugins.configs.nvterm"
+  --   end,
+  --   setup = function()
+  --     require("core.utils").load_mappings "nvterm"
+  --   end,
+  -- },
 
   ["kyazdani42/nvim-web-devicons"] = {
     after = "ui",

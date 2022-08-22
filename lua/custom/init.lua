@@ -1,5 +1,5 @@
 -- vim modeline
--- vim: foldmarker={,} foldmethod=marker
+-- vim: foldmarker={,} foldmethod=marker foldlevel=0
 
 -- local augroup = vim.api.nvim_create_augroup
 -- local autocmd = vim.api.nvim_create_autocmd

@@ -1,3 +1,4 @@
+-- vim: foldmethod=marker foldlevel=0
 -- n, v, i, t, c = mode name.s
 
 local function termcodes(str)
@@ -6,7 +7,7 @@ end
 
 local M = {}
 
-M.general = {
+M.general = {--{{{
   i = {
 
     ["jk"] =    { "<esc>", "escape"},
@@ -190,9 +191,9 @@ M.general = {
     ["cwd"] = {"lcd %:p:h", "change dir to current file"},
     ["cd."] = {"lcd %:p:h", "change dir to current file"},
   }
-}
+}--}}}
 
-M.tabufline = {
+M.tabufline = {--{{{
   plugin = true,
 
   n = {
@@ -214,9 +215,9 @@ M.tabufline = {
     -- pick buffers via numbers
     ["<Bslash>"] = { "<cmd> TbufPick <CR>", "Pick buffer" },
   },
-}
+}--}}}
 
-M.comment = {
+M.comment = {--{{{
   plugin = true,
 
   -- toggle comment in both modes
@@ -235,9 +236,9 @@ M.comment = {
       "toggle comment",
     },
   },
-}
+}--}}}
 
-M.lspconfig = {
+M.lspconfig = {--{{{
   plugin = true,
 
   -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
@@ -362,18 +363,18 @@ M.lspconfig = {
       "list workspace folders",
     },
   },
-}
+}--}}}
 
-M.nvimtree = {
+M.nvimtree = {--{{{
   plugin = true,
 
   n = {
     -- toggle
     ["<Left>"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
   },
-}
+}--}}}
 
-M.fzf_lua = {
+M.fzf_lua = {--{{{
   plugin = true,
 
   n = {
@@ -395,10 +396,9 @@ M.fzf_lua = {
     ["<leader>tk"] = { "<cmd> lua require'custom.plugins.fzflua'.keymaps() <CR>", "show keymaps" },
 
   }
-}
+}--}}}
 
-
-M.telescope = {
+M.telescope = {--{{{
   plugin = true,
 
   n = {
@@ -425,9 +425,9 @@ M.telescope = {
     -- theme switcher
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "nvchad themes" },
   },
-}
+}--}}}
 
-M.nvterm = {
+M.nvterm = {--{{{
   plugin = true,
 
   t = {
@@ -486,9 +486,9 @@ M.nvterm = {
       "new vertical term",
     },
   },
-}
+}--}}}
 
-M.whichkey = {
+M.whichkey = {--{{{
   plugin = true,
 
   n = {
@@ -506,9 +506,9 @@ M.whichkey = {
       "which-key query lookup",
     },
   },
-}
+}--}}}
 
-M.blankline = {
+M.blankline = {--{{{
   plugin = true,
 
   n = {
@@ -528,18 +528,17 @@ M.blankline = {
       "Jump to current_context",
     },
   },
-}
+}--}}}
 
--- Tagbar equivalent with LSP
-M.vista = {
+M.vista = { -- Tagbar equivalent using LSP {{{
   plugin = true,
 
   n = {
     ["<Right>"] = { "<cmd> Vista!! <CR>", "toggle Vista "} ,
   },
-}
+}--}}}
 
-M.asyncrun = {
+M.asyncrun = {--{{{
   plugin = true,
 
   n = {
@@ -549,6 +548,6 @@ M.asyncrun = {
     ["<leader>pd"] = {"<cmd> AsyncRun lpr -P PDF_PRINT %<CR>", "PDF print file"},
     ["<leader>pp"] = {"<cmd> AsyncRun lpr %<CR>"},
   },
-}
+}--}}}
 
 return M
