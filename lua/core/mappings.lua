@@ -108,7 +108,7 @@ M.general = {--{{{
     ["<S-L>"]  = { "gt", "Previous tab"},
 
     -- close buffer + hide terminal buffer
-    ["<leader>xx"] = {
+    ["<leader>x"] = {
       function()
         require("core.utils").close_buffer()
       end,
@@ -198,7 +198,7 @@ M.tabufline = {--{{{
 
   n = {
     -- cycle through buffers
-    ["<TAB>"] = {
+    ["<C-b>"] = {
       function()
         require("core.utils").tabuflineNext()
       end,
@@ -311,28 +311,28 @@ M.lspconfig = {--{{{
       function()
         vim.diagnostic.open_float()
       end,
-      "floating diagnostic",
+      "lsp floating diagnostic",
     },
 
     ["[d"] = {
       function()
         vim.diagnostic.goto_prev()
       end,
-      "goto prev",
+      "lsp goto prev",
     },
 
     ["d]"] = {
       function()
         vim.diagnostic.goto_next()
       end,
-      "goto_next",
+      "lsp goto_next",
     },
 
     ["<leader>q"] = {
       function()
         vim.diagnostic.setloclist()
       end,
-      "diagnostic setloclist",
+      "lsp diagnostic setloclist",
     },
 
     ["<leader>fm"] = {
@@ -346,21 +346,21 @@ M.lspconfig = {--{{{
       function()
         vim.lsp.buf.add_workspace_folder()
       end,
-      "add workspace folder",
+      "lsp add workspace folder",
     },
 
     ["<leader>wr"] = {
       function()
         vim.lsp.buf.remove_workspace_folder()
       end,
-      "remove workspace folder",
+      "lsp remove workspace folder",
     },
 
     ["<leader>wl"] = {
       function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
       end,
-      "list workspace folders",
+      "lsp list workspace folders",
     },
   },
 }--}}}

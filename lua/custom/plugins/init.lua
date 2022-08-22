@@ -1,4 +1,10 @@
 return {
+  ["nvim-treesitter/nvim-treesitter-textobjects"] = {
+    after = "nvim-treesitter",
+    -- config = function()
+    --   require("custom.plugins.configs.treesitter-to")
+    -- end
+  },
   ["mfussenegger/nvim-dap"] = {
     module = "dap"
   },
@@ -26,6 +32,7 @@ return {
   },
   -- Run async commands (make & errors)
   ["skywind3000/asyncrun.vim"] = {
+    cmd = "AsyncRun",
     config = function()
       require("core.utils").load_mappings "asyncrun"
       vim.g.asyncrun_open = 8
@@ -33,6 +40,19 @@ return {
   },
   -- restore view
   ["vim-scripts/restore_view.vim"] = {},
+
+  -- repeat operator for plugin commands
+  ["tpope/vim-repeat"] = {
+    keys = {"."},
+  },
+  ["justinmk/vim-sneak"] = {
+    keys = {"s", "S"},
+    setup = function()
+      vim.cmd[[
+        let g:sneak#label=1
+      ]]
+    end
+  },
 
   -- Read info files
   ["https://gitlab.com/HiPhish/info.vim.git"] = {

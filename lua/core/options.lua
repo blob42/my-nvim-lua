@@ -50,7 +50,6 @@ opt.ruler = false
 -- disable nvim intro
 opt.shortmess:append "sI"
 opt.viewoptions="folds,cursor,curdir"
-opt.viewoptions:remove("options")
 
 -- . # and - are end of word designators
 opt.iskeyword:remove(".")

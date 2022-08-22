@@ -19,7 +19,7 @@ M.keymaps = function(opts)
   local add_keymap = function(keymap)
     -- hijack fields
     local keymap_desc = keymap.desc == nil and keymap.rhs or keymap.desc
-    keymap.str = string.format("%s │ %-40s │ %s",
+    keymap.str = string.format("%s │ %-40ls │ %s",
       utils.ansi_codes[modes[keymap.mode] or "blue"](keymap.mode),
       keymap.lhs:gsub("%s", "<Space>"),
       keymap_desc)

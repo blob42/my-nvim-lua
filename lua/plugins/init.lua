@@ -2,16 +2,17 @@ vim.cmd "packadd packer.nvim"
 
 local plugins = {
 
-  ["nvim-lua/plenary.nvim"] = { module = "plenary", lock = true },
+  ["nvim-lua/plenary.nvim"] = { module = "plenary" },
   ["wbthomason/packer.nvim"] = {
     cmd = require("core.lazy_load").packer_cmds,
     config = function()
       require "plugins"
     end,
   },
-  ["NvChad/extensions"] = { module = { "telescope", "nvchad" } },
+  ["NvChad/extensions"] = { module = { "telescope", "nvchad" }, lock = true },
 
   ["NvChad/base46"] = {
+    lock = true,
     config = function()
       local ok, base46 = pcall(require, "base46")
 
@@ -22,6 +23,7 @@ local plugins = {
   },
 
   ["NvChad/ui"] = {
+    lock = true,
     after = "base46",
     config = function()
       require("plugins.configs.others").nvchad_ui()
@@ -47,6 +49,7 @@ local plugins = {
   },
 
   ["lukas-reineke/indent-blankline.nvim"] = {
+    lock = true,
     opt = true,
     setup = function()
       require("core.lazy_load").on_file_open "indent-blankline.nvim"
@@ -58,6 +61,7 @@ local plugins = {
   },
 
   ["NvChad/nvim-colorizer.lua"] = {
+    lock = true,
     opt = true,
     setup = function()
       require("core.lazy_load").on_file_open "nvim-colorizer.lua"
