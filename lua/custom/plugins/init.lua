@@ -1,9 +1,9 @@
 return {
   ["nvim-treesitter/nvim-treesitter-textobjects"] = {
     after = "nvim-treesitter",
-    -- config = function()
-    --   require("custom.plugins.configs.treesitter-to")
-    -- end
+    config = function()
+      require("custom.plugins.configs.treesitter-to")
+    end
   },
   ["mfussenegger/nvim-dap"] = {
     module = "dap"
@@ -37,6 +37,9 @@ return {
       require("core.utils").load_mappings "asyncrun"
       vim.g.asyncrun_open = 8
     end
+  },
+  ["tpope/vim-fugitive"] = {
+    cmd = "G*"
   },
   -- restore view
   ["vim-scripts/restore_view.vim"] = {},

@@ -379,21 +379,22 @@ M.fzf_lua = {--{{{
 
   n = {
     -- find
-    ["<C-p>"] = { "<cmd> FzfLua files <CR>", "find files" },
+    ["<C-p>"] = { "<cmd> FzfLua files <CR>", "FzfLua find files" },
+    ["<leader>fl"] = { "<cmd> FzfLua lines <CR>", "FzfLua grep in lines" },
 
     -- grep
-    ["<leader>fw"] = { "<cmd> FzfLua grep_cword <CR>", "grep cword" },
-    ["<leader>f."] = { "<cmd> FzfLua live_grep_native <CR>", "grep live native" },
-    ["<leader>f*"] = { "<cmd> FzfLua live_grep_glob <CR>", "grep with glob (SPACE-- globs)"},
+    ["<leader>fw"] = { "<cmd> FzfLua grep_cword <CR>", "FzfLua grep cword" },
+    ["<leader>f."] = { "<cmd> FzfLua live_grep_native <CR>", "FzfLua grep live native" },
+    ["<leader>f*"] = { "<cmd> FzfLua live_grep_glob <CR>", "FzfLua grep with glob (SPACE-- globs)"},
 
     -- continue
-    ["<leader>ff"] = { "<cmd> FzfLua resume <CR>", "resume last search"},
+    ["<leader>ff"] = { "<cmd> FzfLua resume <CR>", "FzfLua resume last search"},
 
-    ["<leader>;"] =  { "<cmd> FzfLua buffers <CR>", "find buffers" },
+    ["<leader>;"] =  { "<cmd> FzfLua buffers <CR>", "FzfLua find buffers" },
     ["<leader>fb"] =  { "<cmd> FzfLua builtins <CR>", "FzfLua builtins" },
-    ["<leader>fh"] = { "<cmd> FzfLua help_tags <CR>", "find help pages" },
-    ["<leader>fo"] = { "<cmd> FzfLua oldfiles <CR>", "find oldfiles" },
-    ["<leader>tk"] = { "<cmd> lua require'custom.plugins.fzflua'.keymaps() <CR>", "show keymaps" },
+    ["<leader>fh"] = { "<cmd> FzfLua help_tags <CR>", "FzfLua find help pages" },
+    ["<leader>fo"] = { "<cmd> FzfLua oldfiles <CR>", "FzfLua find oldfiles" },
+    ["<leader>tk"] = { "<cmd> lua require'custom.plugins.fzflua'.keymaps() <CR>", "FzfLua show keymaps" },
 
   }
 }--}}}
