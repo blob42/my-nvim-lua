@@ -115,9 +115,9 @@ M.general = {
     },
     ["<Down>"] = {"<cmd> close <CR>", "close window"},
 
-    -- yank from cusor to eol to system and primary clipboard
-    ["<leader>y"] = {'"*y$"+y$'},
 
+    -- yank from cusor to eol to system and primary clipboard
+    ["<leader>y"] = {'"*y$"+y$', "yank from cursor to eol to primary and clipboard"},
 
     -- folding levels
     ["<leader>f0"] = {":set foldlevel=0<CR>", "set fold level"},
@@ -147,7 +147,15 @@ M.general = {
         os.execute("echo do >" .. fifo_patch )
       end,
       "notify <scripts/utils/fifo_watch>"
-    }
+    },
+
+
+    -- config files
+    -- ["<leader>ev"] = {
+    --   function()
+    --     local vim_config_files = {""}
+    --   end
+    --   , "edit vim config"},
   },
 
   t = { ["<C-x>"] = { termcodes "<C-\\><C-N>", "escape terminal mode" } },
@@ -364,6 +372,31 @@ M.nvimtree = {
     ["<Left>"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
   },
 }
+
+M.fzf_lua = {
+  plugin = true,
+
+  n = {
+    -- find
+    ["<C-p>"] = { "<cmd> FzfLua files <CR>", "find files" },
+
+    -- grep
+    ["<leader>fw"] = { "<cmd> FzfLua grep_cword <CR>", "grep cword" },
+    ["<leader>f."] = { "<cmd> FzfLua live_grep_native <CR>", "grep live native" },
+    ["<leader>f*"] = { "<cmd> FzfLua live_grep_glob <CR>", "grep with glob (SPACE-- globs)"},
+
+    -- continue
+    ["<leader>ff"] = { "<cmd> FzfLua resume <CR>", "resume last search"},
+
+    ["<leader>;"] =  { "<cmd> FzfLua buffers <CR>", "find buffers" },
+    ["<leader>fb"] =  { "<cmd> FzfLua builtins <CR>", "FzfLua builtins" },
+    ["<leader>fh"] = { "<cmd> FzfLua help_tags <CR>", "find help pages" },
+    ["<leader>fo"] = { "<cmd> FzfLua oldfiles <CR>", "find oldfiles" },
+    ["<leader>tk"] = { "<cmd> lua require'custom.plugins.fzflua'.keymaps() <CR>", "show keymaps" },
+
+  }
+}
+
 
 M.telescope = {
   plugin = true,

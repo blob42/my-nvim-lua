@@ -11,11 +11,34 @@ return {
   ["folke/which-key.nvim"] = {
     disable = false,
   },
+  ["nvim-telescope/telescope.nvim"] = {
+     disable = true
+  },
+  ["ibhagwan/fzf-lua"] = {
+    after = "ui",
+    config = function()
+      require("custom.plugins.configs.fzflua")
+      require("plugins.configs.others").devicons()
+    end,
+    setup = function()
+      require("core.utils").load_mappings "fzf_lua"
+    end
+  },
   -- Run async commands (make & errors)
   ["skywind3000/asyncrun.vim"] = {
     config = function()
       require("core.utils").load_mappings "asyncrun"
       vim.g.asyncrun_open = 8
+    end
+  },
+  -- restore view
+  ["vim-scripts/restore_view.vim"] = {},
+
+  -- Read info files
+  ["https://gitlab.com/HiPhish/info.vim.git"] = {
+    cmd = "Info",
+    setup = function()
+      require("custom.plugins.info").set_mappings()
     end
   },
   ["L3MON4D3/LuaSnip"] = {
