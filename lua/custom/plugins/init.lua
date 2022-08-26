@@ -8,12 +8,13 @@ return {
   ["mfussenegger/nvim-dap"] = {
     module = "dap"
   },
-  ["liuchengxu/vista.vim"] = {
-    cmd = "Vista",
-    setup = function()
-      require("core.utils").load_mappings "vista"
-    end
-  },
+  -- side panel with symbols (replaced by Navigator :LspSymbols cmd)
+  -- ["liuchengxu/vista.vim"] = {
+  --   cmd = "Vista",
+  --   setup = function()
+  --     require("core.utils").load_mappings "vista"
+  --   end
+  -- },
   ["folke/which-key.nvim"] = {
     disable = false,
   },
@@ -49,7 +50,8 @@ return {
     config = function ()
         require("auto-session").setup {
           log_level = "error",
-          auto_session_suppress_dirs = {"~/", "~/projects", "/"}
+          auto_session_suppress_dirs = {"~/", "~/projects", "/"},
+          auto_save_enabled = false,
         }
     end
   },
@@ -93,7 +95,30 @@ return {
     module = {"cmp", "cmp_nvim_lsp"},
     event = "InsertEnter",
   },
+  ["neovim/nvim-lspconfig"] = {
+    config = nil -- disable lspconfig, handled by navigator
+  },
+  ["williamboman/mason-lspconfig.nvim"] = {
+    requires = {"williamboman/mason.nvim", "nvim-lspconfig"},
+    after = "mason.nvim",
+    module = "mson-lspconfig.nvim",
+    config = function()
+      require("mason-lspconfig").setup({})
+    end,
+  },
   -- ["ray-x/navigator.lua"] = {
-  --   after = "nvim-lspconfig"
-  -- }
+  ["https://git.sp4ke.xyz/sp4ke/navigator.lua"] = {
+    after = "nvim-lspconfig",
+    requires =  {"neovim/nvim-lspconfig", "ray-x/guihua.lua", "nvim-treesitter/nvim-treesitter"},
+    setup = function()
+      require("core.utils").load_mappings "navigator"
+    end,
+    config = function()
+      require("custom.plugins.configs.navigator")
+    end
+  },
+  ["ray-x/guihua.lua"] = {
+    module = "navigator",
+    run=  "cd lua/fzy && make"
+  }
 }

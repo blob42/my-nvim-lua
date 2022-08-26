@@ -17,6 +17,29 @@ M.ui = {
 
 M.plugins = {
   user = require "custom.plugins",
+  override = {
+    ["nvim-treesitter/nvim-treesitter"] = {
+      ensure_installed = {
+        "lua",
+        "go",
+        "rust",
+        "fish",
+        "bash",
+        "python",
+        "c",
+        "haskell",
+        "javascript",
+        "html",
+        "markdown",
+        "markdown_inline",
+        "make",
+        "sql",
+        "yaml",
+        "toml",
+        "vue",
+      }
+    }
+  }
 }
 
 return M

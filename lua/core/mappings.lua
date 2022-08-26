@@ -7,10 +7,10 @@ end
 
 local M = {}
 
-M.general = {--{{{
+M.general = { --{{{
   i = {
 
-    ["jk"] =    { "<esc>", "escape"},
+    ["jk"] = { "<esc>", "escape" },
 
     -- navigate within insert mode
     ["<C-h>"] = { "<Left>", "move left" },
@@ -18,10 +18,10 @@ M.general = {--{{{
     ["<C-j>"] = { "<Down>", "move down" },
     ["<C-k>"] = { "<Up>", "move up" },
 
-    ["<C-s>"] = { "<cmd> update <CR>", "update file (save on changes)"},
+    ["<C-s>"] = { "<cmd> update <CR>", "update file (save on changes)" },
 
-    -- luasnip change choice 
-    ["<C-u>"] = {"<Plug>luasnip-next-choice", "change luasnip choice"},
+    -- luasnip change choice
+    ["<C-u>"] = { "<Plug>luasnip-next-choice", "change luasnip choice" },
   },
 
   n = {
@@ -36,29 +36,29 @@ M.general = {--{{{
     -- Window resizing
 
     ["<C-Left>"]  = { "<cmd> vert res +2 <CR>", "window width +" },
-    ["<C-Right>"]  = { "<cmd> vert res -2 <CR>", "window width -" },
-    ["<C-Up>"]  = { "<cmd>res +2 <CR>", "window height +" },
+    ["<C-Right>"] = { "<cmd> vert res -2 <CR>", "window width -" },
+    ["<C-Up>"]    = { "<cmd>res +2 <CR>", "window height +" },
     ["<C-Down>"]  = { "<cmd>res -2 <CR>", "window height -" },
 
     -- quit dont save
-    ["<leader>qq"] = {"<cmd> quitall! <cr>", "quit/close all windows, don't save"},
+    ["<leader>qq"] = { "<cmd> quitall! <cr>", "quit/close all windows, don't save" },
 
-    ["Q"] = {"<cmd> q!<cr>", "quit now"},
+    ["Q"] = { "<cmd> q!<cr>", "quit now" },
 
     -- easier horizontal scrolling
-    ["zl"] = {"zL", "horizontal scroll left"},
-    ["zh"] = {"zH", "horizontal scroll right"},
+    ["zl"] = { "zL", "horizontal scroll left" },
+    ["zh"] = { "zH", "horizontal scroll right" },
 
-   -- Use fast jump to exact location and reserve `` for other usage
-   ["''"] = {"``", "jump back to exact location"},
+    -- Use fast jump to exact location and reserve `` for other usage
+    ["''"] = { "``", "jump back to exact location" },
 
-   -- Go to the first non-blank character of a line
-   ["0"] = {"^"},
-   -- Just in case you need to go to the very beginning of a line
-   ["^"] = {"0"},
+    -- Go to the first non-blank character of a line
+    ["0"] = { "^" },
+    -- Just in case you need to go to the very beginning of a line
+    ["^"] = { "0" },
 
 
-   ["<leader>ww"] = { "<cmd> set wrap! <CR><cmd> echo 'wrap = '.&wrap <CR>"},
+    ["<leader>ww"] = { "<cmd> set wrap! <CR><cmd> echo 'wrap = '.&wrap <CR>" },
 
     -- save
     ["<C-s>"] = { "<cmd> update <CR>", "save file" },
@@ -67,11 +67,12 @@ M.general = {--{{{
     ["<C-c>"] = { "<cmd> %y+ <CR>", "copy whole file" },
 
     -- line numbers
-    ["<leader>n"] = { "<cmd> set nu! <CR>", "toggle line number" },
-    ["<leader>rn"] = { "<cmd> set rnu! <CR>", "toggle relative number" },
+    ["<leader>n"] = { "<cmd> set nu!<CR><cmd> set rnu!<CR>", "toggle line number" },
 
     -- update nvchad
     ["<leader>uu"] = { "<cmd> :NvChadUpdate <CR>", "update nvchad" },
+
+    ["<leader>ss"] = { "<cmd> mks! <CR>", "save session"},
 
     ["<leader>tt"] = {
       function()
@@ -80,12 +81,16 @@ M.general = {--{{{
       "toggle theme",
     },
 
+
+
+
     -- luasnip edit snippets
     ["<leader>se"] = {
       function()
         require("luasnip.loaders").edit_snippet_files()
       end,
-      "luasnip edit snippets"},
+      "luasnip edit snippets"
+    },
 
     -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
     -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -93,19 +98,19 @@ M.general = {--{{{
     -- also don't use g[j|k] when in operator pending mode, so it doesn't alter d, y or c behaviour
     -- ["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', opts = { expr = true } },
     -- ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', opts = { expr = true } },
-     ["j"] = { "gj" },
-     ["k"] = { "gk" },
+    ["j"] = { "gj" },
+    ["k"] = { "gk" },
 
     -- new buffer
     ["<S-b>"] = { "<cmd> enew <CR>", "new buffer" },
 
     -- new tab
-    ["<leader><Tab>"] = {"<cmd> tabe <CR>", "new tab"},
+    ["<leader><Tab>"] = { "<cmd> tabe <CR>", "new tab" },
 
 
     -- Fast tab
-    ["<S-H>"]  = { "gT", "Previous tab"},
-    ["<S-L>"]  = { "gt", "Previous tab"},
+    ["<S-H>"] = { "gT", "Previous tab" },
+    ["<S-L>"] = { "gt", "Previous tab" },
 
     -- close buffer + hide terminal buffer
     ["<leader>x"] = {
@@ -114,50 +119,49 @@ M.general = {--{{{
       end,
       "close buffer",
     },
-    ["<Down>"] = {"<cmd> close <CR>", "close window"},
+
+    -- quick close window
+    ["<leader><BS>"] = {"<C-w>c", "close window"},
+
 
 
     -- yank from cusor to eol to system and primary clipboard
-    ["<leader>y"] = {'"*y$"+y$', "yank from cursor to eol to primary and clipboard"},
+    ["<leader>y"] = { '"*y$"+y$', "yank from cursor to eol to primary and clipboard" },
 
     -- folding levels
-    ["<leader>f0"] = {":set foldlevel=0<CR>", "set fold level"},
-    ["<leader>f1"] = {":set foldlevel=1<CR>", "set fold level"},
-    ["<leader>f2"] = {":set foldlevel=2<CR>", "set fold level"},
-    ["<leader>f3"] = {":set foldlevel=3<CR>", "set fold level"},
-    ["<leader>f4"] = {":set foldlevel=4<CR>", "set fold level"},
-    ["<leader>f5"] = {":set foldlevel=5<CR>", "set fold level"},
-    ["<leader>f6"] = {":set foldlevel=6<CR>", "set fold level"},
-    ["<leader>f7"] = {":set foldlevel=7<CR>", "set fold level"},
-    ["<leader>f8"] = {":set foldlevel=8<CR>", "set fold level"},
-    ["<leader>f9"] = {":set foldlevel=9<CR>", "set fold level"},
+    ["<leader>f0"] = { ":set foldlevel=0<CR>", "set fold level" },
+    ["<leader>f1"] = { ":set foldlevel=1<CR>", "set fold level" },
+    ["<leader>f2"] = { ":set foldlevel=2<CR>", "set fold level" },
+    ["<leader>f3"] = { ":set foldlevel=3<CR>", "set fold level" },
+    ["<leader>f4"] = { ":set foldlevel=4<CR>", "set fold level" },
+    ["<leader>f5"] = { ":set foldlevel=5<CR>", "set fold level" },
+    ["<leader>f6"] = { ":set foldlevel=6<CR>", "set fold level" },
+    ["<leader>f7"] = { ":set foldlevel=7<CR>", "set fold level" },
+    ["<leader>f8"] = { ":set foldlevel=8<CR>", "set fold level" },
+    ["<leader>f9"] = { ":set foldlevel=9<CR>", "set fold level" },
 
-    ["<leader>en"] = {"<cmd> cn <CR>", "next error"},
-    ["<leader>rp"] = {"<cmd> cp <CR>", "previous error"},
+    ["<leader>en"] = { "<cmd> cn <CR>", "next error" },
+    ["<leader>rp"] = { "<cmd> cp <CR>", "previous error" },
 
 
-    ["g."] = {":cwd<CR>", "change dir to current file", opts = { remap = true}},
-    ["<leader>g."] = {":Gcd<CR>", "change dir to git root"},
+    ["g."] = { ":cwd<CR>", "change dir to current file", opts = { remap = true } },
+    ["<leader>g."] = { ":Gcd<CR>", "change dir to git root" },
 
     -- Packer commands
-    ["<leader>ps"] = {"<cmd> PackerSync <CR>", "packer sync"},
+    ["<leader>ps"] = { "<cmd> PackerSync <CR>", "packer sync" },
 
     -- Notify cmd watcher (see /scripts/utils/fifo_watch.sh)
     ["<leader><leader>,"] = {
       function()
-        local fifo_patch="/tmp/fifo_vimnotify"
-        os.execute("echo do >" .. fifo_patch )
+        local fifo_patch = "/tmp/fifo_vimnotify"
+        os.execute("echo do >" .. fifo_patch)
       end,
       "notify <scripts/utils/fifo_watch>"
     },
 
 
     -- config files
-    -- ["<leader>ev"] = {
-    --   function()
-    --     local vim_config_files = {""}
-    --   end
-    --   , "edit vim config"},
+    ["<leader>ev"] = {"<cmd> source ~/.config/nvim/Session.vim<CR>" , "edit vim config"},
   },
 
   t = { ["<C-x>"] = { termcodes "<C-\\><C-N>", "escape terminal mode" } },
@@ -165,39 +169,39 @@ M.general = {--{{{
   v = {
     -- ["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', opts = { expr = true } },
     -- ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', opts = { expr = true } },
-     ["j"] = { "gj" },
-     ["k"] = { "gk" },
+    ["j"] = { "gj" },
+    ["k"] = { "gk" },
     -- Don't copy the replaced text after pasting in visual mode
     -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
     ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', opts = { silent = true } },
 
     -- yank from cursor to eol to system and primary clipboard
-    ["<leader>y"] = {'"*y gv"+y', "yank line to clipboards"},
+    ["<leader>y"] = { '"*y gv"+y', "yank line to clipboards" },
 
     -- visual shifting
-    ["<"] = {"<gv"},
-    [">"] = {">gv"},
+    ["<"] = { "<gv" },
+    [">"] = { ">gv" },
 
     -- Allow using the repeat operator with a visual selection (!)
     -- http://stackoverflow.com/a/8064607/127816
-    ["."] = {":normal .<CR>", opts = { silent = true}},
+    ["."] = { ":normal .<CR>", opts = { silent = true } },
 
   },
 
   -- command line mappings
   c = {
-    ["Tabe"] = {"tabe"},
+    ["Tabe"] = { "tabe" },
 
     -- Change Working Directory to that of the current file
-    ["cwd"] = {"lcd %:p:h", "change dir to current file"},
-    ["cd."] = {"lcd %:p:h", "change dir to current file"},
+    ["cwd"] = { "lcd %:p:h", "change dir to current file" },
+    ["cd."] = { "lcd %:p:h", "change dir to current file" },
   }
-}--}}}
+} --}}}
 
-M.tabufline = {--{{{
+M.tabufline = { --{{{
   plugin = true,
 
-  n = {
+    n = {
     -- cycle through buffers
     ["<C-b>"] = {
       function()
@@ -206,7 +210,7 @@ M.tabufline = {--{{{
       "goto next buffer",
     },
 
-    ["<S-Tab>"] = {
+    ["<C-f>"] = {
       function()
         require("core.utils").tabuflinePrev()
       end,
@@ -216,9 +220,9 @@ M.tabufline = {--{{{
     -- pick buffers via numbers
     ["<Bslash>"] = { "<cmd> TbufPick <CR>", "Pick buffer" },
   },
-}--}}}
+} --}}}
 
-M.comment = {--{{{
+M.comment = { --{{{
   plugin = true,
 
   -- toggle comment in both modes
@@ -237,9 +241,9 @@ M.comment = {--{{{
       "toggle comment",
     },
   },
-}--}}}
+} --}}}
 
-M.lspconfig = {--{{{
+M.lspconfig = { --{{{
   plugin = true,
 
   -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
@@ -364,43 +368,44 @@ M.lspconfig = {--{{{
       "lsp list workspace folders",
     },
   },
-}--}}}
+} --}}}
 
-M.nvimtree = {--{{{
+M.nvimtree = { --{{{
   plugin = true,
 
   n = {
     -- toggle
     ["<Left>"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
   },
-}--}}}
+} --}}}
 
-M.fzf_lua = {--{{{
+M.fzf_lua = { --{{{
   plugin = true,
 
   n = {
     -- find
     ["<C-p>"] = { "<cmd> FzfLua files <CR>", "FzfLua find files" },
-    ["<leader>fl"] = { "<cmd> FzfLua lines <CR>", "FzfLua grep in lines" },
+    ["<leader>fl"] = { "<cmd> FzfLua lines <CR>", "FzfLua grep open buffer lines" },
 
     -- grep
     ["<leader>fw"] = { "<cmd> FzfLua grep_cword <CR>", "FzfLua grep cword" },
     ["<leader>f."] = { "<cmd> FzfLua live_grep_native <CR>", "FzfLua grep live native" },
-    ["<leader>f*"] = { "<cmd> FzfLua live_grep_glob <CR>", "FzfLua grep with glob (SPACE-- globs)"},
+    ["<leader>ff"] = { "<cmd> FzfLua grep_project <CR>", "FzfLua grep live project" },
+    ["<leader>f*"] = { "<cmd> FzfLua live_grep_glob <CR>", "FzfLua grep with glob (SPACE-- globs)" },
 
     -- continue
-    ["<leader>ff"] = { "<cmd> FzfLua resume <CR>", "FzfLua resume last search"},
+    ["<leader>fr"] = { "<cmd> FzfLua resume <CR>", "FzfLua resume last search" },
 
-    ["<leader>;"] =  { "<cmd> FzfLua buffers <CR>", "FzfLua find buffers" },
-    ["<leader>fb"] =  { "<cmd> FzfLua builtins <CR>", "FzfLua builtins" },
+    ["<leader>;"] = { "<cmd> FzfLua buffers <CR>", "FzfLua find buffers" },
+    ["<leader>fb"] = { "<cmd> FzfLua builtins <CR>", "FzfLua builtins" },
     ["<leader>fh"] = { "<cmd> FzfLua help_tags <CR>", "FzfLua find help pages" },
     ["<leader>fo"] = { "<cmd> FzfLua oldfiles <CR>", "FzfLua find oldfiles" },
-    ["<leader>tk"] = { "<cmd> lua require'custom.plugins.fzflua'.keymaps() <CR>", "FzfLua show keymaps" },
+    ["<leader>tk"] = { "<cmd> FzfLua keymaps <CR>", "FzfLua show keymaps" },
 
   }
-}--}}}
+} --}}}
 
-M.telescope = {--{{{
+M.telescope = { --{{{
   plugin = true,
 
   n = {
@@ -417,7 +422,7 @@ M.telescope = {--{{{
     ["<leader>tk"] = { "<cmd> Telescope keymaps <CR>", "show keys" },
 
     -- git
-    ["<leader>tg"] = {" ", "telescope git commands"},
+    ["<leader>tg"] = { " ", "telescope git commands" },
     ["<leader>tgc"] = { "<cmd> Telescope git_commits <CR>", "git commits" },
     ["<leader>tgs"] = { "<cmd> Telescope git_status <CR>", "git status" },
 
@@ -427,9 +432,9 @@ M.telescope = {--{{{
     -- theme switcher
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "nvchad themes" },
   },
-}--}}}
+} --}}}
 
-M.nvterm = {--{{{
+M.nvterm = { --{{{
   plugin = true,
 
   t = {
@@ -488,9 +493,9 @@ M.nvterm = {--{{{
       "new vertical term",
     },
   },
-}--}}}
+} --}}}
 
-M.whichkey = {--{{{
+M.whichkey = { --{{{
   plugin = true,
 
   n = {
@@ -508,48 +513,54 @@ M.whichkey = {--{{{
       "which-key query lookup",
     },
   },
-}--}}}
+} --}}}
 
-M.blankline = {--{{{
+M.blankline = { --{{{
+  -- plugin = true,
+  --
+  -- n = {
+  --   ["<leader>cc"] = {
+  --     function()
+  --       local ok, start = require("indent_blankline.utils").get_current_context(
+  --         vim.g.indent_blankline_context_patterns,
+  --         vim.g.indent_blankline_use_treesitter_scope
+  --       )
+  --
+  --       if ok then
+  --         vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start, 0 })
+  --         vim.cmd [[normal! _]]
+  --       end
+  --     end,
+  --
+  --     "Jump to current context",
+  --   },
+  -- },
+} --}}}
+
+M.navigator = {--{{{
   plugin = true,
-
   n = {
-    ["<leader>bc"] = {
-      function()
-        local ok, start = require("indent_blankline.utils").get_current_context(
-          vim.g.indent_blankline_context_patterns,
-          vim.g.indent_blankline_use_treesitter_scope
-        )
-
-        if ok then
-          vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start, 0 })
-          vim.cmd [[normal! _]]
-        end
-      end,
-
-      "Jump to current_context",
-    },
-  },
+    ["<Right>"] = { "<cmd> TSymbols <CR><C-w>h", "toggle TreeSitter symbols " },
+  }
 }--}}}
 
 M.vista = { -- Tagbar equivalent using LSP {{{
   plugin = true,
-
   n = {
-    ["<Right>"] = { "<cmd> Vista!! <CR>", "toggle Vista "} ,
+    ["<Right>"] = { "<cmd> Vista!! <CR>", "toggle TreeSitter symbols " },
   },
-}--}}}
+} --}}}
 
-M.asyncrun = {--{{{
+M.asyncrun = { --{{{
   plugin = true,
 
   n = {
-    ["``"] = {"<cmd> call asyncrun#quickfix_toggle(8)<CR>", "toggle quickfix window"} ,
-    ["<leader>m"] = {":AsyncRun -program=" .. vim.o.makeprg .. "<CR>", "make using asyncrun"},
-    ["<leader><leader>r"] = {":AsyncRun ", "custom asyncrun command"},
-    ["<leader>pd"] = {"<cmd> AsyncRun lpr -P PDF_PRINT %<CR>", "PDF print file"},
-    ["<leader>pp"] = {"<cmd> AsyncRun lpr %<CR>"},
+    ["``"] = { "<cmd> call asyncrun#quickfix_toggle(8)<CR>", "toggle quickfix window" },
+    ["<leader>m"] = { ":AsyncRun -program=" .. vim.o.makeprg .. "<CR>", "make using asyncrun" },
+    ["<leader><leader>r"] = { ":AsyncRun ", "custom asyncrun command" },
+    ["<leader>pd"] = { "<cmd> AsyncRun lpr -P PDF_PRINT %<CR>", "PDF print file" },
+    ["<leader>pp"] = { "<cmd> AsyncRun lpr %<CR>" },
   },
-}--}}}
+} --}}}
 
 return M

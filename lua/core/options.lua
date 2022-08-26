@@ -18,7 +18,7 @@ opt.laststatus = 3 -- global statusline
 opt.showmode = false
 
 opt.title = true
-opt.clipboard = "unnamedplus"
+opt.clipboard = "unnamed"
 opt.cul = true -- cursor line
 opt.colorcolumn = "80"
 opt.rulerformat = "%30(%=:b%n%y%m%r%w %l,%c%V %P%)" -- NvChad has custom ruler !
@@ -96,7 +96,7 @@ opt.undofile = true
 opt.backup = true
 opt.backupcopy = "yes"
 opt.backupdir = vim.fn.expand("$XDG_DATA_HOME/nvim/backups")
-opt.sessionoptions="blank,buffers,curdir,folds,tabpages,winsize,resize,localoptions"
+opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,resize,winpos"
 
 -- interval for writing swap file to disk, also used by gitsigns
 opt.updatetime = 250
