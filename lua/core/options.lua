@@ -56,6 +56,11 @@ opt.iskeyword:remove(".")
 opt.iskeyword:remove("#")
 opt.iskeyword:remove("-")
 
+--
+-- folding with tree sitter
+-- set foldmethod=expr
+-- set foldexpr=nvim_treesitter#foldexpr()
+--
 opt.foldminlines = 3
 opt.foldlevelstart = 0
 opt.conceallevel=1 -- how to show text with :syn-conceal syntax
