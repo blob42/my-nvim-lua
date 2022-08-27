@@ -75,6 +75,7 @@ M.general = { --{{{
     ["<leader>uu"] = { "<cmd> :NvChadUpdate <CR>", "update nvchad" },
 
     ["<leader>ss"] = { "<cmd> mks! <CR>", "save session"},
+    ["<leader>sl"] = { "<cmd> source Session.vim <CR>", "load session"},
 
     ["<leader>tt"] = {
       function()
