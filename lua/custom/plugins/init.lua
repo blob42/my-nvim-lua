@@ -1,3 +1,5 @@
+-- vim: foldlevel=0
+
 return {
   ["nvim-treesitter/nvim-treesitter-textobjects"] = {
     after = "nvim-treesitter",
@@ -8,6 +10,7 @@ return {
   ["mfussenegger/nvim-dap"] = {
     module = "dap"
   },
+
   -- side panel with symbols (replaced by Navigator :LspSymbols cmd)
   -- ["liuchengxu/vista.vim"] = {
   --   cmd = "Vista",
@@ -15,6 +18,7 @@ return {
   --     require("core.utils").load_mappings "vista"
   --   end
   -- },
+  --
   ["folke/which-key.nvim"] = {
     disable = false,
   },
@@ -44,7 +48,7 @@ return {
     cmd = "G*"
   },
 
-  -- restore view
+  -- session and view
   ["vim-scripts/restore_view.vim"] = {},
   ["rmagatti/auto-session"] = {
     config = function ()
@@ -55,6 +59,8 @@ return {
         }
     end
   },
+
+  -- text formatting and navigation
   -- repeat operator for plugin commands
   ["tpope/vim-repeat"] = {
     keys = {"."},
@@ -67,13 +73,19 @@ return {
       ]]
     end
   },
+  ["tpope/vim-surround"] = {},
+  --
+  -- misc general plugins
   -- Read info files
+  --
   ["https://gitlab.com/HiPhish/info.vim.git"] = {
     cmd = "Info",
     setup = function()
       require("custom.plugins.info").set_mappings()
     end
   },
+
+  -- snippets 
   ["L3MON4D3/LuaSnip"] = {
     config = function()
       -- load default config first
@@ -91,6 +103,8 @@ return {
       }
     end
   },
+
+  -- LSP 
   ["honza/vim-snippets"] = {
     module = {"cmp", "cmp_nvim_lsp"},
     event = "InsertEnter",
@@ -106,8 +120,9 @@ return {
       require("mason-lspconfig").setup({})
     end,
   },
-  -- ["ray-x/navigator.lua"] = {
-  ["https://git.sp4ke.xyz/sp4ke/navigator.lua"] = {
+  --
+  -- ["https://git.sp4ke.xyz/sp4ke/navigator.lua"] = {
+  ["ray-x/navigator.lua"] = {
     after = "nvim-lspconfig",
     requires =  {"neovim/nvim-lspconfig", "ray-x/guihua.lua", "nvim-treesitter/nvim-treesitter"},
     setup = function()
@@ -120,5 +135,44 @@ return {
   ["ray-x/guihua.lua"] = {
     module = "navigator",
     run=  "cd lua/fzy && make"
-  }
+  },
+
+  -- per language plugins
+
+  -- lua dev
+  ["bfredl/nvim-luadev"] = {
+    cmd = "Luadev",
+    keys = {
+      "<Plug>(Luadev-RunLine)",
+      "<Plug>(Luadev-Run)",
+      "<Plug>(Luadev-RunWord)",
+      "<Plug>(Luadev-Complete)",
+    },
+    setup = function()
+      local autocmd = vim.api.nvim_create_autocmd
+      autocmd("FileType", {
+        pattern = "lua",
+        callback = function ()
+          vim.keymap.set({'n', 'i'}, '<leader>r', '<Plug>(Luadev-RunLine)', {
+            desc = "Luadev RunLine"
+          })
+        end,
+      })
+    end
+  },
+    ["ii14/neorepl.nvim"] = {
+      cmd = "Repl",
+      after = "nvim-cmp",
+      setup = function ()
+        local autocmd = vim.api.nvim_create_autocmd
+        autocmd("FileType",{
+          pattern = "neorepl",
+          callback = function ()
+            require('cmp').setup.buffer({enabled = false})
+          end
+        })
+      end
+
+    }
+
 }

@@ -56,6 +56,7 @@ opt.iskeyword:remove(".")
 opt.iskeyword:remove("#")
 opt.iskeyword:remove("-")
 
+opt.foldminlines = 3
 opt.foldlevelstart = 0
 opt.conceallevel=1 -- how to show text with :syn-conceal syntax
 

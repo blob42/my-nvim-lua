@@ -35,10 +35,12 @@ M.general = { --{{{
 
     -- Window resizing
 
-    ["<C-Left>"]  = { "<cmd> vert res +2 <CR>", "window width +" },
-    ["<C-Right>"] = { "<cmd> vert res -2 <CR>", "window width -" },
+    ["<C-Left>"]  = { "<cmd> vert res -2 <CR>", "window width +" },
+    ["<C-Right>"] = { "<cmd> vert res +2 <CR>", "window width -" },
     ["<C-Up>"]    = { "<cmd>res +2 <CR>", "window height +" },
     ["<C-Down>"]  = { "<cmd>res -2 <CR>", "window height -" },
+
+    ["<leader>="] = { "<C-w>=", "adjust viewports "},
 
     -- quit dont save
     ["<leader>qq"] = { "<cmd> quitall! <cr>", "quit/close all windows, don't save" },
@@ -141,7 +143,7 @@ M.general = { --{{{
     ["<leader>f9"] = { ":set foldlevel=9<CR>", "set fold level" },
 
     ["<leader>en"] = { "<cmd> cn <CR>", "next error" },
-    ["<leader>rp"] = { "<cmd> cp <CR>", "previous error" },
+    ["<leader>ep"] = { "<cmd> cp <CR>", "previous error" },
 
 
     ["g."] = { ":cwd<CR>", "change dir to current file", opts = { remap = true } },
@@ -158,6 +160,20 @@ M.general = { --{{{
       end,
       "notify <scripts/utils/fifo_watch>"
     },
+
+
+    ---------------
+    -- Programming languages specifics
+    ---------------
+
+    -- luadev
+    ["<leader>ls"] = {"<cmd>Luadev<CR>", "Luadev scratch window"},
+    ["<leader>ll"] = {"<Plug>(Luadev-RunLine)", "Luadev Run Line"},
+    ["<leader>lr"] = {"<Plug>(Luadev-Run)", "Luadev Run over movement or text object"},
+    ["<leader>lw"] = {"<Plug>(Luadev-RunWord)", "Luadev Run word under cursor"},
+
+    --
+    -- ["<leader>r"] = { "<NOP>", "Run action"},
 
 
     -- config files
@@ -195,6 +211,9 @@ M.general = { --{{{
     -- Change Working Directory to that of the current file
     ["cwd"] = { "lcd %:p:h", "change dir to current file" },
     ["cd."] = { "lcd %:p:h", "change dir to current file" },
+    ["w!!"] = { "w !doas tee %", "write file with root perms" },
+    ["%%"]  = { "<C-R>=fnameescape(expand('%:h')).'/'<cr>", 
+                  "alias to current working dir"},
   }
 } --}}}
 

@@ -4,6 +4,11 @@
 -- local augroup = vim.api.nvim_create_augroup
 -- local autocmd = vim.api.nvim_create_autocmd
 
+-- window closing
+-- TODO: using dynamic C-x command
+-- if character under cursor is number
+-- use normal C-x or close window
+
 
 -- highlights {
 vim.cmd [[
