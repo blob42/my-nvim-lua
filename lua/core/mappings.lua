@@ -85,7 +85,6 @@ M.general = { --{{{
 
 
 
-
     -- luasnip edit snippets
     ["<leader>se"] = {
       function()
@@ -123,7 +122,7 @@ M.general = { --{{{
     },
 
     -- quick close window
-    ["<leader><BS>"] = {"<C-w>c", "close window"},
+    ["<leader><Down>"] = {"<C-w>c", "close window"},
 
 
 
@@ -142,8 +141,16 @@ M.general = { --{{{
     ["<leader>f8"] = { ":set foldlevel=8<CR>", "set fold level" },
     ["<leader>f9"] = { ":set foldlevel=9<CR>", "set fold level" },
 
-    ["<leader>en"] = { "<cmd> cn <CR>", "next error" },
+    ["<leader>en"] = { "<cmd> cn <CR>", "next error"     },
     ["<leader>ep"] = { "<cmd> cp <CR>", "previous error" },
+
+
+    -- Tabularize mappings
+    ["<leader>a&"]     = { "<cmd> Tabularize /&<CR>"          },
+    ["<leader>a="]     = { "<cmd> Tabularize /^[^=]*\zs=<CR>" },
+    ["<leader>a:"]     = { "<cmd> Tabularize /:<CR>"          },
+    ["<leader>a,"]     = { "<cmd> Tabularize /,<CR>"          },
+    ["<leader>a<Bar>"] = { "<cmd> Tabularize /<Bar><CR>"      },
 
 
     ["g."] = { ":cwd<CR>", "change dir to current file", opts = { remap = true } },
@@ -202,6 +209,13 @@ M.general = { --{{{
     -- http://stackoverflow.com/a/8064607/127816
     ["."] = { ":normal .<CR>", opts = { silent = true } },
 
+    -- Tabularize mappings
+    ["<leader>a&"]     = { "<cmd> Tabularize /&<CR>"          },
+    ["<leader>a="]     = { "<cmd> Tabularize /^[^=]*\zs=<CR>" },
+    ["<leader>a:"]     = { "<cmd> Tabularize /:<CR>"          },
+    ["<leader>a,"]     = { "<cmd> Tabularize /,<CR>"          },
+    ["<leader>a<Bar>"] = { "<cmd> Tabularize /<Bar><CR>"      },
+
   },
 
   -- command line mappings
@@ -212,8 +226,9 @@ M.general = { --{{{
     ["cwd"] = { "lcd %:p:h", "change dir to current file" },
     ["cd."] = { "lcd %:p:h", "change dir to current file" },
     ["w!!"] = { "w !doas tee %", "write file with root perms" },
-    ["%%"]  = { "<C-R>=fnameescape(expand('%:h')).'/'<cr>", 
+    ["%%"]  = { "<C-R>=fnameescape(expand('%:h')).'/'<cr>",
                   "alias to current working dir"},
+    ["Tab"] = { "Tabularize"},
   }
 } --}}}
 

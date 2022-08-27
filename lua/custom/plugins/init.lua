@@ -74,6 +74,9 @@ return {
     end
   },
   ["tpope/vim-surround"] = {},
+  ["godlygeek/tabular"] = {
+    cmd = "Tabularize"
+  },
   --
   -- misc general plugins
   -- Read info files
