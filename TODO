@@ -1,6 +1,8 @@
-[x] [navigator] fix 'gi' keymap overriden by navigator (use space leader)
+- [navigator] sync icons between navigator and nvchad lspconfig
 - [navigator] disable diagnostic on startup
+- [navigator] manually setup all keymaps
 - dynamic C-x: if number default or close window
 - load custom/init.lua (autocommands) as vimscript file ?
 - install neorg (neovim org mode)
 - dynamic :w!! (daos or sudo)
+[x] [navigator] fix 'gi' keymap overriden by navigator (use space leader)
