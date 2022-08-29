@@ -45,7 +45,7 @@ return {
     end
   },
   ["tpope/vim-fugitive"] = {
-    cmd = "G*"
+    cmd = {"G", "Git", "G*"}
   },
 
   -- session and view
