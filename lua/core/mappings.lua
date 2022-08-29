@@ -45,7 +45,7 @@ M.general = { --{{{
     -- quit dont save
     ["<leader>qq"] = { "<cmd> quitall! <cr>", "quit/close all windows, don't save" },
 
-    ["Q"] = { "<cmd> q!<cr>", "quit now" },
+    -- ["Q"] = { "<cmd> q!<cr>", "quit now" },
 
     -- easier horizontal scrolling
     ["zl"] = { "zL", "horizontal scroll left" },
@@ -170,12 +170,17 @@ M.general = { --{{{
     },
 
 
+    -- TODO: move to lspconfig section
+    -- ["<leader>lsp"] = { "<cmd> lua require('custom.plugins.configs.navigator').enable()<CR>", "lsp enable"},
+    ["<leader>lsp"] = { "<cmd> LspStart<CR>", "lsp enable"},
+    ["<leader>lst"] = { "<cmd> LspStop<CR>", "lsp disable"},
+
     ---------------
     -- Programming languages specifics
     ---------------
 
     -- luadev
-    ["<leader>ls"] = {"<cmd>Luadev<CR>", "Luadev scratch window"},
+    ["<leader>lsc"] = {"<cmd>Luadev<CR>", "Luadev scratch window"},
     ["<leader>ll"] = {"<Plug>(Luadev-RunLine)", "Luadev Run Line"},
     ["<leader>lr"] = {"<Plug>(Luadev-Run)", "Luadev Run over movement or text object"},
     ["<leader>lw"] = {"<Plug>(Luadev-RunWord)", "Luadev Run word under cursor"},
@@ -264,7 +269,8 @@ M.comment = { --{{{
   n = {
     ["<leader>/"] = {
       function()
-        require("Comment.api").toggle.linewise.current()
+        -- require("Comment.api").toggle.linewise.current()
+        vim.notify("use gcc !")
       end,
       "toggle comment",
     },
@@ -575,7 +581,8 @@ M.blankline = { --{{{
 M.navigator = {--{{{
   plugin = true,
   n = {
-    ["<Right>"] = { "<cmd> TSymbols <CR><C-w>h", "toggle TreeSitter symbols " },
+    ["<Right>"] = { "<cmd> lua require'navigator.treesitter'.side_panel()<CR><C-w>h", "toggle TreeSitter symbols panel " },
+    ["<M-Right>"] = { "<cmd> lua require'navigator.symbols'.side_panel()<CR><C-w>h", "toggle LSP symbols panel" },
   }
 }--}}}
 
@@ -597,5 +604,14 @@ M.asyncrun = { --{{{
     ["<leader>pp"] = { "<cmd> AsyncRun lpr %<CR>" },
   },
 } --}}}
+
+-- M.neorepl = {
+--   plugin = true,
+--
+--   i = {
+--     ["C-p"] = { "<Plug>(neorepl-hist-prev)"},
+--   }
+--
+-- }
 
 return M

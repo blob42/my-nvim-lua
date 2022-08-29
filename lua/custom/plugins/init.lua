@@ -69,7 +69,7 @@ return {
     keys = {"s", "S"},
     setup = function()
       vim.cmd[[
-        let g:sneak#label=1
+        let g:sneak#s_next=1
       ]]
     end
   },
@@ -113,7 +113,16 @@ return {
     event = "InsertEnter",
   },
   ["neovim/nvim-lspconfig"] = {
-    config = nil -- disable lspconfig, handled by navigator
+    config = function()
+      local lspconfig = require("lspconfig")
+      lspconfig.util.default_config = vim.tbl_extend(
+        "force",
+        lspconfig.util.default_config,
+        {
+          autostart = false
+        }
+      )
+    end-- disable lspconfig, handled by navigator
   },
   ["williamboman/mason-lspconfig.nvim"] = {
     requires = {"williamboman/mason.nvim", "nvim-lspconfig"},
@@ -126,13 +135,17 @@ return {
   --
   -- ["https://git.sp4ke.xyz/sp4ke/navigator.lua"] = {
   ["ray-x/navigator.lua"] = {
-    after = "nvim-lspconfig",
+    after = { "nvim-lspconfig", "base46", "ui" },
     requires =  {"neovim/nvim-lspconfig", "ray-x/guihua.lua", "nvim-treesitter/nvim-treesitter"},
     setup = function()
       require("core.utils").load_mappings "navigator"
     end,
     config = function()
-      require("custom.plugins.configs.navigator")
+      require("custom.plugins.configs.navigator").setup()
+      require("base46").load_highlight "lsp"
+
+      -- TODO: use nvchadui_lsp features manually
+      -- require("nvchad_ui.lsp")
     end
   },
   ["ray-x/guihua.lua"] = {
@@ -172,6 +185,10 @@ return {
           pattern = "neorepl",
           callback = function ()
             require('cmp').setup.buffer({enabled = false})
+
+            -- custom keymap example
+            -- activate corresponding section in mappings
+            -- mappings = require("custom.utils").set_plugin_mappings "neorepl"
           end
         })
       end

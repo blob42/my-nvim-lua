@@ -108,9 +108,9 @@ local plugins = {
     setup = function()
       require("core.lazy_load").on_file_open "nvim-lspconfig"
     end,
-    config = function()
-      require "plugins.configs.lspconfig"
-    end,
+    -- config = function()
+    --   require "plugins.configs.lspconfig"
+    -- end,
   },
 
   -- load luasnips + cmp related in insert mode only
@@ -208,7 +208,7 @@ local plugins = {
   ["folke/which-key.nvim"] = {
     disable = true,
     module = "which-key",
-    keys = "<leader>",
+    keys = {"<leader>"},
     config = function()
       require "plugins.configs.whichkey"
     end,
