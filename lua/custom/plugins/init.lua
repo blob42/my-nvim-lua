@@ -1,4 +1,7 @@
 -- vim: foldlevel=0
+--
+-- TODO: interesting plugins to install
+-- - neovim minisurround to replace vim-surround
 
 return {
   ["nvim-treesitter/nvim-treesitter-textobjects"] = {
