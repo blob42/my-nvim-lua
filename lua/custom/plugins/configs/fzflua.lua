@@ -34,6 +34,9 @@ local options = {
   },
   oldfiles = {
     color_icons = false,
+    winopts = {
+      fullscreen = true
+    },
   },
 
   grep = {
@@ -46,7 +49,7 @@ local options = {
   },
 
   buffers = {
-    color_icons = false
+    color_icons = false,
   },
 
   lines = {
