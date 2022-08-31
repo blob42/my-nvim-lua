@@ -12,7 +12,63 @@ local config = {
   -- debug = true,
   transparency = 5,
   lsp_signature_help = true,
-  default_mapping = true,
+  default_mapping = false,
+  keymaps = {
+    { key = 'gr', func = require('navigator.reference').async_ref, desc = 'lsp async_ref' },
+    { key = '<Leader>gr', func = require('navigator.reference').reference, desc = 'lsp reference' }, -- reference deprecated
+    { mode = 'i', key = '<M-k>', func = vim.lsp.signature_help, desc = 'lsp signature_help' },
+    { key = '<c-k>', func = vim.lsp.buf.signature_help, desc = 'lsp signature_help' },
+    { key = 'g0', func = require('navigator.symbols').document_symbols, desc = 'lsp document_symbols' },
+    { key = 'gW', func = require('navigator.workspace').workspace_symbol_live, desc = 'lsp workspace_symbol_live' },
+    { key = '<c-]>', func = require('navigator.definition').definition, desc = 'lsp definition' },
+    { key = 'gd', func = require('navigator.definition').definition, desc = 'lsp definition' },
+    { key = 'gD', func = vim.lsp.buf.declaration, desc = 'lsp declaration' },
+    { key = 'gp', func = require('navigator.definition').definition_preview, desc = 'lsp definition_preview' },
+    { key = '<Leader>gt', func = require('navigator.treesitter').buf_ts, desc = 'lsp buf_ts' },
+    { key = '<Leader>gT', func = require('navigator.treesitter').bufs_ts, desc = 'lsp bufs_ts' },
+    { key = '<Leader>ct', func = require('navigator.ctags').ctags, desc = 'lsp ctags' },
+    { key = 'K', func = vim.lsp.buf.hover, desc = 'lsp hover' },
+    { key = '<Space>ca', mode = 'n', func = require('navigator.codeAction').code_action, desc = 'lsp code_action' },
+    {
+      key = '<Space>ca',
+      mode = 'v',
+      func = require('navigator.codeAction').range_code_action,
+      desc = 'lsp range_code_action',
+    },
+    -- { key = '<Leader>re', func = 'rename()' },
+    { key = '<Space>rn', func = require('navigator.rename').rename, desc = 'lsp rename' },
+    { key = '<Leader>gc', func = vim.lsp.buf.incoming_calls, desc = 'lsp incoming_calls' },
+    { key = '<Leader>go', func = vim.lsp.buf.outgoing_calls, desc = 'lsp outgoing_calls' },
+    { key = '<Leader>gi', func = vim.lsp.buf.implementation, desc = 'lsp implementation' },
+    { key = '<Space>D', func = vim.lsp.buf.type_definition, desc = 'lsp type_definition' },
+    { key = 'gL', func = require('navigator.diagnostics').show_diagnostics, desc = 'lsp show_diagnostics' },
+    { key = 'gG', func = require('navigator.diagnostics').show_buf_diagnostics, desc = 'lsp show_buf_diagnostics' },
+    { key = '<Leader>dt', func = require('navigator.diagnostics').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
+    { key = ']d', func = vim.diagnostic.goto_next, desc = 'lsp next diagnostics' },
+    { key = '[d', func = vim.diagnostic.goto_prev, desc = 'lsp prev diagnostics' },
+    { key = ']O', func = vim.diagnostic.set_loclist, desc = 'lsp diagnostics set loclist' },
+    { key = ']r', func = require('navigator.treesitter').goto_next_usage, desc = 'lsp goto_next_usage' },
+    { key = '[r', func = require('navigator.treesitter').goto_previous_usage, desc = 'lsp goto_previous_usage' },
+    { key = '<C-LeftMouse>', func = vim.lsp.buf.definition, desc = 'lsp definition' },
+    { key = 'g<LeftMouse>', func = vim.lsp.buf.implementation, desc = 'lsp implementation' },
+    { key = '<Leader>k', func = require('navigator.dochighlight').hi_symbol, desc = 'lsp hi_symbol' },
+    { key = '<Space>wa', func = require('navigator.workspace').add_workspace_folder, desc = 'lsp add_workspace_folder' },
+    {
+      key = '<Space>wr',
+      func = require('navigator.workspace').remove_workspace_folder,
+      desc = 'lsp lsp remove_workspace_folder',
+    },
+    { key = '<Space>ff', func = vim.lsp.buf.format, mode = 'n', desc = 'lsp format' },
+    { key = '<Space>ff', func = vim.lsp.buf.range_formatting, mode = 'v', desc = 'lsp range format' },
+    {
+      key = '<Space>gm',
+      func = require('navigator.formatting').range_format,
+      mode = 'n',
+      desc = 'lsp range format operator e.g gmip',
+    },
+    { key = '<Space>wl', func = require('navigator.workspace').list_workspace_folders, desc = 'lsp list_workspace_folders' },
+    { key = '<Space>la', mode = 'n', func = require('navigator.codelens').run_action, desc = 'lsp run code lens action' },
+  },
 
   icons = {
     icons = true, -- set to false to use system default ( if you using a terminal does not have nerd/icon)
@@ -83,7 +139,7 @@ local config = {
 
     -- disable auto start of lsp per language
     -- set global default on lspconfig (see lspconfig doc)
-    -- ["lua-dev"] = {
+    -- ["lua-dev"] = { -- only for lua-dev.nvim
     --   autostart = false,
     -- }
   }
@@ -93,6 +149,8 @@ M.setup = function()
   navigator.setup(config)
 end
 
+-- make sure LSP is not started automatically
+-- TODO: how to it per project basis
 M.enable = function()
   local lspconfig = require("lspconfig")
   lspconfig.util.default_config = vim.tbl_extend(
