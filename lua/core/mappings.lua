@@ -278,7 +278,10 @@ M.comment = { --{{{
 
   v = {
     ["<leader>/"] = {
-      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+      function()
+        vim.notify("use gcc !")
+      end,
+      -- "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
       "toggle comment",
     },
   },
