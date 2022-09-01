@@ -5,6 +5,7 @@
 
 return {
   ["nvim-treesitter/nvim-treesitter-textobjects"] = {
+    commit = "775c5dbcb6937954d5861465e7c3ec23b855af93",
     after = "nvim-treesitter",
     config = function()
       require("custom.plugins.configs.treesitter-to")
