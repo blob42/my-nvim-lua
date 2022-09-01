@@ -74,6 +74,14 @@ M.general = { --{{{
     -- update nvchad
     ["<leader>uu"] = { "<cmd> :NvChadUpdate <CR>", "update nvchad" },
 
+    -- PackerSnapshot
+    ["<leader>pp"] = { function()
+        local snapname = "snapshot_" .. os.date("%Y_%m_%d")
+        local packer = require 'packer'
+        packer.snapshot(snapname)
+    end
+    , "packer snapshot"},
+
     ["<leader>ss"] = { "<cmd> mks! <CR>", "save session"},
     ["<leader>sl"] = { "<cmd> source Session.vim <CR>", "load session"},
 
