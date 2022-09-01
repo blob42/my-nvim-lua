@@ -44,7 +44,7 @@ M.plugins = {
         "toml",
         "vue",
       }
-    }
+    },
   }
 }
 

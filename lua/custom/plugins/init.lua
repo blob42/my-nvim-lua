@@ -54,15 +54,15 @@ return {
 
   -- session and view
   ["vim-scripts/restore_view.vim"] = {},
-  ["rmagatti/auto-session"] = {
-    config = function ()
-        require("auto-session").setup {
-          log_level = "error",
-          auto_session_suppress_dirs = {"~/", "~/projects", "/"},
-          auto_save_enabled = false,
-        }
-    end
-  },
+  -- ["rmagatti/auto-session"] = {
+  --   config = function ()
+  --       require("auto-session").setup {
+  --         log_level = "error",
+  --         auto_session_suppress_dirs = {"~/", "~/projects", "/"},
+  --         auto_save_enabled = false,
+  --       }
+  --   end
+  -- },
 
   -- text formatting and navigation
   -- repeat operator for plugin commands
@@ -110,8 +110,9 @@ return {
       }
     end
   },
-
+  -- ------------------
   -- LSP 
+  -- ------------------
   ["honza/vim-snippets"] = {
     module = {"cmp", "cmp_nvim_lsp"},
     event = "InsertEnter",
@@ -136,8 +137,17 @@ return {
       require("mason-lspconfig").setup({})
     end,
   },
-  --
-  -- ["https://git.sp4ke.xyz/sp4ke/navigator.lua"] = {
+
+  ["hrsh7th/cmp-nvim-lsp-signature-help"] = {
+    after = "cmp-path"
+  },
+
+  ["ray-x/guihua.lua"] = {
+    module = "navigator",
+    run=  "cd lua/fzy && make"
+  },
+  -- ["https://git.sp4ke.xyz/sp4ke/navigator.lua"] = 
+    --
   ["ray-x/navigator.lua"] = {
     after = { "nvim-lspconfig", "base46", "ui" },
     requires =  {"neovim/nvim-lspconfig", "ray-x/guihua.lua", "nvim-treesitter/nvim-treesitter"},
@@ -151,10 +161,6 @@ return {
       -- TODO: use nvchadui_lsp features manually
       -- require("nvchad_ui.lsp")
     end
-  },
-  ["ray-x/guihua.lua"] = {
-    module = "navigator",
-    run=  "cd lua/fzy && make"
   },
 
   -- per language plugins
@@ -180,23 +186,21 @@ return {
       })
     end
   },
-    ["ii14/neorepl.nvim"] = {
-      cmd = "Repl",
-      after = "nvim-cmp",
-      setup = function ()
-        local autocmd = vim.api.nvim_create_autocmd
-        autocmd("FileType",{
-          pattern = "neorepl",
-          callback = function ()
-            require('cmp').setup.buffer({enabled = false})
+  ["ii14/neorepl.nvim"] = {
+    cmd = "Repl",
+    after = "nvim-cmp",
+    setup = function ()
+      local autocmd = vim.api.nvim_create_autocmd
+      autocmd("FileType",{
+        pattern = "neorepl",
+        callback = function ()
+          require('cmp').setup.buffer({enabled = false})
 
-            -- custom keymap example
-            -- activate corresponding section in mappings
-            -- mappings = require("custom.utils").set_plugin_mappings "neorepl"
-          end
-        })
-      end
-
-    }
-
+          -- custom keymap example
+          -- activate corresponding section in mappings
+          -- mappings = require("custom.utils").set_plugin_mappings "neorepl"
+        end
+      })
+    end
+  }
 }
