@@ -6,3 +6,5 @@
 - install neorg (neovim org mode)
 - dynamic :w!! (daos or sudo)
 [x] [navigator] fix 'gi' keymap overriden by navigator (use space leader)
+- welcome screen (use mini)
+- incorporate changes in nvchad_ui to override 

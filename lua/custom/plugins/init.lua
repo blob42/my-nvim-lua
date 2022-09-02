@@ -137,11 +137,9 @@ return {
       require("mason-lspconfig").setup({})
     end,
   },
-
   ["hrsh7th/cmp-nvim-lsp-signature-help"] = {
     after = "cmp-path"
   },
-
   ["ray-x/guihua.lua"] = {
     module = "navigator",
     run=  "cd lua/fzy && make"

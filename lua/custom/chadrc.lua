@@ -18,12 +18,18 @@ M.ui = {
 M.plugins = {
   user = require "custom.plugins",
   override = {
-    -- ["NvChad/ui"] = {
-    --   tabufline = {
-    --     lazyload = false,
-    --   },
-    --
-    -- },
+    ["NvChad/ui"] = {
+      -- tabufline = {
+      --   lazyload = false,
+      -- },
+      statusline = {
+        overriden_modules = function()
+          return require "custom.plugins.nvchadui"
+        end
+      }
+
+
+    },
     ["nvim-treesitter/nvim-treesitter"] = {
       ensure_installed = {
         "lua",
