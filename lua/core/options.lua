@@ -7,6 +7,7 @@ g.nvchad_theme = config.ui.theme
 g.toggle_theme_icon = "   "
 g.transparency = config.ui.transparency
 g.theme_switcher_loaded = false
+-- g.fg_man_folding_enable = true -- enable folding for man pages
 
 -- use filetype.lua instead of filetype.vim. it's enabled by default in neovim 0.8 (nightly)
 if g.vim_version < 8 then
@@ -32,7 +33,7 @@ opt.softtabstop = 2 -- Let backspace delete indent
 -- http://vim.wikia.com/wiki/Converting_tabs_to_spaces
 opt.tabpagemax = 10
 
-opt.fillchars = { eob = " " }
+opt.fillchars = { eob = "∼" }
 opt.ignorecase = true
 opt.smartcase = true
 opt.mouse = "a"
@@ -61,12 +62,12 @@ opt.iskeyword:remove("-")
 -- set foldmethod=expr
 -- set foldexpr=nvim_treesitter#foldexpr()
 --
-opt.foldminlines = 3
+opt.foldminlines = 2
 opt.foldlevelstart = 0
 opt.conceallevel=1 -- how to show text with :syn-conceal syntax
 
 opt.list = true -- show tabs,trailing spaces and non-breakable spaces
-opt.listchars = "tab:› ,trail:•,extends:#,nbsp:." -- Highlight problematic whitespace
+opt.listchars = "tab: ,trail:,extends:#,nbsp:⋅,eol:↴" -- Highlight problematic whitespace
 opt.diffopt:append("vertical")
 opt.completeopt = "menu,menuone,noselect"
 opt.wrap = false

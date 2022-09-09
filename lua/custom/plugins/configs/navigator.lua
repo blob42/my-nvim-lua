@@ -9,9 +9,9 @@ M = {}
 
 
 local config = {
-  -- debug = true,
+  debug = false,
   transparency = 5,
-  lsp_signature_help = true,
+  lsp_signature_help = false, -- needs plugin lsp_signature 
   default_mapping = false,
   keymaps = {
     { key = 'gr', func = require('navigator.reference').async_ref, desc = 'lsp async_ref' },
@@ -43,7 +43,8 @@ local config = {
     { key = '<Space>D', func = vim.lsp.buf.type_definition, desc = 'lsp type_definition' },
     { key = 'gL', func = require('navigator.diagnostics').show_diagnostics, desc = 'lsp show_diagnostics' },
     { key = 'gG', func = require('navigator.diagnostics').show_buf_diagnostics, desc = 'lsp show_buf_diagnostics' },
-    { key = '<Leader>dt', func = require('navigator.diagnostics').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
+    -- { key = '<Leader>dt', func = require('navigator.diagnostics').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
+    { key = '<Leader>dt', func = require('sp4ke.lsp').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
     { key = ']d', func = vim.diagnostic.goto_next, desc = 'lsp next diagnostics' },
     { key = '[d', func = vim.diagnostic.goto_prev, desc = 'lsp prev diagnostics' },
     { key = ']O', func = vim.diagnostic.set_loclist, desc = 'lsp diagnostics set loclist' },
@@ -73,16 +74,16 @@ local config = {
   icons = {
     icons = true, -- set to false to use system default ( if you using a terminal does not have nerd/icon)
     -- Code action
-    code_action_icon = ' ', -- "",
+    code_action_icon = ' ', -- "",
 
     -- code lens
-    code_lens_action_icon = '',
+    code_lens_action_icon = '',
 
     -- Diagnostics
     diagnostic_head = '',   -- default diagnostic head on dialogs
-    diagnostic_err =  '',    -- severity 1
+    diagnostic_err =  '',    -- severity 1
     diagnostic_warn = '',   --          2
-    diagnostic_info = '',   --          3
+    diagnostic_info = '',   --          3
     diagnostic_hint = '',   --          4
 
     -- used in the diagnostics summary window
@@ -124,7 +125,7 @@ local config = {
     document_highlight = false,
     mason = true,
     format_on_save = false, -- applies to all formatting feature of neovim 
-                            -- including auto-fold
+    -- including auto-fold
     diagnostic = {
       underline = true,
       virtual_text = {
@@ -135,13 +136,34 @@ local config = {
       severity_sort = { reverse = true },
     },
 
-    -- disable_lsp = {"sqls"},
+    diagnostic_scrollbar_sign = false,
+
+    disable_lsp = {"clangd"},
 
     -- disable auto start of lsp per language
     -- set global default on lspconfig (see lspconfig doc)
-    -- ["lua-dev"] = { -- only for lua-dev.nvim
-    --   autostart = false,
-    -- }
+    gopls = {
+      settings = {
+        hints = {
+          assignVariableTypes = true,
+          compositeLiteralFields = true,
+          compositeLiteralTypes = true,
+          constantValues = true,
+          functionTypeParameters = true,
+          parameterNames = true,
+          rangeVariableTypes = true,
+        },
+      }
+    },
+
+    ["lua-dev"] = {
+      library = {
+        enabled = true,
+        plugins = {"navigator.lua"},
+        runtime = true,
+        types = true,
+      }
+    },
   }
 }
 
@@ -151,18 +173,18 @@ end
 
 -- make sure LSP is not started automatically
 -- TODO: how to it per project basis
-M.enable = function()
-  local lspconfig = require("lspconfig")
-  lspconfig.util.default_config = vim.tbl_extend(
-    "force",
-    lspconfig.util.default_config,
-    {
-      autostart = true
-    }
-  )
-  vim.cmd[[
-  LspStart
-  ]]
-end
+-- M.enable = function()
+--   local lspconfig = require("lspconfig")
+--   lspconfig.util.default_config = vim.tbl_extend(
+--     "force",
+--     lspconfig.util.default_config,
+--     {
+--       autostart = true
+--     }
+--   )
+--   vim.cmd[[
+--   LspStart
+--   ]]
+-- end
 
 return M

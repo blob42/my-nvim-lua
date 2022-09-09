@@ -1,3 +1,4 @@
+---@diagnostic disable: trailing-space
 -- vim: foldmethod=marker foldlevel=0
 -- n, v, i, t, c = mode name.s
 
@@ -8,7 +9,7 @@ end
 local M = {}
 
 M.general = { --{{{
-  i = {
+  i = {--{{{
 
     ["jk"] = { "<esc>", "escape" },
 
@@ -22,9 +23,9 @@ M.general = { --{{{
 
     -- luasnip change choice
     ["<C-u>"] = { "<Plug>luasnip-next-choice", "change luasnip choice" },
-  },
+  },--}}}
 
-  n = {
+  n = {--{{{
     ["<ESC>"] = { "<cmd> noh <CR>", "no highlight" },
 
     -- switch between windows
@@ -35,8 +36,8 @@ M.general = { --{{{
 
     -- Window resizing
 
-    ["<C-Left>"]  = { "<cmd> vert res -2 <CR>", "window width +" },
-    ["<C-Right>"] = { "<cmd> vert res +2 <CR>", "window width -" },
+    ["<C-Left>"]  = { "<cmd> vert res +2 <CR>", "window width +" },
+    ["<C-Right>"] = { "<cmd> vert res -2 <CR>", "window width -" },
     ["<C-Up>"]    = { "<cmd>res +2 <CR>", "window height +" },
     ["<C-Down>"]  = { "<cmd>res -2 <CR>", "window height -" },
 
@@ -81,6 +82,42 @@ M.general = { --{{{
         packer.snapshot(snapname)
     end
     , "packer snapshot"},
+
+    ["<leader>pr"] = { function()
+
+      -- require("plenary.reload").reload_module("plugins")
+      -- require("plenary.reload").reload_module("custom.plugins")
+      -- vim.cmd "LuaCacheClear"
+      -- package.loaded["plugins"] = nil
+      --
+      -- package.loaded["custom.plugins"] = nil
+      -- dofile(vim.fn.stdpath("config") .. '/lua/plugins/init.lua')
+      -- dofile(vim.fn.stdpath("config") .. '/lua/custom/plugins/init.lua')
+      --
+      require("sp4ke.utils").unload_lua_ns("plugins")
+      require("sp4ke.utils").unload_lua_ns("custom")
+      require("plugins")
+      -- require("sp4ke.utils").unload_lua_ns("custom")
+      vim.cmd "PackerCompile"
+      print("reloaded plugin config !")
+    end,
+    "packer reload/compile"
+    },
+
+    -- lua source current file
+    ["<leader>.."] = {"<cmd> :w | source %<CR>", "save and source script "},
+    ["<leader>.m"] = { function ()
+      local ok, core = pcall(require, "core")
+      if not ok then
+        return
+      end
+      -- reload nvchad mappings
+      require("plenary.reload").reload_module("core.utils")
+      require("plenary.reload").reload_module("core.default_config")
+      require("plenary.reload").reload_module("core.mappings")
+      require("core.utils").load_mappings()
+      print("mappings reloaded !")
+    end, "config reload mappings"},
 
     ["<leader>ss"] = { "<cmd> mks! <CR>", "save session"},
     ["<leader>sl"] = { "<cmd> source Session.vim <CR>", "load session"},
@@ -131,7 +168,7 @@ M.general = { --{{{
     },
 
     -- quick close window
-    ["<leader><Down>"] = {"<C-w>c", "close window"},
+    ["<C-x>"] = {"<C-w>c", "close window"},
 
 
 
@@ -150,8 +187,14 @@ M.general = { --{{{
     ["<leader>f8"] = { ":set foldlevel=8<CR>", "set fold level" },
     ["<leader>f9"] = { ":set foldlevel=9<CR>", "set fold level" },
 
+    ["<leader>tf"] = { "<cmd> set foldmethod=expr | set \
+                        foldexpr=nvim_treesitter#foldexpr()<CR>",
+                       "enable Treesitter folding"},
+
     ["<leader>en"] = { "<cmd> cn <CR>", "next error"     },
+    ["]e"] = { "<cmd> cn <CR>", "next error"     },
     ["<leader>ep"] = { "<cmd> cp <CR>", "previous error" },
+    ["[e"] = { "<cmd> cp <CR>", "previous error" },
 
 
     -- Tabularize mappings
@@ -181,7 +224,10 @@ M.general = { --{{{
     -- TODO: move to lspconfig section
     -- ["<leader>lsp"] = { "<cmd> lua require('custom.plugins.configs.navigator').enable()<CR>", "lsp enable"},
     ["<leader>lsp"] = { "<cmd> LspStart<CR>", "lsp enable"},
+    ["<M-s>"] = { "<cmd> LspStart<CR>", "lsp enable"},
     ["<leader>lst"] = { "<cmd> LspStop<CR>", "lsp disable"},
+
+
 
     ---------------
     -- Programming languages specifics
@@ -199,11 +245,11 @@ M.general = { --{{{
 
     -- config files
     ["<leader>ev"] = {"<cmd> source ~/.config/nvim/Session.vim<CR>" , "edit vim config"},
-  },
+  },--}}}
 
   t = { ["<C-x>"] = { termcodes "<C-\\><C-N>", "escape terminal mode" } },
 
-  v = {
+  v = {--{{{
     -- ["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', opts = { expr = true } },
     -- ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', opts = { expr = true } },
     ["j"] = { "gj" },
@@ -230,10 +276,10 @@ M.general = { --{{{
     ["<leader>a,"]     = { "<cmd> Tabularize /,<CR>"          },
     ["<leader>a<Bar>"] = { "<cmd> Tabularize /<Bar><CR>"      },
 
-  },
+  },--}}}
 
   -- command line mappings
-  c = {
+  c = {--{{{
     ["Tabe"] = { "tabe" },
 
     -- Change Working Directory to that of the current file
@@ -243,7 +289,11 @@ M.general = { --{{{
     ["%%"]  = { "<C-R>=fnameescape(expand('%:h')).'/'<cr>",
                   "alias to current working dir"},
     ["Tab"] = { "Tabularize"},
-  }
+
+
+    ["tsf"] = { "set foldmethod=expr | set foldexpr=nvim_treesitter#foldexpr()",
+                    "enable Treesitter folding"}
+  }--}}}
 } --}}}
 
 M.tabufline = { --{{{
@@ -436,7 +486,21 @@ M.fzf_lua = { --{{{
 
   n = {
     -- find
-    ["<C-p>"] = { "<cmd> FzfLua files <CR>", "FzfLua find files" },
+    -- ["<C-p>"] = { "<cmd> FzfLua files <CR>", "FzfLua find files" },
+    ["<C-p>"] = { function ()
+      local ignored_bufs = {
+        "qf",
+      }
+      for _, ignored in ipairs(ignored_bufs) do
+        if vim.bo.filetype == ignored then
+          local default_keyseq = termcodes("<C-p>")
+          vim.api.nvim_feedkeys(default_keyseq, 'n', false) 
+          return
+        end
+      end
+      vim.cmd "FzfLua files"
+    end, "FzfLua find files" },
+
     ["<leader>fl"] = { "<cmd> FzfLua lines <CR>", "FzfLua grep open buffer lines" },
 
     -- grep
@@ -449,8 +513,9 @@ M.fzf_lua = { --{{{
     ["<leader>fr"] = { "<cmd> FzfLua resume <CR>", "FzfLua resume last search" },
 
     ["<leader>;"] = { "<cmd> FzfLua buffers <CR>", "FzfLua find buffers" },
-    ["<leader>fb"] = { "<cmd> FzfLua builtins <CR>", "FzfLua builtins" },
+    ["<leader>fb"] = { "<cmd> FzfLua builtin <CR>", "FzfLua builtins" },
     ["<leader>fh"] = { "<cmd> FzfLua help_tags <CR>", "FzfLua find help pages" },
+    ["<leader>fm"] = { "<cmd> FzfLua marks <CR>", "FzfLua marks" },
     ["<leader>fo"] = { "<cmd> FzfLua oldfiles <CR>", "FzfLua find oldfiles" },
     ["<leader>tk"] = { "<cmd> FzfLua keymaps <CR>", "FzfLua show keymaps" },
 
@@ -568,25 +633,25 @@ M.whichkey = { --{{{
 } --}}}
 
 M.blankline = { --{{{
-  -- plugin = true,
-  --
-  -- n = {
-  --   ["<leader>cc"] = {
-  --     function()
-  --       local ok, start = require("indent_blankline.utils").get_current_context(
-  --         vim.g.indent_blankline_context_patterns,
-  --         vim.g.indent_blankline_use_treesitter_scope
-  --       )
-  --
-  --       if ok then
-  --         vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start, 0 })
-  --         vim.cmd [[normal! _]]
-  --       end
-  --     end,
-  --
-  --     "Jump to current context",
-  --   },
-  -- },
+  plugin = true,
+
+  n = {
+    ["<leader>cc"] = {
+      function()
+        local ok, start = require("indent_blankline.utils").get_current_context(
+          vim.g.indent_blankline_context_patterns,
+          vim.g.indent_blankline_use_treesitter_scope
+        )
+
+        if ok then
+          vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start, 0 })
+          vim.cmd [[normal! _]]
+        end
+      end,
+
+      "Jump to current context",
+    },
+  },
 } --}}}
 
 M.navigator = {--{{{

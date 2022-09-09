@@ -9,11 +9,14 @@
 -- if character under cursor is number
 -- use normal C-x or close window
 
+local vimscriptsfolder = vim.env.XDG_CONFIG_HOME .. "/nvim/myvimscript" -- relative to .config/nvim dir
+vim.opt.runtimepath:prepend(vimscriptsfolder)
+
 
 -- highlights {
-vim.cmd [[
-  hi CursorLine gui=underline
-]]
+  -- handled in chadrc ui
+  -- see also plugin/after highlihght.vim
+  -- vim.cmd[[ runtime highlight.vim ]]
 --}
 
 -- Shift key typos{
