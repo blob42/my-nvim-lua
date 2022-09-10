@@ -72,40 +72,57 @@ M.ui = {
 M.plugins = {
   user = require "custom.plugins",
   override = {
+    ["folke/which-key.nvim"] = {
+      triggers_blacklist = {
+        -- list of mode / prefixes that should never be hooked by WhichKey
+        i = { "j", "k" },
+        v = { "j", "k" },
+      },
+    },
+
     ["NvChad/ui"] = {
       -- tabufline = {
-      --   lazyload = false,
-      -- },
-      statusline = {
-        overriden_modules = function()
-          return require "custom.plugins.nvchadui"
-        end
-      }
+        --   lazyload = false,
+        -- },
+        statusline = {
+          overriden_modules = function()
+            return require "custom.plugins.nvchadui"
+          end
+        }
 
 
-    },
-    ["nvim-treesitter/nvim-treesitter"] = {
-      ensure_installed = {
-        "lua",
-        "go",
-        "rust",
-        "fish",
-        "bash",
-        "python",
-        "c",
-        "haskell",
-        "javascript",
-        "html",
-        "markdown",
-        "markdown_inline",
-        "make",
-        "sql",
-        "yaml",
-        "toml",
-        "vue",
-      }
-    },
-  }
+      },
+      ["windwp/nvim-autopairs"] = {
+        disable_filetype = {
+          "TelescopePrompt",
+          "vim",
+          "guihua",
+          "guihua_rust",
+          "clap_input"
+        }
+      },
+      ["nvim-treesitter/nvim-treesitter"] = {
+        ensure_installed = {
+          "lua",
+          "go",
+          "rust",
+          "fish",
+          "bash",
+          "python",
+          "c",
+          "haskell",
+          "javascript",
+          "html",
+          "markdown",
+          "markdown_inline",
+          "make",
+          "sql",
+          "yaml",
+          "toml",
+          "vue",
+        }
+      },
+    }
 }
 
 return M
