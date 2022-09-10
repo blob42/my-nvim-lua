@@ -12,12 +12,17 @@ local config = {
   debug = false,
   transparency = 5,
   lsp_signature_help = false, -- needs plugin lsp_signature 
-  default_mapping = false,
+  default_mapping = true,
   keymaps = {
     { key = 'gr', func = require('navigator.reference').async_ref, desc = 'lsp async_ref' },
     { key = '<Leader>gr', func = require('navigator.reference').reference, desc = 'lsp reference' }, -- reference deprecated
-    { mode = 'i', key = '<M-k>', func = vim.lsp.signature_help, desc = 'lsp signature_help' },
-    { key = '<c-k>', func = vim.lsp.buf.signature_help, desc = 'lsp signature_help' },
+    {
+      key = '<M-k>',
+      mode = 'i',
+      func = vim.lsp.buf.signature_help,
+      desc = 'lsp signature_help'
+    },
+    { key = '<C-i>', func = vim.lsp.buf.signature_help, desc = 'lsp signature_help' },
     { key = 'g0', func = require('navigator.symbols').document_symbols, desc = 'lsp document_symbols' },
     { key = 'gW', func = require('navigator.workspace').workspace_symbol_live, desc = 'lsp workspace_symbol_live' },
     { key = '<c-]>', func = require('navigator.definition').definition, desc = 'lsp definition' },
@@ -159,7 +164,7 @@ local config = {
     ["lua-dev"] = {
       library = {
         enabled = true,
-        plugins = {"navigator.lua"},
+        plugins = {"navigator.lua", "guihua.lua"},
         runtime = true,
         types = true,
       }
