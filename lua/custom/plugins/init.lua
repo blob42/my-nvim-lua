@@ -38,6 +38,24 @@ return {
       require("custom.plugins.configs.treesitter-to")
     end
   },
+  ["hrsh7th/cmp-buffer"] = {
+    config = function ()
+      local disabled_ft = {
+        "guihua",
+        "clap_input",
+        "guihua_rust,"
+      }
+
+      require("cmp").setup.buffer {
+        enabled = function ()
+          for _, v in ipairs(disabled_ft) do
+            if vim.o.ft == v then return false end
+          end
+          return true
+        end
+      }
+    end
+  },
   ["mfussenegger/nvim-dap"] = {
     lock = true,
     module = "dap"
@@ -64,6 +82,7 @@ return {
   ["folke/which-key.nvim"] = {
     lock = true,
     disable = false,
+    keys = {"<leader>", "<BS>", "<Space>"}
   },
   ["nvim-telescope/telescope.nvim"] = {
     lock = true,
