@@ -1,0 +1,37 @@
+priority -55
+
+global !p
+from vimsnippets import foldmarker, make_box, get_comment_format
+endglobal
+
+
+################
+#  ANSI Color Codes  #
+################
+
+# The table starts with the original 16 colors (0-15).
+
+# The proceeding 216 colors (16-231) or formed by a 3bpc RGB value offset by
+# 16, packed into a single value.
+
+# The final 24 colors (232-256) are grayscale
+# starting from a shade slighly lighter than black, ranging up to shade slightly
+# darker than white.
+
+# Some emulators interpret these steps as linear
+# increments from (256 / 24) on all three channels, although some emulators may
+# explicitly define these values.
+
+snippet ansi_fg "Foreground ANSI 256 Color Code" i
+\033[38;5;${1:00}m
+endsnippet
+
+snippet ansi_bg "Background ANSI 256 Color Code" i
+\033[48;5;${1:00}m
+endsnippet
+
+snippet ansi_reset "Reset ANSI 256 Color Code" i
+\033[0m
+endsnippet
+
+

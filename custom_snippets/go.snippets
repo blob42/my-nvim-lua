@@ -1,0 +1,64 @@
+
+snippet errl "Error log fatal" b
+  if err != nil {
+    log.Fatal(err)
+  }
+  $0
+
+
+
+# Log error shortcuts
+snippet errlp "Error with log.Panic" b
+  if err != nil {
+    log.Panic(err)
+  }
+  $0
+
+
+snippet err "if err ..."
+  if err != nil {
+    $1
+  }
+
+
+snippet lerr "if err ... log.Error"
+  if err != nil {
+    log.Error($1)
+  }
+
+
+snippet lerrf "if err ... log.Error"
+  if err != nil {
+    log.Errorf($1)
+  }
+
+
+snippet msg "api message"
+	"message": "$1"
+
+
+snippet nnil "if ? != nil"
+  if $1 != nil {
+    $2
+  }
+
+
+snippet ln "fmt.Println()"
+  fmt.Println($1)
+
+
+snippet init "init func"
+  func init(){
+    $1
+  }
+  $0
+
+
+
+snippet rget "redis get"
+  DB.Redis.Do(radix.FlatCmd(${1:target}, "GET", ${2:key}))
+
+
+snippet rset "redis set" i
+  DB.Redis.Do(radix.FlatCmd(nil, "SET", ${1:key}, ${2:val}))
+

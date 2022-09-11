@@ -132,7 +132,7 @@ M.general = { --{{{
 
 
     -- luasnip edit snippets
-    ["<leader>se"] = {
+    ["<leader>sne"] = {
       function()
         require("luasnip.loaders").edit_snippet_files()
       end,

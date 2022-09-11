@@ -1,3 +1,4 @@
+- per project lsp settings
 - set neovim shell to bash/sh for faster commands (fish is slow)
    see https://www.reddit.com/r/neovim/comments/opipij/guide_tips_and_tricks_to_reduce_startup_and/
 - yank until end of line $ mapping

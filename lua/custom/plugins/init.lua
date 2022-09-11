@@ -149,10 +149,15 @@ return {
     keys = {"."},
   },
 
-  ["justinmk/vim-sneak"] = {
-    lock = true,
-    keys = {"s", "S"},
+  ["ggandor/leap.nvim"] = {
+    config = function()
+      require "custom.plugins.configs.leap"
+    end
   },
+  -- ["justinmk/vim-sneak"] = {
+  --   lock = true,
+  --   keys = {"s", "S"},
+  -- },
   ["tpope/vim-surround"] = {},
   ["godlygeek/tabular"] = {
     cmd = "Tabularize"

@@ -1,0 +1,72 @@
+global !p
+
+from snippet_tools import *
+
+def expand_link_bottom(snip):
+	buf = snip.buffer
+	if snip.tabstop == 0:
+		vim.command('normal G')
+		buf.append('[' + snip.tabstops[2].current_text + ']: "'  + snip.tabstops[1].current_text + '"')
+		#snip.expand_anon('$1')
+endglobal
+
+post_jump "expand_link_bottom(snip)"
+snippet lnk "Reference Link Inline"
+[${1:${VISUAL:name}}][${2:id}] $0
+endsnippet
+
+snippet ml "Insert math"
+{{< ml "${1:${VISUAL:1+1}}" >}}
+$0
+endsnippet
+
+snippet mli "Insert math"
+{{< mli "${1:${VISUAL:1+1}}" >}}
+$0
+endsnippet
+
+
+
+snippet abbr "Abbreviation"
+{{< abbr "${1:${VISUAL:abbr}}" "$2" >}}
+endsnippet
+
+snippet footnote "Footnote"
+{{< footnote >}}
+${1:${VISUAL:footenote}}
+{{< /footnote >}}
+$0
+endsnippet
+
+snippet btc# "bitcoin issue" i
+[#${1:${VISUAL:number}}](https://github.com/bitcoin/bitcoin/issues/$1)
+endsnippet
+
+snippet btc## "bitcoin issue shortcut"
+{{< ghi ${1:${VISUAL:number}} >}}
+endsnippet
+
+
+
+snippet bip "Bitcoin Improvement Proposal" i
+https://github.com/bitcoin/bips/blob/master/bip-${1:${VISUAL:0001}}.mediawiki
+endsnippet
+
+snippet slip "SatoshiLabs Improvement Proposal" i
+https://github.com/satoshilabs/slips/blob/master/slip-${1:${VISUAL:0001}}.md
+endsnippet
+
+snippet lnd# "LND Issue" i
+[#${1:${VISUAL:42}}](https://github.com/lightningnetwork/lnd/issues/$1)
+endsnippet
+
+snippet cl# "c-lightning issue" i
+[#${1:${VISUAL:42}}](https://github.com/ElementsProject/lightning/issues/$1)
+endsnippet
+
+snippet hl "highlight"
+{{< highlight $1 >}}
+	$2
+{{< /highlight >}}
+$0
+endsnippet
