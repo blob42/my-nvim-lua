@@ -9,6 +9,9 @@ g.transparency = config.ui.transparency
 g.theme_switcher_loaded = false
 -- g.fg_man_folding_enable = true -- enable folding for man pages
 
+
+if vim.fn.executable("sh") then opt.shell = vim.fn.exepath("sh") end
+
 -- use filetype.lua instead of filetype.vim. it's enabled by default in neovim 0.8 (nightly)
 if g.vim_version < 8 then
   g.did_load_filetypes = 0

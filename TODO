@@ -1,8 +1,5 @@
 - per project lsp settings
-- set neovim shell to bash/sh for faster commands (fish is slow)
    see https://www.reddit.com/r/neovim/comments/opipij/guide_tips_and_tricks_to_reduce_startup_and/
-- yank until end of line $ mapping
-- remove registers from which-key plugin
 - fix color/icon of status line diagnostics to match navigator
 - pin all plugins
 - autocommand move current directory when move to new window
@@ -23,4 +20,7 @@
 - incorporate changes in nvchad_ui to override 
 
 - [x]nvim C-p should not work in ft=qf 
-
+- [x] set neovim shell to bash/sh for faster commands (fish is slow)
+- [x] yank until end of line $ mapping automatic with Y
+- [x] remove registers from which-key plugin
+  -fix: problem with auto paused navigators
