@@ -17,7 +17,7 @@ local config = {
     { key = 'gr', func = require('navigator.reference').async_ref, desc = 'lsp async_ref' },
     { key = '<Leader>gr', func = require('navigator.reference').reference, desc = 'lsp reference' }, -- reference deprecated
     {
-      key = '<M-k>',
+      key = '<M-i>',
       mode = 'i',
       func = vim.lsp.buf.signature_help,
       desc = 'lsp signature_help'
