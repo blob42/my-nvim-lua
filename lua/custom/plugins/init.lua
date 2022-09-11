@@ -1,4 +1,4 @@
--- vim: foldlevel=0
+-- vim: foldlevel=1
 --
 -- TODO: interesting plugins to install
 -- - neovim minisurround to replace vim-surround
@@ -31,13 +31,23 @@
 -- - XXX ~~Reload all lua modules with `"pleanery.reload".reload_module(mod)`~~ XXX
 
 return {
-  ["nvim-treesitter/nvim-treesitter-textobjects"] = {
-    commit = "775c5dbcb6937954d5861465e7c3ec23b855af93",
-    after = "nvim-treesitter",
-    config = function()
-      require("custom.plugins.configs.treesitter-to")
+  ["nvim-treesitter/nvim-treesitter"] = {
+    setup =  function()
+      require("core.lazy_load").on_file_open "nvim-treesitter"
+      require("core.lazy_load").on_file_open "nvim-treesitter-textobjects"
+      require("core.lazy_load").on_file_open "nvim-treesitter-textsubjects"
+      -- require("core.lazy_load").on_file_open "nvim-ts-rainbow"
     end
   },
+  ["nvim-treesitter/nvim-treesitter-textobjects"] = {
+    opt = true,
+  },
+  ["RRethy/nvim-treesitter-textsubjects"] = {
+    opt = true,
+  },
+  -- ["p00f/nvim-ts-rainbow"] = {
+  --   opt = true,
+  -- },
   ["hrsh7th/cmp-buffer"] = {
     config = function ()
       local disabled_ft = {
@@ -56,10 +66,12 @@ return {
       }
     end
   },
+
   ["mfussenegger/nvim-dap"] = {
     lock = true,
     module = "dap"
   },
+
   ["rcarriga/nvim-dap-ui"] = {
     lock = true,
     after = "nvim-dap",
@@ -67,6 +79,7 @@ return {
       require('dapui').setup()
     end
   },
+
   ["theHamsta/nvim-dap-virtual-text"] = {
     lock = true,
     after = "nvim-dap"
@@ -79,11 +92,13 @@ return {
   --   end
   -- },
   --
+
   ["folke/which-key.nvim"] = {
     lock = true,
     disable = false,
     keys = {"<leader>", "<BS>", "<Space>"}
   },
+
   ["nvim-telescope/telescope.nvim"] = {
     lock = true,
      disable = true
@@ -100,6 +115,7 @@ return {
     end
   },
   -- Run async commands (make & errors)
+
   ["skywind3000/asyncrun.vim"] = {
     lock = true,
     cmd = "AsyncRun",
@@ -108,13 +124,14 @@ return {
       vim.g.asyncrun_open = 8
     end
   },
+
   ["tpope/vim-fugitive"] = {
     lock = true,
     cmd = {"G", "Git", "G*"}
   },
 
   -- session and view
-  ["vim-scripts/restore_view.vim"] = {},
+  ["vim-scripts/restore_view.vim"] = {}, -- TODO: check if still needed
 
   -- ["rmagatti/auto-session"] = {
   --   config = function ()
@@ -147,6 +164,16 @@ return {
   ["https://gitlab.com/HiPhish/info.vim.git"] = {
     cmd = "Info",
   },
+
+
+  -- ["chentoast/marks.nvim"] = {
+  --   opt = true,
+  --   keys = {"m", "d"},
+  --   cmd = {"Marks*", "Bookmarks*"},
+  --   config = function ()
+  --     require("custom.plugins.configs.marks").setup()
+  --   end
+  -- },
 
   -- snippets 
   ["L3MON4D3/LuaSnip"] = {

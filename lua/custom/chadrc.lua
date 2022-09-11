@@ -101,27 +101,7 @@ M.plugins = {
           "clap_input"
         }
       },
-      ["nvim-treesitter/nvim-treesitter"] = {
-        ensure_installed = {
-          "lua",
-          "go",
-          "rust",
-          "fish",
-          "bash",
-          "python",
-          "c",
-          "haskell",
-          "javascript",
-          "html",
-          "markdown",
-          "markdown_inline",
-          "make",
-          "sql",
-          "yaml",
-          "toml",
-          "vue",
-        }
-      },
+      ["nvim-treesitter/nvim-treesitter"] = require "custom.plugins.configs.treesitter",
     }
 }
 

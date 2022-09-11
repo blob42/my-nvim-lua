@@ -173,7 +173,9 @@ M.general = { --{{{
 
 
     -- yank from cusor to eol to system and primary clipboard
-    ["<leader>y"] = { '"*y$"+y$', "yank from cursor to eol to primary and clipboard" },
+    -- Y handles until end of line
+    -- yy handles linewise
+    -- ["<leader>y"] = { '"*y$"+y$', "yank from cursor to eol to primary and clipboard" },
 
     -- folding levels
     ["<leader>f0"] = { ":set foldlevel=0<CR>", "set fold level" },
@@ -187,8 +189,7 @@ M.general = { --{{{
     ["<leader>f8"] = { ":set foldlevel=8<CR>", "set fold level" },
     ["<leader>f9"] = { ":set foldlevel=9<CR>", "set fold level" },
 
-    ["<leader>tf"] = { "<cmd> set foldmethod=expr | set \
-                        foldexpr=nvim_treesitter#foldexpr()<CR>",
+    ["<leader>tf"] = { "<cmd> set foldmethod=expr<CR>|<cmd> set foldexpr=nvim_treesitter#foldexpr()<CR>",
                        "enable Treesitter folding"},
 
     ["<leader>en"] = { "<cmd> cn <CR>", "next error"     },
@@ -224,7 +225,8 @@ M.general = { --{{{
     -- TODO: move to lspconfig section
     -- ["<leader>lsp"] = { "<cmd> lua require('custom.plugins.configs.navigator').enable()<CR>", "lsp enable"},
     ["<leader>lsp"] = { "<cmd> LspStart<CR>", "lsp enable"},
-    ["<M-s>"] = { "<cmd> LspStart<CR>", "lsp enable"},
+    ["<M-s><M-s>"] = { "<cmd> LspStart<CR>", "lsp enable"},
+    ["<M-t><M-t>"] = { "<cmd> LspStop<CR>", "lsp disable"},
     ["<leader>lst"] = { "<cmd> LspStop<CR>", "lsp disable"},
 
 
