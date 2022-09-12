@@ -4,12 +4,10 @@ if not present then
   return
 end
 
-
 M = {}
 
-
 local config = {
-  debug = false,
+  debug = true,
   transparency = 5,
   lsp_signature_help = false, -- needs plugin lsp_signature 
   default_mapping = true,

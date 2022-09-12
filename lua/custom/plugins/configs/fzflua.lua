@@ -8,6 +8,13 @@ fzf.register_ui_select()
 
 local options = {
 
+  keymap = {
+    fzf = {
+      ["ctrl-c"] = "abort",
+      ["ctrl-z"] = "abort",
+    },
+  },
+
   fzf_opts = {
     ['--layout'] = 'default',
     ['--padding'] = '3%,1%'

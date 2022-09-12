@@ -31,6 +31,16 @@ M.ui = {
     },
   },
   hl_add = {
+    BookmarkSign = {
+      fg = "blue",
+    },
+    BookmarkAnnotationSign   = {
+      fg = "yellow",
+    },
+    BookmarkAnnotationLine = {
+      fg = "black",
+      bg = "yellow"
+    },
     DiagnosticInfo = { -- nvchad uses DiagnosticInformation wrong hi group for lsp
       fg = "teal",
       italic = true,
@@ -79,7 +89,6 @@ M.plugins = {
         v = { "j", "k" },
       },
     },
-
     ["NvChad/ui"] = {
       -- tabufline = {
         --   lazyload = false,

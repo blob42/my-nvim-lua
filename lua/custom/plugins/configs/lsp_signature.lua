@@ -5,7 +5,7 @@ if not present then
 end
 
 local config = {
-  floating_window = false,
+  floating_window = true,
   hint_enable  = true,
 
 }

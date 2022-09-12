@@ -101,7 +101,19 @@ return {
 
   ["nvim-telescope/telescope.nvim"] = {
     lock = true,
-     disable = true
+    disable = false,
+  },
+  ["tom-anders/telescope-vim-bookmarks.nvim"] = {
+    opt = true,
+    module = "telescope",
+    after = {"telescope.nvim", "vim-bookmarks"},
+    -- cmd = "Telescope",
+    -- requires = "vim-bookmarks",
+    -- after = {"vim-bookmarks", "telescope"},
+    -- module = "telescope",
+    config = function()
+      require("telescope").load_extension("vim_bookmarks")
+    end
   },
   ["ibhagwan/fzf-lua"] = {
     lock = true,
@@ -171,6 +183,12 @@ return {
   },
 
 
+  ["MattesGroeger/vim-bookmarks"] = {
+    config = function()
+      require("core.utils").load_mappings "vim_bookmarks"
+    end
+  },
+
   -- ["chentoast/marks.nvim"] = {
   --   opt = true,
   --   keys = {"m", "d"},
@@ -207,6 +225,7 @@ return {
     event = "InsertEnter",
   },
   ["neovim/nvim-lspconfig"] = {
+    after = "lua-dev.nvim",
     lock = true,
     config = function()
       local lspconfig = require("lspconfig")
@@ -313,7 +332,6 @@ return {
   -- check setup in configs/navigator.lua
   ["folke/lua-dev.nvim"] = {
     module = "lua-dev",
-    before = {"navigator.lua"},
   },
 
   -- golang dev

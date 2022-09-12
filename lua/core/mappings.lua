@@ -73,36 +73,8 @@ M.general = { --{{{
     ["<leader>n"] = { "<cmd> set nu!<CR><cmd> set rnu!<CR>", "toggle line number" },
 
     -- update nvchad
-    ["<leader>uu"] = { "<cmd> :NvChadUpdate <CR>", "update nvchad" },
+    -- ["<leader>uu"] = { "<cmd> :NvChadUpdate <CR>", "update nvchad" },
 
-    -- PackerSnapshot
-    ["<leader>pp"] = { function()
-        local snapname = "snapshot_" .. os.date("%Y_%m_%d")
-        local packer = require 'packer'
-        packer.snapshot(snapname)
-    end
-    , "packer snapshot"},
-
-    ["<leader>pr"] = { function()
-
-      -- require("plenary.reload").reload_module("plugins")
-      -- require("plenary.reload").reload_module("custom.plugins")
-      -- vim.cmd "LuaCacheClear"
-      -- package.loaded["plugins"] = nil
-      --
-      -- package.loaded["custom.plugins"] = nil
-      -- dofile(vim.fn.stdpath("config") .. '/lua/plugins/init.lua')
-      -- dofile(vim.fn.stdpath("config") .. '/lua/custom/plugins/init.lua')
-      --
-      require("sp4ke.utils").unload_lua_ns("plugins")
-      require("sp4ke.utils").unload_lua_ns("custom")
-      require("plugins")
-      -- require("sp4ke.utils").unload_lua_ns("custom")
-      vim.cmd "PackerCompile"
-      print("reloaded plugin config !")
-    end,
-    "packer reload/compile"
-    },
 
     -- lua source current file
     ["<leader>.."] = {"<cmd> :w | source %<CR>", "save and source script "},
@@ -178,16 +150,30 @@ M.general = { --{{{
     -- ["<leader>y"] = { '"*y$"+y$', "yank from cursor to eol to primary and clipboard" },
 
     -- folding levels
+    -- ["<leader>fd"] = { function()
+    --   vim.ui.select({"fold level 0", "1", "2", "3", "4", "5", "6", "7"},
+    --   {
+    --     prompt = "fold lvl: ",
+    --   },
+    --   function(item, idx)
+    --     P(idx)
+    --     -- local foldlevel = tonumber(item)
+    --     -- if foldlevel == nil then P("need number for fold level !") end
+    --     -- vim.o.foldlevel = foldlevel
+    --   end)
+    -- end,
+    --
+    -- "set fold level"},
     ["<leader>f0"] = { ":set foldlevel=0<CR>", "set fold level" },
     ["<leader>f1"] = { ":set foldlevel=1<CR>", "set fold level" },
     ["<leader>f2"] = { ":set foldlevel=2<CR>", "set fold level" },
     ["<leader>f3"] = { ":set foldlevel=3<CR>", "set fold level" },
     ["<leader>f4"] = { ":set foldlevel=4<CR>", "set fold level" },
-    ["<leader>f5"] = { ":set foldlevel=5<CR>", "set fold level" },
-    ["<leader>f6"] = { ":set foldlevel=6<CR>", "set fold level" },
-    ["<leader>f7"] = { ":set foldlevel=7<CR>", "set fold level" },
-    ["<leader>f8"] = { ":set foldlevel=8<CR>", "set fold level" },
-    ["<leader>f9"] = { ":set foldlevel=9<CR>", "set fold level" },
+    -- ["<leader>f5"] = { ":set foldlevel=5<CR>", "set fold level" },
+    -- ["<leader>f6"] = { ":set foldlevel=6<CR>", "set fold level" },
+    -- ["<leader>f7"] = { ":set foldlevel=7<CR>", "set fold level" },
+    -- ["<leader>f8"] = { ":set foldlevel=8<CR>", "set fold level" },
+    -- ["<leader>f9"] = { ":set foldlevel=9<CR>", "set fold level" },
 
     ["<leader>tf"] = { "<cmd> set foldmethod=expr<CR>|<cmd> set foldexpr=nvim_treesitter#foldexpr()<CR>",
                        "enable Treesitter folding"},
@@ -210,7 +196,36 @@ M.general = { --{{{
     ["<leader>g."] = { ":Gcd<CR>", "change dir to git root" },
 
     -- Packer commands
-    ["<leader>ps"] = { "<cmd> PackerSync <CR>", "packer sync" },
+    --
+    -- PackerSnapshot
+    ["<leader>pS"] = { function()
+        local snapname = "snapshot_" .. os.date("%Y_%m_%d")
+        local packer = require 'packer'
+        packer.snapshot(snapname)
+    end
+    , "packer snapshot"},
+    ["<leader>ps"] = { "<cmd> PackerStatus<CR>", "packer status"},
+
+    ["<leader>pr"] = { function()
+
+      -- require("plenary.reload").reload_module("plugins")
+      -- require("plenary.reload").reload_module("custom.plugins")
+      -- vim.cmd "LuaCacheClear"
+      -- package.loaded["plugins"] = nil
+      --
+      -- package.loaded["custom.plugins"] = nil
+      -- dofile(vim.fn.stdpath("config") .. '/lua/plugins/init.lua')
+      -- dofile(vim.fn.stdpath("config") .. '/lua/custom/plugins/init.lua')
+      --
+      require("sp4ke.utils").unload_lua_ns("plugins")
+      require("sp4ke.utils").unload_lua_ns("custom")
+      require("plugins")
+      -- require("sp4ke.utils").unload_lua_ns("custom")
+      vim.cmd "PackerCompile"
+      print("reloaded plugin config !")
+    end,
+    "packer reload/compile"
+    },
 
     -- Notify cmd watcher (see /scripts/utils/fifo_watch.sh)
     ["<leader><leader>,"] = {
@@ -293,8 +308,9 @@ M.general = { --{{{
     ["Tab"] = { "Tabularize"},
 
 
-    ["tsf"] = { "set foldmethod=expr | set foldexpr=nvim_treesitter#foldexpr()",
-                    "enable Treesitter folding"}
+    ["%c"] = { "~/.config/nvim/", "shortcut to nvim config dir"},
+    -- ["tsf"] = { "set foldmethod=expr | set foldexpr=nvim_treesitter#foldexpr()",
+                    -- "enable Treesitter folding"}
   }--}}}
 } --}}}
 
@@ -514,12 +530,12 @@ M.fzf_lua = { --{{{
     -- continue
     ["<leader>fr"] = { "<cmd> FzfLua resume <CR>", "FzfLua resume last search" },
 
-    ["<leader>;"] = { "<cmd> FzfLua buffers <CR>", "FzfLua find buffers" },
-    ["<leader>fb"] = { "<cmd> FzfLua builtin <CR>", "FzfLua builtins" },
-    ["<leader>fh"] = { "<cmd> FzfLua help_tags <CR>", "FzfLua find help pages" },
-    ["<leader>fm"] = { "<cmd> FzfLua marks <CR>", "FzfLua marks" },
+    -- ["<leader>;"] = { "<cmd> FzfLua buffers <CR>", "FzfLua find buffers" },
+    -- ["<leader>fb"] = { "<cmd> FzfLua builtin <CR>", "FzfLua builtins" },
+    -- ["<leader>fh"] = { "<cmd> FzfLua help_tags <CR>", "FzfLua find help pages" },
+    -- ["<leader>fm"] = { "<cmd> FzfLua marks <CR>", "FzfLua marks" },
     ["<leader>fo"] = { "<cmd> FzfLua oldfiles <CR>", "FzfLua find oldfiles" },
-    ["<leader>tk"] = { "<cmd> FzfLua keymaps <CR>", "FzfLua show keymaps" },
+    -- ["<leader>tk"] = { "<cmd> FzfLua keymaps <CR>", "FzfLua show keymaps" },
 
   }
 } --}}}
@@ -529,24 +545,27 @@ M.telescope = { --{{{
 
   n = {
     -- find
-    ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", "find files" },
-    ["<C-p>"] = { "<cmd> Telescope find_files <CR>", "find files" },
-
-    ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "find all" },
-    ["<leader>f*"] = { "<cmd> Telescope live_grep <CR>", "live grep" },
-    ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", "find buffers" },
-    ["<leader>;"] = { "<cmd> Telescope buffers <CR>", "find buffers" },
+    -- ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", "find files" },
+    -- ["<C-p>"] = { "<cmd> Telescope find_files <CR>", "find files" },
+    --
+    -- ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "find all" },
+    -- ["<leader>f*"] = { "<cmd> Telescope live_grep <CR>", "live grep" },
+    ["<leader>;"] = { "<cmd> Telescope buffers <CR>", "Telescope find buffers" },
+    ["<leader>fb"] = { "<cmd> Telescope builtin <CR>", "Telescope builtins" },
+    ["<leader>fB"] = { "<cmd> Telescope vim_bookmarks <CR>", "Telescope bookmarks" },
     ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "help page" },
-    ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "find oldfiles" },
-    ["<leader>tk"] = { "<cmd> Telescope keymaps <CR>", "show keys" },
+    -- ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "find oldfiles" },
+    ["<leader>fm"] = { "<cmd> Telescope marks <CR>", "Telescope marks" },
+    ["<leader>fM"] = { "<cmd> Telescope man_pages <CR>", "Telescope marks" },
+    ["<leader>tk"] = { "<cmd> Telescope keymaps <CR>", "Telescope show keys" },
 
     -- git
-    ["<leader>tg"] = { " ", "telescope git commands" },
-    ["<leader>tgc"] = { "<cmd> Telescope git_commits <CR>", "git commits" },
-    ["<leader>tgs"] = { "<cmd> Telescope git_status <CR>", "git status" },
+    ["<leader>fg"] = { " ", "telescope git commands" },
+    ["<leader>fgc"] = { "<cmd> Telescope git_commits <CR>", "git commits" },
+    ["<leader>fgs"] = { "<cmd> Telescope git_status <CR>", "git status" },
 
     -- pick a hidden term
-    ["<leader>pt"] = { "<cmd> Telescope terms <CR>", "pick hidden term" },
+    -- ["<leader>pt"] = { "<cmd> Telescope terms <CR>", "pick hidden term" },
 
     -- theme switcher
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "nvchad themes" },
@@ -682,6 +701,16 @@ M.asyncrun = { --{{{
     ["<leader>pp"] = { "<cmd> AsyncRun lpr %<CR>" },
   },
 } --}}}
+
+M.vim_bookmarks = {--{{{
+  n = {
+    ["m "] = {"<cmd> Telescope vim_bookmarks<CR>", "show bookmarks"},
+    ["mm"] = {"<cmd> BookmarkToggle<CR>", "toggle bookmarks"},
+    ["<leader>mm"] = {"<cmd> BookmarkAnnotate<CR>", "annotation bookmarks"},
+    ["<leader>mc"] = {"<cmd> BookmarkClear<CR>", "clear bookmarks in buffer"},
+    ["<leader>mx"] = {"<cmd> BookmarkClearAll<CR>", "clear bookmarks in all buffers"},
+  },
+}--}}}
 
 -- M.neorepl = {
 --   plugin = true,

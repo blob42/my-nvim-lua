@@ -105,8 +105,9 @@ opt.undofile = true
 -- backups
 opt.backup = true
 opt.backupcopy = "yes"
-opt.backupdir = vim.fn.expand("$XDG_DATA_HOME/nvim/backups")
+opt.backupdir = vim.fn.expand("~/.share/nvim/backups")
 opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,resize,winpos"
+g.sp4ke_bookmark_dir = vim.fn.stdpath("data") .. '/bookmarks'
 
 -- interval for writing swap file to disk, also used by gitsigns
 opt.updatetime = 250

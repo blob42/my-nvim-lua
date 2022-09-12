@@ -41,6 +41,8 @@ local options = {
     },
   },
   renderer = {
+
+    symlink_destination = false,
     highlight_git = false,
     highlight_opened_files = "none",
 

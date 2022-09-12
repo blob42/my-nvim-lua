@@ -1,8 +1,12 @@
+- vim-bookmarks disable default keymaps and use manaul ones (keep ma ...)
+- Setup telescope/fzf mappings together
+- LSP  C-i is tab does not allow to jump back into history
+- [PLUGIN INDEA] bookmark: take notes
+- show messages window outside or floating
+- create a bookmark mini plugin/helper for bookmarking paths
+- html filetype use pup as auto formatter formatprg (check default vim) ?
 - per project lsp settings
    see https://www.reddit.com/r/neovim/comments/opipij/guide_tips_and_tricks_to_reduce_startup_and/
-- fix color/icon of status line diagnostics to match navigator
-- pin all plugins
-- autocommand move current directory when move to new window
 - add/read language docs in vim
 - vim.diagnostics.hide()/show() /
     - create toggle diagnostics that overrides vim diagnostic show handler
@@ -24,3 +28,6 @@
 - [x] yank until end of line $ mapping automatic with Y
 - [x] remove registers from which-key plugin
   -fix: problem with auto paused navigators
+- [x] fix color/icon of status line diagnostics to match navigator
+-[x] pin all plugins
+- [x] autocommand move current directory when move to new window

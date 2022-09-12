@@ -1,0 +1,71 @@
+local fzf = require("fzf-lua")
+
+local M = {}
+
+local function fzf_display_bookmarks(bookmarks)
+  P(bookmarks)
+
+  local fzf_exec_opts = {
+    previewer = "builtin",
+    fzf_opts = {
+      ['--preview'] = fzf.shell.action(function(items)
+        local contents = {}
+        vim.tbl_map(function (x)
+          table.insert(contents, x)
+        end, items)
+        return contents
+      end)
+    }
+  }
+
+  fzf.fzf_exec(function(fzf_cb)
+    for _, bookmark in ipairs(bookmarks) do
+      -- P(bookmark.text)
+      local entry_text = string.gsub(bookmark.text, "\t", "")
+      entry_text = string.format("%-40s", entry_text)
+      fzf_cb(entry_text)   
+      fzf_cb()
+    end
+  end, fzf_exec_opts)
+end
+
+local function get_bookmarks(files, opts)
+    opts = opts or {}
+    local bookmarks = {}
+
+    for _,file in ipairs(files) do
+        for _,line in ipairs(vim.fn['bm#all_lines'](file)) do
+            local bookmark = vim.fn['bm#get_bookmark_by_line'](file, line)
+
+            local text = bookmark.annotation ~= "" and "Annotation: " .. bookmark.annotation or bookmark.content
+            if text == "" then
+                text = "(empty line)"
+            end
+
+            local only_annotated = opts.only_annotated or false
+
+            P(only_annotated)
+            if not (only_annotated and bookmark.annotation == "") then
+                table.insert(bookmarks, {
+                    filename = file,
+                    lnum = tonumber(line),
+                    col=1,
+                    text = text,
+                    sign_idx = bookmark.sign_idx,
+                })
+            end
+        end
+    end
+
+    return bookmarks
+end
+
+M.all = function(opts)
+  opts = opts or {}
+  local files = vim.fn['bm#all_files']()
+  bookmarks = get_bookmarks(files)
+  fzf_display_bookmarks(bookmarks)
+end
+
+-- M.all()
+-- return M
