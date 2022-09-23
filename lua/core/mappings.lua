@@ -67,7 +67,7 @@ M.general = { --{{{
     ["<C-s>"] = { "<cmd> update <CR>", "save file" },
 
     -- Copy all
-    ["<C-c>"] = { "<cmd> %y+ <CR>", "copy whole file" },
+    ["<leader>Y"] = { "<cmd> %y+ <CR>", "copy whole file" },
 
     -- line numbers
     ["<leader>n"] = { "<cmd> set nu!<CR><cmd> set rnu!<CR>", "toggle line number" },
@@ -121,7 +121,7 @@ M.general = { --{{{
     ["k"] = { "gk" },
 
     -- new buffer
-    ["<S-b>"] = { "<cmd> enew <CR>", "new buffer" },
+    ["<leader>bb"] = { "<cmd> enew <CR>", "new buffer" },
 
     -- new tab
     ["<leader><Tab>"] = { "<cmd> tabe <CR>", "new tab" },
@@ -204,7 +204,8 @@ M.general = { --{{{
         packer.snapshot(snapname)
     end
     , "packer snapshot"},
-    ["<leader>ps"] = { "<cmd> PackerStatus<CR>", "packer status"},
+    ["<leader>pst"] = { "<cmd> PackerStatus<CR>", "packer status"},
+    ["<leader>psc"] = { "<cmd> PackerSync<CR>", "packer sync"},
 
     ["<leader>pr"] = { function()
 
@@ -490,6 +491,41 @@ M.lspconfig = { --{{{
   },
 } --}}}
 
+M.dap = {
+  plugin = true,
+  n = {
+    ["<leader>ds"] = {
+      function()
+        if vim.o.filetype == "go" then
+          local spdap = require("sp4ke.dap")
+          spdap.setup()
+          spdap.go_debug()
+
+        end
+      end,
+      "start dap session"},
+      ["<leader>dS"] = {
+        function()
+          if vim.o.filetype == "go" then
+            vim.cmd("GoDbgStop")
+          end
+        end,
+        "stop dap session"
+      },
+      ["<leader>dd"] = {"<cmd> DapToggleBreakpoint <CR>"},
+      ["<leader>dc"] = {function()
+        vim.ui.input({ prompt = "condition> "}, function(input)
+          require("dap").set_breakpoint(input)
+        end)
+      end, "dap conditional breakpoint"},
+      ["<leader>dm"] = {function()
+        require("sp4ke.dapmode").start()
+      end, "enter dap mode"}
+
+  },
+
+}
+
 M.nvimtree = { --{{{
   plugin = true,
 
@@ -704,7 +740,7 @@ M.asyncrun = { --{{{
 
 M.vim_bookmarks = {--{{{
   n = {
-    ["m "] = {"<cmd> Telescope vim_bookmarks<CR>", "show bookmarks"},
+    ["<space>m"] = {"<cmd> Telescope vim_bookmarks<CR>", "show bookmarks"},
     ["mm"] = {"<cmd> BookmarkToggle<CR>", "toggle bookmarks"},
     ["<leader>mm"] = {"<cmd> BookmarkAnnotate<CR>", "annotation bookmarks"},
     ["<leader>mc"] = {"<cmd> BookmarkClear<CR>", "clear bookmarks in buffer"},

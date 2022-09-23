@@ -1,5 +1,7 @@
 return {
   ensure_installed = {
+    "query",
+    "css",
     "lua",
     "go",
     "rust",
@@ -7,6 +9,7 @@ return {
     "bash",
     "python",
     "c",
+    "cpp",
     "haskell",
     "javascript",
     "html",
@@ -97,5 +100,9 @@ return {
         ["~"] = "@parameter.inner"
       },
     }
+  },
+
+  playground = {
+    enable = true,
   }
 }

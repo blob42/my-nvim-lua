@@ -27,10 +27,14 @@ M.ui = {
       italic = true,
     },
     St_LspInfo = {
-      fg = "teal"
+      fg = "white"
     },
   },
   hl_add = {
+    Visual = {
+      bg = "yellow",
+      fg = "black",
+    },
     BookmarkSign = {
       fg = "blue",
     },
@@ -42,12 +46,16 @@ M.ui = {
       bg = "yellow"
     },
     DiagnosticInfo = { -- nvchad uses DiagnosticInformation wrong hi group for lsp
-      fg = "teal",
+      fg = "white",
       italic = true,
     },
     DiagnosticFloatingInfo = {
       fg="white",
       italic=true,
+    },
+    DiagnosticUnderlineError = {
+      fg="black",
+      bg="pink",
     },
     -- Code Lens related colors
      LspCodeLens = {
@@ -61,7 +69,19 @@ M.ui = {
     -- end of code lens colors
     DiffText = {
       bg = "vigrant_green"
-    }
+    },
+    St_DapMode = {
+      fg = "black2",
+      bg = "baby_pink",
+    },
+    St_DapModeSep = {
+      fg = "baby_pink",
+      bg = "one_bg3",
+    },
+    St_DapModeSep2 = {
+      fg = "grey",
+      bg = "baby_pink",
+    },
   },
   -- hl_override = {
   --   CursorLine = {

@@ -1,3 +1,7 @@
+- use libmodal + whichkey ?
+- gisigns: add navigation between hunks (vs fugitive ?)
+ - optimize git flow
+- navigator icons update
 - vim-bookmarks disable default keymaps and use manaul ones (keep ma ...)
 - Setup telescope/fzf mappings together
 - LSP  C-i is tab does not allow to jump back into history

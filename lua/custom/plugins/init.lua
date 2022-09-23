@@ -36,6 +36,7 @@ return {
       require("core.lazy_load").on_file_open "nvim-treesitter"
       require("core.lazy_load").on_file_open "nvim-treesitter-textobjects"
       require("core.lazy_load").on_file_open "nvim-treesitter-textsubjects"
+      require("core.lazy_load").on_file_open "nvim-treesitter-context"
       -- require("core.lazy_load").on_file_open "nvim-ts-rainbow"
     end
   },
@@ -45,6 +46,25 @@ return {
   ["RRethy/nvim-treesitter-textsubjects"] = {
     opt = true,
   },
+
+  -- Treesitter dev/exploration tool
+  ["nvim-treesitter/playground"] = {
+    opt = true,
+  },
+
+  ["nvim-treesitter/nvim-treesitter-context"] = {
+    opt = true,
+    config = function()
+      require("custom.plugins.configs.treesitter-context").setup()
+    end
+  },
+
+  ["folke/todo-comments.nvim"] = { 
+    after = "nvim-treesitter",
+    config = function()
+      require("custom.plugins.configs.todo-comments").setup()
+    end
+  },
   -- ["p00f/nvim-ts-rainbow"] = {
   --   opt = true,
   -- },
@@ -53,7 +73,8 @@ return {
       local disabled_ft = {
         "guihua",
         "clap_input",
-        "guihua_rust,"
+        "guihua_rust,",
+        "TelescopePrompt"
       }
 
       require("cmp").setup.buffer {
@@ -69,15 +90,15 @@ return {
 
   ["mfussenegger/nvim-dap"] = {
     lock = true,
-    module = "dap"
+    module = "dap",
+    setup = function()
+      require("core.utils").load_mappings "dap"
+    end,
   },
 
   ["rcarriga/nvim-dap-ui"] = {
     lock = true,
     after = "nvim-dap",
-    config = function ()
-      require('dapui').setup()
-    end
   },
 
   ["theHamsta/nvim-dap-virtual-text"] = {
@@ -131,7 +152,7 @@ return {
   ["skywind3000/asyncrun.vim"] = {
     lock = true,
     cmd = "AsyncRun",
-    config = function()
+    setup = function()
       require("core.utils").load_mappings "asyncrun"
       vim.g.asyncrun_open = 8
     end
@@ -189,6 +210,11 @@ return {
     end
   },
 
+  -- create new vim modes
+  ["Iron-E/nvim-libmodal"] = {
+    lock = true,
+  },
+
   -- ["chentoast/marks.nvim"] = {
   --   opt = true,
   --   keys = {"m", "d"},
@@ -241,8 +267,8 @@ return {
   ["williamboman/mason-lspconfig.nvim"] = {
     lock = true,
     requires = {"williamboman/mason.nvim", "nvim-lspconfig"},
-    after = "mason.nvim",
-    module = "mson-lspconfig.nvim",
+    -- after = "mason.nvim",
+    module = {"mson-lspconfig.nvim", "mason.nvim"},
     config = function()
       require("mason-lspconfig").setup({})
     end,
@@ -250,16 +276,26 @@ return {
   ["ray-x/guihua.lua"] = {
     lock = true,
     module = {"navigator"},
-    run=  "cd lua/fzy && make"
+    run = "cd lua/fzy && make",
+    config = function()
+      require("guihua.maps").setup {
+        maps = {
+          close_view = "<C-x>",
+        }
+      }
+    end
+
   },
   -- ["https://git.sp4ke.xyz/sp4ke/navigator.lua"] = 
     --
   ["ray-x/navigator.lua"] = {
     lock = true,
     opt = true,
-    after = { "nvim-lspconfig", "base46", "ui" },
+    module = "navigator.lua",
+    after = { "nvim-lspconfig", "base46", "ui", "mason.nvim", "mason-lspconfig.nvim" },
     requires =  {"neovim/nvim-lspconfig", "ray-x/guihua.lua", "nvim-treesitter/nvim-treesitter"},
     setup = function()
+      require("core.lazy_load").on_file_open "navigator.lua"
       require("core.utils").load_mappings "navigator"
     end,
     config = function()
@@ -350,6 +386,8 @@ return {
         -- lsp_diag_signs = false,
         lsp_codelens = false, -- use navigator
         textobjects = true,
+        dap_debug_keymap = false,
+
       })
     end
   }

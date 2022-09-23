@@ -7,7 +7,7 @@ end
 M = {}
 
 local config = {
-  debug = true,
+  debug = false,
   transparency = 5,
   lsp_signature_help = false, -- needs plugin lsp_signature 
   default_mapping = true,
@@ -20,7 +20,7 @@ local config = {
       func = vim.lsp.buf.signature_help,
       desc = 'lsp signature_help'
     },
-    { key = '<C-i>', func = vim.lsp.buf.signature_help, desc = 'lsp signature_help' },
+    -- { key = '<C-i>', func = vim.lsp.buf.signature_help, desc = 'lsp signature_help' },
     { key = 'g0', func = require('navigator.symbols').document_symbols, desc = 'lsp document_symbols' },
     { key = 'gW', func = require('navigator.workspace').workspace_symbol_live, desc = 'lsp workspace_symbol_live' },
     { key = '<c-]>', func = require('navigator.definition').definition, desc = 'lsp definition' },
@@ -124,9 +124,10 @@ local config = {
     treesitter_defult = '🌲',
     doc_symbols = '',
   },
+  mason = true,
+  mason_disabled_for = {"ccls"}, -- disable mason for specified lspclients 
   lsp = {
     document_highlight = false,
-    mason = true,
     format_on_save = false, -- applies to all formatting feature of neovim 
     -- including auto-fold
     diagnostic = {
@@ -162,7 +163,7 @@ local config = {
     ["lua-dev"] = {
       library = {
         enabled = true,
-        plugins = {"navigator.lua", "guihua.lua"},
+        plugins = {"navigator.lua", "guihua.lua", "go.nvim"},
         runtime = true,
         types = true,
       }
