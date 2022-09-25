@@ -10,7 +10,7 @@ local config = {
   debug = false,
   transparency = 5,
   lsp_signature_help = false, -- needs plugin lsp_signature 
-  default_mapping = true,
+  default_mapping = false,
   keymaps = {
     { key = 'gr', func = require('navigator.reference').async_ref, desc = 'lsp async_ref' },
     { key = '<Leader>gr', func = require('navigator.reference').reference, desc = 'lsp reference' }, -- reference deprecated
@@ -31,9 +31,9 @@ local config = {
     { key = '<Leader>gT', func = require('navigator.treesitter').bufs_ts, desc = 'lsp bufs_ts' },
     { key = '<Leader>ct', func = require('navigator.ctags').ctags, desc = 'lsp ctags' },
     { key = 'K', func = vim.lsp.buf.hover, desc = 'lsp hover' },
-    { key = '<Space>ca', mode = 'n', func = require('navigator.codeAction').code_action, desc = 'lsp code_action' },
+    { key = '<C-a>', mode = 'n', func = require('navigator.codeAction').code_action, desc = 'lsp code_action' },
     {
-      key = '<Space>ca',
+      key = '<C-a>',
       mode = 'v',
       func = require('navigator.codeAction').range_code_action,
       desc = 'lsp range_code_action',
@@ -63,13 +63,14 @@ local config = {
       desc = 'lsp lsp remove_workspace_folder',
     },
     { key = '<Space>ff', func = vim.lsp.buf.format, mode = 'n', desc = 'lsp format' },
-    { key = '<Space>ff', func = vim.lsp.buf.range_formatting, mode = 'v', desc = 'lsp range format' },
-    {
-      key = '<Space>gm',
-      func = require('navigator.formatting').range_format,
-      mode = 'n',
-      desc = 'lsp range format operator e.g gmip',
-    },
+    -- { key = '<Space>ff', func = vim.lsp.buf.range_formatting, mode = 'v', desc = 'lsp range format' },
+    -- DEPRECATED 
+    -- {
+    --   key = '<Space>gm',
+    --   func = require('navigator.formatting').range_format,
+    --   mode = 'n',
+    --   desc = 'lsp range format operator e.g gmip',
+    -- },
     { key = '<Space>wl', func = require('navigator.workspace').list_workspace_folders, desc = 'lsp list_workspace_folders' },
     { key = '<Space>la', mode = 'n', func = require('navigator.codelens').run_action, desc = 'lsp run code lens action' },
   },

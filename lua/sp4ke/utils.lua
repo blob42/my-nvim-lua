@@ -19,4 +19,10 @@ M.list_loaded_modules = function ()
 
 end
 
+M.reload_theme = function()
+  require("plenary.reload").reload_module("base46")
+  require("plenary.reload").reload_module("custom.chadrc")
+  require("base46").load_theme()
+end
+
 return M

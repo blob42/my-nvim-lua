@@ -121,7 +121,8 @@ return {
   },
 
   ["nvim-telescope/telescope.nvim"] = {
-    lock = true,
+    -- lock = true,
+    tag = "*",
     disable = false,
   },
   ["tom-anders/telescope-vim-bookmarks.nvim"] = {
@@ -135,6 +136,12 @@ return {
     config = function()
       require("telescope").load_extension("vim_bookmarks")
     end
+  },
+  ["nvim-telescope/telescope-fzf-native.nvim"] = {
+    opt = true,
+    module = "telescope",
+    after = {"telescope.nvim"},
+    run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
   },
   ["ibhagwan/fzf-lua"] = {
     lock = true,
@@ -377,18 +384,7 @@ return {
     ft = {"go"},
     opt = true,
     config = function()
-      require("go").setup({
-        run_in_floaterm = true,
-        icons = false,
-        -- icons = { breakpoint = "🧘", currentpos = "🏃" }, -- set to false to disable
-        lsp_cfg = false, -- handled by navigator
-        -- lsp_keymaps = false, -- use navigator
-        -- lsp_diag_signs = false,
-        lsp_codelens = false, -- use navigator
-        textobjects = true,
-        dap_debug_keymap = false,
-
-      })
+      require("custom.plugins.configs.gonvim").setup()
     end
   }
 }

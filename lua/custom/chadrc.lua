@@ -4,6 +4,9 @@ local M = {}
 
 -- make sure you maintain the structure of `core/default_config.lua` here,
 -- example of changing theme:
+--
+-- local custom_theme = require("sp4ke.theme")
+-- vim.tbl_deep_extend("force", M.ui.hl_add, custom_theme)
 
 M.ui = {
   theme = "monekai",
@@ -14,7 +17,7 @@ M.ui = {
       italic = true,
     },
     St_LspWarning = {
-      fg = "yello"
+      fg = "yellow"
     },
     DiagnosticHint = {
       fg = "purple",
@@ -32,7 +35,7 @@ M.ui = {
   },
   hl_add = {
     Visual = {
-      bg = "yellow",
+      bg = "blue",
       fg = "black",
     },
     BookmarkSign = {

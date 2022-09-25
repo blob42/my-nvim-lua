@@ -35,8 +35,8 @@ local options = {
       vertical = {
         mirror = false,
       },
-      width = 0.87,
-      height = 0.80,
+      width = 0.99,
+      height = 0.99,
       preview_cutoff = 120,
     },
     file_sorter = require("telescope.sorters").get_fuzzy_file,
@@ -58,7 +58,7 @@ local options = {
     },
   },
 
-  extensions_list = { "themes", "terms" },
+  extensions_list = { "themes", "terms", "fzf" },
 }
 
 -- check for any override

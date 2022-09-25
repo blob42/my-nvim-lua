@@ -541,36 +541,36 @@ M.fzf_lua = { --{{{
   n = {
     -- find
     -- ["<C-p>"] = { "<cmd> FzfLua files <CR>", "FzfLua find files" },
-    ["<C-p>"] = { function ()
-      local ignored_bufs = {
-        "qf",
-      }
-      for _, ignored in ipairs(ignored_bufs) do
-        if vim.bo.filetype == ignored then
-          local default_keyseq = termcodes("<C-p>")
-          vim.api.nvim_feedkeys(default_keyseq, 'n', false) 
-          return
-        end
-      end
-      vim.cmd "FzfLua files"
-    end, "FzfLua find files" },
+    -- ["<C-p>"] = { function ()
+    --   local ignored_bufs = {
+    --     "qf",
+    --   }
+    --   for _, ignored in ipairs(ignored_bufs) do
+    --     if vim.bo.filetype == ignored then
+    --       local default_keyseq = termcodes("<C-p>")
+    --       vim.api.nvim_feedkeys(default_keyseq, 'n', false) 
+    --       return
+    --     end
+    --   end
+    --   vim.cmd "FzfLua files"
+    -- end, "FzfLua find files" },
 
     ["<leader>fl"] = { "<cmd> FzfLua lines <CR>", "FzfLua grep open buffer lines" },
 
     -- grep
-    ["<leader>fw"] = { "<cmd> FzfLua grep_cword <CR>", "FzfLua grep cword" },
-    ["<leader>f."] = { "<cmd> FzfLua live_grep_native <CR>", "FzfLua grep live native" },
-    ["<leader>ff"] = { "<cmd> FzfLua grep_project <CR>", "FzfLua grep live project" },
+    -- ["<leader>fw"] = { "<cmd> FzfLua grep_cword <CR>", "FzfLua grep cword" },
+    -- ["<leader>f."] = { "<cmd> FzfLua live_grep_native <CR>", "FzfLua grep live native" },
+    -- ["<leader>ff"] = { "<cmd> FzfLua grep_project <CR>", "FzfLua grep live project" },
     ["<leader>f*"] = { "<cmd> FzfLua live_grep_glob <CR>", "FzfLua grep with glob (SPACE-- globs)" },
 
     -- continue
-    ["<leader>fr"] = { "<cmd> FzfLua resume <CR>", "FzfLua resume last search" },
+    -- ["<leader>fr"] = { "<cmd> FzfLua resume <CR>", "FzfLua resume last search" },
 
     -- ["<leader>;"] = { "<cmd> FzfLua buffers <CR>", "FzfLua find buffers" },
     -- ["<leader>fb"] = { "<cmd> FzfLua builtin <CR>", "FzfLua builtins" },
     -- ["<leader>fh"] = { "<cmd> FzfLua help_tags <CR>", "FzfLua find help pages" },
     -- ["<leader>fm"] = { "<cmd> FzfLua marks <CR>", "FzfLua marks" },
-    ["<leader>fo"] = { "<cmd> FzfLua oldfiles <CR>", "FzfLua find oldfiles" },
+    -- ["<leader>fo"] = { "<cmd> FzfLua oldfiles <CR>", "FzfLua find oldfiles" },
     -- ["<leader>tk"] = { "<cmd> FzfLua keymaps <CR>", "FzfLua show keymaps" },
 
   }
@@ -584,21 +584,37 @@ M.telescope = { --{{{
     -- ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", "find files" },
     -- ["<C-p>"] = { "<cmd> Telescope find_files <CR>", "find files" },
     --
-    -- ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "find all" },
-    -- ["<leader>f*"] = { "<cmd> Telescope live_grep <CR>", "live grep" },
-    ["<leader>;"] = { "<cmd> Telescope buffers <CR>", "Telescope find buffers" },
-    ["<leader>fb"] = { "<cmd> Telescope builtin <CR>", "Telescope builtins" },
-    ["<leader>fB"] = { "<cmd> Telescope vim_bookmarks <CR>", "Telescope bookmarks" },
+    ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "find all" },
+    ["<C-p>"] = { function ()
+      local ignored_bufs = {
+        "qf",
+      }
+      for _, ignored in ipairs(ignored_bufs) do
+        if vim.bo.filetype == ignored then
+          local default_keyseq = termcodes("<C-p>")
+          vim.api.nvim_feedkeys(default_keyseq, 'n', false) 
+          return
+        end
+      end
+      vim.cmd "Telescope find_files"
+    end, "FzfLua find files" },
+    ["<leader>f."] = { "<cmd> Telescope live_grep <CR>", "telescope live grep" },
+    ["<leader>fw"] = { "<cmd> Telescope grep_string <CR>", "telescope grep cword" },
+    ["<leader>;"] = { "<cmd> Telescope buffers <CR>", "telescope find buffers" },
+    ["<leader>fb"] = { "<cmd> Telescope builtin <CR>", "telescope builtins" },
+    ["<leader>fB"] = { "<cmd> Telescope vim_bookmarks <CR>", "telescope bookmarks" },
     ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "help page" },
-    -- ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "find oldfiles" },
+    ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "telescope find oldfiles" },
     ["<leader>fm"] = { "<cmd> Telescope marks <CR>", "Telescope marks" },
     ["<leader>fM"] = { "<cmd> Telescope man_pages <CR>", "Telescope marks" },
     ["<leader>tk"] = { "<cmd> Telescope keymaps <CR>", "Telescope show keys" },
+    ["<leader>fr"] = { "<cmd> Telescope resume <CR>", "telescope resume last search" },
 
     -- git
     ["<leader>fg"] = { " ", "telescope git commands" },
-    ["<leader>fgc"] = { "<cmd> Telescope git_commits <CR>", "git commits" },
-    ["<leader>fgs"] = { "<cmd> Telescope git_status <CR>", "git status" },
+    ["<leader>fgc"] = { "<cmd> Telescope git_commits <CR>", "teles git commits" },
+    ["<leader>fgs"] = { "<cmd> Telescope git_status <CR>", "teles git status" },
+    ["<leader>fgf"] = { "<cmd> Telescope git_files <CR>", "teles git files" },
 
     -- pick a hidden term
     -- ["<leader>pt"] = { "<cmd> Telescope terms <CR>", "pick hidden term" },
