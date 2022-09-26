@@ -22,7 +22,8 @@ M.general = { --{{{
     ["<C-s>"] = { "<cmd> update <CR>", "update file (save on changes)" },
 
     -- luasnip change choice
-    ["<C-u>"] = { "<Plug>luasnip-next-choice", "change luasnip choice" },
+    -- ["<C-u>"] = { "<Plug>luasnip-next-choice", "change luasnip choice" },
+    ["<C-u>"] = { "<cmd>lua require('luasnip.extras.select_choice')()<CR>", "change luasnip choice" },
   },--}}}
 
   n = {--{{{
@@ -250,16 +251,6 @@ M.general = { --{{{
     ---------------
     -- Programming languages specifics
     ---------------
-
-    -- luadev
-    ["<leader>lsc"] = {"<cmd>Luadev<CR>", "Luadev scratch window"},
-    ["<leader>ll"] = {"<Plug>(Luadev-RunLine)", "Luadev Run Line"},
-    ["<leader>lr"] = {"<Plug>(Luadev-Run)", "Luadev Run over movement or text object"},
-    ["<leader>lw"] = {"<Plug>(Luadev-RunWord)", "Luadev Run word under cursor"},
-
-    --
-    -- ["<leader>r"] = { "<NOP>", "Run action"},
-
 
     -- config files
     ["<leader>ev"] = {"<cmd> source ~/.config/nvim/Session.vim<CR>" , "edit vim config"},
@@ -763,6 +754,15 @@ M.vim_bookmarks = {--{{{
     ["<leader>mx"] = {"<cmd> BookmarkClearAll<CR>", "clear bookmarks in all buffers"},
   },
 }--}}}
+
+M.iron = {
+  plugin = true,
+  n = {
+    ["<leader>ir"] = {"<cmd>IronRepl<CR>", "start IronRepl"},
+  }
+
+
+}
 
 -- M.neorepl = {
 --   plugin = true,

@@ -329,26 +329,35 @@ return {
   -- -------
 
   -- Eval Lua lines/selections
-  ["bfredl/nvim-luadev"] = {
-    lock = true,
-    cmd = "Luadev",
-    keys = {
-      "<Plug>(Luadev-RunLine)",
-      "<Plug>(Luadev-Run)",
-      "<Plug>(Luadev-RunWord)",
-      "<Plug>(Luadev-Complete)",
-    },
+  -- ["bfredl/nvim-luadev"] = {
+  --   lock = true,
+  --   cmd = "Luadev",
+  --   keys = {
+  --     "<Plug>(Luadev-RunLine)",
+  --     "<Plug>(Luadev-Run)",
+  --     "<Plug>(Luadev-RunWord)",
+  --     "<Plug>(Luadev-Complete)",
+  --   },
+  --   setup = function()
+  --     local autocmd = vim.api.nvim_create_autocmd
+  --     autocmd("FileType", {
+  --       pattern = "lua",
+  --       callback = function ()
+  --         vim.keymap.set({'n', 'i'}, '<leader>r', '<Plug>(Luadev-RunLine)', {
+  --           desc = "Luadev RunLine"
+  --         })
+  --       end,
+  --     })
+  --   end
+  -- },
+  ["hkupty/iron.nvim"] = {
+    cmd = {"Iron*"},
     setup = function()
-      local autocmd = vim.api.nvim_create_autocmd
-      autocmd("FileType", {
-        pattern = "lua",
-        callback = function ()
-          vim.keymap.set({'n', 'i'}, '<leader>r', '<Plug>(Luadev-RunLine)', {
-            desc = "Luadev RunLine"
-          })
-        end,
-      })
-    end
+      require("core.utils").load_mappings "iron"
+    end,
+    config = function()
+      require("custom.plugins.configs.iron").setup()
+    end 
   },
 
   -- REPL for Lua development
