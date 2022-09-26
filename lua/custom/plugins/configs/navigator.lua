@@ -148,6 +148,7 @@ local config = {
     -- disable auto start of lsp per language
     -- set global default on lspconfig (see lspconfig doc)
     gopls = {
+      -- on_attach = require("sp4ke.lsp").custom_attach,
       settings = {
         gopls = {
           hints = {
