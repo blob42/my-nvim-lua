@@ -18,6 +18,7 @@ if g.vim_version < 8 then
   g.do_filetype_lua = 1
 end
 
+opt.cmdheight = 0
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
 
