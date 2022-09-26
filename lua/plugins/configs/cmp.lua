@@ -66,7 +66,9 @@ local options = {
     -- luasnip forward jump
     ["<C-k>"] = cmp.mapping(function(fallback)
       local luasnip = require("luasnip")
-      if luasnip.expand_or_jumpable() then
+      if luasnip.jumpable(1) then
+        luasnip.jump(1)
+      elseif luasnip.expandable() then
         luasnip.expand_or_jump()
       else
         fallback()
