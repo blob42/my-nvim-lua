@@ -260,15 +260,8 @@ return {
     after = {"lua-dev.nvim", "mason.nvim", "mason-lspconfig.nvim"},
     lock = false,
     config = function()
-      local lspconfig = require("lspconfig")
-      lspconfig.util.default_config = vim.tbl_extend(
-        "force",
-        lspconfig.util.default_config,
-        {
-          autostart = false
-        }
-      )
-    end-- disable lspconfig, handled by navigator
+      require("plugins.configs.lspconfig").setup()
+    end
   },
   ["williamboman/mason-lspconfig.nvim"] = {
     lock = false,
@@ -384,7 +377,7 @@ return {
   -- Lua dev env
   -- check setup in configs/navigator.lua
   ["folke/lua-dev.nvim"] = {
-    loack = true,
+    lock = true,
     module = "lua-dev",
   },
 
