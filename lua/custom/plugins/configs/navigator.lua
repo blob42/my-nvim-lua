@@ -7,7 +7,7 @@ end
 M = {}
 
 local config = {
-  debug = false,
+  debug = true,
   transparency = 5,
   lsp_signature_help = false, -- needs plugin lsp_signature 
   default_mapping = false,
@@ -47,7 +47,7 @@ local config = {
     { key = 'gL', func = require('navigator.diagnostics').show_diagnostics, desc = 'lsp show_diagnostics' },
     { key = 'gG', func = require('navigator.diagnostics').show_buf_diagnostics, desc = 'lsp show_buf_diagnostics' },
     -- { key = '<Leader>dt', func = require('navigator.diagnostics').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
-    { key = '<Leader>dt', func = require('sp4ke.lsp').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
+    { key = '<Leader>dt', func = require('spike.lsp').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
     { key = ']d', func = vim.diagnostic.goto_next, desc = 'lsp next diagnostics' },
     { key = '[d', func = vim.diagnostic.goto_prev, desc = 'lsp prev diagnostics' },
     { key = ']O', func = vim.diagnostic.set_loclist, desc = 'lsp diagnostics set loclist' },
@@ -148,7 +148,7 @@ local config = {
     -- disable auto start of lsp per language
     -- set global default on lspconfig (see lspconfig doc)
     gopls = {
-      -- on_attach = require("sp4ke.lsp").custom_attach,
+      -- on_attach = require("spike.lsp").custom_attach,
       settings = {
         gopls = {
           hints = {
@@ -167,7 +167,7 @@ local config = {
     ["lua-dev"] = {
       library = {
         enabled = true,
-        plugins = {"navigator.lua", "guihua.lua", "go.nvim"},
+        plugins = {"navigator.lua", "guihua.lua", "go.nvim", "plenary.nvim"},
         runtime = true,
         types = true,
       }

@@ -37,7 +37,7 @@ local modes = {
 }
 
 local function is_dapmode()
-  return require("sp4ke.dapmode").is_active()
+  return require("spike.dapmode").is_active()
   -- return false
 end
 

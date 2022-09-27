@@ -1,4 +1,4 @@
-local dapmode = require("sp4ke.dapmode")
+local dapmode = require("spike.dapmode")
 
 local M = {}
 
@@ -9,11 +9,11 @@ local function register_listeners()
     return
   end
 
-  dap.listeners.before['event_initialized']['sp4ke-dap'] = function(session, body)
+  dap.listeners.before['event_initialized']['spike-dap'] = function(session, body)
     dapmode.start()
   end
 
-  dap.listeners.after['event_terminated']['sp4ke-dap'] = function(session, body)
+  dap.listeners.after['event_terminated']['spike-dap'] = function(session, body)
     -- print("dap session ended")
     dapmode.stop()
   end

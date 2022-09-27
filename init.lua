@@ -2,7 +2,7 @@ vim.defer_fn(function()
   pcall(require, "impatient")
 end, 0)
 
-require "sp4ke.globals"
+require "spike.globals"
 require "core"
 require "core.options"
 

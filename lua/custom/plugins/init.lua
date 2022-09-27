@@ -166,7 +166,6 @@ return {
   },
 
   ["tpope/vim-fugitive"] = {
-    lock = true,
     cmd = {"G", "Git", "G*"}
   },
 
@@ -258,8 +257,8 @@ return {
     event = "InsertEnter",
   },
   ["neovim/nvim-lspconfig"] = {
-    after = "lua-dev.nvim",
-    lock = true,
+    after = {"lua-dev.nvim", "mason.nvim", "mason-lspconfig.nvim"},
+    lock = false,
     config = function()
       local lspconfig = require("lspconfig")
       lspconfig.util.default_config = vim.tbl_extend(
@@ -272,7 +271,7 @@ return {
     end-- disable lspconfig, handled by navigator
   },
   ["williamboman/mason-lspconfig.nvim"] = {
-    lock = true,
+    lock = false,
     requires = {"williamboman/mason.nvim", "nvim-lspconfig"},
     -- after = "mason.nvim",
     module = {"mson-lspconfig.nvim", "mason.nvim"},
@@ -299,7 +298,7 @@ return {
     lock = true,
     opt = true,
     module = "navigator.lua",
-    after = { "nvim-lspconfig", "base46", "ui", "mason.nvim", "mason-lspconfig.nvim" },
+    after = { "nvim-lspconfig", "base46", "ui", "mason.nvim", "mason-lspconfig.nvim", "lua-dev.nvim" },
     requires =  {"neovim/nvim-lspconfig", "ray-x/guihua.lua", "nvim-treesitter/nvim-treesitter"},
     setup = function()
       require("core.lazy_load").on_file_open "navigator.lua"
@@ -315,6 +314,7 @@ return {
   },
 
   ["ray-x/lsp_signature.nvim"] = {
+    lock = true,
     after = {"navigator.lua"},
     config = function()
       require("custom.plugins.configs.lsp_signature").setup()
@@ -351,6 +351,7 @@ return {
   --   end
   -- },
   ["hkupty/iron.nvim"] = {
+    loack = true,
     cmd = {"Iron*"},
     setup = function()
       require("core.utils").load_mappings "iron"
@@ -383,6 +384,7 @@ return {
   -- Lua dev env
   -- check setup in configs/navigator.lua
   ["folke/lua-dev.nvim"] = {
+    loack = true,
     module = "lua-dev",
   },
 

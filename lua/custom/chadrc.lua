@@ -5,7 +5,7 @@ local M = {}
 -- make sure you maintain the structure of `core/default_config.lua` here,
 -- example of changing theme:
 --
--- local custom_theme = require("sp4ke.theme")
+-- local custom_theme = require("spike.theme")
 -- vim.tbl_deep_extend("force", M.ui.hl_add, custom_theme)
 
 M.ui = {

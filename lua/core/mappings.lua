@@ -219,10 +219,10 @@ M.general = { --{{{
       -- dofile(vim.fn.stdpath("config") .. '/lua/plugins/init.lua')
       -- dofile(vim.fn.stdpath("config") .. '/lua/custom/plugins/init.lua')
       --
-      require("sp4ke.utils").unload_lua_ns("plugins")
-      require("sp4ke.utils").unload_lua_ns("custom")
+      require("spike.utils").unload_lua_ns("plugins")
+      require("spike.utils").unload_lua_ns("custom")
       require("plugins")
-      -- require("sp4ke.utils").unload_lua_ns("custom")
+      -- require("spike.utils").unload_lua_ns("custom")
       vim.cmd "PackerCompile"
       print("reloaded plugin config !")
     end,
@@ -488,7 +488,7 @@ M.dap = {
     ["<leader>ds"] = {
       function()
         if vim.o.filetype == "go" then
-          local spdap = require("sp4ke.dap")
+          local spdap = require("spike.dap")
           spdap.setup()
           spdap.go_debug()
 
@@ -510,7 +510,7 @@ M.dap = {
         end)
       end, "dap conditional breakpoint"},
       ["<leader>dm"] = {function()
-        require("sp4ke.dapmode").start()
+        require("spike.dapmode").start()
       end, "enter dap mode"}
 
   },

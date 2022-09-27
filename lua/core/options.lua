@@ -18,7 +18,6 @@ if g.vim_version < 8 then
   g.do_filetype_lua = 1
 end
 
-opt.cmdheight = 0
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
 
@@ -106,9 +105,8 @@ opt.undofile = true
 -- backups
 opt.backup = true
 opt.backupcopy = "yes"
-opt.backupdir = vim.fn.expand("~/.share/nvim/backups")
+opt.backupdir = vim.fn.expand("~/.local/share/nvim/backups")
 opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,resize,winpos"
-g.sp4ke_bookmark_dir = vim.fn.stdpath("data") .. '/bookmarks'
 
 -- interval for writing swap file to disk, also used by gitsigns
 opt.updatetime = 250
