@@ -7,7 +7,7 @@ end
 M = {}
 
 local config = {
-  debug = true,
+  debug = false,
   transparency = 5,
   lsp_signature_help = false, -- needs plugin lsp_signature 
   default_mapping = false,
@@ -148,7 +148,8 @@ local config = {
     -- disable auto start of lsp per language
     -- set global default on lspconfig (see lspconfig doc)
     gopls = {
-      -- on_attach = require("spike.lsp").custom_attach,
+      -- on_attach = require("spike.lsp.go").custom_attach,
+      on_attach = require("spike.lsp.go").gopls_onattach,
       settings = {
         gopls = {
           hints = {
@@ -167,7 +168,8 @@ local config = {
     ["lua-dev"] = {
       library = {
         enabled = true,
-        plugins = {"navigator.lua", "guihua.lua", "go.nvim", "plenary.nvim"},
+        plugins = {"plenary.nvim"},
+        -- plugins = {"navigator.lua", "guihua.lua", "go.nvim", "plenary.nvim"},
         runtime = true,
         types = true,
       }

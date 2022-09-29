@@ -1,4 +1,3 @@
-- fix C-k expand snippet
 -WARN: finish after/plugin/lspAutostart.lua : read per project lsp settings
 -INFO:using extranl ui process in neovim: check fzflua,iron.nvim
 - add tag="*" to plugins that use tags
@@ -39,3 +38,4 @@
 - [x] fix color/icon of status line diagnostics to match navigator
 -[x] pin all plugins
 - [x] autocommand move current directory when move to new window
+- [done]fix C-k expand snippet - it was alacritty overriding C-k

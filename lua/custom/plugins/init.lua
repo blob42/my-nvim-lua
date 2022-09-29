@@ -232,7 +232,7 @@ return {
 
   -- snippets 
   ["L3MON4D3/LuaSnip"] = {
-    lock = true,
+    lock = false,
     config = function()
       -- load default config first
       require("plugins.configs.others").luasnip()
@@ -258,6 +258,7 @@ return {
   },
   ["neovim/nvim-lspconfig"] = {
     after = {"lua-dev.nvim", "mason.nvim", "mason-lspconfig.nvim"},
+    module = {"lspconfig"},
     lock = false,
     config = function()
       require("plugins.configs.lspconfig").setup()
@@ -290,7 +291,7 @@ return {
   ["ray-x/navigator.lua"] = {
     lock = true,
     opt = true,
-    module = "navigator.lua",
+    module = "navigator",
     after = { "nvim-lspconfig", "base46", "ui", "mason.nvim", "mason-lspconfig.nvim", "lua-dev.nvim" },
     requires =  {"neovim/nvim-lspconfig", "ray-x/guihua.lua", "nvim-treesitter/nvim-treesitter"},
     setup = function()

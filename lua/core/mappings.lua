@@ -747,7 +747,7 @@ M.asyncrun = { --{{{
 
 M.vim_bookmarks = {--{{{
   n = {
-    ["<space>m"] = {"<cmd> Telescope vim_bookmarks<CR>", "show bookmarks"},
+    ["<BS>m"] = {"<cmd> Telescope vim_bookmarks<CR>", "show bookmarks"},
     ["mm"] = {"<cmd> BookmarkToggle<CR>", "toggle bookmarks"},
     ["<leader>mm"] = {"<cmd> BookmarkAnnotate<CR>", "annotation bookmarks"},
     ["<leader>mc"] = {"<cmd> BookmarkClear<CR>", "clear bookmarks in buffer"},

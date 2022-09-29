@@ -2,7 +2,10 @@ vim.cmd "packadd packer.nvim"
 
 local plugins = {
 
-  ["nvim-lua/plenary.nvim"] = { module = "plenary" },
+  ["nvim-lua/plenary.nvim"] = {
+    module = "plenary",
+    module_pattern = "plenary*",
+  },
   ["wbthomason/packer.nvim"] = {
     cmd = require("core.lazy_load").packer_cmds,
     config = function()
