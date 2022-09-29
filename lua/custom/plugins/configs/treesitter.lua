@@ -22,6 +22,13 @@ return {
     "vue",
   },
 
+  highlight = {
+    enable = true,
+    disable = function (lang, bufnr)
+      return lang == "help"
+    end
+  },
+
   incremental_selection = {
     enable = false,
     keymaps = {

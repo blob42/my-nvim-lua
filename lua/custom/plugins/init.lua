@@ -54,6 +54,7 @@ return {
   -- treesitter
 
   ["nvim-treesitter/nvim-treesitter"] = {-- {{{
+    -- custom config in chadrc -> custom.configs.treesitter
     setup =  function()
       require("core.lazy_load").on_file_open "nvim-treesitter"
       require("core.lazy_load").on_file_open "nvim-treesitter-textobjects"
