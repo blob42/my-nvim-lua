@@ -31,14 +31,36 @@
 -- - XXX ~~Reload all lua modules with `"pleanery.reload".reload_module(mod)`~~ XXX
 
 return {
-  ["nvim-treesitter/nvim-treesitter"] = {
+
+
+  -- My Plugins
+
+  -- ["~/.config/nvim/my_packages/perproject"] = {-- {{{
+  --   opt = true,
+  --   after = {"nvim-lspconfig", "navigator.lua"},
+  --   require = {"nvim-lspconfig", "navigator.lua"},
+  --   config = function()
+  --     require("perproject").setup()
+  --       -- callbacks = {
+  --       --   foo = function()
+  --       --     print("FOO")
+  --       --   end
+  --       -- }
+  --     -- })
+  --   end
+  -- },-- }}}
+
+
+  -- treesitter
+
+  ["nvim-treesitter/nvim-treesitter"] = {-- {{{
     setup =  function()
       require("core.lazy_load").on_file_open "nvim-treesitter"
       require("core.lazy_load").on_file_open "nvim-treesitter-textobjects"
       require("core.lazy_load").on_file_open "nvim-treesitter-textsubjects"
       require("core.lazy_load").on_file_open "nvim-treesitter-context"
       -- require("core.lazy_load").on_file_open "nvim-ts-rainbow"
-    end
+    end,
   },
   ["nvim-treesitter/nvim-treesitter-textobjects"] = {
     opt = true,
@@ -57,18 +79,12 @@ return {
     config = function()
       require("custom.plugins.configs.treesitter-context").setup()
     end
-  },
+  },-- }}}
 
-  ["folke/todo-comments.nvim"] = { 
-    after = "nvim-treesitter",
-    config = function()
-      require("custom.plugins.configs.todo-comments").setup()
-    end
-  },
-  -- ["p00f/nvim-ts-rainbow"] = {
-  --   opt = true,
-  -- },
-  ["hrsh7th/cmp-buffer"] = {
+
+  -- autocomplete
+
+  ["hrsh7th/cmp-buffer"] = {-- {{{
     config = function ()
       local disabled_ft = {
         "guihua",
@@ -86,9 +102,57 @@ return {
         end
       }
     end
+  },-- }}}
+
+  -- snippets 
+  ["honza/vim-snippets"] = {-- {{{
+    module = {"cmp", "cmp_nvim_lsp"},
+    event = "InsertEnter",
   },
 
-  ["mfussenegger/nvim-dap"] = {
+  ["L3MON4D3/LuaSnip"] = {
+    lock = false,
+    config = function()
+      -- load default config first
+      require("plugins.configs.others").luasnip()
+
+      vim.g.my_snippets_paths = {"./custom_snippets"}
+      require("luasnip").filetype_extend("markdown", { "markdown_zk" })
+
+      -- load snippets from "honza/vim-snippets"
+      -- includes ultisnips and snipmate snippets
+      require("luasnip.loaders.from_snipmate").lazy_load({ override_priority = 800 })
+      require("luasnip.loaders.from_snipmate").lazy_load {
+        paths = vim.g.my_snippets_paths,
+        override_priority = 800
+      }
+    end
+  },-- }}}
+
+  -- text formatting
+
+  ["folke/todo-comments.nvim"] = { -- {{{
+    after = "nvim-treesitter",
+    config = function()
+      require("custom.plugins.configs.todo-comments").setup()
+    end
+  },
+
+  ["tpope/vim-surround"] = {},
+
+  ["godlygeek/tabular"] = {
+    cmd = "Tabularize"
+  },-- }}}
+
+
+  -- ["p00f/nvim-ts-rainbow"] = {
+  --   opt = true,
+  -- },
+  --
+
+  -- dap
+
+  ["mfussenegger/nvim-dap"] = {-- {{{
     lock = true,
     module = "dap",
     setup = function()
@@ -104,20 +168,19 @@ return {
   ["theHamsta/nvim-dap-virtual-text"] = {
     lock = true,
     after = "nvim-dap"
-  },
-  -- side panel with symbols (replaced by Navigator :LspSymbols cmd)
-  -- ["liuchengxu/vista.vim"] = {
-  --   cmd = "Vista",
-  --   setup = function()
-  --     require("core.utils").load_mappings "vista"
-  --   end
-  -- },
-  --
+  },-- }}}
 
-  ["folke/which-key.nvim"] = {
+  -- User Interface / UX
+
+  ["folke/which-key.nvim"] = {-- {{{
     lock = true,
     disable = false,
     keys = {"<leader>", "<BS>", "<Space>"}
+  },
+
+  -- repeat operator for plugin commands
+  ["tpope/vim-repeat"] = {
+    keys = {"."},
   },
 
   ["nvim-telescope/telescope.nvim"] = {
@@ -153,18 +216,31 @@ return {
     setup = function()
       require("core.utils").load_mappings "fzf_lua"
     end
-  },
+  },-- }}}
+
+
+  -- navigation / jumps
+
+  ["ggandor/leap.nvim"] = {-- {{{
+    config = function()
+      require "custom.plugins.configs.leap"
+    end
+  },-- }}}
+
+
+  -- Job management (use nvim startjob )
   -- Run async commands (make & errors)
 
-  ["skywind3000/asyncrun.vim"] = {
+  ["skywind3000/asyncrun.vim"] = {-- {{{
     lock = true,
     cmd = "AsyncRun",
     setup = function()
       require("core.utils").load_mappings "asyncrun"
       vim.g.asyncrun_open = 8
     end
-  },
+  },-- }}}
 
+  -- Git
   ["tpope/vim-fugitive"] = {
     cmd = {"G", "Git", "G*"}
   },
@@ -183,28 +259,16 @@ return {
   -- },
 
   -- text formatting and navigation
-  -- repeat operator for plugin commands
-  ["tpope/vim-repeat"] = {
-    keys = {"."},
-  },
 
-  ["ggandor/leap.nvim"] = {
-    config = function()
-      require "custom.plugins.configs.leap"
-    end
-  },
   -- ["justinmk/vim-sneak"] = {
   --   lock = true,
   --   keys = {"s", "S"},
   -- },
-  ["tpope/vim-surround"] = {},
-  ["godlygeek/tabular"] = {
-    cmd = "Tabularize"
-  },
+
   --
-  -- misc general plugins
+  -- Misc / General plugins
+
   -- Read info files
-  --
   ["https://gitlab.com/HiPhish/info.vim.git"] = {
     cmd = "Info",
   },
@@ -230,33 +294,11 @@ return {
   --   end
   -- },
 
-  -- snippets 
-  ["L3MON4D3/LuaSnip"] = {
-    lock = false,
-    config = function()
-      -- load default config first
-      require("plugins.configs.others").luasnip()
-
-      vim.g.my_snippets_paths = {"./custom_snippets"}
-      require("luasnip").filetype_extend("markdown", { "markdown_zk" })
-
-      -- load snippets from "honza/vim-snippets"
-      -- includes ultisnips and snipmate snippets
-      require("luasnip.loaders.from_snipmate").lazy_load({ override_priority = 800 })
-      require("luasnip.loaders.from_snipmate").lazy_load {
-        paths = vim.g.my_snippets_paths,
-        override_priority = 800
-      }
-    end
-  },
   -- ------------------
   -- LSP 
   -- ------------------
-  ["honza/vim-snippets"] = {
-    module = {"cmp", "cmp_nvim_lsp"},
-    event = "InsertEnter",
-  },
-  ["neovim/nvim-lspconfig"] = {
+
+  ["neovim/nvim-lspconfig"] = {-- {{{
     after = {"lua-dev.nvim", "mason.nvim", "mason-lspconfig.nvim"},
     module = {"lspconfig"},
     lock = false,
@@ -314,16 +356,28 @@ return {
       require("custom.plugins.configs.lsp_signature").setup()
     end
 
-  },
+  },-- }}}
 
-  -- per language plugins
+  -- side panel with symbols (replaced by Navigator :LspSymbols cmd)
+  -- ["liuchengxu/vista.vim"] = {
+  --   cmd = "Vista",
+  --   setup = function()
+  --     require("core.utils").load_mappings "vista"
+  --   end
+  -- },
+  --
+
+  -- -------------------------------------------------------
+  -- Programming Languages Plugins
+  -- -------------------------------------------------------
 
   -- -------
   -- lua dev
   -- -------
 
   -- Eval Lua lines/selections
-  -- ["bfredl/nvim-luadev"] = {
+
+  -- ["bfredl/nvim-luadev"] = {{{{
   --   lock = true,
   --   cmd = "Luadev",
   --   keys = {
@@ -343,7 +397,9 @@ return {
   --       end,
   --     })
   --   end
-  -- },
+  -- },}}}
+
+  -- power Repl {{{
   ["hkupty/iron.nvim"] = {
     loack = true,
     cmd = {"Iron*"},
@@ -380,10 +436,11 @@ return {
   ["folke/lua-dev.nvim"] = {
     lock = true,
     module = "lua-dev",
-  },
+  },-- }}}
 
   -- golang dev
-  ["ray-x/go.nvim"] = {
+
+  ["ray-x/go.nvim"] = {-- {{{
     lock = true,
     -- after = {"nvim-lspconfig", "navigator.lua", "guihua.lua"},
     ft = {"go"},
@@ -391,5 +448,6 @@ return {
     config = function()
       require("custom.plugins.configs.gonvim").setup()
     end
-  }
+  }-- }}}
+
 }

@@ -207,6 +207,7 @@ M.general = { --{{{
     , "packer snapshot"},
     ["<leader>pst"] = { "<cmd> PackerStatus<CR>", "packer status"},
     ["<leader>psc"] = { "<cmd> PackerSync<CR>", "packer sync"},
+    ["<leader>pc"] = { "<cmd> PackerCompile<CR>", "packer compile"},
 
     ["<leader>pr"] = { function()
 

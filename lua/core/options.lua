@@ -62,8 +62,8 @@ opt.iskeyword:remove("-")
 
 --
 -- folding with tree sitter
--- set foldmethod=expr
--- set foldexpr=nvim_treesitter#foldexpr()
+-- opt.foldmethod=expr
+-- opt.foldexpr="nvim_treesitter#foldexpr()"
 --
 opt.foldminlines = 2
 opt.foldlevelstart = 0
