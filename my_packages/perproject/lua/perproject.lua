@@ -11,23 +11,25 @@ local function setup_autocommands ()
   autocmd({"BufRead", "BufWinEnter", "BufNewFile"},{
     group  = augroup_name,
     pattern = "*",
-    callback = require("spike.perproject").per_project_jsonfile,
+    callback = require("perproject").per_project_jsonfile,
   })
 
   autocmd({"DirChanged"},{
     group = augroup_name,
     pattern = "window",
-    callback = require("spike.perproject").per_project_jsonfile,
+    callback = require("perproject").per_project_jsonfile,
   })
 end
 
 
 local _PP_CONF = { 
-  basename = ".pnvim.json"
+  basename = ".pnvim.json",
+  callbacks = pp_callbacks,
 }
 
 local pp_callbacks = {
   -- @enabled: bool
+
   lsp_autostart = function(enabled)
     if enabled then
       local other_matching_configs = require('lspconfig.util').get_other_matching_providers(vim.bo.filetype)
@@ -36,6 +38,7 @@ local pp_callbacks = {
       end
     end
   end
+
 }
 
 local function call_pp_callback(proj_opts)
@@ -51,7 +54,7 @@ end
 local ok, Path = pcall(require, "plenary.path")
 
 if not ok then
-  print("perproject plenary required !")
+  print("[perproject] plenary required !")
 end
 
 -- local scandir = require("plenary.scandir")
@@ -93,14 +96,32 @@ M.per_project_jsonfile = function()
   local cwd = Path.new(vim.fn.getcwd())
   local pp_file = cwd:joinpath(_PP_CONF.basename)
   if pp_file:is_file() then
-    proj_opts = vim.json.decode(pp_file:read())
-    call_pp_callback(proj_opts)
+    local ok, decoded = pcall(vim.json.decode, (pp_file:read()))
+    if not ok then
+      vim.notify(string.format("[perproject] could not parse %s : %s", _PP_CONF.basename, decoded), vim.log.levels.ERROR)
+      return
+    end
+    call_pp_callback(decoded)
     -- pp_options = vim.tbl_deep_extend("force", pp_options, proj_opts or {})
   end
 end
 
+local function setup_callbacks(conf)
+  if conf.callbacks and
+    type(conf.callbacks) == "table" then
+    for cb_name, cb in pairs(conf.callbacks) do
+      if type(cb) == "function" then
+        print("setting up callback, ", cb_name)
+        pp_callbacks[cb_name] = cb
+      end
+    end
 
-function M.setup()
+  end
+end
+
+function M.setup(conf)
+  local config = conf or {}
+  setup_callbacks(config)
   setup_autocommands()
 end
 
