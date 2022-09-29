@@ -1,0 +1,1 @@
+require("spike.perproject").setup()
