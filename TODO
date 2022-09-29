@@ -39,3 +39,4 @@
 -[x] pin all plugins
 - [x] autocommand move current directory when move to new window
 - [done]fix C-k expand snippet - it was alacritty overriding C-k
+- [done] install vim hardway .. ? gajim

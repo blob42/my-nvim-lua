@@ -285,6 +285,14 @@ return {
     lock = true,
   },
 
+  -- get rid of bad habits
+  ["takac/vim-hardtime"] = {
+    setup = function()
+      vim.g.hardtime_default_on = 1
+      vim.g.hardtime_showmsg = 1
+    end
+  },
+
   -- ["chentoast/marks.nvim"] = {
   --   opt = true,
   --   keys = {"m", "d"},
