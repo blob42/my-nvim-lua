@@ -1,4 +1,4 @@
--WARN: finish after/plugin/lspAutostart.lua : read per project lsp settings
+- make line numbers easier to read in line operator mode
 -INFO:using extranl ui process in neovim: check fzflua,iron.nvim
 - add tag="*" to plugins that use tags
 - use libmodal + whichkey ?

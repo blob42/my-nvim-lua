@@ -35,20 +35,20 @@ return {
 
   -- My Plugins
 
-  -- ["~/.config/nvim/my_packages/perproject"] = {-- {{{
-  --   opt = true,
-  --   after = {"nvim-lspconfig", "navigator.lua"},
-  --   require = {"nvim-lspconfig", "navigator.lua"},
-  --   config = function()
-  --     require("perproject").setup()
-  --       -- callbacks = {
-  --       --   foo = function()
-  --       --     print("FOO")
-  --       --   end
-  --       -- }
-  --     -- })
-  --   end
-  -- },-- }}}
+  ["~/.config/nvim/my_packages/perproject"] = {-- {{{
+    opt = true,
+    after = {"nvim-lspconfig", "navigator.lua"},
+    require = {"nvim-lspconfig", "navigator.lua"},
+    config = function()
+      require("perproject").setup()
+        -- callbacks = {
+        --   foo = function()
+        --     print("FOO")
+        --   end
+        -- }
+      -- })
+    end
+  },-- }}}
 
 
   -- treesitter
@@ -290,6 +290,11 @@ return {
     setup = function()
       vim.g.hardtime_default_on = 1
       vim.g.hardtime_showmsg = 1
+      vim.g.list_of_normal_keys = {"h","j","k","l"}
+      vim.g.list_of_visual_keys = {"h","j","k","l"}
+      vim.g.hardtime_ignore_buffer_patterns = { "help", "NERD.*" }
+      vim.g.hardtime_maxcount = 2
+
     end
   },
 
