@@ -10,8 +10,11 @@ local M = {}
 
 M.ui = {
   theme = "monekai",
-  theme_toggle = { "monekai", "blossom" },
+  theme_toggle = { "monekai", "gruvbox_light" },
   hl_override = {
+    CursorLine = {
+      bg = "one_bg3"
+    },
     DiagnosticWarn = {
       fg = "yellow",
       italic = true,
