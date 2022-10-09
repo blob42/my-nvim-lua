@@ -63,6 +63,7 @@ return {
         -- You can use the capture groups defined in textobjects.scm
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
+        ["aF"] = "@field.outer",
         ["ac"] = "@class.outer",
         ["ic"] = "@class.inner",
         ["aC"] = "@conditional.outer",
