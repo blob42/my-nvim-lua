@@ -26,7 +26,7 @@ local plugins = {
   },
 
   ["NvChad/ui"] = {
-    lock = true,
+    lock = false,
     after = "base46",
     config = function()
       require("plugins.configs.others").nvchad_ui()

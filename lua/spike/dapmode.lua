@@ -56,6 +56,24 @@ local config = {
         end,
         desc = "[dap] run to curosr"
       },
+      W = {
+        rhs = function()
+            require("dapui").float_element('watches')
+        end,
+        desc = '[dapui] float watches'
+      },
+      B = {
+        rhs = function()
+            require("dapui").float_element('breakpoints')
+        end,
+        desc = '[dapui] float breakpoints'
+      },
+      O = {
+        rhs = function()
+            require("dapui").float_element('scopes')
+        end,
+        desc = '[dapui] float scopes'
+      },
       ["Q"] = {
         rhs = function()
           M.layer:exit()

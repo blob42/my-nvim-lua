@@ -162,7 +162,7 @@ return {
   },
 
   ["rcarriga/nvim-dap-ui"] = {
-    lock = true,
+    tag = "*",
     after = "nvim-dap",
   },
 
@@ -186,6 +186,8 @@ return {
 
   ["nvim-telescope/telescope.nvim"] = {
     -- lock = true,
+    after = "vim-hardtime",
+    
     tag = "*",
     disable = false,
   },
@@ -219,8 +221,23 @@ return {
     end
   },-- }}}
 
+  -- Theme customization
+  ["uga-rosa/ccc.nvim"] = {
+      commit = "427471b",
+      cmd = {"Ccc*", "<Plug>(ccc-insert)"},
+      setup  = function()
+        require("core.utils").load_mappings "ccc"
+      end,
+      config = function()
+        require("ccc").setup({})
+      end
+  },
 
   -- navigation / jumps
+  -- ["justinmk/vim-sneak"] = {
+  --   lock = true,
+  --   keys = {"s", "S"},
+  -- },
 
   ["ggandor/leap.nvim"] = {-- {{{
     config = function()
@@ -228,6 +245,11 @@ return {
     end
   },-- }}}
 
+  ["christoomey/vim-tmux-navigator"] = {
+      cond = function()
+        return vim.env.TMUX ~= nil
+      end
+  },
 
   -- Job management (use nvim startjob )
   -- Run async commands (make & errors)
@@ -259,12 +281,6 @@ return {
   --   end
   -- },
 
-  -- text formatting and navigation
-
-  -- ["justinmk/vim-sneak"] = {
-  --   lock = true,
-  --   keys = {"s", "S"},
-  -- },
 
   --
   -- Misc / General plugins
@@ -288,14 +304,25 @@ return {
 
   -- get rid of bad habits
   ["takac/vim-hardtime"] = {
+    -- keys = { "h", "j", "k", "l" },
     setup = function()
       vim.g.hardtime_default_on = 1
       vim.g.hardtime_showmsg = 1
       vim.g.list_of_normal_keys = {"h","j","k","l"}
       vim.g.list_of_visual_keys = {"h","j","k","l"}
-      vim.g.hardtime_ignore_buffer_patterns = { "help", "NERD.*" }
-      vim.g.hardtime_maxcount = 2
+      vim.g.hardtime_ignore_buffer_patterns = {
+          "qf*",
+          "help",
+          "NERD.*",
+          "netrw",
+          "TelescopePrompt",
+          "fugitive",
+      }
 
+      vim.g.hardtime_maxcount = 2
+    end,
+    config = function()
+        vim.cmd("HardTimeOn")
     end
   },
 

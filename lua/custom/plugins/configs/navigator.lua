@@ -31,9 +31,9 @@ local config = {
     { key = '<Leader>gT', func = require('navigator.treesitter').bufs_ts, desc = 'lsp bufs_ts' },
     { key = '<Leader>ct', func = require('navigator.ctags').ctags, desc = 'lsp ctags' },
     { key = 'K', func = vim.lsp.buf.hover, desc = 'lsp hover' },
-    { key = '<C-a>', mode = 'n', func = require('navigator.codeAction').code_action, desc = 'lsp code_action' },
+    { key = '<M-a>', mode = 'n', func = require('navigator.codeAction').code_action, desc = 'lsp code_action' },
     {
-      key = '<C-a>',
+      key = '<M-a>',
       mode = 'v',
       func = require('navigator.codeAction').range_code_action,
       desc = 'lsp range_code_action',

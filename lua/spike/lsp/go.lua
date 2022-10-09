@@ -4,7 +4,6 @@ local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local M = {}
 
-
 local augroupname = "spike.go"
 
 -- Navigator custom on_attach for golang
@@ -17,16 +16,17 @@ function  M.gopls_onattach(client, bufnr)
     return
   end
 
-  augroup(augroupname, {})
+  
   autocmd({"BufWritePre", "InsertLeave"}, {
-    group = augroupname,
+    group = augroup(augroupname, {clear = true}),
     buffer = bufnr,
     callback = function()
       goformat.goimport()
     end
-    
-
   })
+
+  require("core.utils").load_mappings "golang"
+    
 end
 
 return M

@@ -30,7 +30,7 @@ return {
   },
 
   incremental_selection = {
-    enable = false,
+    enable = true,
     keymaps = {
       init_selection = "<CR>",
       node_incremental = "<Tab>",
@@ -39,14 +39,15 @@ return {
     }
   },
 
-  textsubjects = {
-    enable = true,
-    prev_selection = "<Tab>",
-    keymaps = {
-      ["<CR>"] = "textsubjects-smart", -- works in visual mode
-    }
-  },
 
+  -- textsubjects = {
+  --   enable = true,
+  --   prev_selection = "<Tab>",
+  --   keymaps = {
+  --     ["<CR>"] = "textsubjects-smart", -- works in visual mode
+  --   }
+  -- },
+  --
   rainbow = {
     enable = true,
     extended_mode = true,
@@ -84,20 +85,18 @@ return {
 
       goto_next_start = {
         ["]]"] = "@function.outer",
-        ["]m"] = "@class.outer"
+        ["]C"] = "@class.outer",
       },
 
       goto_next_end = {
         ["]["] = "@function.outer",
-        ["]M"] = "@class.outer"
       },
       goto_previous_start = {
         ["[["] = "@function.outer",
-        ["[m"] = "@class.outer"
+        ["[C"] = "@class.outer"
       },
       goto_previous_end = {
         ["[]"] = "@function.outer",
-        ["[M"] = "@class.outer"
       }
     },
 

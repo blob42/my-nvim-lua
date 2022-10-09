@@ -29,10 +29,10 @@ opt.rulerformat = "%30(%=:b%n%y%m%r%w %l,%c%V %P%)" -- NvChad has custom ruler !
 
 -- Indenting
 opt.expandtab = true -- Tabs are spaces, not tabs
-opt.shiftwidth = 2 -- use indents of 2 spaces
+opt.shiftwidth = 4 -- use indents of 2 spaces
 opt.smartindent = true -- smart indent when starting new lines
-opt.tabstop = 2 -- number of spaces when tab pressed
-opt.softtabstop = 2 -- Let backspace delete indent
+opt.tabstop = 4 -- number of spaces when tab pressed
+opt.softtabstop = 4 -- Let backspace delete indent
 -- http://vim.wikia.com/wiki/Converting_tabs_to_spaces
 opt.tabpagemax = 10
 
@@ -78,9 +78,11 @@ opt.formatoptions:append("b") -- Auto-wrap text based on textwidt
 opt.matchpairs:append("<:>")
 
 
+opt.guicursor = {"n-v-c-sm:block-blinkwait50-blinkon200-blinkoff200", "i-ci-ve:ver25", "r-cr-o:hor20"}
+
 -- Lines to scroll when cursor leaves screen
 opt.scrolljump=5
-opt.scrolloff=3
+opt.scrolloff=2
 
 -- Allow :find to work on all subdirectories
 -- this only works when the original dir path is not changed
@@ -99,6 +101,17 @@ opt.signcolumn = "yes"
 opt.splitbelow = true
 opt.splitright = true
 opt.termguicolors = true
+
+-- if vim.fn.exists("+termguicolors") then
+--   vim.go.t_8f =  "<Esc>[38:2:%lu:%lu:%lum"
+--   vim.go.t_8b = "<Esc>[48:2:%lu:%lu:%lum"
+-- end
+
+if vim.g.neovide then
+  opt.g.neovide_cursor_trail_size=0.3
+  opt.g.neovide_cursor_animation_length=0.10
+  opt.guifont = "ProFontIIx Nerd Font Mono:h10"
+end
 opt.timeoutlen = 400
 opt.undofile = true
 
