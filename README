@@ -1,3 +1,2 @@
+My nvim config using Lua based on [nvchad](https://nvchad.github.io/)
 
-## Git merging with upstream
-use the strategy=ours
