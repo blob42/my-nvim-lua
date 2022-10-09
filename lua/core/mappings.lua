@@ -236,7 +236,7 @@ M.general = { --{{{
                 },
 
                 -- Notify cmd watcher (see /scripts/utils/fifo_watch.sh)
-                ["<leader><leader>,"] = {
+                ["<leader><down>"] = {
                     function()
                         local fifo_patch = "/tmp/fifo_vimnotify"
                         os.execute("echo do >" .. fifo_patch)
@@ -755,7 +755,7 @@ M.general = { --{{{
                             -- TODO: find new mapping to close quickfix
                             -- ["``"] = { "<cmd> call asyncrun#quickfix_toggle(8)<CR>", "toggle quickfix window" },
                             ["<leader>m"] = { ":AsyncRun -program=" .. vim.o.makeprg .. "<CR>", "make using asyncrun" },
-                            ["<leader><leader>r"] = { ":AsyncRun ", "custom asyncrun command" },
+                            ["<leader>ar"] = { ":AsyncRun ", "custom asyncrun command" },
                             ["<leader>pd"] = { "<cmd> AsyncRun lpr -P PDF_PRINT %<CR>", "PDF print file" },
                             ["<leader>pp"] = { "<cmd> AsyncRun lpr %<CR>" },
                         },
