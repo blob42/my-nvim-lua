@@ -46,9 +46,17 @@ local options = {
     end,
   },
   formatting = {
-    format = function(_, vim_item)
+    format = function(entry, vim_item)
       local icons = require("nvchad_ui.icons").lspkind
       vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
+      -- show source
+      vim_item.menu = ({
+        buffer = ":buf",
+        nvim_lsp = ":lsp",
+        luasnip = ":lsnp",
+        nvim_lua = ":lua",
+        latex_symbols = ":ltx",
+      })[entry.source.name]
       return vim_item
     end,
   },
@@ -117,7 +125,18 @@ local options = {
   sources = {
     { name = "luasnip" },
     { name = "nvim_lsp" },
-    { name = "buffer" },
+    {
+        name = "buffer",
+        option = {
+        get_bufnrs = function()
+          local bufs = {}
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            bufs[vim.api.nvim_win_get_buf(win)] = true
+          end
+          return vim.tbl_keys(bufs)
+        end
+      },
+    },
     { name = "nvim_lua" },
     { name = "path" },
   },
