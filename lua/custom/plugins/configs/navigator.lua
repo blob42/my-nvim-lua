@@ -98,8 +98,8 @@ local config = {
     diagnostic_virtual_text = '',
     diagnostic_file = '🚑',
     -- Values
-    value_changed = '📝',
-    value_definition = '🐶🍡', -- it is easier to see than 🦕
+    value_changed = '碑',
+    value_definition = '什', -- it is easier to see than 🦕
     side_panel = {
       section_separator = '',
       line_num_left = '',
@@ -111,16 +111,16 @@ local config = {
     },
     -- Treesitter
     match_kinds = {
-      var = ' ', -- "👹", -- Vampaire
-      method = 'ƒ ', --  "🍔", -- mac
-      ['function'] = ' ', -- "🤣", -- Fun
-      parameter = '  ', -- Pi
-      associated = '🤝',
-      namespace = '🚀',
+      var = ' ', 
+      method = 'ƒ ', 
+      ['function'] = ' ', 
+      parameter = '', 
+      associated = '',
+      namespace = '',
       type = ' ',
-      field = '🏈',
-      module = '📦',
-      flag = '🎏',
+      field = '',
+      module = '',
+      flag = '',
     },
     treesitter_defult = '🌲',
     doc_symbols = '',

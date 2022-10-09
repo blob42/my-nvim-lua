@@ -323,6 +323,7 @@ return {
           "netrw",
           "TelescopePrompt",
           "fugitive",
+          "guihua*",
       }
 
       vim.g.hardtime_maxcount = 2
