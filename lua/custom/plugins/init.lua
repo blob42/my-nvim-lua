@@ -1,4 +1,4 @@
--- vim: foldlevel=1
+-- vim: foldlevel=1 foldmethod=marker
 --
 -- TODO: interesting plugins to install
 -- - neovim minisurround to replace vim-surround
@@ -188,7 +188,6 @@ return {
     -- lock = true,
     after = "vim-hardtime",
     
-    tag = "*",
     disable = false,
   },
   ["tom-anders/telescope-vim-bookmarks.nvim"] = {
@@ -325,7 +324,6 @@ return {
           "fugitive",
           "guihua*",
       }
-
       vim.g.hardtime_maxcount = 2
     end,
   },
@@ -493,6 +491,16 @@ return {
     config = function()
       require("custom.plugins.configs.gonvim").setup()
     end
+  },-- }}}
+
+  -- Rust dev
+  ["simrat39/rust-tools.nvim"] = {-- {{{
+      lock = true,
+      ft = {"rust"},
+      opt = true,
+      config = function()
+        require("custom.plugins.configs.rust-tools").setup()
+      end
   }-- }}}
 
 }

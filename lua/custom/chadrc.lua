@@ -37,58 +37,58 @@ M.ui = {
     },
   },
   hl_add = {
-    Visual = {
-      bg = "blue",
-      fg = "black",
-    },
-    BookmarkSign = {
-      fg = "blue",
-    },
-    BookmarkAnnotationSign   = {
-      fg = "yellow",
-    },
-    BookmarkAnnotationLine = {
-      fg = "black",
-      bg = "yellow"
-    },
-    DiagnosticInfo = { -- nvchad uses DiagnosticInformation wrong hi group for lsp
+      Visual = {
+          bg = "blue",
+          fg = "black",
+      },
+      BookmarkSign = {
+          fg = "blue",
+      },
+      BookmarkAnnotationSign   = {
+          fg = "yellow",
+      },
+      BookmarkAnnotationLine = {
+          fg = "black",
+          bg = "yellow"
+      },
+      DiagnosticInfo = { -- nvchad uses DiagnosticInformation wrong hi group for lsp
       fg = "white",
       italic = true,
-    },
-    DiagnosticFloatingInfo = {
+  },
+  DiagnosticFloatingInfo = {
       fg="white",
       italic=true,
-    },
-    DiagnosticUnderlineError = {
+  },
+  DiagnosticUnderlineError = {
       fg="black",
       bg="pink",
-    },
-    -- Code Lens related colors
-     LspCodeLens = {
+  },
+  -- Code Lens related colors
+  LspCodeLens = {
       fg = "vibrant_green",
       underline = true,
-    },
-    LspDiagnosticsSignHint = { -- LspDiagnostics Code Action
-      fg = "vibrant_green",
-      italic = true,
+  },
+  LspDiagnosticsSignHint = { -- LspDiagnostics Code Action
+  fg = "vibrant_green",
+  italic = true,
     },
     -- end of code lens colors
     DiffText = {
-      bg = "vigrant_green"
+        bg = "vigrant_green"
     },
     St_DapMode = {
-      fg = "black2",
-      bg = "baby_pink",
+        fg = "black2",
+        bg = "baby_pink",
     },
     St_DapModeSep = {
-      fg = "baby_pink",
-      bg = "one_bg3",
+        fg = "baby_pink",
+        bg = "one_bg3",
     },
     St_DapModeSep2 = {
-      fg = "grey",
-      bg = "baby_pink",
+        fg = "grey",
+        bg = "baby_pink",
     },
-  },
+},
   -- hl_override = {
   --   CursorLine = {
   --     underline = 1

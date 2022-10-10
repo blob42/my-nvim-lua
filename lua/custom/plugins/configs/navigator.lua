@@ -143,7 +143,7 @@ local config = {
 
     diagnostic_scrollbar_sign = false,
 
-    disable_lsp = {"clangd"},
+    disable_lsp = {"clangd", "rust_analyzer"},
 
     -- disable auto start of lsp per language
     -- set global default on lspconfig (see lspconfig doc)

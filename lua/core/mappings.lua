@@ -591,7 +591,8 @@ M.general = { --{{{
                             -- ["<C-p>"] = { "<cmd> Telescope find_files <CR>", "find files" },
                             --
                             ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "find all" },
-                            ["<C-p>"] = { function ()
+                            ["<C-p>"] = {
+                                function ()
                                 local ignored_bufs = {
                                     "qf",
                                 }

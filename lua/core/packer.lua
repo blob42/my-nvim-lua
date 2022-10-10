@@ -2,6 +2,7 @@ local M = {}
 
 M.options = {
   auto_clean = true,
+  -- log = { level = 'debug'},
   compile_on_sync = true,
   git = { clone_timeout = 6000 },
   display = {
