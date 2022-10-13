@@ -73,6 +73,7 @@ return {
     -- Treesitter dev/exploration tool
     ["nvim-treesitter/playground"] = {
         opt = true,
+        cmd = {"TSPlayground*"},
     },
 
     ["nvim-treesitter/nvim-treesitter-context"] = {
@@ -268,11 +269,16 @@ return {
         end
     },
 
-    --[[ ["preservim/vimux"] = {
+    ["https://git.sp4ke.xyz/sp4ke/vim-vimux"] = {
       cond = function()
         return vim.env.TMUX ~= nil
+      end,
+      setup = function()
+        require("core.utils").load_mappings "vimux"
+        -- vim.g.VimuxDebug = 1
+        vim.g.VimuxHeight = 20
       end
-  }, ]]
+  },
 
     -- Job management (use nvim startjob )
     -- Run async commands (make & errors)

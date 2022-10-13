@@ -194,6 +194,13 @@ M.general = { --{{{
                     ["<leader>tf"] = { "<cmd> set foldmethod=expr<CR>|<cmd> set foldexpr=nvim_treesitter#foldexpr()<CR>",
                     "enable Treesitter folding"},
 
+                    ["<leader>tp"]=  {
+                        function()
+                            vim.cmd("TSPlaygroundToggle")
+                        end,
+                        "Treesitter playground"
+                    },
+
                     ["<leader>en"] = { "<cmd> cn <CR>", "next error"     },
                     ["]e"] = { "<cmd> cn <CR>", "next error"     },
                     ["<leader>ep"] = { "<cmd> cp <CR>", "previous error" },
@@ -246,13 +253,13 @@ M.general = { --{{{
                 },
 
                 -- Notify cmd watcher (see /scripts/utils/fifo_watch.sh)
-                ["<leader><down>"] = {
+                --[[ ["<leader><down>"] = {
                     function()
                         local fifo_patch = "/tmp/fifo_vimnotify"
                         os.execute("echo do >" .. fifo_patch)
                     end,
                     "notify <scripts/utils/fifo_watch>"
-                },
+                }, ]]
 
 
                 -- TODO: move to lspconfig section
@@ -826,7 +833,20 @@ M.general = { --{{{
                             --
                             -- }
 -- }}}
---
+
+M.vimux = {
+    plugin = true,
+    n = {
+        -- rerun last 
+        ["<leader><Down>"] = {"<cmd>VimuxRunLastCommand<CR>", "vimux run last command"},
+        -- prompt
+        ["<leader>vv"] = {"<cmd>VimuxPromptCommand<CR>", "vimux prompt command"},
+        ["<leader>vc"] = {"<cmd>VimuxInterruptRunner<CR>", "vimux interrupt command"},
+        ["<leader>vl"] = {"<cmd>VimuxClearTerminalScreen<CR>", "vimux clear terminal"},
+        ["<leader>vx"] = {"<cmd>VimuxCloseRunner<CR>", "vimux close runner"},
+    }
+}
+
 -- extra mappings for golang
 M.golang = {
     plugin = true,
