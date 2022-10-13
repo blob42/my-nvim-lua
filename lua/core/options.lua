@@ -98,6 +98,7 @@ g.netrw_winsize = 20 -- width of the window (25%)
 
 
 opt.signcolumn = "yes"
+opt.signcolumn = "auto:1-3" -- accommodate up to 3 icons
 opt.splitbelow = true
 opt.splitright = true
 opt.termguicolors = true

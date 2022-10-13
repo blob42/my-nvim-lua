@@ -27,7 +27,16 @@ M.general = { --{{{
     },--}}}
 
     n = {--{{{
-        ["<ESC>"] = { "<cmd> noh <CR>", "no highlight" },
+        ["<ESC>"] = { 
+            function()
+                if vim.o.filetype == "qf" then
+                    vim.cmd("q")
+                else
+                    vim.cmd("noh")
+                end
+            end,
+            "no highlight"
+        },
 
         -- switch between windows
         ["<C-h>"] = { "<C-w>h", "window left" },
@@ -146,8 +155,9 @@ M.general = { --{{{
         },
 
         -- quick close window
-        ["<C-x>"] = {"<C-w>c", "close window"},
-
+        ["<C-x><C-x>"] = {"<C-w>c", "close window"},
+        
+        -- Increase number is with double <C-a> and decrease with simple C-x
 
 
         -- yank from cusor to eol to system and primary clipboard
@@ -493,11 +503,19 @@ M.general = { --{{{
             n = {
                 ["<leader>ds"] = {
                     function()
-                        if vim.o.filetype == "go" then
-                            local spdap = require("spike.dap")
-                            spdap.setup()
-                            spdap.go_debug()
+                        local mydap = require("spike.dap")
 
+                        mydap.setup()
+                        require('spike.dap.utils').init_breakpoints()
+                        -- set a breakpoint at current line if there are none in
+                        --  the project
+
+                        if vim.o.filetype == "go" then
+                            mydap.go_debug()
+                        elseif vim.o.filetype == "rust"  then
+                            local rt = require("rust-tools")
+                            -- make sure lsp is running ?
+                            rt.debuggables.debuggables()
                         end
                     end,
                     "start dap session"
@@ -524,10 +542,18 @@ M.general = { --{{{
                 },
                 ["<leader>dm"] = {
                     function()
-                        require("spike.dapmode").start()
+                        require('spike.dap.dapmode').start()
                     end,
                     "enter dap mode"
-                }
+                },
+                ["<leader>dr"] = {"<cmd>lua require'dap'.run_last()<CR>", "[dap] rerun last"},
+                ["<leader>dl"] = {
+                    function()
+                        require('spike.dap.utils').dap_logpoint()
+                    end,
+                    "[dap] add log point"
+                },
+                ["<leader>dt"] = {"<cmd>lua require'dapui'.toggle()<CR>", "[dap] toggle UI"},
             },
 
             }-- }}}

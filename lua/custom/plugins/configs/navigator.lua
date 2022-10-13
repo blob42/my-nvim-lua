@@ -47,7 +47,7 @@ local config = {
     { key = 'gL', func = require('navigator.diagnostics').show_diagnostics, desc = 'lsp show_diagnostics' },
     { key = 'gG', func = require('navigator.diagnostics').show_buf_diagnostics, desc = 'lsp show_buf_diagnostics' },
     -- { key = '<Leader>dt', func = require('navigator.diagnostics').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
-    { key = '<Leader>dt', func = require('spike.lsp').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
+    { key = '<Leader>td', func = require('spike.lsp').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
     { key = ']d', func = vim.diagnostic.goto_next, desc = 'lsp next diagnostics' },
     { key = '[d', func = vim.diagnostic.goto_prev, desc = 'lsp prev diagnostics' },
     { key = ']O', func = vim.diagnostic.set_loclist, desc = 'lsp diagnostics set loclist' },
@@ -56,13 +56,13 @@ local config = {
     { key = '<C-LeftMouse>', func = vim.lsp.buf.definition, desc = 'lsp definition' },
     { key = 'g<LeftMouse>', func = vim.lsp.buf.implementation, desc = 'lsp implementation' },
     { key = '<Leader>k', func = require('navigator.dochighlight').hi_symbol, desc = 'lsp hi_symbol' },
-    { key = '<Space>wa', func = require('navigator.workspace').add_workspace_folder, desc = 'lsp add_workspace_folder' },
+    { key = '<leader>wa', func = require('navigator.workspace').add_workspace_folder, desc = 'lsp add_workspace_folder' },
     {
-      key = '<Space>wr',
+      key = '<leader>wr',
       func = require('navigator.workspace').remove_workspace_folder,
       desc = 'lsp lsp remove_workspace_folder',
     },
-    { key = '<Space>ff', func = vim.lsp.buf.format, mode = 'n', desc = 'lsp format' },
+    { key = '<space>fm', func = vim.lsp.buf.format, mode = 'n', desc = 'lsp format' },
     -- { key = '<Space>ff', func = vim.lsp.buf.range_formatting, mode = 'v', desc = 'lsp range format' },
     -- DEPRECATED 
     -- {
@@ -71,8 +71,8 @@ local config = {
     --   mode = 'n',
     --   desc = 'lsp range format operator e.g gmip',
     -- },
-    { key = '<Space>wl', func = require('navigator.workspace').list_workspace_folders, desc = 'lsp list_workspace_folders' },
-    { key = '<Space>la', mode = 'n', func = require('navigator.codelens').run_action, desc = 'lsp run code lens action' },
+    { key = '<leader>wl', func = require('navigator.workspace').list_workspace_folders, desc = 'lsp list_workspace_folders' },
+    { key = '<leader>ll', mode = 'n', func = require('navigator.codelens').run_action, desc = 'lsp run code lens action' },
   },
 
   icons = {

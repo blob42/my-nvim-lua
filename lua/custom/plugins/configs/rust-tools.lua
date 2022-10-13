@@ -171,6 +171,7 @@ local opts = {
             type = "executable",
             command = "lldb-vscode",
             name = "rt_lldb",
+            console = "integratedTerminal",
         },
     },
 }
