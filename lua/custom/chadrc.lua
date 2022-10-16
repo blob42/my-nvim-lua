@@ -102,7 +102,12 @@ M.ui = {
         },
         DapBreakpointRejected   = {
             fg = "purple"
-        }
+        },
+        LuaSnipChoice = {
+            fg = "#ff4848",
+            bg = "one_bg3",
+        },
+
     },
     -- hl_override = {
     --   CursorLine = {

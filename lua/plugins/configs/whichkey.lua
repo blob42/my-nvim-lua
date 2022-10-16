@@ -33,8 +33,8 @@ local options = {
     triggers_blacklist = {
         -- list of mode / prefixes that should never be hooked by WhichKey
         i = { "j", "k" },
-        v = { "j", "k" },
-        -- n = { "\"", "@" }, -- disable registers
+        v = { "j", "k", "<C-x>" },
+        n = { "\"", "@" }, -- disable registers
     },
 }
 

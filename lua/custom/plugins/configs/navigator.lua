@@ -32,6 +32,7 @@ local config = {
     { key = '<Leader>ct', func = require('navigator.ctags').ctags, desc = 'lsp ctags' },
     { key = 'K', func = vim.lsp.buf.hover, desc = 'lsp hover' },
     { key = '<M-a>', mode = 'n', func = require('navigator.codeAction').code_action, desc = 'lsp code_action' },
+    { key = '<M-a>', mode = 'i', func = require('navigator.codeAction').code_action, desc = 'lsp code_action' },
     {
       key = '<M-a>',
       mode = 'v',

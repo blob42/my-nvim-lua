@@ -17,7 +17,8 @@ function  M.gopls_onattach(client, bufnr)
   end
 
   
-  autocmd({"BufWritePre", "InsertLeave"}, {
+  -- autocmd({"BufWritePre", "InsertLeave"}, {
+  autocmd({"BufWritePre"}, {
     group = augroup(augroupname, {clear = true}),
     buffer = bufnr,
     callback = function()

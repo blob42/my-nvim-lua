@@ -22,7 +22,7 @@ M.general = { --{{{
         ["<C-s>"] = { "<cmd> update <CR>", "update file (save on changes)" },
 
         -- luasnip change choice
-        ["<C-u>"] = { "<Plug>luasnip-next-choice", "change luasnip choice" },
+        ["<C-l>"] = { "<Plug>luasnip-next-choice", "change luasnip choice" },
         -- ["<C-u>"] = { "<cmd>lua require('luasnip.extras.select_choice')()<CR>", "change luasnip choice" },
     },--}}}
 

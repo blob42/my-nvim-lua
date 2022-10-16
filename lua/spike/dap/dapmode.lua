@@ -64,7 +64,12 @@ local config = {
         end,
         desc = '[dapui] float watches'
       },
-      B = {
+      P = {
+        rhs = function()
+            require('dapui').float_element('scopes')
+        end,
+        desc = '[dapui] float scopes'
+      },B = {
         rhs = function()
             require('dapui').float_element('breakpoints')
         end,

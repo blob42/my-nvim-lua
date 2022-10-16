@@ -116,17 +116,18 @@ return {
         lock = false,
         config = function()
             -- load default config first
-            require("plugins.configs.others").luasnip()
+            require("custom.plugins.configs.luasnip").setup()
 
             vim.g.my_snippets_paths = { "./custom_snippets" }
             require("luasnip").filetype_extend("markdown", { "markdown_zk" })
 
             -- load snippets from "honza/vim-snippets"
             -- includes ultisnips and snipmate snippets
-            require("luasnip.loaders.from_snipmate").lazy_load({ override_priority = 800 })
+            -- default priority for snipmate is 1000
+            require("luasnip.loaders.from_snipmate").lazy_load({ override_priority = 500 })
             require("luasnip.loaders.from_snipmate").lazy_load {
                 paths = vim.g.my_snippets_paths,
-                override_priority = 800
+                override_priority = 600
             }
         end
     }, -- }}}
