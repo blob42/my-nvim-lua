@@ -2,7 +2,7 @@ local M = {}
 
 local config = {
   -- verbose = true,
-  run_in_floaterm = true,
+  run_in_floaterm = false,
   icons = false,
   -- icons = { breakpoint = "🧘", currentpos = "🏃" }, -- set to false to disable
   lsp_cfg = false, -- handled handled instead by navigator 

@@ -1,30 +1,32 @@
-local libmodal = require "libmodal"
+local libmodal = require 'libmodal'
+local daputils = require 'spike.dap.utils'
 
 M = {}
 M.layer = nil
 
+
 local config = {
   mappings = {
     n =
-    { 
-      t = { rhs = '<cmd> DapToggleBreakpoint<CR>', desc= "[dap] toggle breakpoint" },
+    {
+      t = { rhs = '<cmd> DapToggleBreakpoint<CR>', desc= '[dap] toggle breakpoint' },
       T = {
         rhs = function()
               require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
         end,
-        desc = "[dap] conditional breakpoint",
+        desc = '[dap] conditional breakpoint',
       },
       c = {
         rhs = function()
           require('dap').continue()
         end,
-        desc = "[dap] continue"
+        desc = '[dap] continue'
       },
       n = {
         rhs = function()
           require('dap').step_over()
         end,
-        desc = "[dap] step over"
+        desc = '[dap] step over'
       },
       s = {
         rhs = function()
@@ -40,28 +42,51 @@ local config = {
       },
       r = {
         rhs = function()
-          require('go.dap').run()
+          require('dap').run_last()
         end,
-        desc = '[dap] run'
+        desc = '[dap] restart'
       },
       S = {
         rhs = function()
-          require('go.dap').stop()
+            daputils.disconnect_dap()
         end,
-        desc = "[dap] stop"
+        desc = '[dap] stop'
       },
       C = {
         rhs = function()
           require('dap').run_to_cursor()
         end,
-        desc = "[dap] run to curosr"
+        desc = '[dap] run to curosr'
       },
-      ["Q"] = {
+      W = {
+        rhs = function()
+            require('dapui').float_element('watches')
+        end,
+        desc = '[dapui] float watches'
+      },
+      P = {
+        rhs = function()
+            require('dapui').float_element('scopes')
+        end,
+        desc = '[dapui] float scopes'
+      },B = {
+        rhs = function()
+            require('dapui').float_element('breakpoints')
+        end,
+        desc = '[dapui] float breakpoints'
+      },
+      O = {
+        rhs = function()
+            require('dapui').float_element('scopes')
+        end,
+        desc = '[dapui] float scopes'
+      },
+      ['Q'] = {
         rhs = function()
           M.layer:exit()
         end,
-        desc = "[dap] exit dap mode"
-      } 
+        desc = '[dap] exit dap mode'
+      }
     }
   }
 }
@@ -79,7 +104,7 @@ function M.stop()
 end
 
 function M.setup (opts)
-  config = vim.tbl_deep_extend("force", config, opts or {})
+  config = vim.tbl_deep_extend('force', config, opts or {})
 end
 
 function M.is_active()
@@ -92,5 +117,6 @@ end
 -- --
 -- layer:enter()
 --
+M.disconnect_dap = disconnect_dap
 
 return M

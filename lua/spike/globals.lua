@@ -18,3 +18,13 @@ R = function(name)
   RELOAD(name)
   return require(name)
 end
+
+TBL_HASVAL = function(tab, val)
+    for index, value in ipairs(tab) do
+        if value == val then
+            return true
+        end
+    end
+
+    return false
+end

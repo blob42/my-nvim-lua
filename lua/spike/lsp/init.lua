@@ -11,4 +11,9 @@ M.toggle_diagnostics = function ()
   M.shown = true
 end
 
+-- my customized attach
+-- M.custom_attach = function(client, bufnr)
+-- end
+
+
 return M

@@ -7,6 +7,15 @@ end
 M = {}
 
 local config = {
+  keywords = {
+    ["_TODO"] = { color = "warning"},
+    ["LEARN"] = { color = "hint" },
+  },
+  colors = {
+    info = {"#2563EB"},
+    hint = {"#10B981"},
+    default = {"#8C3AED" },
+  },
 }
 
 M.setup = function()

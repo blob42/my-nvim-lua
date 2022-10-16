@@ -37,13 +37,14 @@ vim.cmd [[
 -- suckless {
 vim.cmd [[
     " Autocompile suckless
-    let dwm_file_patterns = expand("$HOME/.local/src/suckless/*/{config.h,*.c}")
+    " NOTE: symlinks do not work with autocommand patterns
+    let dwm_file_patterns = expand("/data/source/suckless/*/{config.h,*.c}")
 
     augroup DWM
       au!
 
       execute "au BufEnter " . dwm_file_patterns  . " :lcd %:p:h"
-      execute "au BufWrite " . dwm_file_patterns  . " :AsyncRun! make clean && make && sudo make install"
+      execute "au BufWritePost " . dwm_file_patterns  . " :AsyncRun! make clean && make && sudo make install"
       "au BufWrite */src/*/dwm*/{*.h,dwm.c} :AsyncRun! make clean && make && sudo make install
     augroup END
 ]]

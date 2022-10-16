@@ -3,3 +3,4 @@ spell
 examples
 
 lua/scratch
+.luarc.json
