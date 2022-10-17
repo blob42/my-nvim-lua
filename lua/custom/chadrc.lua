@@ -2,6 +2,10 @@
 
 local M = {}
 
+local colors = {
+    neon = "#3ece8d"
+}
+
 -- make sure you maintain the structure of `core/default_config.lua` here,
 -- example of changing theme:
 --
