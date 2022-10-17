@@ -326,7 +326,10 @@ M.general = { --{{{
                 ["%c"] = { "~/.config/nvim/", "shortcut to nvim config dir"},
                 -- ["tsf"] = { "set foldmethod=expr | set foldexpr=nvim_treesitter#foldexpr()",
                 -- "enable Treesitter folding"}
-            }--}}}
+            },--}}}
+
+            -- visual mode
+            -- x = { },
         } --}}}
 
         M.tabufline = { --{{{

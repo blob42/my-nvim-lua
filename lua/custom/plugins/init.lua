@@ -299,6 +299,11 @@ return {
         cmd = { "G", "Git", "G*" }
     },
 
+    ["sindrets/diffview.nvim"] = {
+        requires = {"nvim-lua/plenary.nvim"},
+        after = {"plenary.nvim"},
+    },
+
     -- session and view
     ["vim-scripts/restore_view.vim"] = {}, -- TODO: check if still needed
 

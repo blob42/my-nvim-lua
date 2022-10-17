@@ -3,7 +3,8 @@
 local M = {}
 
 local colors = {
-    neon = "#3ece8d"
+    neon = "#3ece8d",
+    flashred = "#ff4848",
 }
 
 -- make sure you maintain the structure of `core/default_config.lua` here,
@@ -108,7 +109,7 @@ M.ui = {
             fg = "purple"
         },
         LuaSnipChoice = {
-            fg = "#ff4848",
+            fg = "sun",
             bg = "one_bg3",
         },
 
