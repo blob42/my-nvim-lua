@@ -9,10 +9,16 @@ local types = require("luasnip.util.types")
 local options = {
     history = true,
     updateevents = "TextChanged,TextChangedI",
+    enable_autosnippets = true,
     ext_opts = {
         [types.choiceNode] = {
             passive = {
-                virt_text = { { " ", "LuaSnipChoice" } },
+                virt_text = { { " ", "LuaSnipChoice" } },
+            }
+        },
+        [types.insertNode] = {
+            passive = {
+                virt_text = { { " ", "LuaSnipInsert" } },
             }
         }
     },

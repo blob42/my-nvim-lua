@@ -50,7 +50,7 @@ return {
     local mode_sep1 = "%#" .. modes[m][2] .. "Sep" .. "#" .. sep_r
 
     if is_dapmode() then
-      local dap_mode = "%#St_DapMode#DEBUG" .. "%#St_DapModeSep#" 
+      local dap_mode = "%#St_DapMode#DAP" .. "%#St_DapModeSep#" 
       return current_mode .. mode_sep1 .. "%#St_DapModeSep2#" .. sep_r .. dap_mode  ..  sep_r
     end
 

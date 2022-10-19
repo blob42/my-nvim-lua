@@ -2,13 +2,13 @@ M = {}
 M.shown = true
 
 -- toggle diagnostics with show/hide
-M.toggle_diagnostics = function ()
+M.toggle = function ()
   if M.shown  then
     M.shown = false
     return vim.diagnostic.hide()
   end
-  vim.diagnostic.show()
   M.shown = true
+  vim.diagnostic.show()
 end
 
 -- my customized attach

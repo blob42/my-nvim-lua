@@ -17,6 +17,9 @@ M.ui = {
     theme = "monekai",
     theme_toggle = { "monekai", "gruvbox_light" },
     hl_override = {
+        Comment = {
+            fg = "light_grey"
+        },
         CursorLine = {
             bg = "one_bg3"
         },
@@ -109,9 +112,16 @@ M.ui = {
             fg = "purple"
         },
         LuaSnipChoice = {
-            fg = "sun",
+            fg = "yellow",
             bg = "one_bg3",
         },
+        LuaSnipInsert = {
+            fg = "teal",
+            -- bg = "one_bg3",
+        },
+        NvimDapVirtualText = {
+            fg = '#f99540'
+        }
 
     },
     -- hl_override = {

@@ -16,6 +16,12 @@ local config = {
         end,
         desc = '[dap] conditional breakpoint',
       },
+      X = {
+        rhs = function()
+            require('dap').clear_breakpoints()
+        end,
+        desc = '[dap] clear all breakpoints'
+      },
       c = {
         rhs = function()
           require('dap').continue()
@@ -86,16 +92,43 @@ local config = {
           M.layer:exit()
         end,
         desc = '[dap] exit dap mode'
-      }
+      },
+-- WIP: use which-key for key mappings help
+      -- ["?"] = {
+      --     rhs = function()
+      --         local wk = require("which-key")
+      --         wk.show("?", "n")
+      --     end
+      -- }
     }
   }
 }
+
+M.config = config
+
+-- WIP: use which-key for key mappings help
+-- local function wk_reg_keys()
+--     local wk = require("which-key")
+--     local wk_dapmode = {
+--         name = "dap", -- section name
+--     }
+--     local wk_opts = {
+--         mode = "n",
+--         prefix = "?",
+--         -- noremap = true,
+--     }
+--     for key, data in pairs(config.mappings.n) do
+--         wk_dapmode[key] = { data.desc }
+--     end
+--     wk.register(wk_dapmode, wk_opts)
+-- end
 
 
 function M.start()
   if M.layer == nil then
     M.layer = libmodal.layer.new(config.mappings)
   end
+  -- wk_reg_keys()
   M.layer:enter()
 end
 

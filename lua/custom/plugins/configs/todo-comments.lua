@@ -10,6 +10,7 @@ local config = {
   keywords = {
     ["_TODO"] = { color = "warning"},
     ["LEARN"] = { color = "hint" },
+    ["WIP"] = { color = "default"},
   },
   colors = {
     info = {"#2563EB"},
