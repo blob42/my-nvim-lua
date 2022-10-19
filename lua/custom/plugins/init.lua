@@ -58,18 +58,25 @@ return {
         setup = function()
             require("core.lazy_load").on_file_open "nvim-treesitter"
             require("core.lazy_load").on_file_open "nvim-treesitter-textobjects"
-            require("core.lazy_load").on_file_open "nvim-treesitter-textsubjects"
+            -- require("core.lazy_load").on_file_open "nvim-treesitter-textsubjects"
             require("core.lazy_load").on_file_open "nvim-treesitter-context"
+            require("core.lazy_load").on_file_open "syntax-tree-surfer"
             -- require("core.lazy_load").on_file_open "nvim-ts-rainbow"
         end,
     },
     ["nvim-treesitter/nvim-treesitter-textobjects"] = {
         opt = true,
     },
-    ["RRethy/nvim-treesitter-textsubjects"] = {
-        opt = true,
-    },
+    -- ["RRethy/nvim-treesitter-textsubjects"] = {
+    --     opt = true,
+    -- },
 
+    ["ziontee113/syntax-tree-surfer"] = {
+        opt = true,
+        config = function()
+            require("syntax-tree-surfer").setup()
+        end
+    },
     -- Treesitter dev/exploration tool
     ["nvim-treesitter/playground"] = {
         opt = true,
@@ -114,11 +121,12 @@ return {
 
     ["L3MON4D3/LuaSnip"] = {
         lock = false,
-        config = function()
+        module = "luasnip",
+        config = function() -- overriding default nvchad config here
             -- load default config first
             require("custom.plugins.configs.luasnip").setup()
 
-            vim.g.my_snippets_paths = { "./custom_snippets" }
+            vim.g.my_snippets_paths = { vim.fn.stdpath('config') .. '/mysnippets' }
             require("luasnip").filetype_extend("markdown", { "markdown_zk" })
 
             -- load snippets from "honza/vim-snippets"
@@ -128,6 +136,12 @@ return {
             require("luasnip.loaders.from_snipmate").lazy_load {
                 paths = vim.g.my_snippets_paths,
                 override_priority = 600
+            }
+
+            -- my luasnip snippets
+            require("luasnip.loaders.from_lua").lazy_load {
+                paths = vim.g.my_snippets_paths,
+                override_priority = 2000, -- highest priority for my luasnips
             }
         end
     }, -- }}}
@@ -177,7 +191,26 @@ return {
 
     ["theHamsta/nvim-dap-virtual-text"] = {
         lock = true,
-        after = "nvim-dap"
+        after = "nvim-dap",
+        config = function()
+            require("nvim-dap-virtual-text").setup({
+                enabled = true,                        -- enable this plugin (the default)
+                enabled_commands = true,               -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
+                highlight_changed_variables = true,    -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
+                highlight_new_as_changed = false,      -- highlight new variables in the same way as changed variables (if highlight_changed_variables)
+                show_stop_reason = true,               -- show stop reason when stopped for exceptions
+                commented = false,                     -- prefix virtual text with comment string
+                only_first_definition = true,          -- only show virtual text at first definition (if there are multiple)
+                all_references = false,                -- show virtual text on all all references of the variable (not only definitions)
+                filter_references_pattern = '<module', -- filter references (not definitions) pattern when all_references is activated (Lua gmatch pattern, default filters out Python modules)
+                -- experimental features:
+                virt_text_pos = 'eol',                 -- position of virtual text, see `:h nvim_buf_set_extmark()`
+                all_frames = true,                    -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+                virt_lines = false,                    -- show virtual lines instead of virtual text (will flicker!)
+                virt_text_win_col = 80                -- position the virtual text at a fixed window column (starting from the first text column) ,
+                                                       -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
+            }) 
+        end
     }, -- }}}
 
     -- User Interface / UX
@@ -346,7 +379,7 @@ return {
                 delay_ms = 1000, -- How long repeated usage of a key should be prevented
                 grace_period = 1, -- How many repeated keypresses are allowed
                 keys = { -- Which keys (in which modes) should be delayed
-                ['nv'] = { 'h', 'j', 'k', 'l' },
+                ['n'] = { 'h', 'j', 'k', 'l' },
                 -- ['nvi'] = { '<Left>', '<Down>', '<Up>', '<Right>' },
             },
             ignore_filetypes = {

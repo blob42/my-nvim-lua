@@ -33,8 +33,8 @@ return {
         enable = true,
         keymaps = {
             init_selection = "<Space>",
-            node_incremental = "<Space>",
-            node_decremental = "<BS>",
+            node_incremental = "<BS>",
+            node_decremental = "<Space>",
             scope_incremental = "<CR>",
         }
     },
@@ -104,7 +104,7 @@ return {
         },
 
         swap = {
-            enable = true,
+            enable = false,  -- swap using syntax-tree-surfer
             swap_next = {
                 ["~"] = "@parameter.inner"
             },

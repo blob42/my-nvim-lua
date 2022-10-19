@@ -1,5 +1,5 @@
 ---@diagnostic disable: trailing-space
--- vim: foldmethod=marker foldlevel=0
+-- vim: foldmethod=marker foldlevel=1
 -- n, v, i, t, c = mode name.s
 
 local function termcodes(str)
@@ -92,8 +92,8 @@ M.general = { --{{{
 
 
         -- lua source current file
-        ["<leader>.."] = {"<cmd> :w | source %<CR>", "save and source script "},
-        ["<leader>.m"] = { function ()
+        ["<leader>."] = {"<cmd> :w | source %<CR>", "save and source script "},
+        ["<leader>rm"] = { function ()
             local ok, core = pcall(require, "core")
             if not ok then
                 return
@@ -201,8 +201,50 @@ M.general = { --{{{
                         "Treesitter playground"
                     },
 
-                    ["<leader>en"] = { "<cmd> cn <CR>", "next error"     },
+                    -- Moving lines around
+                    ["<M-Down>"] = {"<cmd>:m +1<CR>==", "move line up"},
+                    ["<M-Up>"] = {"<cmd>:m .-2<CR>==", "move line up"},
+
+                    -- syntax-tree-surfer
+                    -- visual selection from nomral mode
+                    ["vm"] = {"<cmd>STSSelectMasterNode<CR>", "select master node"},
+                    ["vn"] = {"<cmd>STSSelectCurrentNode<CR>", "select master node"},
+
+                    -- normal mode swapping
+                    -- swappint up/down
+
+                    ["vU"] = {function()
+                        vim.opt.opfunc = "v:lua.STSSwapUpNormal_Dot"
+                        return "g@l"
+                    end, "TS swap Up master node with sibling", opts = { expr = true}},
+                    ["<BS><Up>"] = {function()
+                        vim.opt.opfunc = "v:lua.STSSwapUpNormal_Dot"
+                        return "g@l"
+                    end, "TS swap Up master node with sibling", opts = { expr = true}},
+
+                    ["vD"] = {function()
+                        vim.opt.opfunc = "v:lua.STSSwapDownNormal_Dot"
+                        return "g@l"
+                    end, "TS swap Down master node with sibling", opts = { expr = true}},
+                    ["<BS><Down>"] = {function()
+                        vim.opt.opfunc = "v:lua.STSSwapDownNormal_Dot"
+                        return "g@l"
+                    end, "TS swap Down master node with sibling", opts = { expr = true}},
+                    
+
+                    -- swapping left/right sibling nodes
+                    ["<M-Right>"] = {function()
+                        vim.opt.opfunc = "v:lua.STSSwapCurrentNodeNextNormal_Dot"
+                        return "g@l"
+                    end, "TS swap right with sibling", opts = { expr = true}},
+
+                    ["<M-Left>"] = {function()
+                        vim.opt.opfunc = "v:lua.STSSwapCurrentNodePrevNormal_Dot"
+                        return "g@l"
+                    end, "TS swap left with sibling", opts = { expr = true}},
+
                     ["]e"] = { "<cmd> cn <CR>", "next error"     },
+                    ["<leader>en"] = { "<cmd> cn <CR>", "next error"     },
                     ["<leader>ep"] = { "<cmd> cp <CR>", "previous error" },
                     ["[e"] = { "<cmd> cp <CR>", "previous error" },
 
@@ -328,8 +370,21 @@ M.general = { --{{{
                 -- "enable Treesitter folding"}
             },--}}}
 
-            -- visual mode
-            -- x = { },
+            -- visual exclusive mode (ignore select)
+            x = { -- {{{
+                -- syntax-tree-surfer
+                ["J"] = {"<cmd>STSSelectNextSiblingNode<CR>", "select next sibling node"},
+                ["K"] = {"<cmd>STSSelectPrevSiblingNode<CR>", "select prev sibling node"},
+                ["H"] = {"<cmd>STSSelectParentNode<CR>", "select prev sibling node"},
+                ["L"] = {"<cmd>STSSelectChildNode<CR>", "select prev sibling node"},
+
+                -- swap nodes tip: start first with master/child node selection then use these
+                ["<M-Up>"] = {"<cmd>STSSwapPrevVisual<CR>", "select prev sibling node"},
+                ["<M-Left>"] = {"<cmd>STSSwapPrevVisual<CR>", "select prev sibling node"},
+                ["<M-Down>"] = {"<cmd>STSSwapNextVisual<CR>", "select next sibling node"},
+                ["<M-Right>"] = {"<cmd>STSSwapNextVisual<CR>", "select next sibling node"},
+
+            },-- }}}
         } --}}}
 
         M.tabufline = { --{{{
@@ -774,7 +829,6 @@ M.general = { --{{{
                         plugin = true,
                         n = {
                             ["<Right>"] = { "<cmd> lua require'navigator.treesitter'.side_panel()<CR><C-w>h", "toggle TreeSitter symbols panel " },
-                            ["<M-Right>"] = { "<cmd> lua require'navigator.symbols'.side_panel()<CR><C-w>h", "toggle LSP symbols panel" },
                         }
                     }--}}}
 

@@ -33,6 +33,7 @@ local config = {
     { key = 'K', func = vim.lsp.buf.hover, desc = 'lsp hover' },
     { key = '<M-a>', mode = 'n', func = require('navigator.codeAction').code_action, desc = 'lsp code_action' },
     { key = '<M-a>', mode = 'i', func = require('navigator.codeAction').code_action, desc = 'lsp code_action' },
+    { key = '<BS><Right>', mode = 'n', func = require('navigator.symbols').side_panel, desc = 'toggle lsp outline pannel'},
     {
       key = '<M-a>',
       mode = 'v',
@@ -48,7 +49,7 @@ local config = {
     { key = 'gL', func = require('navigator.diagnostics').show_diagnostics, desc = 'lsp show_diagnostics' },
     { key = 'gG', func = require('navigator.diagnostics').show_buf_diagnostics, desc = 'lsp show_buf_diagnostics' },
     -- { key = '<Leader>dt', func = require('navigator.diagnostics').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
-    { key = '<Leader>td', func = require('spike.lsp').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
+    { key = '<Leader>td', func = require('spike.diagnostics').toggle, desc = 'lsp toggle_diagnostics' },
     { key = ']d', func = vim.diagnostic.goto_next, desc = 'lsp next diagnostics' },
     { key = '[d', func = vim.diagnostic.goto_prev, desc = 'lsp prev diagnostics' },
     { key = ']O', func = vim.diagnostic.set_loclist, desc = 'lsp diagnostics set loclist' },
