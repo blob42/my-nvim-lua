@@ -13,7 +13,7 @@ local config = {
   default_mapping = false,
   keymaps = {
     { key = 'gr', func = require('navigator.reference').async_ref, desc = 'lsp async_ref' },
-    { key = '<Leader>gr', func = require('navigator.reference').reference, desc = 'lsp reference' }, -- reference deprecated
+    -- { key = '<Leader>gr', func = require('navigator.reference').reference, desc = 'lsp reference' }, -- reference deprecated
     {
       key = '<M-i>',
       mode = 'i',
@@ -42,9 +42,9 @@ local config = {
     },
     -- { key = '<Leader>re', func = 'rename()' },
     { key = '<Space>rn', func = require('navigator.rename').rename, desc = 'lsp rename' },
-    { key = '<Leader>gc', func = vim.lsp.buf.incoming_calls, desc = 'lsp incoming_calls' },
+    { key = '<Leader>gi', func = vim.lsp.buf.incoming_calls, desc = 'lsp incoming_calls' },
     { key = '<Leader>go', func = vim.lsp.buf.outgoing_calls, desc = 'lsp outgoing_calls' },
-    { key = '<Leader>gi', func = vim.lsp.buf.implementation, desc = 'lsp implementation' },
+    { key = '<Leader>gm', func = vim.lsp.buf.implementation, desc = 'lsp implementation' },
     { key = '<Space>D', func = vim.lsp.buf.type_definition, desc = 'lsp type_definition' },
     { key = 'gL', func = require('navigator.diagnostics').show_diagnostics, desc = 'lsp show_diagnostics' },
     { key = 'gG', func = require('navigator.diagnostics').show_buf_diagnostics, desc = 'lsp show_buf_diagnostics' },
@@ -144,6 +144,7 @@ local config = {
     },
 
     diagnostic_scrollbar_sign = false,
+    display_diagnostic_qf = false,
 
     disable_lsp = {"clangd", "rust_analyzer"},
 
@@ -167,14 +168,16 @@ local config = {
       }
     },
 
-    ["lua-dev"] = {
+    ["neodev"] = {
       library = {
         enabled = true,
+        runtime = true,
+        -- plugins = true,
         plugins = {"plenary.nvim"},
         -- plugins = {"navigator.lua", "guihua.lua", "go.nvim", "plenary.nvim"},
-        runtime = true,
         types = true,
-      }
+      },
+      setup_jsonls = true,
     },
   }
 }

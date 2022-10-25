@@ -15,7 +15,7 @@ local plugins = {
   ["NvChad/extensions"] = { module = { "telescope", "nvchad" }, lock = true },
 
   ["NvChad/base46"] = {
-    lock = true,
+    lock = false,
     config = function()
       local ok, base46 = pcall(require, "base46")
 
@@ -33,15 +33,15 @@ local plugins = {
     end,
   },
 
-  -- ["NvChad/nvterm"] = {
-  --   module = "nvterm",
-  --   config = function()
-  --     require "plugins.configs.nvterm"
-  --   end,
-  --   setup = function()
-  --     require("core.utils").load_mappings "nvterm"
-  --   end,
-  -- },
+  ["NvChad/nvterm"] = {
+    module = "nvterm",
+    config = function()
+      require "plugins.configs.nvterm"
+    end,
+    setup = function()
+      require("core.utils").load_mappings "nvterm"
+    end,
+  },
 
   ["kyazdani42/nvim-web-devicons"] = {
     after = "ui",
@@ -142,12 +142,9 @@ local plugins = {
     after = "LuaSnip",
   },
 
-  ["hrsh7th/cmp-nvim-lua"] = {
-    after = "cmp_luasnip",
-  },
 
   ["hrsh7th/cmp-nvim-lsp"] = {
-    after = "cmp-nvim-lua",
+      after = {"nvim-cmp"},
   },
 
   ["hrsh7th/cmp-buffer"] = {

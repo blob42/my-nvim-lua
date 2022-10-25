@@ -84,7 +84,11 @@ M.general = { --{{{
 
         -- option toggle cursor line
         ["<BS>l"] = { "<cmd> set cul!<CR>", "toggle line number" },
-        ["<BS>c"] = {"<cmd>cclose<CR>", "close quickfix"},
+
+        ["<BS>c"] = {"<cmd>cclose<CR><cmd>lclose<CR>", "close quickfix"},
+
+        ["<BS>d"] = {"<cmd>DelayTrainToggle<CR>", "disable delay train"},
+
 
 
         -- update nvchad
@@ -243,10 +247,8 @@ M.general = { --{{{
                         return "g@l"
                     end, "TS swap left with sibling", opts = { expr = true}},
 
-                    ["]e"] = { "<cmd> cn <CR>", "next error"     },
-                    ["<leader>en"] = { "<cmd> cn <CR>", "next error"     },
-                    ["<leader>ep"] = { "<cmd> cp <CR>", "previous error" },
-                    ["[e"] = { "<cmd> cp <CR>", "previous error" },
+                    ["]e"] = { "<cmd> cn <CR>", "quickfix next error"     },
+                    ["[e"] = { "<cmd> cp <CR>", "quickfix previous error" },
 
 
                     -- Tabularize mappings
@@ -328,9 +330,7 @@ M.general = { --{{{
                 -- ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', opts = { expr = true } },
                 ["j"] = { "gj" },
                 ["k"] = { "gk" },
-                -- Don't copy the replaced text after pasting in visual mode
-                -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
-                ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', opts = { silent = true } },
+
 
                 -- yank from cursor to eol to system and primary clipboard
                 ["<leader>y"] = { '"*y gv"+y', "yank line to clipboards" },
@@ -372,6 +372,11 @@ M.general = { --{{{
 
             -- visual exclusive mode (ignore select)
             x = { -- {{{
+
+                -- Don't copy the replaced text after pasting in visual mode
+                -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
+                ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', opts = { silent = true } },
+
                 -- syntax-tree-surfer
                 ["J"] = {"<cmd>STSSelectNextSiblingNode<CR>", "select next sibling node"},
                 ["K"] = {"<cmd>STSSelectPrevSiblingNode<CR>", "select prev sibling node"},
@@ -686,9 +691,11 @@ M.general = { --{{{
                                 function ()
                                 local ignored_bufs = {
                                     "qf",
+                                    "guihua",
+                                    "NvimT*"
                                 }
                                 for _, ignored in ipairs(ignored_bufs) do
-                                    if vim.bo.filetype == ignored then
+                                    if vim.o.filetype:match(ignored) then
                                         local default_keyseq = termcodes("<C-p>")
                                         vim.api.nvim_feedkeys(default_keyseq, 'n', false) 
                                         return
@@ -707,6 +714,7 @@ M.general = { --{{{
                             ["<leader>fM"] = { "<cmd> Telescope man_pages <CR>", "Telescope marks" },
                             ["<leader>tk"] = { "<cmd> Telescope keymaps <CR>", "Telescope show keys" },
                             ["<leader>fr"] = { "<cmd> Telescope resume <CR>", "telescope resume last search" },
+                            ["<leader>fc"] = { "<cmd> Telescope commands <CR>", "telescope commands" },
 
                             -- git
                             ["<leader>fg"] = { " ", "telescope git commands" },
@@ -807,7 +815,7 @@ M.general = { --{{{
                         plugin = true,
 
                         n = {
-                            ["<leader>cc"] = {
+                            ["<BS>k"] = {
                                 function()
                                     local ok, start = require("indent_blankline.utils").get_current_context(
                                     vim.g.indent_blankline_context_patterns,
@@ -825,19 +833,13 @@ M.general = { --{{{
                         },
                     } --}}}
 
-                    M.navigator = {--{{{
+                    -- code outline panel
+                    M.aerial =  {
                         plugin = true,
                         n = {
-                            ["<Right>"] = { "<cmd> lua require'navigator.treesitter'.side_panel()<CR><C-w>h", "toggle TreeSitter symbols panel " },
+                            ["<Right>"] = {"<cmd> AerialToggle! right<CR>"},
                         }
-                    }--}}}
-
-                    M.vista = { -- Tagbar equivalent using LSP {{{
-                        plugin = true,
-                        n = {
-                            ["<Right>"] = { "<cmd> Vista!! <CR>", "toggle TreeSitter symbols " },
-                        },
-                    } --}}}
+                    }
 
                     M.asyncrun = { --{{{
                         plugin = true,

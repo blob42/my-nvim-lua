@@ -335,6 +335,12 @@ return {
     ["sindrets/diffview.nvim"] = {
         requires = {"nvim-lua/plenary.nvim"},
         after = {"plenary.nvim"},
+
+        config = function()
+            require("diffview").setup({
+                enhanced_diff_hl = true,
+            })
+        end
     },
 
     -- session and view
@@ -390,6 +396,9 @@ return {
                 "netrw",
                 "neorepl",
                 "dapui*",
+                "mason",
+                "guihua*",
+                "terminal*",
             },
         })
         end
@@ -427,7 +436,7 @@ return {
     -- ------------------
 
     ["neovim/nvim-lspconfig"] = { -- {{{
-        after = { "lua-dev.nvim", "mason.nvim", "mason-lspconfig.nvim" },
+        after = { "neodev.nvim", "mason.nvim", "mason-lspconfig.nvim" },
         module = { "lspconfig" },
         lock = false,
         config = function()
@@ -444,7 +453,7 @@ return {
         end,
     },
     ["ray-x/guihua.lua"] = {
-        lock = true,
+        lock = false,
         module = { "navigator" },
         run = "cd lua/fzy && make",
         config = function()
@@ -459,14 +468,14 @@ return {
     -- ["https://git.sp4ke.xyz/sp4ke/navigator.lua"] =
     --
     ["ray-x/navigator.lua"] = {
-        lock = true,
+        lock = false,
         opt = true,
         module = "navigator",
-        after = { "nvim-lspconfig", "base46", "ui", "mason.nvim", "mason-lspconfig.nvim", "lua-dev.nvim" },
+        after = { "nvim-lspconfig", "base46", "ui", "mason.nvim", "mason-lspconfig.nvim", "neodev.nvim" },
         requires = { "neovim/nvim-lspconfig", "ray-x/guihua.lua", "nvim-treesitter/nvim-treesitter" },
         setup = function()
             require("core.lazy_load").on_file_open "navigator.lua"
-            require("core.utils").load_mappings "navigator"
+            -- require("core.utils").load_mappings "navigator"
         end,
         config = function()
             require("custom.plugins.configs.navigator").setup()
@@ -494,6 +503,16 @@ return {
     --   end
     -- },
     --
+
+    ['stevearc/aerial.nvim'] = {
+        after = {"base46"},
+        keys =  {"<Right>"},
+        cmd = {"Aerial*"},
+        config = function()
+            require("core.utils").load_mappings "aerial"
+            require('aerial').setup({})
+        end
+    },
 
     -- -------------------------------------------------------
     -- Programming Languages Plugins
@@ -561,10 +580,19 @@ return {
 
     -- Lua dev env
     -- check setup in configs/navigator.lua
-    ["folke/lua-dev.nvim"] = {
-        lock = true,
-        module = "lua-dev",
-    }, -- }}}
+    -- ["folke/lua-dev.nvim"] = {
+    --     lock = true,
+    --     module = "lua-dev",
+    -- }, -- }}}
+
+    -- neodev (replaces lua-dev)
+    ["folke/neodev.nvim"] = {
+        -- commit = "d6212c1"
+        -- module = "neodev",
+    },
+    ["hrsh7th/cmp-nvim-lua"] = { -- NOTE: needs to be disabled for neodev
+        disable = true,
+    },
 
     -- golang dev
 
@@ -587,5 +615,10 @@ return {
             require("custom.plugins.configs.rust-tools").setup()
         end
     } -- }}}
+
+    -- sql tools
+    -- https://github.com/tpope/vim-dadbod
+    -- https://github.com/kristijanhusak/vim-dadbod-ui
+
 
 }
