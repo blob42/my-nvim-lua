@@ -106,28 +106,6 @@ M.comment = function()
   nvim_comment.setup(options)
 end
 
-M.gitsigns = function()
-  local present, gitsigns = pcall(require, "gitsigns")
-
-  if not present then
-    return
-  end
-
-  require("base46").load_highlight "git"
-
-  local options = {
-    signs = {
-      add = { hl = "DiffAdd", text = "│", numhl = "GitSignsAddNr" },
-      change = { hl = "DiffChange", text = "│", numhl = "GitSignsChangeNr" },
-      delete = { hl = "DiffDelete", text = "", numhl = "GitSignsDeleteNr" },
-      topdelete = { hl = "DiffDelete", text = "‾", numhl = "GitSignsDeleteNr" },
-      changedelete = { hl = "DiffChangeDelete", text = "~", numhl = "GitSignsChangeNr" },
-    },
-  }
-
-  options = load_override(options, "lewis6991/gitsigns.nvim")
-  gitsigns.setup(options)
-end
 
 M.devicons = function()
   local present, devicons = pcall(require, "nvim-web-devicons")

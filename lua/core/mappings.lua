@@ -9,7 +9,7 @@ end
 local M = {}
 
 M.general = { --{{{
-    i = {--{{{
+    i = { --{{{
 
         ["jk"] = { "<esc>", "escape" },
 
@@ -24,10 +24,10 @@ M.general = { --{{{
         -- luasnip change choice
         ["<C-l>"] = { "<Plug>luasnip-next-choice", "change luasnip choice" },
         -- ["<C-u>"] = { "<cmd>lua require('luasnip.extras.select_choice')()<CR>", "change luasnip choice" },
-    },--}}}
+    }, --}}}
 
-    n = {--{{{
-        ["<ESC>"] = { 
+    n = { --{{{
+        ["<ESC>"] = {
             function()
                 if vim.o.filetype == "qf" then
                     vim.cmd("q")
@@ -51,7 +51,7 @@ M.general = { --{{{
         ["<C-Up>"]    = { "<cmd>res +2 <CR>", "window height +" },
         ["<C-Down>"]  = { "<cmd>res -2 <CR>", "window height -" },
 
-        ["<leader>="] = { "<C-w>=", "adjust viewports "},
+        ["<leader>="] = { "<C-w>=", "adjust viewports " },
 
         -- quit dont save
         ["<leader>qq"] = { "<cmd> quitall! <cr>", "quit/close all windows, don't save" },
@@ -85,9 +85,9 @@ M.general = { --{{{
         -- option toggle cursor line
         ["<BS>l"] = { "<cmd> set cul!<CR>", "toggle line number" },
 
-        ["<BS>c"] = {"<cmd>cclose<CR><cmd>lclose<CR>", "close quickfix"},
+        ["<BS>c"] = { "<cmd>cclose<CR><cmd>lclose<CR>", "close quickfix" },
 
-        ["<BS>d"] = {"<cmd>DelayTrainToggle<CR>", "disable delay train"},
+        ["<BS>d"] = { "<cmd>DelayTrainToggle<CR>", "disable delay train" },
 
 
 
@@ -96,8 +96,8 @@ M.general = { --{{{
 
 
         -- lua source current file
-        ["<leader>."] = {"<cmd> :w | source %<CR>", "save and source script "},
-        ["<leader>rm"] = { function ()
+        ["<leader>."] = { "<cmd> :w | source %<CR>", "save and source script " },
+        ["<leader>rm"] = { function()
             local ok, core = pcall(require, "core")
             if not ok then
                 return
@@ -108,10 +108,10 @@ M.general = { --{{{
             require("plenary.reload").reload_module("core.mappings")
             require("core.utils").load_mappings()
             print("mappings reloaded !")
-        end, "config reload mappings"},
+        end, "config reload mappings" },
 
-        ["<leader>ss"] = { "<cmd> mks! <CR>", "save session"},
-        ["<leader>sl"] = { "<cmd> source Session.vim <CR>", "load session"},
+        ["<leader>ss"] = { "<cmd> mks! <CR>", "save session" },
+        ["<leader>sl"] = { "<cmd> source Session.vim <CR>", "load session" },
 
         ["<leader>tt"] = {
             function()
@@ -146,7 +146,7 @@ M.general = { --{{{
         ["<leader><Tab>"] = { "<cmd> tabe <CR>", "new tab" },
 
 
-        -- Fast tab NOTE:these are used for screen movements 
+        -- Fast tab NOTE:these are used for screen movements
         -- ["<S-H>"] = { "gT", "Previous tab" },
         -- ["<S-L>"] = { "gt", "Previous tab" },
 
@@ -159,8 +159,8 @@ M.general = { --{{{
         },
 
         -- quick close window
-        ["<C-x><C-x>"] = {"<C-w>c", "close window"},
-        
+        ["<C-x><C-x>"] = { "<C-w>c", "close window" },
+
         -- Increase number is with double <C-a> and decrease with simple C-x
 
 
@@ -171,133 +171,133 @@ M.general = { --{{{
 
         -- folding levels
         -- ["<leader>fd"] = { function()
-            --   vim.ui.select({"fold level 0", "1", "2", "3", "4", "5", "6", "7"},
-            --   {
-                --     prompt = "fold lvl: ",
-                --   },
-                --   function(item, idx)
-                    --     P(idx)
-                    --     -- local foldlevel = tonumber(item)
-                    --     -- if foldlevel == nil then P("need number for fold level !") end
-                    --     -- vim.o.foldlevel = foldlevel
-                    --   end)
-                    -- end,
-                    --
-                    -- "set fold level"},
-                    ["<leader>f0"] = { ":set foldlevel=0<CR>", "set fold level" },
-                    ["<leader>f1"] = { ":set foldlevel=1<CR>", "set fold level" },
-                    ["<leader>f2"] = { ":set foldlevel=2<CR>", "set fold level" },
-                    ["<leader>f3"] = { ":set foldlevel=3<CR>", "set fold level" },
-                    ["<leader>f4"] = { ":set foldlevel=4<CR>", "set fold level" },
-                    -- ["<leader>f5"] = { ":set foldlevel=5<CR>", "set fold level" },
-                    -- ["<leader>f6"] = { ":set foldlevel=6<CR>", "set fold level" },
-                    -- ["<leader>f7"] = { ":set foldlevel=7<CR>", "set fold level" },
-                    -- ["<leader>f8"] = { ":set foldlevel=8<CR>", "set fold level" },
-                    -- ["<leader>f9"] = { ":set foldlevel=9<CR>", "set fold level" },
+        --   vim.ui.select({"fold level 0", "1", "2", "3", "4", "5", "6", "7"},
+        --   {
+        --     prompt = "fold lvl: ",
+        --   },
+        --   function(item, idx)
+        --     P(idx)
+        --     -- local foldlevel = tonumber(item)
+        --     -- if foldlevel == nil then P("need number for fold level !") end
+        --     -- vim.o.foldlevel = foldlevel
+        --   end)
+        -- end,
+        --
+        -- "set fold level"},
+        ["<leader>f0"] = { ":set foldlevel=0<CR>", "set fold level" },
+        ["<leader>f1"] = { ":set foldlevel=1<CR>", "set fold level" },
+        ["<leader>f2"] = { ":set foldlevel=2<CR>", "set fold level" },
+        ["<leader>f3"] = { ":set foldlevel=3<CR>", "set fold level" },
+        ["<leader>f4"] = { ":set foldlevel=4<CR>", "set fold level" },
+        -- ["<leader>f5"] = { ":set foldlevel=5<CR>", "set fold level" },
+        -- ["<leader>f6"] = { ":set foldlevel=6<CR>", "set fold level" },
+        -- ["<leader>f7"] = { ":set foldlevel=7<CR>", "set fold level" },
+        -- ["<leader>f8"] = { ":set foldlevel=8<CR>", "set fold level" },
+        -- ["<leader>f9"] = { ":set foldlevel=9<CR>", "set fold level" },
 
-                    ["<leader>tf"] = { "<cmd> set foldmethod=expr<CR>|<cmd> set foldexpr=nvim_treesitter#foldexpr()<CR>",
-                    "enable Treesitter folding"},
+        ["<leader>tf"] = { "<cmd> set foldmethod=expr<CR>|<cmd> set foldexpr=nvim_treesitter#foldexpr()<CR>",
+            "enable Treesitter folding" },
 
-                    ["<leader>tp"]=  {
-                        function()
-                            vim.cmd("TSPlaygroundToggle")
-                        end,
-                        "Treesitter playground"
-                    },
+        ["<leader>tp"] = {
+            function()
+                vim.cmd("TSPlaygroundToggle")
+            end,
+            "Treesitter playground"
+        },
 
-                    -- Moving lines around
-                    ["<M-Down>"] = {"<cmd>:m +1<CR>==", "move line up"},
-                    ["<M-Up>"] = {"<cmd>:m .-2<CR>==", "move line up"},
+        -- Moving lines around
+        ["<M-Down>"] = { "<cmd>:m +1<CR>==", "move line up" },
+        ["<M-Up>"] = { "<cmd>:m .-2<CR>==", "move line up" },
 
-                    -- syntax-tree-surfer
-                    -- visual selection from nomral mode
-                    ["vm"] = {"<cmd>STSSelectMasterNode<CR>", "select master node"},
-                    ["vn"] = {"<cmd>STSSelectCurrentNode<CR>", "select master node"},
+        -- syntax-tree-surfer
+        -- visual selection from nomral mode
+        ["vm"] = { "<cmd>STSSelectMasterNode<CR>", "select master node" },
+        ["vn"] = { "<cmd>STSSelectCurrentNode<CR>", "select master node" },
 
-                    -- normal mode swapping
-                    -- swappint up/down
+        -- normal mode swapping
+        -- swappint up/down
 
-                    ["vU"] = {function()
-                        vim.opt.opfunc = "v:lua.STSSwapUpNormal_Dot"
-                        return "g@l"
-                    end, "TS swap Up master node with sibling", opts = { expr = true}},
-                    ["<BS><Up>"] = {function()
-                        vim.opt.opfunc = "v:lua.STSSwapUpNormal_Dot"
-                        return "g@l"
-                    end, "TS swap Up master node with sibling", opts = { expr = true}},
+        ["vU"] = { function()
+            vim.opt.opfunc = "v:lua.STSSwapUpNormal_Dot"
+            return "g@l"
+        end, "TS swap Up master node with sibling", opts = { expr = true } },
+        ["<BS><Up>"] = { function()
+            vim.opt.opfunc = "v:lua.STSSwapUpNormal_Dot"
+            return "g@l"
+        end, "TS swap Up master node with sibling", opts = { expr = true } },
 
-                    ["vD"] = {function()
-                        vim.opt.opfunc = "v:lua.STSSwapDownNormal_Dot"
-                        return "g@l"
-                    end, "TS swap Down master node with sibling", opts = { expr = true}},
-                    ["<BS><Down>"] = {function()
-                        vim.opt.opfunc = "v:lua.STSSwapDownNormal_Dot"
-                        return "g@l"
-                    end, "TS swap Down master node with sibling", opts = { expr = true}},
-                    
-
-                    -- swapping left/right sibling nodes
-                    ["<M-Right>"] = {function()
-                        vim.opt.opfunc = "v:lua.STSSwapCurrentNodeNextNormal_Dot"
-                        return "g@l"
-                    end, "TS swap right with sibling", opts = { expr = true}},
-
-                    ["<M-Left>"] = {function()
-                        vim.opt.opfunc = "v:lua.STSSwapCurrentNodePrevNormal_Dot"
-                        return "g@l"
-                    end, "TS swap left with sibling", opts = { expr = true}},
-
-                    ["]e"] = { "<cmd> cn <CR>", "quickfix next error"     },
-                    ["[e"] = { "<cmd> cp <CR>", "quickfix previous error" },
+        ["vD"] = { function()
+            vim.opt.opfunc = "v:lua.STSSwapDownNormal_Dot"
+            return "g@l"
+        end, "TS swap Down master node with sibling", opts = { expr = true } },
+        ["<BS><Down>"] = { function()
+            vim.opt.opfunc = "v:lua.STSSwapDownNormal_Dot"
+            return "g@l"
+        end, "TS swap Down master node with sibling", opts = { expr = true } },
 
 
-                    -- Tabularize mappings
-                    ["<leader>a&"]     = { "<cmd> Tabularize /&<CR>"          },
-                    ["<leader>a="]     = { "<cmd> Tabularize /^[^=]*\zs=<CR>" },
-                    ["<leader>a:"]     = { "<cmd> Tabularize /:<CR>"          },
-                    ["<leader>a,"]     = { "<cmd> Tabularize /,<CR>"          },
-                    ["<leader>a<Bar>"] = { "<cmd> Tabularize /<Bar><CR>"      },
+        -- swapping left/right sibling nodes
+        ["<M-Right>"] = { function()
+            vim.opt.opfunc = "v:lua.STSSwapCurrentNodeNextNormal_Dot"
+            return "g@l"
+        end, "TS swap right with sibling", opts = { expr = true } },
+
+        ["<M-Left>"] = { function()
+            vim.opt.opfunc = "v:lua.STSSwapCurrentNodePrevNormal_Dot"
+            return "g@l"
+        end, "TS swap left with sibling", opts = { expr = true } },
+
+        ["]e"] = { "<cmd> cn <CR>", "quickfix next error" },
+        ["[e"] = { "<cmd> cp <CR>", "quickfix previous error" },
 
 
-                    ["g."] = { ":cwd<CR>", "change dir to current file", opts = { remap = true } },
-                    ["<leader>g."] = { ":Gcd<CR>", "change dir to git root" },
+        -- Tabularize mappings
+        ["<leader>a&"]     = { "<cmd> Tabularize /&<CR>" },
+        ["<leader>a="]     = { "<cmd> Tabularize /^[^=]*\zs=<CR>" },
+        ["<leader>a:"]     = { "<cmd> Tabularize /:<CR>" },
+        ["<leader>a,"]     = { "<cmd> Tabularize /,<CR>" },
+        ["<leader>a<Bar>"] = { "<cmd> Tabularize /<Bar><CR>" },
 
-                    -- Packer commands
-                    --
-                    -- PackerSnapshot
-                    ["<leader>pS"] = { function()
-                        local snapname = "snapshot_" .. os.date("%Y_%m_%d_%H%M")
-                        local packer = require 'packer'
-                        packer.snapshot(snapname)
-                    end
-                    , "packer snapshot"},
-                    ["<leader>pst"] = { "<cmd> PackerStatus<CR>", "packer status"},
-                    ["<leader>psc"] = { "<cmd> PackerSync<CR>", "packer sync"},
-                    ["<leader>pc"] = { "<cmd> PackerCompile<CR>", "packer compile"},
 
-                    ["<leader>pr"] = { function()
+        ["g."] = { ":cwd<CR>", "change dir to current file", opts = { remap = true } },
+        ["<leader>g."] = { ":Gcd<CR>", "change dir to git root" },
 
-                        -- require("plenary.reload").reload_module("plugins")
-                        -- require("plenary.reload").reload_module("custom.plugins")
-                        -- vim.cmd "LuaCacheClear"
-                        -- package.loaded["plugins"] = nil
-                        --
-                        -- package.loaded["custom.plugins"] = nil
-                        -- dofile(vim.fn.stdpath("config") .. '/lua/plugins/init.lua')
-                        -- dofile(vim.fn.stdpath("config") .. '/lua/custom/plugins/init.lua')
-                        --
-                        require("spike.utils").unload_lua_ns("plugins")
-                        require("spike.utils").unload_lua_ns("custom")
-                        require("plugins")
-                        -- require("spike.utils").unload_lua_ns("custom")
-                        vim.cmd "PackerCompile"
-                        print("reloaded plugin config !")
-                    end,
-                    "packer reload/compile"
-                },
+        -- Packer commands
+        --
+        -- PackerSnapshot
+        ["<leader>pS"] = { function()
+            local snapname = "snapshot_" .. os.date("%Y_%m_%d_%H%M")
+            local packer = require 'packer'
+            packer.snapshot(snapname)
+        end
+            , "packer snapshot" },
+        ["<leader>pst"] = { "<cmd> PackerStatus<CR>", "packer status" },
+        ["<leader>psc"] = { "<cmd> PackerSync<CR>", "packer sync" },
+        ["<leader>pc"] = { "<cmd> PackerCompile<CR>", "packer compile" },
 
-                -- Notify cmd watcher (see /scripts/utils/fifo_watch.sh)
-                --[[ ["<leader><down>"] = {
+        ["<leader>pr"] = { function()
+
+            -- require("plenary.reload").reload_module("plugins")
+            -- require("plenary.reload").reload_module("custom.plugins")
+            -- vim.cmd "LuaCacheClear"
+            -- package.loaded["plugins"] = nil
+            --
+            -- package.loaded["custom.plugins"] = nil
+            -- dofile(vim.fn.stdpath("config") .. '/lua/plugins/init.lua')
+            -- dofile(vim.fn.stdpath("config") .. '/lua/custom/plugins/init.lua')
+            --
+            require("spike.utils").unload_lua_ns("plugins")
+            require("spike.utils").unload_lua_ns("custom")
+            require("plugins")
+            -- require("spike.utils").unload_lua_ns("custom")
+            vim.cmd "PackerCompile"
+            print("reloaded plugin config !")
+        end,
+            "packer reload/compile"
+        },
+
+        -- Notify cmd watcher (see /scripts/utils/fifo_watch.sh)
+        --[[ ["<leader><down>"] = {
                     function()
                         local fifo_patch = "/tmp/fifo_vimnotify"
                         os.execute("echo do >" .. fifo_patch)
@@ -306,603 +306,605 @@ M.general = { --{{{
                 }, ]]
 
 
-                -- TODO: move to lspconfig section
-                -- ["<leader>lsp"] = { "<cmd> lua require('custom.plugins.configs.navigator').enable()<CR>", "lsp enable"},
-                ["<leader>lsp"] = { "<cmd> LspStart<CR>", "lsp enable"},
-                ["<M-s><M-s>"] = { "<cmd> LspStart<CR>", "lsp enable"},
-                ["<M-t><M-t>"] = { "<cmd> LspStop<CR>", "lsp disable"},
-                ["<leader>lst"] = { "<cmd> LspStop<CR>", "lsp disable"},
-
-
-
-                ---------------
-                -- Programming languages specifics
-                ---------------
-
-                -- config files
-                ["<leader>ev"] = {"<cmd> source ~/.config/nvim/Session.vim<CR>" , "edit vim config"},
-            },--}}}
-
-            t = { ["<C-x>"] = { termcodes "<C-\\><C-N>", "escape terminal mode" } },
-
-            v = {--{{{
-                -- ["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', opts = { expr = true } },
-                -- ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', opts = { expr = true } },
-                ["j"] = { "gj" },
-                ["k"] = { "gk" },
-
-
-                -- yank from cursor to eol to system and primary clipboard
-                ["<leader>y"] = { '"*y gv"+y', "yank line to clipboards" },
-
-                -- visual shifting
-                ["<"] = { "<gv" },
-                [">"] = { ">gv" },
-
-                -- Allow using the repeat operator with a visual selection (!)
-                -- http://stackoverflow.com/a/8064607/127816
-                ["."] = { ":normal .<CR>", opts = { silent = true } },
-
-                -- Tabularize mappings
-                ["<leader>a&"]     = { "<cmd> Tabularize /&<CR>"          },
-                ["<leader>a="]     = { "<cmd> Tabularize /^[^=]*\zs=<CR>" },
-                ["<leader>a:"]     = { "<cmd> Tabularize /:<CR>"          },
-                ["<leader>a,"]     = { "<cmd> Tabularize /,<CR>"          },
-                ["<leader>a<Bar>"] = { "<cmd> Tabularize /<Bar><CR>"      },
-
-            },--}}}
-
-            -- command line mappings
-            c = {--{{{
-                ["Tabe"] = { "tabe" },
-
-                -- Change Working Directory to that of the current file
-                ["cwd"] = { "lcd %:p:h", "change dir to current file" },
-                ["cd."] = { "lcd %:p:h", "change dir to current file" },
-                ["w!!"] = { "w !doas tee %", "write file with root perms" },
-                ["%%"]  = { "<C-R>=fnameescape(expand('%:h')).'/'<cr>",
-                "alias to current working dir"},
-                ["Tab"] = { "Tabularize"},
-
-
-                ["%c"] = { "~/.config/nvim/", "shortcut to nvim config dir"},
-                -- ["tsf"] = { "set foldmethod=expr | set foldexpr=nvim_treesitter#foldexpr()",
-                -- "enable Treesitter folding"}
-            },--}}}
-
-            -- visual exclusive mode (ignore select)
-            x = { -- {{{
-
-                -- Don't copy the replaced text after pasting in visual mode
-                -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
-                ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', opts = { silent = true } },
-
-                -- syntax-tree-surfer
-                ["J"] = {"<cmd>STSSelectNextSiblingNode<CR>", "select next sibling node"},
-                ["K"] = {"<cmd>STSSelectPrevSiblingNode<CR>", "select prev sibling node"},
-                ["H"] = {"<cmd>STSSelectParentNode<CR>", "select prev sibling node"},
-                ["L"] = {"<cmd>STSSelectChildNode<CR>", "select prev sibling node"},
-
-                -- swap nodes tip: start first with master/child node selection then use these
-                ["<M-Up>"] = {"<cmd>STSSwapPrevVisual<CR>", "select prev sibling node"},
-                ["<M-Left>"] = {"<cmd>STSSwapPrevVisual<CR>", "select prev sibling node"},
-                ["<M-Down>"] = {"<cmd>STSSwapNextVisual<CR>", "select next sibling node"},
-                ["<M-Right>"] = {"<cmd>STSSwapNextVisual<CR>", "select next sibling node"},
-
-            },-- }}}
-        } --}}}
-
-        M.tabufline = { --{{{
-            plugin = true,
-
-            n = {
-                -- cycle through buffers
-                ["<C-b>"] = {
-                    function()
-                        require("core.utils").tabuflineNext()
-                    end,
-                    "goto next buffer",
-                },
-
-                ["<C-f>"] = {
-                    function()
-                        require("core.utils").tabuflinePrev()
-                    end,
-                    "goto prev buffer",
-                },
-
-                -- pick buffers via numbers
-                ["<Bslash>"] = { "<cmd> TbufPick <CR>", "Pick buffer" },
-            },
-        } --}}}
-
-        M.comment = { --{{{
-            plugin = true,
-
-            -- toggle comment in both modes
-            n = {
-                ["<leader>/"] = {
-                    function()
-                        -- require("Comment.api").toggle.linewise.current()
-                        vim.notify("use gcc !")
-                    end,
-                    "toggle comment",
-                },
-            },
-
-            v = {
-                ["<leader>/"] = {
-                    function()
-                        vim.notify("use gcc !")
-                    end,
-                    -- "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-                    "toggle comment",
-                },
-            },
-        } --}}}
-
-        M.lspconfig = { --{{{
-            plugin = true,
-
-            -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
-
-            n = {
-                ["gD"] = {
-                    function()
-                        vim.lsp.buf.declaration()
-                    end,
-                    "lsp declaration",
-                },
-
-                ["gd"] = {
-                    function()
-                        vim.lsp.buf.definition()
-                    end,
-                    "lsp definition",
-                },
-
-                ["K"] = {
-                    function()
-                        vim.lsp.buf.hover()
-                    end,
-                    "lsp hover",
-                },
-
-                ["gm"] = {
-                    function()
-                        vim.lsp.buf.implementation()
-                    end,
-                    "lsp implementation",
-                },
-
-                ["<leader>ls"] = {
-                    function()
-                        vim.lsp.buf.signature_help()
-                    end,
-                    "lsp signature_help",
-                },
-
-                ["<leader>D"] = {
-                    function()
-                        vim.lsp.buf.type_definition()
-                    end,
-                    "lsp definition type",
-                },
-
-                ["<leader>ra"] = {
-                    function()
-                        require("nvchad_ui.renamer").open()
-                    end,
-                    "lsp rename",
-                },
-
-                ["<leader>ca"] = {
-                    function()
-                        vim.lsp.buf.code_action()
-                    end,
-                    "lsp code_action",
-                },
-
-                ["gr"] = {
-                    function()
-                        vim.lsp.buf.references()
-                    end,
-                    "lsp references",
-                },
-
-                ["<leader>f"] = {
-                    function()
-                        vim.diagnostic.open_float()
-                    end,
-                    "lsp floating diagnostic",
-                },
-
-                ["[d"] = {
-                    function()
-                        vim.diagnostic.goto_prev()
-                    end,
-                    "lsp goto prev",
-                },
-
-                ["d]"] = {
-                    function()
-                        vim.diagnostic.goto_next()
-                    end,
-                    "lsp goto_next",
-                },
-
-                ["<leader>q"] = {
-                    function()
-                        vim.diagnostic.setloclist()
-                    end,
-                    "lsp diagnostic setloclist",
-                },
-
-                ["<leader>fm"] = {
-                    function()
-                        vim.lsp.buf.formatting {}
-                    end,
-                    "lsp formatting",
-                },
-
-                ["<leader>wa"] = {
-                    function()
-                        vim.lsp.buf.add_workspace_folder()
-                    end,
-                    "lsp add workspace folder",
-                },
-
-                ["<leader>wr"] = {
-                    function()
-                        vim.lsp.buf.remove_workspace_folder()
-                    end,
-                    "lsp remove workspace folder",
-                },
-
-                ["<leader>wl"] = {
-                    function()
-                        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                    end,
-                    "lsp list workspace folders",
-                },
-            },
-        } --}}}
-
-        M.dap = {-- {{{
-            plugin = true,
-            n = {
-                ["<leader>ds"] = {
-                    function()
-                        local mydap = require("spike.dap")
-
-                        mydap.setup()
-                        require('spike.dap.utils').init_breakpoints()
-                        -- set a breakpoint at current line if there are none in
-                        --  the project
-
-                        if vim.o.filetype == "go" then
-                            mydap.go_debug()
-                        elseif vim.o.filetype == "rust"  then
-                            local rt = require("rust-tools")
-                            -- make sure lsp is running ?
-                            rt.debuggables.debuggables()
-                        end
-                    end,
-                    "start dap session"
-                },
-
-                ["<leader>dS"] = {
-                    function()
-                        if vim.o.filetype == "go" then
-                            vim.cmd("GoDbgStop")
-                        end
-                    end,
-                    "stop dap session"
-                },
-
-                ["<leader>dd"] = {"<cmd> DapToggleBreakpoint <CR>"},
-
-                ["<leader>dc"] = {
-                    function()
-                        vim.ui.input({ prompt = "condition> "}, function(input)
-                            require("dap").set_breakpoint(input)
-                        end)
-                    end,
-                    "dap conditional breakpoint"
-                },
-                ["<leader>dm"] = {
-                    function()
-                        require('spike.dap.dapmode').start()
-                    end,
-                    "enter dap mode"
-                },
-                ["<leader>dr"] = {"<cmd>lua require'dap'.run_last()<CR>", "[dap] rerun last"},
-                ["<leader>dl"] = {
-                    function()
-                        require('spike.dap.utils').dap_logpoint()
-                    end,
-                    "[dap] add log point"
-                },
-                ["<leader>dt"] = {"<cmd>lua require'dapui'.toggle()<CR>", "[dap] toggle UI"},
-            },
-
-            }-- }}}
-
-            M.nvimtree = { --{{{
-                plugin = true,
-
-                n = {
-                    -- toggle
-                    ["<Left>"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
-                },
-            } --}}}
-
-            M.fzf_lua = { --{{{
-                plugin = true,
-
-                n = {
-                    -- find
-                    -- ["<C-p>"] = { "<cmd> FzfLua files <CR>", "FzfLua find files" },
-                    -- ["<C-p>"] = { function ()
-                        --   local ignored_bufs = {
-                            --     "qf",
-                            --   }
-                            --   for _, ignored in ipairs(ignored_bufs) do
-                            --     if vim.bo.filetype == ignored then
-                            --       local default_keyseq = termcodes("<C-p>")
-                            --       vim.api.nvim_feedkeys(default_keyseq, 'n', false) 
-                            --       return
-                            --     end
-                            --   end
-                            --   vim.cmd "FzfLua files"
-                            -- end, "FzfLua find files" },
-
-                            ["<leader>fl"] = { "<cmd> FzfLua lines <CR>", "FzfLua grep open buffer lines" },
-
-                            -- grep
-                            -- ["<leader>fw"] = { "<cmd> FzfLua grep_cword <CR>", "FzfLua grep cword" },
-                            -- ["<leader>f."] = { "<cmd> FzfLua live_grep_native <CR>", "FzfLua grep live native" },
-                            -- ["<leader>ff"] = { "<cmd> FzfLua grep_project <CR>", "FzfLua grep live project" },
-                            ["<leader>f*"] = { "<cmd> FzfLua live_grep_glob <CR>", "FzfLua grep with glob (SPACE-- globs)" },
-
-                            -- continue
-                            -- ["<leader>fr"] = { "<cmd> FzfLua resume <CR>", "FzfLua resume last search" },
-
-                            -- ["<leader>;"] = { "<cmd> FzfLua buffers <CR>", "FzfLua find buffers" },
-                            -- ["<leader>fb"] = { "<cmd> FzfLua builtin <CR>", "FzfLua builtins" },
-                            -- ["<leader>fh"] = { "<cmd> FzfLua help_tags <CR>", "FzfLua find help pages" },
-                            -- ["<leader>fm"] = { "<cmd> FzfLua marks <CR>", "FzfLua marks" },
-                            -- ["<leader>fo"] = { "<cmd> FzfLua oldfiles <CR>", "FzfLua find oldfiles" },
-                            -- ["<leader>tk"] = { "<cmd> FzfLua keymaps <CR>", "FzfLua show keymaps" },
-
-                        }
-                    } --}}}
-
-                    M.telescope = { --{{{
-                        plugin = true,
-
-                        n = {
-                            -- find
-                            -- ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", "find files" },
-                            -- ["<C-p>"] = { "<cmd> Telescope find_files <CR>", "find files" },
-                            --
-                            ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "find all" },
-                            ["<C-p>"] = {
-                                function ()
-                                local ignored_bufs = {
-                                    "qf",
-                                    "guihua",
-                                    "NvimT*"
-                                }
-                                for _, ignored in ipairs(ignored_bufs) do
-                                    if vim.o.filetype:match(ignored) then
-                                        local default_keyseq = termcodes("<C-p>")
-                                        vim.api.nvim_feedkeys(default_keyseq, 'n', false) 
-                                        return
-                                    end
-                                end
-                                vim.cmd "Telescope find_files"
-                            end, "FzfLua find files" },
-                            ["<leader>f."] = { "<cmd> Telescope live_grep <CR>", "telescope live grep" },
-                            ["<leader>fw"] = { "<cmd> Telescope grep_string <CR>", "telescope grep cword" },
-                            ["<leader>;"] = { "<cmd> Telescope buffers <CR>", "telescope find buffers" },
-                            ["<leader>fb"] = { "<cmd> Telescope builtin <CR>", "telescope builtins" },
-                            ["<leader>fB"] = { "<cmd> Telescope vim_bookmarks <CR>", "telescope bookmarks" },
-                            ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "help page" },
-                            ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "telescope find oldfiles" },
-                            ["<leader>fm"] = { "<cmd> Telescope marks <CR>", "Telescope marks" },
-                            ["<leader>fM"] = { "<cmd> Telescope man_pages <CR>", "Telescope marks" },
-                            ["<leader>tk"] = { "<cmd> Telescope keymaps <CR>", "Telescope show keys" },
-                            ["<leader>fr"] = { "<cmd> Telescope resume <CR>", "telescope resume last search" },
-                            ["<leader>fc"] = { "<cmd> Telescope commands <CR>", "telescope commands" },
-
-                            -- git
-                            ["<leader>fg"] = { " ", "telescope git commands" },
-                            ["<leader>fgc"] = { "<cmd> Telescope git_commits <CR>", "teles git commits" },
-                            ["<leader>fgs"] = { "<cmd> Telescope git_status <CR>", "teles git status" },
-                            ["<leader>fgf"] = { "<cmd> Telescope git_files <CR>", "teles git files" },
-
-                            -- pick a hidden term
-                            -- ["<leader>pt"] = { "<cmd> Telescope terms <CR>", "pick hidden term" },
-
-                            -- theme switcher
-                            ["<leader>th"] = { "<cmd> Telescope themes <CR>", "nvchad themes" },
-                        },
-                    } --}}}
-
-                    M.nvterm = { --{{{
-                        plugin = true,
-
-                        t = {
-                            -- toggle in terminal mode
-                            ["<A-i>"] = {
-                                function()
-                                    require("nvterm.terminal").toggle "float"
-                                end,
-                                "toggle floatinvg term",
-                            },
-
-                            ["<A-h>"] = {
-                                function()
-                                    require("nvterm.terminal").toggle "horizontal"
-                                end,
-                                "toggle horizontal term",
-                            },
-                        },
-
-                        n = {
-                            -- toggle in normal mode
-                            ["<A-i>"] = {
-                                function()
-                                    require("nvterm.terminal").toggle "float"
-                                end,
-                                "toggle floating term",
-                            },
-
-                            ["<A-h>"] = {
-                                function()
-                                    require("nvterm.terminal").toggle "horizontal"
-                                end,
-                                "toggle horizontal term",
-                            },
-
-                            ["<A-v>"] = {
-                                function()
-                                    require("nvterm.terminal").toggle "vertical"
-                                end,
-                                "toggle vertical term",
-                            },
-
-                            -- new
-
-                            ["<leader>h"] = {
-                                function()
-                                    require("nvterm.terminal").new "horizontal"
-                                end,
-                                "new horizontal term",
-                            },
-
-                            ["<leader>v"] = {
-                                function()
-                                    require("nvterm.terminal").new "vertical"
-                                end,
-                                "new vertical term",
-                            },
-                        },
-                    } --}}}
-
-                    M.whichkey = { --{{{
-                        plugin = true,
-
-                        n = {
-                            ["<leader>wK"] = {
-                                function()
-                                    vim.cmd "WhichKey"
-                                end,
-                                "which-key all keymaps",
-                            },
-                            ["<leader>wk"] = {
-                                function()
-                                    local input = vim.fn.input "WhichKey: "
-                                    vim.cmd("WhichKey " .. input)
-                                end,
-                                "which-key query lookup",
-                            },
-                        },
-                    } --}}}
-
-                    M.blankline = { --{{{
-                        plugin = true,
-
-                        n = {
-                            ["<BS>k"] = {
-                                function()
-                                    local ok, start = require("indent_blankline.utils").get_current_context(
-                                    vim.g.indent_blankline_context_patterns,
-                                    vim.g.indent_blankline_use_treesitter_scope
-                                    )
-
-                                    if ok then
-                                        vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start, 0 })
-                                        vim.cmd [[normal! _]]
-                                    end
-                                end,
-
-                                "Jump to current context",
-                            },
-                        },
-                    } --}}}
-
-                    -- code outline panel
-                    M.aerial =  {
-                        plugin = true,
-                        n = {
-                            ["<Right>"] = {"<cmd> AerialToggle! right<CR>"},
-                        }
-                    }
-
-                    M.asyncrun = { --{{{
-                        plugin = true,
-
-                        n = {
-                            -- TODO: find new mapping to close quickfix
-                            -- ["``"] = { "<cmd> call asyncrun#quickfix_toggle(8)<CR>", "toggle quickfix window" },
-                            ["<leader>m"] = { ":AsyncRun -program=" .. vim.o.makeprg .. "<CR>", "make using asyncrun" },
-                            ["<leader>ar"] = { ":AsyncRun ", "custom asyncrun command" },
-                            ["<leader>pd"] = { "<cmd> AsyncRun lpr -P PDF_PRINT %<CR>", "PDF print file" },
-                            ["<leader>pp"] = { "<cmd> AsyncRun lpr %<CR>" },
-                        },
-                    } --}}}
-
-                    M.vim_bookmarks = {--{{{
-                        n = {
-                            ["<BS>m"] = {"<cmd> Telescope vim_bookmarks<CR>", "show bookmarks"},
-                            ["mk"] = {"<cmd> BookmarkToggle<CR>", "toggle bookmarks"},
-                            ["<leader>mm"] = {"<cmd> BookmarkAnnotate<CR>", "annotation bookmarks"},
-                            ["<leader>mc"] = {"<cmd> BookmarkClear<CR>", "clear bookmarks in buffer"},
-                            ["<leader>mx"] = {"<cmd> BookmarkClearAll<CR>", "clear bookmarks in all buffers"},
-                            ["]b"] = {"<cmd>BookmarkNext<CR>", "jump to next bookmark"},
-                            ["[b"] = {"<cmd>BookmarkNext<CR>", "jump to prev bookmark"},
-                        },
-                    }--}}}
-
-                    M.iron = {-- {{{{{{
-                        plugin = true,
-                        n = {
-                            ["<leader>ir"] = {"<cmd>IronRepl<CR>", "start IronRepl"},
-                        }
-                    }
+        -- TODO: move to lspconfig section
+        -- ["<leader>lsp"] = { "<cmd> lua require('custom.plugins.configs.navigator').enable()<CR>", "lsp enable"},
+        ["<leader>lsp"] = { "<cmd> LspStart<CR>", "lsp enable" },
+        ["<M-s><M-s>"] = { "<cmd> LspStart<CR>", "lsp enable" },
+        ["<M-t><M-t>"] = { "<cmd> LspStop<CR>", "lsp disable" },
+        ["<leader>lst"] = { "<cmd> LspStop<CR>", "lsp disable" },
+
+
+
+        ---------------
+        -- Programming languages specifics
+        ---------------
+
+        -- config files
+        ["<leader>ev"] = { "<cmd> source ~/.config/nvim/Session.vim<CR>", "edit vim config" },
+    }, --}}}
+
+    t = { ["<C-x>"] = { termcodes "<C-\\><C-N>", "escape terminal mode" } },
+
+    v = { --{{{
+
+
+        -- yank from cursor to eol to system and primary clipboard
+        ["<leader>y"] = { '"*y gv"+y', "yank line to clipboards" },
+
+        -- visual shifting
+        ["<"] = { "<gv" },
+        [">"] = { ">gv" },
+
+        -- Allow using the repeat operator with a visual selection (!)
+        -- http://stackoverflow.com/a/8064607/127816
+        ["."] = { ":normal .<CR>", opts = { silent = true } },
+
+        -- Tabularize mappings
+        ["<leader>a&"]     = { "<cmd> Tabularize /&<CR>" },
+        ["<leader>a="]     = { "<cmd> Tabularize /^[^=]*\zs=<CR>" },
+        ["<leader>a:"]     = { "<cmd> Tabularize /:<CR>" },
+        ["<leader>a,"]     = { "<cmd> Tabularize /,<CR>" },
+        ["<leader>a<Bar>"] = { "<cmd> Tabularize /<Bar><CR>" },
+
+    }, --}}}
+
+    -- command line mappings
+    c = { --{{{
+        ["Tabe"] = { "tabe" },
+
+        -- Change Working Directory to that of the current file
+        ["cwd"] = { "lcd %:p:h", "change dir to current file" },
+        ["cd."] = { "lcd %:p:h", "change dir to current file" },
+        ["w!!"] = { "w !doas tee %", "write file with root perms" },
+        ["%%"]  = { "<C-R>=fnameescape(expand('%:h')).'/'<cr>",
+            "alias to current working dir" },
+        ["Tab"] = { "Tabularize" },
+
+
+        ["%c"] = { "~/.config/nvim/", "shortcut to nvim config dir" },
+        -- ["tsf"] = { "set foldmethod=expr | set foldexpr=nvim_treesitter#foldexpr()",
+        -- "enable Treesitter folding"}
+    }, --}}}
+
+    -- visual exclusive mode (ignore select)
+    x = { -- {{{
+
+        -- ["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', opts = { expr = true } },
+        -- ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', opts = { expr = true } },
+        ["j"] = { "gj" },
+        ["k"] = { "gk" },
+
+        -- Don't copy the replaced text after pasting in visual mode
+        -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
+        ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', opts = { silent = true } },
+
+        -- syntax-tree-surfer
+        ["J"] = { "<cmd>STSSelectNextSiblingNode<CR>", "select next sibling node" },
+        ["K"] = { "<cmd>STSSelectPrevSiblingNode<CR>", "select prev sibling node" },
+        ["H"] = { "<cmd>STSSelectParentNode<CR>", "select prev sibling node" },
+        ["L"] = { "<cmd>STSSelectChildNode<CR>", "select prev sibling node" },
+
+        -- swap nodes tip: start first with master/child node selection then use these
+        ["<M-Up>"] = { "<cmd>STSSwapPrevVisual<CR>", "select prev sibling node" },
+        ["<M-Left>"] = { "<cmd>STSSwapPrevVisual<CR>", "select prev sibling node" },
+        ["<M-Down>"] = { "<cmd>STSSwapNextVisual<CR>", "select next sibling node" },
+        ["<M-Right>"] = { "<cmd>STSSwapNextVisual<CR>", "select next sibling node" },
+
+    }, -- }}}
+} --}}}
+
+M.tabufline = { --{{{
+    plugin = true,
+
+    n = {
+        -- cycle through buffers
+        ["<C-b>"] = {
+            function()
+                require("core.utils").tabuflineNext()
+            end,
+            "goto next buffer",
+        },
+
+        ["<C-f>"] = {
+            function()
+                require("core.utils").tabuflinePrev()
+            end,
+            "goto prev buffer",
+        },
+
+        -- pick buffers via numbers
+        ["<Bslash>"] = { "<cmd> TbufPick <CR>", "Pick buffer" },
+    },
+} --}}}
+
+M.comment = { --{{{
+    plugin = true,
+
+    -- toggle comment in both modes
+    n = {
+        ["<leader>/"] = {
+            function()
+                -- require("Comment.api").toggle.linewise.current()
+                vim.notify("use gcc !")
+            end,
+            "toggle comment",
+        },
+    },
+
+    v = {
+        ["<leader>/"] = {
+            function()
+                vim.notify("use gcc !")
+            end,
+            -- "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+            "toggle comment",
+        },
+    },
+} --}}}
+
+M.lspconfig = { --{{{
+    plugin = true,
+
+    -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
+
+    n = {
+        ["gD"] = {
+            function()
+                vim.lsp.buf.declaration()
+            end,
+            "lsp declaration",
+        },
+
+        ["gd"] = {
+            function()
+                vim.lsp.buf.definition()
+            end,
+            "lsp definition",
+        },
+
+        ["K"] = {
+            function()
+                vim.lsp.buf.hover()
+            end,
+            "lsp hover",
+        },
+
+        ["gm"] = {
+            function()
+                vim.lsp.buf.implementation()
+            end,
+            "lsp implementation",
+        },
+
+        ["<leader>ls"] = {
+            function()
+                vim.lsp.buf.signature_help()
+            end,
+            "lsp signature_help",
+        },
+
+        ["<leader>D"] = {
+            function()
+                vim.lsp.buf.type_definition()
+            end,
+            "lsp definition type",
+        },
+
+        ["<leader>ra"] = {
+            function()
+                require("nvchad_ui.renamer").open()
+            end,
+            "lsp rename",
+        },
+
+        ["<leader>ca"] = {
+            function()
+                vim.lsp.buf.code_action()
+            end,
+            "lsp code_action",
+        },
+
+        ["gr"] = {
+            function()
+                vim.lsp.buf.references()
+            end,
+            "lsp references",
+        },
+
+        ["<leader>f"] = {
+            function()
+                vim.diagnostic.open_float()
+            end,
+            "lsp floating diagnostic",
+        },
+
+        ["[d"] = {
+            function()
+                vim.diagnostic.goto_prev()
+            end,
+            "lsp goto prev",
+        },
+
+        ["d]"] = {
+            function()
+                vim.diagnostic.goto_next()
+            end,
+            "lsp goto_next",
+        },
+
+        ["<leader>q"] = {
+            function()
+                vim.diagnostic.setloclist()
+            end,
+            "lsp diagnostic setloclist",
+        },
+
+        ["<leader>fm"] = {
+            function()
+                vim.lsp.buf.formatting {}
+            end,
+            "lsp formatting",
+        },
+
+        ["<leader>wa"] = {
+            function()
+                vim.lsp.buf.add_workspace_folder()
+            end,
+            "lsp add workspace folder",
+        },
+
+        ["<leader>wr"] = {
+            function()
+                vim.lsp.buf.remove_workspace_folder()
+            end,
+            "lsp remove workspace folder",
+        },
+
+        ["<leader>wl"] = {
+            function()
+                print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+            end,
+            "lsp list workspace folders",
+        },
+    },
+} --}}}
+
+M.dap = { -- {{{
+    plugin = true,
+    n = {
+        ["<leader>ds"] = {
+            function()
+                local mydap = require("spike.dap")
+
+                mydap.setup()
+                require('spike.dap.utils').init_breakpoints()
+                -- set a breakpoint at current line if there are none in
+                --  the project
+
+                if vim.o.filetype == "go" then
+                    mydap.go_debug()
+                elseif vim.o.filetype == "rust" then
+                    local rt = require("rust-tools")
+                    -- make sure lsp is running ?
+                    rt.debuggables.debuggables()
+                end
+            end,
+            "start dap session"
+        },
+
+        ["<leader>dS"] = {
+            function()
+                if vim.o.filetype == "go" then
+                    vim.cmd("GoDbgStop")
+                end
+            end,
+            "stop dap session"
+        },
+
+        ["<leader>dd"] = { "<cmd> DapToggleBreakpoint <CR>" },
+
+        ["<leader>dc"] = {
+            function()
+                vim.ui.input({ prompt = "condition> " }, function(input)
+                    require("dap").set_breakpoint(input)
+                end)
+            end,
+            "dap conditional breakpoint"
+        },
+        ["<leader>dm"] = {
+            function()
+                require('spike.dap.dapmode').start()
+            end,
+            "enter dap mode"
+        },
+        ["<leader>dr"] = { "<cmd>lua require'dap'.run_last()<CR>", "[dap] rerun last" },
+        ["<leader>dl"] = {
+            function()
+                require('spike.dap.utils').dap_logpoint()
+            end,
+            "[dap] add log point"
+        },
+        ["<leader>dt"] = { "<cmd>lua require'dapui'.toggle()<CR>", "[dap] toggle UI" },
+    },
+
+} -- }}}
+
+M.nvimtree = { --{{{
+    plugin = true,
+
+    n = {
+        -- toggle
+        ["<Left>"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
+    },
+} --}}}
+
+M.fzf_lua = { --{{{
+    plugin = true,
+
+    n = {
+        -- find
+        -- ["<C-p>"] = { "<cmd> FzfLua files <CR>", "FzfLua find files" },
+        -- ["<C-p>"] = { function ()
+        --   local ignored_bufs = {
+        --     "qf",
+        --   }
+        --   for _, ignored in ipairs(ignored_bufs) do
+        --     if vim.bo.filetype == ignored then
+        --       local default_keyseq = termcodes("<C-p>")
+        --       vim.api.nvim_feedkeys(default_keyseq, 'n', false)
+        --       return
+        --     end
+        --   end
+        --   vim.cmd "FzfLua files"
+        -- end, "FzfLua find files" },
+
+        ["<leader>fl"] = { "<cmd> FzfLua lines <CR>", "FzfLua grep open buffer lines" },
+
+        -- grep
+        -- ["<leader>fw"] = { "<cmd> FzfLua grep_cword <CR>", "FzfLua grep cword" },
+        -- ["<leader>f."] = { "<cmd> FzfLua live_grep_native <CR>", "FzfLua grep live native" },
+        -- ["<leader>ff"] = { "<cmd> FzfLua grep_project <CR>", "FzfLua grep live project" },
+        ["<leader>f*"] = { "<cmd> FzfLua live_grep_glob <CR>", "FzfLua grep with glob (SPACE-- globs)" },
+
+        -- continue
+        -- ["<leader>fr"] = { "<cmd> FzfLua resume <CR>", "FzfLua resume last search" },
+
+        -- ["<leader>;"] = { "<cmd> FzfLua buffers <CR>", "FzfLua find buffers" },
+        -- ["<leader>fb"] = { "<cmd> FzfLua builtin <CR>", "FzfLua builtins" },
+        -- ["<leader>fh"] = { "<cmd> FzfLua help_tags <CR>", "FzfLua find help pages" },
+        -- ["<leader>fm"] = { "<cmd> FzfLua marks <CR>", "FzfLua marks" },
+        -- ["<leader>fo"] = { "<cmd> FzfLua oldfiles <CR>", "FzfLua find oldfiles" },
+        -- ["<leader>tk"] = { "<cmd> FzfLua keymaps <CR>", "FzfLua show keymaps" },
+
+    }
+} --}}}
+
+M.telescope = { --{{{
+    plugin = true,
+
+    n = {
+        -- find
+        -- ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", "find files" },
+        -- ["<C-p>"] = { "<cmd> Telescope find_files <CR>", "find files" },
+        --
+        ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "find all" },
+        ["<C-p>"] = {
+            function()
+                local ignored_bufs = {
+                    "qf",
+                    "guihua",
+                    "NvimT*"
+                }
+                for _, ignored in ipairs(ignored_bufs) do
+                    if vim.o.filetype:match(ignored) then
+                        local default_keyseq = termcodes("<C-p>")
+                        vim.api.nvim_feedkeys(default_keyseq, 'n', false)
+                        return
+                    end
+                end
+                vim.cmd "Telescope find_files"
+            end, "FzfLua find files"
+        },
+        ["<leader>f."] = { "<cmd> Telescope live_grep <CR>", "telescope live grep" },
+        ["<leader>fw"] = { "<cmd> Telescope grep_string <CR>", "telescope grep cword" },
+        ["<leader>;"] = { "<cmd> Telescope buffers <CR>", "telescope find buffers" },
+        ["<leader>fb"] = { "<cmd> Telescope builtin <CR>", "telescope builtins" },
+        ["<leader>fB"] = { "<cmd> Telescope vim_bookmarks <CR>", "telescope bookmarks" },
+        ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "help page" },
+        ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "telescope find oldfiles" },
+        ["<leader>fm"] = { "<cmd> Telescope marks <CR>", "Telescope marks" },
+        ["<leader>fM"] = { "<cmd> Telescope man_pages <CR>", "Telescope marks" },
+        ["<leader>tk"] = { "<cmd> Telescope keymaps <CR>", "Telescope show keys" },
+        ["<leader>fr"] = { "<cmd> Telescope resume <CR>", "telescope resume last search" },
+        ["<leader>fc"] = { "<cmd> Telescope commands <CR>", "telescope commands" },
+
+        -- git
+        ["<leader>fg"] = { " ", "telescope git commands" },
+        ["<leader>fgc"] = { "<cmd> Telescope git_commits <CR>", "teles git commits" },
+        ["<leader>fgs"] = { "<cmd> Telescope git_status <CR>", "teles git status" },
+        ["<leader>fgf"] = { "<cmd> Telescope git_files <CR>", "teles git files" },
+
+        -- pick a hidden term
+        -- ["<leader>pt"] = { "<cmd> Telescope terms <CR>", "pick hidden term" },
+
+        -- theme switcher
+        ["<leader>th"] = { "<cmd> Telescope themes <CR>", "nvchad themes" },
+    },
+} --}}}
+
+M.nvterm = { --{{{
+    plugin = true,
+
+    t = {
+        -- toggle in terminal mode
+        ["<A-i>"] = {
+            function()
+                require("nvterm.terminal").toggle "float"
+            end,
+            "toggle floatinvg term",
+        },
+
+        ["<A-h>"] = {
+            function()
+                require("nvterm.terminal").toggle "horizontal"
+            end,
+            "toggle horizontal term",
+        },
+    },
+
+    n = {
+        -- toggle in normal mode
+        ["<A-i>"] = {
+            function()
+                require("nvterm.terminal").toggle "float"
+            end,
+            "toggle floating term",
+        },
+
+        ["<A-h>"] = {
+            function()
+                require("nvterm.terminal").toggle "horizontal"
+            end,
+            "toggle horizontal term",
+        },
+
+        ["<A-v>"] = {
+            function()
+                require("nvterm.terminal").toggle "vertical"
+            end,
+            "toggle vertical term",
+        },
+
+        -- new
+
+        ["<leader>h"] = {
+            function()
+                require("nvterm.terminal").new "horizontal"
+            end,
+            "new horizontal term",
+        },
+
+        ["<leader>v"] = {
+            function()
+                require("nvterm.terminal").new "vertical"
+            end,
+            "new vertical term",
+        },
+    },
+} --}}}
+
+M.whichkey = { --{{{
+    plugin = true,
+
+    n = {
+        ["<leader>wK"] = {
+            function()
+                vim.cmd "WhichKey"
+            end,
+            "which-key all keymaps",
+        },
+        ["<leader>wk"] = {
+            function()
+                local input = vim.fn.input "WhichKey: "
+                vim.cmd("WhichKey " .. input)
+            end,
+            "which-key query lookup",
+        },
+    },
+} --}}}
+
+M.blankline = { --{{{
+    plugin = true,
+
+    n = {
+        ["<BS>k"] = {
+            function()
+                local ok, start = require("indent_blankline.utils").get_current_context(
+                    vim.g.indent_blankline_context_patterns,
+                    vim.g.indent_blankline_use_treesitter_scope
+                )
+
+                if ok then
+                    vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start, 0 })
+                    vim.cmd [[normal! _]]
+                end
+            end,
+
+            "Jump to current context",
+        },
+    },
+} --}}}
+
+-- code outline panel
+M.aerial = {
+    plugin = true,
+    n = {
+        ["<Right>"] = { "<cmd> AerialToggle! right<CR>" },
+    }
+}
+
+M.asyncrun = { --{{{
+    plugin = true,
+
+    n = {
+        -- TODO: find new mapping to close quickfix
+        -- ["``"] = { "<cmd> call asyncrun#quickfix_toggle(8)<CR>", "toggle quickfix window" },
+        ["<leader>m"] = { ":AsyncRun -program=" .. vim.o.makeprg .. "<CR>", "make using asyncrun" },
+        ["<leader>ar"] = { ":AsyncRun ", "custom asyncrun command" },
+        ["<leader>pd"] = { "<cmd> AsyncRun lpr -P PDF_PRINT %<CR>", "PDF print file" },
+        ["<leader>pp"] = { "<cmd> AsyncRun lpr %<CR>" },
+    },
+} --}}}
+
+M.vim_bookmarks = { --{{{
+    n = {
+        ["<BS>m"] = { "<cmd> Telescope vim_bookmarks<CR>", "show bookmarks" },
+        ["mk"] = { "<cmd> BookmarkToggle<CR>", "toggle bookmarks" },
+        ["<leader>mm"] = { "<cmd> BookmarkAnnotate<CR>", "annotation bookmarks" },
+        ["<leader>mc"] = { "<cmd> BookmarkClear<CR>", "clear bookmarks in buffer" },
+        ["<leader>mx"] = { "<cmd> BookmarkClearAll<CR>", "clear bookmarks in all buffers" },
+        ["]b"] = { "<cmd>BookmarkNext<CR>", "jump to next bookmark" },
+        ["[b"] = { "<cmd>BookmarkNext<CR>", "jump to prev bookmark" },
+    },
+} --}}}
+
+M.iron = { -- {{{{{{
+    plugin = true,
+    n = {
+        ["<leader>ir"] = { "<cmd>IronRepl<CR>", "start IronRepl" },
+    }
+}
 -- }}}
 --
-                    -- color picker
-                    M.ccc = {
-                        plugin = true,
-                        n = {
-                            ["<leader>cp"] = {"<cmd>CccPick<CR>", "color picker"}
-                        },
-                    }
+-- color picker
+M.ccc = {
+    plugin = true,
+    n = {
+        ["<leader>cp"] = { "<cmd>CccPick<CR>", "color picker" }
+    },
+}
 -- }}}
 
-                    -- M.neorepl = {{{{
-                        --   plugin = true,
-                        --
-                        --   i = {
-                            --     ["C-p"] = { "<Plug>(neorepl-hist-prev)"},
-                            --   }
-                            --
-                            -- }
+-- M.neorepl = {{{{
+--   plugin = true,
+--
+--   i = {
+--     ["C-p"] = { "<Plug>(neorepl-hist-prev)"},
+--   }
+--
+-- }
 -- }}}
 
 M.vimux = {
     plugin = true,
     n = {
-        -- rerun last 
-        ["<leader><Down>"] = {"<cmd>VimuxRunLastCommand<CR>", "vimux run last command"},
+        -- rerun last
+        ["<leader><Down>"] = { "<cmd>VimuxRunLastCommand<CR>", "vimux run last command" },
         -- prompt
-        ["<leader>vv"] = {"<cmd>VimuxPromptCommand<CR>", "vimux prompt command"},
-        ["<leader>vc"] = {"<cmd>VimuxInterruptRunner<CR>", "vimux interrupt command"},
-        ["<leader>vl"] = {"<cmd>VimuxClearTerminalScreen<CR>", "vimux clear terminal"},
-        ["<leader>vx"] = {"<cmd>VimuxCloseRunner<CR>", "vimux close runner"},
+        ["<leader>vv"] = { "<cmd>VimuxPromptCommand<CR>", "vimux prompt command" },
+        ["<leader>vc"] = { "<cmd>VimuxInterruptRunner<CR>", "vimux interrupt command" },
+        ["<leader>vl"] = { "<cmd>VimuxClearTerminalScreen<CR>", "vimux clear terminal" },
+        ["<leader>vx"] = { "<cmd>VimuxCloseRunner<CR>", "vimux close runner" },
     }
 }
 
@@ -913,5 +915,33 @@ M.golang = {
         ["<leader>da"] = { "<cmd> GoDebug -a<CR>", "go debug attach" },
     }
 }
---
+
+-- git
+M.gitsigns = {
+    plugin = true,
+    n = {
+        ["<leader>gs"] = { "<cmd> lua require'gitsigns'.stage_hunk()<CR>",
+            "Git stage hunk",
+        },
+        ["<leader>gS"] = { "<cmd> lua require'gitsigns'.stage_buffer()<CR>",
+            "Git stage buffer",
+        },
+        ["<leader>gR"] = { "<cmd> lua require'gitsigns'.reset_buffer_index()<CR>",
+            "Git stage buffer",
+        },
+        ["<leader>gp"] = { "<cmd> lua require'gitsigns'.preview_hunk()<CR>",
+            "Git stage buffer",
+        },
+        ["<leader>gu"] = {"<cmd> lua require'gitsigns'.undo_stage_hunk()<CR>",
+            "Git undo stage hunk",
+        },
+        ["]h"] = { "<cmd> lua require'gitsigns'.next_hunk()<CR>", 
+            "Git next hunk",
+        },
+        ["[h"] = { "<cmd> lua require'gitsigns'.prev_hunk()<CR>", 
+            "Git prev hunk",
+        }
+    }
+}
+
 return M

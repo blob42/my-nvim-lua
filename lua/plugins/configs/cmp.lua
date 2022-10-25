@@ -92,7 +92,10 @@ local options = {
             elseif luasnip.expandable() then
                 luasnip.expand_or_jump()
             elseif has_words_before() then
-                cmp.confirm()
+                cmp.confirm({
+                    behavior = cmp.ConfirmBehavior.Replace,
+                    select = false,
+                })
             else
                 fallback()
             end

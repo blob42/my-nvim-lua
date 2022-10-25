@@ -13,6 +13,7 @@ local M = {}
       mapping_info.opts, opts.mode = nil, nil
       opts.desc = mapping_info[2]
 
+      P(keybind)
       vim.keymap.set(mode, keybind, mapping_info[1], opts)
     end
   end

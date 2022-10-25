@@ -86,17 +86,6 @@ local plugins = {
     end,
   },
 
-  -- git stuff
-  ["lewis6991/gitsigns.nvim"] = {
-    ft = "gitcommit",
-    setup = function()
-      require("core.lazy_load").gitsigns()
-    end,
-    config = function()
-      require("plugins.configs.others").gitsigns()
-    end,
-  },
-
   -- lsp stuff
 
   ["williamboman/mason.nvim"] = {
