@@ -34,20 +34,22 @@ vim.cmd [[
 ]]
 --}
 
+
 -- suckless {
-vim.cmd [[
-    " Autocompile suckless
-    " NOTE: symlinks do not work with autocommand patterns
-    let dwm_file_patterns = expand("/data/source/suckless/*/{config.h,*.c}")
-
-    augroup DWM
-      au!
-
-      execute "au BufEnter " . dwm_file_patterns  . " :lcd %:p:h"
-      execute "au BufWritePost " . dwm_file_patterns  . " :AsyncRun! make clean && make -j $(nproc) && sudo make install"
-      "au BufWrite */src/*/dwm*/{*.h,dwm.c} :AsyncRun! make clean && make && sudo make install
-    augroup END
-]]
+-- vim.cmd [[
+--     " Autocompile suckless
+--     " NOTE: symlinks do not work with autocommand patterns
+--     let dwm_file_patterns = expand("/data/source/suckless/*/{config.h,*.c}")
+--
+--     augroup DWM
+--       au!
+--
+--       "execute "au BufEnter " . dwm_file_patterns  . " :lcd %:p:h"
+--       "execute "au BufWritePost " . dwm_file_patterns  . " :AsyncRun! make clean && make  && sudo make install"
+--       "au BufWritePost */src/*/dwm*/{*.h,dwm.c} :AsyncRun! make clean && make && doas make install
+--       au BufWritePost */suckless/*/{*.h,*.c} :AsyncRun! make clean && make && doas make install"
+--     augroup END
+-- ]]
 --}
 
 -- Make asyncrun work with fugitive {
