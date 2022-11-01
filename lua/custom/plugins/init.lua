@@ -150,6 +150,10 @@ return {
 
     ["folke/todo-comments.nvim"] = { -- {{{
         after = "nvim-treesitter",
+        setup = function()
+            -- require("core.lazy_load").on_file_open "todo-comments"
+            require("core.utils").load_mappings "todo-comments"
+        end,
         config = function()
             require("custom.plugins.configs.todo-comments").setup()
         end
@@ -327,6 +331,9 @@ return {
         end
     }, -- }}}
 
+    -- TODO: asynctsks vs overseer: task runner and job management 
+    -- ["stevarc/overseer.nvim"]  = {},
+
     -- Git
     ["lewis6991/gitsigns.nvim"] = {
         ft = "gitcommit",
@@ -463,7 +470,7 @@ return {
         end,
     },
     ["ray-x/guihua.lua"] = {
-        lock = false,
+        lock = true,
         module = { "navigator" },
         run = "cd lua/fzy && make",
         config = function()
@@ -515,12 +522,13 @@ return {
     --
 
     ['stevearc/aerial.nvim'] = {
+        lock = true,
         after = { "base46" },
         keys = { "<Right>" },
         cmd = { "Aerial*" },
         config = function()
             require("core.utils").load_mappings "aerial"
-            require('aerial').setup({})
+            require("custom.plugins.configs.aerial").setup()
         end
     },
 
@@ -624,7 +632,22 @@ return {
         config = function()
             require("custom.plugins.configs.rust-tools").setup()
         end
-    } -- }}}
+    }, -- }}}
+
+
+    -- PlantUML
+    ["aklt/plantuml-syntax"] = {
+        opt = true,
+        setup = function()
+            require("custom.plugins.configs.plantuml").lazy_load_module()
+        end
+    },
+    ["weirongxu/plantuml-previewer.vim"] = {
+        ft = {"plantuml"},
+    },
+    ["scrooloose/vim-slumlord"] = {
+        ft = {"plantuml"},
+    }
 
     -- sql tools
     -- https://github.com/tpope/vim-dadbod

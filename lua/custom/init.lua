@@ -9,8 +9,8 @@
 -- if character under cursor is number
 -- use normal C-x or close window
 
-local vimscriptsfolder = vim.env.XDG_CONFIG_HOME .. "/nvim/myvimscript" -- relative to .config/nvim dir
-vim.opt.runtimepath:prepend(vimscriptsfolder)
+-- local vimscriptsfolder = vim.env.XDG_CONFIG_HOME .. "/nvim/myvimscript" -- relative to .config/nvim dir
+-- vim.opt.runtimepath:prepend(vimscriptsfolder)
 
 
 -- highlights {
@@ -20,18 +20,18 @@ vim.opt.runtimepath:prepend(vimscriptsfolder)
 --}
 
 -- Shift key typos{
-vim.cmd [[
-    command! -bang -nargs=* -complete=file E e<bang> <args>
-    command! -bang -nargs=* -complete=file W w<bang> <args>
-    command! -bang -nargs=* -complete=file Wq wq<bang> <args>
-    command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-    command! -nargs=* -complete=help H h <args>
-    command! -bang Wa wa<bang>
-    command! -bang WA wa<bang>
-    command! -bang Q q<bang>
-    command! -bang QA qa<bang>
-    command! -bang Qa qa<bang>
-]]
+-- vim.cmd [[
+--     command! -bang -nargs=* -complete=file E e<bang> <args>
+--     command! -bang -nargs=* -complete=file W w<bang> <args>
+--     command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+--     command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+--     command! -nargs=* -complete=help H h <args>
+--     command! -bang Wa wa<bang>
+--     command! -bang WA wa<bang>
+--     command! -bang Q q<bang>
+--     command! -bang QA qa<bang>
+--     command! -bang Qa qa<bang>
+-- ]]
 --}
 
 
@@ -53,29 +53,29 @@ vim.cmd [[
 --}
 
 -- Make asyncrun work with fugitive {
-vim.cmd [[
-  augroup asyncrun
-    au!
-    command -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
-  augroup END
-]]
+-- vim.cmd [[
+--   augroup asyncrun
+--     au!
+--     command -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+--   augroup END
+-- ]]
 --}
 
 -- gopass{
-vim.cmd [[
-  augroup gopass
-    au!
-    au BufNewFile,BufRead /dev/shm/gopass* setlocal noswapfile nobackup noundofile
-  augroup END
-]]
+-- vim.cmd [[
+--   augroup gopass
+--     au!
+--     au BufNewFile,BufRead /dev/shm/gopass* setlocal noswapfile nobackup noundofile
+--   augroup END
+-- ]]
 --}
 
 -- plantuml {
-vim.cmd [[
-    au FileType plantuml let g:plantuml_previewer#plantuml_jar_path = get(
-    \  matchlist(system('cat `which plantuml` | grep plantuml.jar'), '\v.*\s[''"]?(\S+plantuml\.jar).*'),
-    \  1,
-    \  0
-    \)
-]]
+-- vim.cmd [[
+--     au FileType plantuml let g:plantuml_previewer#plantuml_jar_path = get(
+--     \  matchlist(system('cat `which plantuml` | grep plantuml.jar'), '\v.*\s[''"]?(\S+plantuml\.jar).*'),
+--     \  1,
+--     \  0
+--     \)
+-- ]]
 -- }

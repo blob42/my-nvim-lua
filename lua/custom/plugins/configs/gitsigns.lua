@@ -2,7 +2,7 @@ local M = {}
 
 
 local on_attach = function(bufnr)
-    require("custom.utils").set_plugin_mappings "gitsigns"
+    require("spike.utils").set_plugin_mappings "gitsigns"
 end
 
 M.setup = function()

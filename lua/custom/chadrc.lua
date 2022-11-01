@@ -14,8 +14,8 @@ local colors = {
 -- vim.tbl_deep_extend("force", M.ui.hl_add, custom_theme)
 
 M.ui = {
-    theme = "monekai",
-    theme_toggle = { "monekai", "gruvbox_light" },
+    theme = "gruvbox_material",
+    theme_toggle = { "gruvbox_material", "gruvbox_light" },
     hl_override = {
         Comment = {
             fg = "light_grey"

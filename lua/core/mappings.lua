@@ -366,6 +366,12 @@ M.general = { --{{{
         -- "enable Treesitter folding"}
     }, --}}}
 
+
+    -- operator pending
+    o = {
+        ["S"] = {"<Plug>(leap-forward-to)"},
+    },
+
     -- visual exclusive mode (ignore select)
     x = { -- {{{
 
@@ -662,7 +668,7 @@ M.fzf_lua = { --{{{
 
         -- grep
         -- ["<leader>fw"] = { "<cmd> FzfLua grep_cword <CR>", "FzfLua grep cword" },
-        -- ["<leader>f."] = { "<cmd> FzfLua live_grep_native <CR>", "FzfLua grep live native" },
+        ["<leader>ff"] = { "<cmd> FzfLua live_grep_native <CR>", "FzfLua grep live native" },
         -- ["<leader>ff"] = { "<cmd> FzfLua grep_project <CR>", "FzfLua grep live project" },
         ["<leader>f*"] = { "<cmd> FzfLua live_grep_glob <CR>", "FzfLua grep with glob (SPACE-- globs)" },
 
@@ -693,7 +699,8 @@ M.telescope = { --{{{
                 local ignored_bufs = {
                     "qf",
                     "guihua",
-                    "NvimT*"
+                    "NvimT*",
+                    "aerial*",
                 }
                 for _, ignored in ipairs(ignored_bufs) do
                     if vim.o.filetype:match(ignored) then
@@ -839,7 +846,7 @@ M.blankline = { --{{{
 M.aerial = {
     plugin = true,
     n = {
-        ["<Right>"] = { "<cmd> AerialToggle! right<CR>" },
+        ["<Right>"] = { "<cmd> AerialOpen right<CR>" },
     }
 }
 
@@ -913,6 +920,14 @@ M.golang = {
     plugin = true,
     n = {
         ["<leader>da"] = { "<cmd> GoDebug -a<CR>", "go debug attach" },
+    }
+}
+
+M["todo-comments"] = {
+    plugin = true,
+    n = {
+        ["]t"] = {"<cmd> lua require'todo-comments'.jump_next()<CR>", "jump to next todo"},
+        ["[t"] = {"<cmd> lua require'todo-comments'.jump_prev()<CR>", "jump to prev todo"}
     }
 }
 

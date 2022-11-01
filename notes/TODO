@@ -1,3 +1,5 @@
+- [ ] Replacement to asyncrun !
+   - Event when command is over to close quickfix window
 - [ ] setup task runner overseer.nvim
 - [ ] setup dadbod nvim for database work
 - [diffview.nvim] learn to use instead of fugitive ?

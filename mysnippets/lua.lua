@@ -6,6 +6,15 @@ return {
             t"Hello lua snippet"
         }),
 
+        s({ trig = "lm", dscr = "local lua module"},
+            fmt([[
+local M = {{}}
+
+{}
+
+return M
+            ]], { i(0) })
+        ),
 
         -- repeat nodes
         -- TODO: split dot and pull last name
@@ -29,6 +38,5 @@ return {
         })
 
         ),
-
 
 }
