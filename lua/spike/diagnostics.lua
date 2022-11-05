@@ -1,4 +1,5 @@
-M = {}
+local M = {}
+
 M.shown = true
 
 -- toggle diagnostics with show/hide
@@ -13,13 +14,6 @@ M.toggle = function()
     vim.diagnostic.show()
 end
 
--- my customized attach
--- M.custom_attach = function(client, bufnr)
--- end
-
-
--- return M
---
 local orig_diag_virt_handler = vim.diagnostic.handlers.virtual_text
 local ns = vim.api.nvim_create_namespace("my_diagnostics")
 

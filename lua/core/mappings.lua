@@ -1,4 +1,3 @@
----@diagnostic disable: trailing-space
 -- vim: foldmethod=marker foldlevel=1
 -- n, v, i, t, c = mode name.s
 
