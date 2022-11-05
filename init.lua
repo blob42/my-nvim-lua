@@ -26,5 +26,5 @@ end
 
 -- pcall(require, "custom")
 
-local vimscriptsfolder = vim.env.XDG_CONFIG_HOME .. "/nvim/myvimscript" -- relative to .config/nvim dir
+local vimscriptsfolder = vim.env["XDG_CONFIG_HOME"] .. "/nvim/myvimscript" -- relative to .config/nvim dir
 vim.opt.runtimepath:prepend(vimscriptsfolder)

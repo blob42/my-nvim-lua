@@ -1,11 +1,6 @@
 ---@diagnostic disable: undefined-global
 
 return {
-
-        s("testluasnip", {
-            t"Hello lua snippet"
-        }),
-
         s({ trig = "lm", dscr = "local lua module"},
             fmt([[
 local M = {{}}

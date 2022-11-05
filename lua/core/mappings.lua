@@ -90,6 +90,10 @@ M.general = { --{{{
         ["<BS>d"] = { "<cmd>DelayTrainToggle<CR>", "disable delay train" },
 
 
+        ["<leader>dge"] = { "<CMD> lua require'spike.diagnostics'.set_diagnostics_level(1)<CR>", "diagnostic severity level error"},
+        ["<leader>dgw"] = { "<CMD> lua require'spike.diagnostics'.set_diagnostics_level(2)<CR>", "diagnostic severity level warning"},
+        ["<leader>dgi"] = { "<CMD> lua require'spike.diagnostics'.set_diagnostics_level(3)<CR>", "diagnostic severity level info"},
+        ["<leader>dgh"] = { "<CMD> lua require'spike.diagnostics'.set_diagnostics_level(4)<CR>", "diagnostic severity level hint"},
 
         -- update nvchad
         -- ["<leader>uu"] = { "<cmd> :NvChadUpdate <CR>", "update nvchad" },
@@ -369,7 +373,12 @@ M.general = { --{{{
 
     -- operator pending
     o = {
-        ["S"] = {"<Plug>(leap-forward-to)"},
+        ["S"] = { "<Plug>(leap-forward-to)" },
+    },
+
+    -- select mode (with completion)
+    s = {
+        ["<BS>"] = {"<BS>i"},  -- delete and go to insert mode
     },
 
     -- visual exclusive mode (ignore select)
@@ -391,10 +400,10 @@ M.general = { --{{{
         ["L"] = { "<cmd>STSSelectChildNode<CR>", "select prev sibling node" },
 
         -- swap nodes tip: start first with master/child node selection then use these
-        ["<M-Up>"] = { "<cmd>STSSwapPrevVisual<CR>", "select prev sibling node" },
-        ["<M-Left>"] = { "<cmd>STSSwapPrevVisual<CR>", "select prev sibling node" },
-        ["<M-Down>"] = { "<cmd>STSSwapNextVisual<CR>", "select next sibling node" },
-        ["<M-Right>"] = { "<cmd>STSSwapNextVisual<CR>", "select next sibling node" },
+        ["<M-Up>"] = { "<cmd>STSSwapPrevVisual<CR>", "swap prev sibling node" },
+        ["<M-Left>"] = { "<cmd>STSSwapPrevVisual<CR>", "swap prev sibling node" },
+        ["<M-Down>"] = { "<cmd>STSSwapNextVisual<CR>", "swap next sibling node" },
+        ["<M-Right>"] = { "<cmd>STSSwapNextVisual<CR>", "swap next sibling node" },
 
     }, -- }}}
 } --}}}
@@ -926,8 +935,8 @@ M.golang = {
 M["todo-comments"] = {
     plugin = true,
     n = {
-        ["]t"] = {"<cmd> lua require'todo-comments'.jump_next()<CR>", "jump to next todo"},
-        ["[t"] = {"<cmd> lua require'todo-comments'.jump_prev()<CR>", "jump to prev todo"}
+        ["]t"] = { "<cmd> lua require'todo-comments'.jump_next()<CR>", "jump to next todo" },
+        ["[t"] = { "<cmd> lua require'todo-comments'.jump_prev()<CR>", "jump to prev todo" }
     }
 }
 
@@ -942,20 +951,37 @@ M.gitsigns = {
             "Git stage buffer",
         },
         ["<leader>gR"] = { "<cmd> lua require'gitsigns'.reset_buffer_index()<CR>",
-            "Git stage buffer",
+            "Git reset buffer index",
         },
         ["<leader>gp"] = { "<cmd> lua require'gitsigns'.preview_hunk()<CR>",
-            "Git stage buffer",
+            "Git preview hunk",
         },
-        ["<leader>gu"] = {"<cmd> lua require'gitsigns'.undo_stage_hunk()<CR>",
+        ["<leader>gu"] = { "<cmd> lua require'gitsigns'.undo_stage_hunk()<CR>",
             "Git undo stage hunk",
         },
-        ["]h"] = { "<cmd> lua require'gitsigns'.next_hunk()<CR>", 
+        ["]h"] = { "<cmd> lua require'gitsigns'.next_hunk()<CR>",
             "Git next hunk",
         },
-        ["[h"] = { "<cmd> lua require'gitsigns'.prev_hunk()<CR>", 
+        ["[h"] = { "<cmd> lua require'gitsigns'.prev_hunk()<CR>",
             "Git prev hunk",
         }
+    }
+}
+
+M.grapple = {
+    plugin = true,
+    n = {
+        [",J"] = { "<cmd> lua require'grapple'.cycle_forward()<CR>" },
+        [",K"] = { "<cmd> lua require'grapple'.cycle_backward()<CR>" },
+        [",T"] = { "<cmd> GrappleTag<CR>"},
+        [",N"] = { function()
+            vim.ui.input({ prompt = "tag: " }, function(input)
+                require("grapple").tag({ name = input })
+            end)
+        end, "grapple tag with name" },
+        [",,m"] = { "<cmd> lua require'grapple'.select({name='mappings'})<CR>" },
+        [",,p"] = { "<cmd> lua require'grapple'.select({name='plugins'})<CR>" },
+        [",,P"] = { "<cmd> lua require'grapple'.select({name='Plugins'})<CR>" },
     }
 }
 

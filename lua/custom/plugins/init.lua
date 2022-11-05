@@ -300,6 +300,20 @@ return {
         end
     }, -- }}}
 
+    ["cbochs/grapple.nvim"] = {
+        setup = function()
+            require("core.utils").load_mappings "grapple"
+        end,
+        config = function()
+            require("grapple").setup({
+            -- Your configuration goes here
+            -- Leave empty to use the default configuration
+            -- Please see the Configuration section below for more information
+            save_path = vim.fn.stdpath("data") .. "/" .. "grapple.json",
+
+        })
+        end
+    },
     -- tmux helpers
     ["christoomey/vim-tmux-navigator"] = {
         cond = function()
@@ -416,6 +430,8 @@ return {
                     "mason",
                     "guihua*",
                     "terminal*",
+                    "db*",
+                    "aerial*",
                 },
             })
         end
@@ -646,12 +662,19 @@ return {
         ft = {"plantuml"},
     },
     ["scrooloose/vim-slumlord"] = {
-        ft = {"plantuml"},
-    }
+        opt = true,
+        -- ft = {"plantuml"},
+    },
 
     -- sql tools
     -- https://github.com/tpope/vim-dadbod
     -- https://github.com/kristijanhusak/vim-dadbod-ui
+    ["tpope/vim-dadbod"] = {
+        ft = "sql",
+    },
+    ["kristijanhusak/vim-dadbod-ui"] = {
+        after = {"vim-dadbod"},
+    }
 
 
 }

@@ -48,7 +48,7 @@ local config = {
     { key = '<Space>D', func = vim.lsp.buf.type_definition, desc = 'lsp type_definition' },
     { key = 'gL', func = require('navigator.diagnostics').show_diagnostics, desc = 'lsp show_diagnostics' },
     { key = 'gG', func = require('navigator.diagnostics').show_buf_diagnostics, desc = 'lsp show_buf_diagnostics' },
-    -- { key = '<Leader>dt', func = require('navigator.diagnostics').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
+    { key = '<Leader>dt', func = require('navigator.diagnostics').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
     { key = '<Leader>td', func = require('spike.diagnostics').toggle, desc = 'lsp toggle_diagnostics' },
     { key = ']d', func = vim.diagnostic.goto_next, desc = 'lsp next diagnostics' },
     { key = '[d', func = vim.diagnostic.goto_prev, desc = 'lsp prev diagnostics' },
@@ -140,7 +140,7 @@ local config = {
         source = true
       }, -- show virtual for diagnostic message
       update_in_insert = false, -- update diagnostic message in insert mode
-      severity_sort = { reverse = true },
+      severity_sort = { reverse = false },
     },
 
     diagnostic_scrollbar_sign = false,

@@ -17,6 +17,10 @@ M.ui = {
     theme = "gruvbox_material",
     theme_toggle = { "gruvbox_material", "gruvbox_light" },
     hl_override = {
+        IndentBlanklineContextChar = {
+            fg = "yellow",
+            nocombine = true,
+        },
         Comment = {
             fg = "light_grey"
         },

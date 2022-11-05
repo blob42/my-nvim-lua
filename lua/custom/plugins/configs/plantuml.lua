@@ -17,11 +17,11 @@ M.lazy_load_module = function()
                     vim.defer_fn(function()
                         require("packer").loader("plantuml-syntax")
                     end,0)
+                    return
                 end
             end
 
             firstline = vim.api.nvim_buf_get_lines(0,0,1,true)[1]
-            P(firstline)
             if firestline ~= "" and firstline:match("^@startuml%s*") then
                 vim.defer_fn(function()
                     require("packer").loader("plantuml-syntax")
