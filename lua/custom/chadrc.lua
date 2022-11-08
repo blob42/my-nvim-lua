@@ -165,7 +165,8 @@ M.plugins = {
                 "vim",
                 "guihua",
                 "guihua_rust",
-                "clap_input"
+                "clap_input",
+                "markdown"
             }
         },
         ["nvim-treesitter/nvim-treesitter"] = require "custom.plugins.configs.treesitter",

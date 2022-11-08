@@ -5,7 +5,7 @@ local config = {
   run_in_floaterm = false,
   icons = false,
   -- icons = { breakpoint = "🧘", currentpos = "🏃" }, -- set to false to disable
-  lsp_cfg = false, -- handled handled instead by navigator 
+  lsp_cfg = false, -- handled instead by navigator 
   lsp_keymaps = false, -- use navigator
   -- lsp_diag_signs = false,
   lsp_codelens = false, -- use navigator

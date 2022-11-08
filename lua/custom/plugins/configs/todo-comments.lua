@@ -23,6 +23,7 @@ local config = {
     default = {"#8C3AED" },
   },
   highlight = {
+      -- multiline = false,
       after = "fg",
   }
 }

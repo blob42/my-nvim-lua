@@ -21,7 +21,7 @@ local filter_diagnostics = function(diagnostics, level)
     local filtered_diag = {}
     for _, d in ipairs(diagnostics) do
         if d.severity <= level then
-            table.insert(filtered_diag, 0, d)
+            table.insert(filtered_diag, 1, d)
         end
     end
     return filtered_diag
@@ -29,10 +29,8 @@ end
 
 --NOTE:  apply diagnostics filter to current buffer / all buffers
 M.set_diagnostics_level = function(level)
-    -- hide all diagnostics
-    vim.diagnostic.hide(nil, 0) 
 
-    -- vim.diagnostic.reset()
+
     vim.diagnostic.handlers.virtual_text = {
         show = function(_, bufnr, _, opts)
             -- get all diagnostics for local buffer
@@ -46,10 +44,14 @@ M.set_diagnostics_level = function(level)
         end
     }
 
-    local diags = vim.diagnostic.get(0)
+    bufnr = vim.api.nvim_get_current_buf()
+    -- hide all diagnostics
+    vim.diagnostic.hide(nil, bufnr) 
+
+    local diags = vim.diagnostic.get(bufnr)
     if #diags > 0 then
         filtered = filter_diagnostics(diags, level)
-        vim.diagnostic.show(ns, 0, filtered)
+        vim.diagnostic.show(ns, bufnr, filtered)
     end
 
 end

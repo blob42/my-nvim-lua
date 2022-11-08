@@ -89,10 +89,10 @@ M.general = { --{{{
         ["<BS>d"] = { "<cmd>DelayTrainToggle<CR>", "disable delay train" },
 
 
-        ["<leader>dge"] = { "<CMD> lua require'spike.diagnostics'.set_diagnostics_level(1)<CR>", "diagnostic severity level error"},
-        ["<leader>dgw"] = { "<CMD> lua require'spike.diagnostics'.set_diagnostics_level(2)<CR>", "diagnostic severity level warning"},
-        ["<leader>dgi"] = { "<CMD> lua require'spike.diagnostics'.set_diagnostics_level(3)<CR>", "diagnostic severity level info"},
-        ["<leader>dgh"] = { "<CMD> lua require'spike.diagnostics'.set_diagnostics_level(4)<CR>", "diagnostic severity level hint"},
+        ["<leader>dge"] = { ":lua require'spike.diagnostics'.set_diagnostics_level(1)<CR>", "diagnostic severity level error"},
+        ["<leader>dgw"] = { ":lua require'spike.diagnostics'.set_diagnostics_level(2)<CR>", "diagnostic severity level warning"},
+        ["<leader>dgi"] = { ":lua require'spike.diagnostics'.set_diagnostics_level(3)<CR>", "diagnostic severity level info"},
+        ["<leader>dgh"] = { ":lua require'spike.diagnostics'.set_diagnostics_level(4)<CR>", "diagnostic severity level hint"},
 
         -- update nvchad
         -- ["<leader>uu"] = { "<cmd> :NvChadUpdate <CR>", "update nvchad" },
@@ -215,7 +215,7 @@ M.general = { --{{{
         -- syntax-tree-surfer
         -- visual selection from nomral mode
         ["vm"] = { "<cmd>STSSelectMasterNode<CR>", "select master node" },
-        ["vn"] = { "<cmd>STSSelectCurrentNode<CR>", "select master node" },
+        ["vn"] = { "<cmd>STSSelectCurrentNode<CR>", "select current node" },
 
         -- normal mode swapping
         -- swappint up/down
@@ -854,7 +854,7 @@ M.blankline = { --{{{
 M.aerial = {
     plugin = true,
     n = {
-        ["<Right>"] = { "<cmd> AerialOpen right<CR>" },
+        ["<Right>"] = { "<cmd> AerialToggle right<CR>" },
     }
 }
 
@@ -981,6 +981,18 @@ M.grapple = {
         [",,m"] = { "<cmd> lua require'grapple'.select({name='mappings'})<CR>" },
         [",,p"] = { "<cmd> lua require'grapple'.select({name='plugins'})<CR>" },
         [",,P"] = { "<cmd> lua require'grapple'.select({name='Plugins'})<CR>" },
+    }
+}
+
+M.zk = {
+    plugin = true,
+    n = {
+        ["<leader>zn"] = {"<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>","zk new note"},
+        ["<leader>zk"] = {"<Cmd>ZkNotes { sort = { 'modified' }}<CR>","zk list notes"},
+        ["<leader>zf"] = {"<Cmd>ZkNotes { sort = { 'modified' }, match = vim.fn.input('Search: ') }<CR>","zk notes matching a given query"},
+        ["<leader>zl"] = {"<Cmd>ZkLinks<CR>","zk links"},
+        ["<leader>zh"] = {"<Cmd>ZkBacklinks<CR>","zk backlinks"},
+
     }
 }
 

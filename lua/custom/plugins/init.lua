@@ -149,6 +149,7 @@ return {
     -- text formatting
 
     ["folke/todo-comments.nvim"] = { -- {{{
+        -- commit = "6124066",
         after = "nvim-treesitter",
         setup = function()
             -- require("core.lazy_load").on_file_open "todo-comments"
@@ -334,8 +335,8 @@ return {
 
     -- Job management (use nvim startjob )
     -- Run async commands (make & errors)
-
     -- TODO: replace with https://github.com/skywind3000/asynctasks.vim
+
     ["skywind3000/asyncrun.vim"] = { -- {{{
         lock = true,
         cmd = "AsyncRun",
@@ -375,6 +376,7 @@ return {
     },
 
     -- session and view
+
     ["vim-scripts/restore_view.vim"] = {}, -- TODO: check if still needed
 
     -- ["rmagatti/auto-session"] = {
@@ -538,7 +540,7 @@ return {
     --
 
     ['stevearc/aerial.nvim'] = {
-        lock = true,
+        -- lock = true,
         after = { "base46" },
         keys = { "<Right>" },
         cmd = { "Aerial*" },
@@ -674,7 +676,17 @@ return {
     },
     ["kristijanhusak/vim-dadbod-ui"] = {
         after = {"vim-dadbod"},
-    }
+    },
 
+
+    -- zk nvim
+    ["mickael-menu/zk-nvim"] = {
+        setup = function()
+            require("core.utils").load_mappings "zk"
+        end,
+        config = function()
+            require("custom.plugins.configs.zk").setup()
+        end
+    },
 
 }
