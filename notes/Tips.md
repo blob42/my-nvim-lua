@@ -1,4 +1,4 @@
-
+- remember live command
 - !{motion}{filter} filter text lines through ext program
 - !!{filter} filter lines through ext program
 - review using C-x C-l with context aware situation

@@ -133,7 +133,7 @@ local opts = {
 
     -- Fold code when you open/collapse symbols in the tree.
     -- Only works when manage_folds = true
-    link_tree_to_folds = true,
+    link_tree_to_folds = false,
 
     -- Use symbol tree for folding. Set to true or false to enable/disable
     -- 'auto' will manage folds if your previous foldmethod was 'manual'

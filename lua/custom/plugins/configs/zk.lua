@@ -12,6 +12,10 @@ local opts = {
             name = "zk",
             -- on_attach = ...
             -- etc, see `:h vim.lsp.start_client()`
+            on_attach = function(client, bufnr)
+                vim.keymap.set("n", "K", "<cmd> lua vim.lsp.buf.hover()<CR>", { desc = "zk lsp hover"})
+                vim.keymap.set("v", "<leader>za", ":'<,'> vim.lsp.buf.range_code_action()<CR>", { desc = { "zk range code action"}})
+            end
         },
 
         -- automatically attach buffers in a zk notebook that match the given filetypes

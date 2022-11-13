@@ -66,7 +66,7 @@ opt.iskeyword:remove("-")
 -- opt.foldexpr="nvim_treesitter#foldexpr()"
 --
 opt.foldminlines = 2
-opt.foldlevelstart = 0
+opt.foldlevelstart = 1
 opt.conceallevel=1 -- how to show text with :syn-conceal syntax
 
 opt.list = true -- show tabs,trailing spaces and non-breakable spaces

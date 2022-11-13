@@ -144,6 +144,7 @@ M.general = { --{{{
 
         -- new buffer
         ["<leader>bb"] = { "<cmd> enew <CR>", "new buffer" },
+        ["<leader>bv"] = { "<cmd> enew <CR>", "new buffer" },
 
         -- new tab
         ["<leader><Tab>"] = { "<cmd> tabe <CR>", "new tab" },
@@ -372,12 +373,12 @@ M.general = { --{{{
 
     -- operator pending
     o = {
-        ["S"] = { "<Plug>(leap-forward-to)" },
+        ["S"] = { "<Plug>(leap-forward-to)", opts = { remap = true} },
     },
 
-    -- select mode (with completion)
+    -- select mode (with completion) see after/plugin/mappings.*
     s = {
-        ["<BS>"] = {"<BS>i"},  -- delete and go to insert mode
+        ["<BS><BS>"] = {"<BS>i", "delete then go insert"},
     },
 
     -- visual exclusive mode (ignore select)
@@ -805,6 +806,24 @@ M.nvterm = { --{{{
             end,
             "new vertical term",
         },
+
+
+        -- Running commands
+        ["<leader>rf"] = {function()
+            local nvterm_utils = require('spike.utils.nvterm')
+            nvterm_utils.run_cmd(nil, { mode = "float" })
+        end, "run cmd in floating terminal"},
+
+        ["<leader>rv"] = {function()
+            local nvterm_utils = require('spike.utils.nvterm')
+            nvterm_utils.run_cmd(nil, { mode = "vertical" })
+        end, "run cmd in floating terminal"},
+
+
+        ["<leader><UP>"] = {function()
+            local nvterm_utils = require('spike.utils.nvterm')
+            nvterm_utils.rerun_last_cmd()
+        end, "rerun last float term cmd"},
     },
 } --}}}
 
@@ -864,12 +883,29 @@ M.asyncrun = { --{{{
     n = {
         -- TODO: find new mapping to close quickfix
         -- ["``"] = { "<cmd> call asyncrun#quickfix_toggle(8)<CR>", "toggle quickfix window" },
-        ["<leader>m"] = { ":AsyncRun -program=" .. vim.o.makeprg .. "<CR>", "make using asyncrun" },
-        ["<leader>ar"] = { ":AsyncRun ", "custom asyncrun command" },
+        -- HELP: 
+        -- adding ! after AsyncRun disables autoscroll
+        ["<leader>m"] = { ":AsyncRun -program=" .. vim.o.makeprg .. "<CR>", "make using quickfix asyncrun" },
+        ["<leader>mf"] = { function()
+            require('spike.utils.nvterm').run_cmd(vim.o.makeprg, { mode = "float"} )
+        end, "run make in a floating terminal" },
+        ["<leader>rx"] = {function()
+            vim.ui.input( { prompt="tmux cmd:> " }, function (input)
+                vim.cmd("AsyncRun -mode=term -pos=tmux " .. input)
+            end)
+        end, "custom asyncrun command (tmux)" },
         ["<leader>pd"] = { "<cmd> AsyncRun lpr -P PDF_PRINT %<CR>", "PDF print file" },
         ["<leader>pp"] = { "<cmd> AsyncRun lpr %<CR>" },
     },
 } --}}}
+
+M.overseer = {
+    plugin = true,
+    n = {
+        ["<leader>oo"] = {"<cmd> OverseerOpen <CR>", "open overseer"},
+        ["<leader>ot"] = {"<cmd> OverseerToggle <CR>", "open overseer"},
+    }
+}
 
 M.vim_bookmarks = { --{{{
     n = {
@@ -978,21 +1014,55 @@ M.grapple = {
                 require("grapple").tag({ name = input })
             end)
         end, "grapple tag with name" },
+        --TODO: keybind for popup select names
         [",,m"] = { "<cmd> lua require'grapple'.select({name='mappings'})<CR>" },
         [",,p"] = { "<cmd> lua require'grapple'.select({name='plugins'})<CR>" },
         [",,P"] = { "<cmd> lua require'grapple'.select({name='Plugins'})<CR>" },
     }
 }
 
+local function get_zk_notedirs()
+            local abs_dirs = vim.fn.system("fd . -t d " .. vim.env['ZK_NOTEBOOK_DIR'])
+            local note_dirs = {}
+            for _,v in ipairs(vim.split(abs_dirs, "\n")) do
+                local ndir = string.gsub(v, vim.env['ZK_NOTEBOOK_DIR'] .. '/', '')
+                ndir = ndir:gsub("(.*)(/)$", "%1")
+                if ndir ~= "" then
+                    table.insert(note_dirs,ndir)
+                end
+            end
+
+            vim.ui.select(note_dirs, { prompt = "dir:> " },
+            function(choice)
+                if choice then
+                    require("zk.commands").get("ZkNew")({ dir = choice })
+                end
+            end)
+end
+
 M.zk = {
     plugin = true,
     n = {
-        ["<leader>zn"] = {"<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>","zk new note"},
-        ["<leader>zk"] = {"<Cmd>ZkNotes { sort = { 'modified' }}<CR>","zk list notes"},
-        ["<leader>zf"] = {"<Cmd>ZkNotes { sort = { 'modified' }, match = vim.fn.input('Search: ') }<CR>","zk notes matching a given query"},
+        ["<leader>zk"] = {function()
+            vim.ui.input({ prompt = "note title:"}, function (input)
+                if input then
+                    require("zk.commands").get("ZkNew")({ title = input})
+                end
+            end)
+        end, "zk new note"},
+        ["<leader>zK"] = {get_zk_notedirs, "zk new note, custom dir"},
+        ["<leader>zo"] = {"<Cmd>ZkNotes { sort = { 'modified' }}<CR>","zk list notes"},
+        -- ["<leader>zf"] = {"<Cmd>ZkNotes { sort = { 'modified' }, match = vim.fn.input('Search: ') }<CR>","zk notes matching a given query"},
+        ["<leader>zf"] = {function()
+            vim.ui.input({ prompt = "zk match:"}, function (input)
+                if input then
+                    require("zk.commands").get("ZkNotes")({ sort = { "modified" }, match = input})
+                end
+            end)
+        end,"zk notes matching a given query"},
         ["<leader>zl"] = {"<Cmd>ZkLinks<CR>","zk links"},
         ["<leader>zh"] = {"<Cmd>ZkBacklinks<CR>","zk backlinks"},
-
+        -- mappings to lsp commands are in zk.lua config file
     }
 }
 

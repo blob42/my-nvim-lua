@@ -219,7 +219,12 @@ return {
     }, -- }}}
 
     -- User Interface / UX
-    --
+    ["stevearc/dressing.nvim"] = {
+        config = function()
+            require("custom.plugins.configs.dressing").setup()
+        end
+    },
+
     -- allows to preview commands after they are registerd by plugin
     -- the current registerd norm command works by first selecting a visual selection
     -- then doing the changes, it's an enhanced multi cursor
@@ -302,6 +307,7 @@ return {
     }, -- }}}
 
     ["cbochs/grapple.nvim"] = {
+        commit = "50b8271",
         setup = function()
             require("core.utils").load_mappings "grapple"
         end,
@@ -311,6 +317,8 @@ return {
             -- Leave empty to use the default configuration
             -- Please see the Configuration section below for more information
             save_path = vim.fn.stdpath("data") .. "/" .. "grapple.json",
+            scope = "global",
+            log_level = "debug",
 
         })
         end
@@ -347,7 +355,17 @@ return {
     }, -- }}}
 
     -- TODO: asynctsks vs overseer: task runner and job management 
-    -- ["stevarc/overseer.nvim"]  = {},
+    -- NOTE: asynctasks uses AsyncRun !!
+    ["stevearc/overseer.nvim"] = {
+        cmd = {"Overseer*"},
+        setup = function()
+            require 'core.utils'.load_mappings 'overseer'
+        end,
+        config = function()
+            require("custom.plugins.configs.overseer").setup()
+        end,
+    },
+
 
     -- Git
     ["lewis6991/gitsigns.nvim"] = {
@@ -399,6 +417,7 @@ return {
     }, -- }}}}}}
 
 
+    -- options are defined in plugin/globals.vim
     ["MattesGroeger/vim-bookmarks"] = { -- {{{
         config = function()
             require("core.utils").load_mappings "vim_bookmarks"

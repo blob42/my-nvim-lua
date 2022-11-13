@@ -1,0 +1,1 @@
+-- require('scratch.remote-lsp').setup_lsp_dirhook()

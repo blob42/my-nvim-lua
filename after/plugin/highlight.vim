@@ -9,3 +9,4 @@
 
 " GuiGua selected item (navigator etc )
 au BufEnter * hi GuihuaListSelHl gui=underline guibg=bg
+

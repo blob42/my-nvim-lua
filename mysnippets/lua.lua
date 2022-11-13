@@ -13,13 +13,15 @@ return M
 
         -- repeat nodes
         -- TODO: split dot and pull last name
-        s("req", fmt("local {} = require('{}')", {
+        -- local require
+        s("lreq", fmt("local {} = require('{}')", {
             i(1, "default"),
             rep(1)
         })  ),
 
+        -- if require
         s("ifreq", fmt([[
-    local ok, {} = pcall(require, "{}")
+    local ok, {} = pcall(require, '{}')
     if not ok then 
         vim.notify("missing module {}", vim.log.levels.WARN)
         return
@@ -33,5 +35,18 @@ return M
         })
 
         ),
+
+        -- add packer plugin
+        s({ trig = "plug", dscr = "add packer plugin"}, fmt([[
+        ["{}"] = {{
+            config = function()
+                require("custom.plugins.configs.{}").{}
+            end,
+        }},
+        ]], {
+            i(1),
+            i(2),
+            i(0)
+        }))
 
 }

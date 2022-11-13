@@ -16,15 +16,16 @@ function  M.gopls_onattach(client, bufnr)
     return
   end
 
-  
+
+  -- Auto import on save
   -- autocmd({"BufWritePre", "InsertLeave"}, {
-  autocmd({"BufWritePre"}, {
-    group = augroup(augroupname, {clear = true}),
-    buffer = bufnr,
-    callback = function()
-      goformat.goimport()
-    end
-  })
+  -- autocmd({"BufWritePre"}, {
+  --   group = augroup(augroupname, {clear = true}),
+  --   buffer = bufnr,
+  --   callback = function()
+  --     goformat.goimport()
+  --   end
+  -- })
 
   require("core.utils").load_mappings "golang"
     

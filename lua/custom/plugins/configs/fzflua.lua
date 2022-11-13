@@ -4,8 +4,6 @@ if not present then
   return
 end
 
-fzf.register_ui_select()
-
 local options = {
 
   keymap = {
