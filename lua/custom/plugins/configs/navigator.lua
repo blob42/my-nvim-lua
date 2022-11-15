@@ -151,6 +151,7 @@ local config = {
     -- disable auto start of lsp per language
     -- set global default on lspconfig (see lspconfig doc)
     gopls = {
+        cmd = { "nc", "localhost", "9999" },
       -- cmd = {"socat", "-" ,"tcp:localhost:4444"},
       -- on_attach = require("spike.lsp.go").custom_attach,
       on_attach = require("spike.lsp.go").gopls_onattach,

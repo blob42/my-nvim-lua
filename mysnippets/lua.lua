@@ -1,5 +1,6 @@
 ---@diagnostic disable: undefined-global
 
+-- return two lists of snippets: first are normal snippets second are autosnippets
 return {
         s({ trig = "lm", dscr = "local lua module"},
             fmt([[
@@ -49,4 +50,8 @@ return M
             i(0)
         }))
 
+}, { -- autosnippets
+    -- s("autotrig", t("autotriggered"))
 }
+
+

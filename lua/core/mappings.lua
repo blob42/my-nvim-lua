@@ -817,7 +817,7 @@ M.nvterm = { --{{{
         ["<leader>rv"] = {function()
             local nvterm_utils = require('spike.utils.nvterm')
             nvterm_utils.run_cmd(nil, { mode = "vertical" })
-        end, "run cmd in floating terminal"},
+        end, "run cmd in vertical terminal"},
 
 
         ["<leader><UP>"] = {function()
@@ -1052,6 +1052,7 @@ M.zk = {
         end, "zk new note"},
         ["<leader>zK"] = {get_zk_notedirs, "zk new note, custom dir"},
         ["<leader>zo"] = {"<Cmd>ZkNotes { sort = { 'modified' }}<CR>","zk list notes"},
+        ["<leader>zt"] = {"<Cmd>ZkTags<CR>","zk list tags"},
         -- ["<leader>zf"] = {"<Cmd>ZkNotes { sort = { 'modified' }, match = vim.fn.input('Search: ') }<CR>","zk notes matching a given query"},
         ["<leader>zf"] = {function()
             vim.ui.input({ prompt = "zk match:"}, function (input)
