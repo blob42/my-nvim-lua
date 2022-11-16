@@ -692,6 +692,7 @@ return {
     -- https://github.com/kristijanhusak/vim-dadbod-ui
     ["tpope/vim-dadbod"] = {
         ft = "sql",
+        cmd = {"DBUI"}, 
     },
     ["kristijanhusak/vim-dadbod-ui"] = {
         after = {"vim-dadbod"},
