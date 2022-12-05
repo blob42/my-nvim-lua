@@ -1,3 +1,4 @@
+* [ ] check project.nvim [link](https://github.com/ahmedkhalf/project.nvim)
 - [ ] Replacement to asyncrun !
    - Event when command is over to close quickfix window
 - [ ] setup task runner overseer.nvim

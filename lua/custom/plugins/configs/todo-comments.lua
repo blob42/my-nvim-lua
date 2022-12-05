@@ -14,11 +14,12 @@ local config = {
     },
     LEARN  = { color = "hint" },
     WIP = { color = "default"},
-    NOTE = { alt = { "TIP", "INFO", "TRICK" }},
-    DEBUG = {}
+    NOTE = { alt = { "TIP", "INFO", "TRICK", "RELEASE"}},
+    DEBUG = {},
   },
   colors = {
-    info = {"#2563EB"},
+    -- info = {"#2563EB"},
+     info = {"#dddddd"},
     hint = {"#10B981"},
     default = {"#8C3AED" },
   },

@@ -89,6 +89,7 @@ M.general = { --{{{
         ["<BS>d"] = { "<cmd>DelayTrainToggle<CR>", "disable delay train" },
 
 
+        ["<leader>dgH"] = { ":lua require'spike.diagnostics'.set_diagnostics_level(-1)<CR>", "hide all diagnostics"},
         ["<leader>dge"] = { ":lua require'spike.diagnostics'.set_diagnostics_level(1)<CR>", "diagnostic severity level error"},
         ["<leader>dgw"] = { ":lua require'spike.diagnostics'.set_diagnostics_level(2)<CR>", "diagnostic severity level warning"},
         ["<leader>dgi"] = { ":lua require'spike.diagnostics'.set_diagnostics_level(3)<CR>", "diagnostic severity level info"},
@@ -971,7 +972,9 @@ M["todo-comments"] = {
     plugin = true,
     n = {
         ["]t"] = { "<cmd> lua require'todo-comments'.jump_next()<CR>", "jump to next todo" },
-        ["[t"] = { "<cmd> lua require'todo-comments'.jump_prev()<CR>", "jump to prev todo" }
+        ["[t"] = { "<cmd> lua require'todo-comments'.jump_prev()<CR>", "jump to prev todo" },
+        ["<leader>qt"] = { "<cmd> TodoQuickFix <CR>", "todo quickfix" },
+        ["<leader>ft"] = { "<cmd> TodoTelescope <CR>", "todo telescope" },
     }
 }
 

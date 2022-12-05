@@ -1,5 +1,8 @@
 -- called in chadrc
---
+
+-- statusline=%!v:lua.require('nvchad_ui').statusline()
+-- vim.o.statusline="%.40(%{expand('%:p:h:t')}/%t%)"
+
 local fn = vim.fn
 local sep_style = vim.g.statusline_sep_style
 local separators = (type(sep_style) == "table" and sep_style)
@@ -45,7 +48,7 @@ end
 return {
     mode = function()
         local m = vim.api.nvim_get_mode().mode
-        local current_mode = "%#" .. modes[m][2] .. "#" .. "  " .. modes[m][1]
+        local current_mode = "%#" .. modes[m][2] .. "# " ..  modes[m][1]
         local mode_sep1 = "%#" .. modes[m][2] .. "Sep" .. "#" .. sep_r
 
         if is_dapmode() then
@@ -58,7 +61,9 @@ return {
 
     fileInfo = function()
         local icon = "  "
-        local filename = (fn.expand "%" == "" and "Empty ") or fn.expand "%:t"
+        local filepath = fn.expand "%:p:h:t" .. '/%t'
+        local filetype = '%y '
+        local filename = (fn.expand "%" == "" and "Empty ") or filepath
         local modified = (vim.bo[0].modified and "+ ") or ""
 
         if filename ~= "Empty " then
@@ -69,10 +74,10 @@ return {
                 icon = (ft_icon ~= nil and " " .. ft_icon) or ""
             end
 
-            filename = " " .. filename .. " "
+            filename = " " .. filetype  .. filename .. " "
         end
 
-        return "%#St_file_info#" .. icon .. filename  .. "[%n] " .. modified .. "%#St_file_sep#" .. sep_r
+        return "%#St_file_info#" .. icon .. filename .. "[%n] " .. modified .. "%#St_file_sep#" .. sep_r
     end,
 
     LSP_Diagnostics = function()
@@ -141,9 +146,16 @@ return {
     end,
 
     cwd = function()
-      local dir_icon = "%#St_cwd_icon#" .. " "
-      local dir_name = "%#St_cwd_text#" .. " " .. fn.fnamemodify(fn.getcwd(), ":p:~") .. " "
-      return (vim.o.columns > 85 and ("%#St_cwd_sep#" .. sep_l .. dir_icon .. dir_name)) or ""
+        local dir_icon = "%#St_cwd_icon#" .. " "
+        local dir_name = "%#St_cwd_text#" .. " " .. fn.fnamemodify(fn.getcwd(), ":p:~") .. " "
+        return (vim.o.columns > 85 and ("%#St_file_sep_rev#" .. sep_r .. dir_name)) or ""
     end,
+
+    cursor_position = function()
+
+        text = '%l,%c%V%\\ %p%%'
+
+        return "%#St_pos_text#" .. " " .. text .. " "
+    end
 
 }

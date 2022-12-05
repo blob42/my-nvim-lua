@@ -17,6 +17,10 @@ local highlights = {
     Comment = {
         fg = c.change_hex_lightness(colors["one_bg"], 20),
     },
+    St_file_sep_rev = {
+        fg = colors.statusline_bg,
+        bg = colors.lightbg,
+    }
 }
 
 function set_hl()
