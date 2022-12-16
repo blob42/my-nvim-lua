@@ -19,6 +19,8 @@ if g.vim_version < 8 then
 end
 
 opt.laststatus = 3 -- global statusline
+-- for statusline format see lua/custom/plugins/nvchadui.lua
+opt.cmdheight = 1
 opt.showmode = false
 
 opt.title = true
@@ -59,6 +61,9 @@ opt.viewoptions="folds,cursor"
 opt.iskeyword:remove(".")
 opt.iskeyword:remove("#")
 opt.iskeyword:remove("-")
+
+-- remove `=` from is fname
+opt.isfname:remove("=")
 
 --
 -- folding with tree sitter

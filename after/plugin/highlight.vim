@@ -10,3 +10,5 @@
 " GuiGua selected item (navigator etc )
 au BufEnter * hi GuihuaListSelHl gui=underline guibg=bg
 
+au BufEnter * hi TabLineFill NONE
+au BufEnter * hi TabLine NONE

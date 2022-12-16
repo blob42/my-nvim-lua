@@ -19,6 +19,7 @@ local ns = vim.api.nvim_create_namespace("my_diagnostics")
 
 local filter_diagnostics = function(diagnostics, level)
     local filtered_diag = {}
+    if level == -1 then return {} end
     for _, d in ipairs(diagnostics) do
         if d.severity <= level then
             table.insert(filtered_diag, 1, d)
