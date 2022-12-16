@@ -724,4 +724,9 @@ return {
         end
     },
 
+    -- theseraus{{{
+    -- ["Ron89/thesaurus_query.vim"] = { },
+
+    -- setup in after/plugin/vim-lexical
+    ["preservim/vim-lexical"] = { },-- }}}
 }
