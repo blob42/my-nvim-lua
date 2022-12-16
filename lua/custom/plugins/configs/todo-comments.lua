@@ -25,7 +25,7 @@ local config = {
   },
   highlight = {
       -- multiline = false,
-      after = "fg",
+      after = "",
   }
 }
 

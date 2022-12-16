@@ -38,7 +38,7 @@ M.override = {
 
 M.add =  {
         Visual                   = {
-            bg = "blue",
+            bg = "#ff7775",
             fg = "black",
         },
         BookmarkSign             = {

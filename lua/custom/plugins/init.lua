@@ -156,7 +156,7 @@ return {
 
     ["folke/todo-comments.nvim"] = { -- {{{
         -- commit = "6124066",
-        after = "nvim-treesitter",
+        -- after = "nvim-treesitter",
         setup = function()
             -- require("core.lazy_load").on_file_open "todo-comments"
             require("core.utils").load_mappings "todo-comments"
@@ -176,7 +176,7 @@ return {
     -- ["p00f/nvim-ts-rainbow"] = {
     --   opt = true,
     -- },
-    --
+
 
     -- dap
 
@@ -246,6 +246,15 @@ return {
         lock = true,
         disable = false,
         keys = { "<leader>", "<BS>", "<Space>", "\"", "`", "'", "z", "g" }
+    },
+
+
+    -- scren saver
+    ["folke/drop.nvim"] = {
+        opt = true,
+        config = function()
+            require("drop").setup()
+        end
     },
 
     -- repeat operator for plugin commands
@@ -698,7 +707,7 @@ return {
     -- https://github.com/kristijanhusak/vim-dadbod-ui
     ["tpope/vim-dadbod"] = {
         ft = "sql",
-        cmd = {"DBUI"}, 
+        cmd = {"DBUI"},
     },
     ["kristijanhusak/vim-dadbod-ui"] = {
         after = {"vim-dadbod"},
