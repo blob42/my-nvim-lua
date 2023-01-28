@@ -161,6 +161,7 @@ local options = {
         },
         { name = "nvim_lua", priority = 900 },
         { name = "path" },
+        { name = "copilot" },
     },
 }
 
