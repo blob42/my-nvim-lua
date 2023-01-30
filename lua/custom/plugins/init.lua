@@ -610,6 +610,16 @@ return {
 
     }, -- }}}
 
+    ["jose-elias-alvarez/null-ls.nvim"] = {
+        requires = {"nvim-lua/plenary.nvim"},
+        setup = function()
+            require('core.utils').load_mappings 'null_ls'
+        end,
+        config = function()
+            require("custom.plugins.configs.null-ls").setup()
+        end,
+    },
+
     -- side panel with symbols (replaced by Navigator :LspSymbols cmd)
     -- ["liuchengxu/vista.vim"] = {
     --   cmd = "Vista",
@@ -716,6 +726,7 @@ return {
         -- after = {"nvim-lspconfig", "navigator.lua", "guihua.lua"},
         ft = { "go" },
         opt = true,
+        after = {"null-ls.nvim"},
         config = function()
             require("custom.plugins.configs.gonvim").setup()
             require("core.utils").load_mappings "gonvim"

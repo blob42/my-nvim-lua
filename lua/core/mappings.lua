@@ -1001,7 +1001,7 @@ M.gitsigns = {
         ["<leader>gr"] = { "<cmd> lua require'gitsigns'.reset_buffer()<CR>",
             "Reset the lines of all hunks in the buffer",
         },
-        ["<leader>gp"] = { "<cmd> lua require'gitsigns'.preview_hunk()<CR>",
+        ["<leader>gpr"] = { "<cmd> lua require'gitsigns'.preview_hunk()<CR>",
             "Git preview hunk",
         },
         ["<leader>gu"] = { "<cmd> lua require'gitsigns'.undo_stage_hunk()<CR>",
@@ -1101,6 +1101,17 @@ M.refactoring = {
     plugin = true,
     v = {
         ["<leader>rr"] = {":lua require'refactoring'.select_refactor()<CR>", "refactoring using telescope", opts = { expr = false }},
+    }
+}
+
+M.null_ls = {
+    plugin = true,
+    n = {
+        ["<leader>nlr"] = {function()
+            require('null-ls').toggle({
+                name = 'revive'
+            })
+        end, "null-ls toggle golang linter <revive>"},
     }
 }
 

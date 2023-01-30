@@ -1,3 +1,8 @@
+local ok, null_ls = pcall(require, 'null-ls')
+if not ok then 
+    vim.notify("missing module null-ls", vim.log.levels.WARN)
+end
+
 local M = {}
 
 local config = {
@@ -13,10 +18,15 @@ local config = {
   dap_debug_keymap = false,
   -- dap_debug_gui = false,
   -- dap_debug_vt = false,
+  log_path = vim.fn.stdpath('cache') .. '/gonvim.log',
 }
 
 function M.setup()
-  require("go").setup(config)
+    require("go").setup(config)
+    local gotest = require('go.null_ls').gotest()
+    local gotest_codeaction = require("go.null_ls").gotest_action()
+    null_ls.register(gotest)
+    null_ls.register(gotest_codeaction)
 end
 
 return M

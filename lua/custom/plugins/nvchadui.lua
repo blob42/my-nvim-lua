@@ -107,6 +107,11 @@ return {
 
         local Lsp = vim.lsp.util.get_progress_messages()[1]
 
+        -- hide spammy null-ls progress
+        if Lsp and Lsp.name:match "null%-ls" then
+            return ""
+        end
+
         if vim.o.columns < 120 or not Lsp then
             return ""
         end
