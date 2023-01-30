@@ -43,7 +43,7 @@ as global variable
 :bufdo — Execute the command in each buffer in the buffer list
 :tabdo — Execute the command in each tab page
 :windo — Execute the command in each window
-:cdo — Execute the command in each valid entry in the quickfix list
+:cdo — Execute the command in each valid entry in the quickfix list (entry itself not the file)
 :cfdo — Execute the command in each file in the quickfix list
 :vimgrep `:vimgrep /<pattern>/ ##` where ## is replaces with files in arg list
 
@@ -51,3 +51,8 @@ as global variable
 `packadd cfilter`
 `:Cfilter /pattern/`
 `:Lfilter /pattern`
+
+## Delete lines matching pattern
+!! Use the :global command
+
+    :g/profile/d

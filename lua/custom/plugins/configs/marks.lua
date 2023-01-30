@@ -5,7 +5,7 @@ if not present then
 end
 
 
-M = {}
+local M = {}
 
 local config = {
   bookmark_0 = {

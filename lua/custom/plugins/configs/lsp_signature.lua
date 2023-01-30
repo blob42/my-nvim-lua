@@ -10,7 +10,7 @@ local config = {
 
 }
 
-M = {}
+local M = {}
 M.setup = function()
   signature.setup(config)
 end

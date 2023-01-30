@@ -4,7 +4,7 @@ if not present then
   return
 end
 
-M = {}
+local M = {}
 
 local config = {
   keywords = {
