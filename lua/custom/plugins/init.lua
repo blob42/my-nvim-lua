@@ -787,6 +787,10 @@ return {
     },
 
     -- Python
+    ["dccsillag/magma-nvim"] = {
+        opt = true,
+        run = ':UpdateRemotePlugins',
+    },
 
     -- theseraus{{{
     -- ["Ron89/thesaurus_query.vim"] = { },
@@ -796,11 +800,3 @@ return {
     -- https://www.gutenberg.org/files/3202/files/
     ["preservim/vim-lexical"] = { },-- }}}
 }
-
-
-
-
-
-
-
-
