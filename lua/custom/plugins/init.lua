@@ -138,7 +138,7 @@ return {
     -- Github Copilot
     ["github/copilot.vim"] = {
         opt = true,
-        keys = {"<leader>gpt"},
+        keys = {"<leader>ghp"},
         setup= function()
             require("core.utils").load_mappings "copilot"
         end
@@ -551,7 +551,7 @@ return {
     -- ------------------
 
     ["neovim/nvim-lspconfig"] = { -- {{{
-        after = { "neodev.nvim", "mason.nvim", "mason-lspconfig.nvim" },
+        after = {"mason.nvim", "mason-lspconfig.nvim", "neodev.nvim" },
         module = { "lspconfig" },
         lock = false,
         config = function()
@@ -586,7 +586,7 @@ return {
         lock = false,
         opt = true,
         module = "navigator",
-        after = { "nvim-lspconfig", "base46", "ui", "mason.nvim", "mason-lspconfig.nvim", "neodev.nvim" },
+        after = { "nvim-lspconfig", "base46", "ui", "mason.nvim", "mason-lspconfig.nvim", "neodev.nvim", "null-ls.nvim"},
         requires = { "neovim/nvim-lspconfig", "ray-x/guihua.lua", "nvim-treesitter/nvim-treesitter" },
         setup = function()
             require("core.lazy_load").on_file_open "navigator.lua"
@@ -715,6 +715,11 @@ return {
     ["folke/neodev.nvim"] = {
         -- commit = "d6212c1"
         -- module = "neodev",
+        ft = {'lua'},
+        module = {'neodev'},
+        config = function()
+            require('custom.plugins.configs.neodev').setup()
+        end
     },
     ["hrsh7th/cmp-nvim-lua"] = { -- NOTE: needs to be disabled for neodev
         disable = true,

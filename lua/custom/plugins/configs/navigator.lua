@@ -171,19 +171,22 @@ local config = {
         }
       }
     },
+    sumneko_lua = {
+        before_init=require("neodev.lsp").before_init,
+    }
 
     -- FIX: deperecated https://github.com/ray-x/navigator.lua/commit/1b2a0856f4adfffc5c4e785a6779c62759c8c926
-    ["neodev"] = {
-      library = {
-        enabled = true,
-        runtime = true,
-        -- plugins = true,
-        plugins = {"plenary.nvim"},
-        -- plugins = {"navigator.lua", "guihua.lua", "go.nvim", "plenary.nvim"},
-        types = true,
-      },
-      setup_jsonls = true,
-    },
+    -- ["neodev"] = {
+    --   library = {
+    --     enabled = true,
+    --     runtime = true,
+    --     -- plugins = true,
+    --     plugins = {"plenary.nvim"},
+    --     -- plugins = {"navigator.lua", "guihua.lua", "go.nvim", "plenary.nvim"},
+    --     types = true,
+    --   },
+    --   setup_jsonls = true,
+    -- },
   }
 }
 
