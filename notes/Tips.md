@@ -36,3 +36,23 @@ a line break is inserted before the appended text.
 like from a scheduled func call or timer, save the var in vim.g and access it 
 as global variable
 
+
+# Refactoring
+* [refactoring article](https://alpha2phi.medium.com/neovim-for-beginners-refactoring-4f517d12a43f)
+:argdo — Execute the command for each file in the argument list
+:bufdo — Execute the command in each buffer in the buffer list
+:tabdo — Execute the command in each tab page
+:windo — Execute the command in each window
+:cdo — Execute the command in each valid entry in the quickfix list (entry itself not the file)
+:cfdo — Execute the command in each file in the quickfix list
+:vimgrep `:vimgrep /<pattern>/ ##` where ## is replaces with files in arg list
+
+## Filtering quickfix
+`packadd cfilter`
+`:Cfilter /pattern/`
+`:Lfilter /pattern`
+
+## Delete lines matching pattern
+!! Use the :global command
+
+    :g/profile/d

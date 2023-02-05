@@ -4,6 +4,7 @@ if not present then
     return
 end
 
+local M = {}
 local types = require("luasnip.util.types")
 
 local options = {

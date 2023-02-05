@@ -114,6 +114,58 @@ return {
         end
     }, -- }}}
 
+    ["hrsh7th/cmp-copilot"] = {
+        after = "copilot.vim"
+    },
+
+
+    -- Code Refactoring
+    ["ThePrimeagen/refactoring.nvim"] = {
+        setup = function()
+            require("core.utils").load_mappings "refactoring"
+        end,
+        config = function()
+            require("custom.plugins.configs.refactoring").setup()
+        end,
+        after = {"telescope.nvim"},
+        requires = {
+            {"nvim-lua/pleanery.nvim"},
+            {"nvim-treesitter/nvim-treesitter"}
+        }
+    },
+
+    -- AI/Deep Learning Helpers
+    -- Github Copilot
+    ["github/copilot.vim"] = {
+        opt = true,
+        keys = {"<leader>ghp"},
+        setup= function()
+            require("core.utils").load_mappings "copilot"
+        end
+    },
+    ["MunifTanjim/nui.nvim"] = {
+        module = {"nui.layout", "nui.popup"},
+        module_pattern = {"nui.*"}
+    },
+
+    ["jackMort/ChatGPT.nvim"] = {
+        opt = true,
+        keys = {"<leader>gpt"},
+        module_pattern = {"chatgpt*"},
+        after = {"nui.nvim", "telescope.nvim"},
+        setup = function()
+            require("custom.plugins.configs.chat-gpt").load_api_key()
+        end,
+        config = function()
+            require("custom.plugins.configs.chat-gpt").setup()
+        end,
+        requires = {
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim"
+        }
+    },
+
     -- snippets
     ["honza/vim-snippets"] = { -- {{{
         module = { "cmp", "cmp_nvim_lsp" },
@@ -156,7 +208,7 @@ return {
 
     ["folke/todo-comments.nvim"] = { -- {{{
         -- commit = "6124066",
-        after = "nvim-treesitter",
+        -- after = "nvim-treesitter",
         setup = function()
             -- require("core.lazy_load").on_file_open "todo-comments"
             require("core.utils").load_mappings "todo-comments"
@@ -176,7 +228,7 @@ return {
     -- ["p00f/nvim-ts-rainbow"] = {
     --   opt = true,
     -- },
-    --
+
 
     -- dap
 
@@ -193,7 +245,8 @@ return {
     },
 
     ["rcarriga/nvim-dap-ui"] = {
-        tag = "*",
+        -- tag = "*",
+        commit = "1e21b3b",
         after = "nvim-dap",
         config = function()
             require('custom.plugins.configs.dapui').setup()
@@ -248,6 +301,15 @@ return {
         keys = { "<leader>", "<BS>", "<Space>", "\"", "`", "'", "z", "g" }
     },
 
+
+    -- scren saver
+    ["folke/drop.nvim"] = {
+        opt = true,
+        config = function()
+            require("drop").setup()
+        end
+    },
+
     -- repeat operator for plugin commands
     ["tpope/vim-repeat"] = {
         keys = { "." },
@@ -278,7 +340,7 @@ return {
     ["ibhagwan/fzf-lua"] = {
         lock = true,
         after = "ui",
-        config = function()
+        eonfig = function()
             require("custom.plugins.configs.fzflua")
             require("plugins.configs.others").devicons()
         end,
@@ -289,7 +351,7 @@ return {
 
     -- Theme customization
     ["uga-rosa/ccc.nvim"] = { -- {{{{{{
-        commit = "427471b",
+        -- commit = "427471b",
         cmd    = { "Ccc*", "<Plug>(ccc-insert)" },
         setup  = function()
             require("core.utils").load_mappings "ccc"
@@ -313,20 +375,12 @@ return {
     }, -- }}}
 
     ["cbochs/grapple.nvim"] = {
-        commit = "50b8271",
+        -- commit = "50b8271",
         setup = function()
             require("core.utils").load_mappings "grapple"
         end,
         config = function()
-            require("grapple").setup({
-            -- Your configuration goes here
-            -- Leave empty to use the default configuration
-            -- Please see the Configuration section below for more information
-            save_path = vim.fn.stdpath("data") .. "/" .. "grapple.json",
-            scope = "global",
-            log_level = "debug",
-
-        })
+            require('custom.plugins.configs.grapple').setup()
         end
     },
     -- tmux helpers
@@ -459,6 +513,7 @@ return {
                     "terminal*",
                     "db*",
                     "aerial*",
+                    "grapple",
                 },
             })
         end
@@ -496,7 +551,7 @@ return {
     -- ------------------
 
     ["neovim/nvim-lspconfig"] = { -- {{{
-        after = { "neodev.nvim", "mason.nvim", "mason-lspconfig.nvim" },
+        after = {"mason.nvim", "mason-lspconfig.nvim", "neodev.nvim" },
         module = { "lspconfig" },
         lock = false,
         config = function()
@@ -531,15 +586,15 @@ return {
         lock = false,
         opt = true,
         module = "navigator",
-        after = { "nvim-lspconfig", "base46", "ui", "mason.nvim", "mason-lspconfig.nvim", "neodev.nvim" },
+        after = { "nvim-lspconfig", "base46", "ui", "mason.nvim", "mason-lspconfig.nvim", "neodev.nvim", "null-ls.nvim"},
         requires = { "neovim/nvim-lspconfig", "ray-x/guihua.lua", "nvim-treesitter/nvim-treesitter" },
         setup = function()
             require("core.lazy_load").on_file_open "navigator.lua"
-            -- require("core.utils").load_mappings "navigator"
         end,
         config = function()
             require("custom.plugins.configs.navigator").setup()
             require("base46").load_highlight "lsp"
+            require("core.utils").load_mappings "navigator"
 
             -- TODO: use nvchadui_lsp features manually
             -- require("nvchad_ui.lsp")
@@ -554,6 +609,16 @@ return {
         end
 
     }, -- }}}
+
+    ["jose-elias-alvarez/null-ls.nvim"] = {
+        requires = {"nvim-lua/plenary.nvim"},
+        setup = function()
+            require('core.utils').load_mappings 'null_ls'
+        end,
+        config = function()
+            require("custom.plugins.configs.null-ls").setup()
+        end,
+    },
 
     -- side panel with symbols (replaced by Navigator :LspSymbols cmd)
     -- ["liuchengxu/vista.vim"] = {
@@ -650,6 +715,11 @@ return {
     ["folke/neodev.nvim"] = {
         -- commit = "d6212c1"
         -- module = "neodev",
+        ft = {'lua'},
+        module = {'neodev'},
+        config = function()
+            require('custom.plugins.configs.neodev').setup()
+        end
     },
     ["hrsh7th/cmp-nvim-lua"] = { -- NOTE: needs to be disabled for neodev
         disable = true,
@@ -658,12 +728,13 @@ return {
     -- golang dev
 
     ["ray-x/go.nvim"] = { -- {{{
-        lock = true,
         -- after = {"nvim-lspconfig", "navigator.lua", "guihua.lua"},
         ft = { "go" },
         opt = true,
+        after = {"null-ls.nvim"},
         config = function()
             require("custom.plugins.configs.gonvim").setup()
+            require("core.utils").load_mappings "gonvim"
         end
     }, -- }}}
 
@@ -698,7 +769,7 @@ return {
     -- https://github.com/kristijanhusak/vim-dadbod-ui
     ["tpope/vim-dadbod"] = {
         ft = "sql",
-        cmd = {"DBUI"}, 
+        cmd = {"DBUI"},
     },
     ["kristijanhusak/vim-dadbod-ui"] = {
         after = {"vim-dadbod"},
@@ -715,9 +786,17 @@ return {
         end
     },
 
+    -- Python
+    ["dccsillag/magma-nvim"] = {
+        opt = true,
+        run = ':UpdateRemotePlugins',
+    },
+
     -- theseraus{{{
     -- ["Ron89/thesaurus_query.vim"] = { },
 
     -- setup in after/plugin/vim-lexical
+    -- requires a thesearus file like from here:
+    -- https://www.gutenberg.org/files/3202/files/
     ["preservim/vim-lexical"] = { },-- }}}
 }

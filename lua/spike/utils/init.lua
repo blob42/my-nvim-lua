@@ -44,4 +44,26 @@ end
   end
 end
 
+-- convert timestamp under cursor in milliseconds to a human readable string
+-- @param timestamp in milliseconds
+-- @return human readable string
+M.human_timestamp = function()
+    cword = vim.fn.expand('<cword>')
+
+
+    -- make sure cword is a number
+    local n = tonumber(cword)
+    if n == nil then return end
+
+    local time = os.date("*t", cword / (1000*1000))
+    format = string.format("%04d-%02d-%02d %02d:%02d:%02d", time.year, time.month, time.day, time.hour, time.min, time.sec)
+    vim.notify(format, vim.lsp.log_levels.INFO)
+end
+
+-- 1663878015759000
+-- 1670185951498000
+-- M.human_timestamp()
+
 return M
+
+

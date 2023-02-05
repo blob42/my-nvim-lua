@@ -4,7 +4,7 @@ if not present then
   return
 end
 
-M = {}
+local M = {}
 
 local config = {
   keywords = {
@@ -25,7 +25,7 @@ local config = {
   },
   highlight = {
       -- multiline = false,
-      after = "fg",
+      after = "",
   }
 }
 

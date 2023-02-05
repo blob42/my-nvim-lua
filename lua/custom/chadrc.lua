@@ -16,7 +16,8 @@ local highlights = require "custom.highlights"
 -- vim.tbl_deep_extend("force", M.ui.hl_add, custom_theme)
 
 M.ui = {
-    theme = "gruvbox_material",
+    -- theme = "gruvbox_material",
+    theme = "ayu-dark",
     theme_toggle = { "gruvbox_material", "gruvbox_light" },
     transparency = true,
     hl_override = highlights.override,

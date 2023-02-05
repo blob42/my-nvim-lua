@@ -1,7 +1,7 @@
 local libmodal = require 'libmodal'
 local daputils = require 'spike.dap.utils'
 
-M = {}
+local M = {}
 M.layer = nil
 
 

@@ -12,6 +12,7 @@ M.general = { --{{{
 
         ["jk"] = { "<esc>", "escape" },
 
+
         -- navigate within insert mode
         ["<C-h>"] = { "<Left>", "move left" },
         ["<C-l>"] = { "<Right>", "move right" },
@@ -36,6 +37,10 @@ M.general = { --{{{
             end,
             "no highlight"
         },
+
+        -- smoth scrolling with M-j M-k
+        ["<M-j>"] = { "<C-e>", "scroll down"},
+        ["<M-k>"] = { "<C-y>", "scroll down"},
 
         -- switch between windows
         ["<C-h>"] = { "<C-w>h", "window left" },
@@ -267,6 +272,7 @@ M.general = { --{{{
         ["g."] = { ":cwd<CR>", "change dir to current file", opts = { remap = true } },
         ["<leader>g."] = { ":Gcd<CR>", "change dir to git root" },
 
+
         -- Packer commands
         --
         -- PackerSnapshot
@@ -277,7 +283,7 @@ M.general = { --{{{
         end
             , "packer snapshot" },
         ["<leader>pst"] = { "<cmd> PackerStatus<CR>", "packer status" },
-        ["<leader>psc"] = { "<cmd> PackerSync<CR>", "packer sync" },
+        -- ["<leader>psc"] = { "<cmd> PackerSync<CR>", "packer sync" },
         ["<leader>pc"] = { "<cmd> PackerCompile<CR>", "packer compile" },
 
         ["<leader>pr"] = { function()
@@ -961,10 +967,11 @@ M.vimux = {
 }
 
 -- extra mappings for golang
-M.golang = {
+M.gonvim = {
     plugin = true,
     n = {
-        ["<leader>da"] = { "<cmd> GoDebug -a<CR>", "go debug attach" },
+        -- ["<leader>da"] = { "<cmd> GoDebug -a<CR>", "go debug attach" },
+        ["<leader>gotf"] = { "<cmd> GoTestFunc<CR>" },
     }
 }
 
@@ -989,9 +996,12 @@ M.gitsigns = {
             "Git stage buffer",
         },
         ["<leader>gR"] = { "<cmd> lua require'gitsigns'.reset_buffer_index()<CR>",
-            "Git reset buffer index",
+            "Unstage all hunks for current buffer in the index",
         },
-        ["<leader>gp"] = { "<cmd> lua require'gitsigns'.preview_hunk()<CR>",
+        ["<leader>gr"] = { "<cmd> lua require'gitsigns'.reset_buffer()<CR>",
+            "Reset the lines of all hunks in the buffer",
+        },
+        ["<leader>gpr"] = { "<cmd> lua require'gitsigns'.preview_hunk()<CR>",
             "Git preview hunk",
         },
         ["<leader>gu"] = { "<cmd> lua require'gitsigns'.undo_stage_hunk()<CR>",
@@ -1009,18 +1019,19 @@ M.gitsigns = {
 M.grapple = {
     plugin = true,
     n = {
-        [",J"] = { "<cmd> lua require'grapple'.cycle_forward()<CR>" },
-        [",K"] = { "<cmd> lua require'grapple'.cycle_backward()<CR>" },
-        [",T"] = { "<cmd> GrappleTag<CR>"},
-        [",N"] = { function()
+        ["<leader>J"] = { "<cmd> lua require'grapple'.cycle_forward()<CR>" },
+        ["<leader>K"] = { "<cmd> lua require'grapple'.cycle_backward()<CR>" },
+        ["<leader>T"] = { "<cmd> GrappleTag<CR>"},
+        ["<leader>N"] = { function()
             vim.ui.input({ prompt = "tag: " }, function(input)
-                require("grapple").tag({ name = input })
+                require("grapple").tag({ key = input })
             end)
         end, "grapple tag with name" },
         --TODO: keybind for popup select names
-        [",,m"] = { "<cmd> lua require'grapple'.select({name='mappings'})<CR>" },
-        [",,p"] = { "<cmd> lua require'grapple'.select({name='plugins'})<CR>" },
-        [",,P"] = { "<cmd> lua require'grapple'.select({name='Plugins'})<CR>" },
+        ["<leader><leader>m"] = { "<cmd> lua require'grapple'.select({key='mappings'})<CR>" },
+        ["<leader><leader>p"] = { "<cmd> lua require'grapple'.select({key='plugins'})<CR>" },
+        ["<leader><leader>P"] = { "<cmd> lua require'grapple'.select({key='Plugins'})<CR>" },
+        ["<leader><leader>g"] =  { "<cmd> lua require'grapple'.popup_tags()<CR>" },
     }
 }
 
@@ -1067,6 +1078,40 @@ M.zk = {
         ["<leader>zl"] = {"<Cmd>ZkLinks<CR>","zk links"},
         ["<leader>zh"] = {"<Cmd>ZkBacklinks<CR>","zk backlinks"},
         -- mappings to lsp commands are in zk.lua config file
+    }
+}
+
+M.copilot = {
+    plugin = true,
+    n = {
+        -- copilot options here
+    }
+}
+
+M.navigator = {
+    plugin = true,
+    n = {
+        ["<leader>gt"] = { function() require('navigator.treesitter').buf_ts() end, 'TS buf symbols'},
+        ["<leader>gT"] = { function() require('navigator.treesitter').bufs_ts() end, 'TS bufs symbols'},
+        ['<Leader>ct'] = { function() require('navigator.ctags').ctags() end, 'lsp ctags' },
+    }
+}
+
+M.refactoring = {
+    plugin = true,
+    v = {
+        ["<leader>rr"] = {":lua require'refactoring'.select_refactor()<CR>", "refactoring using telescope", opts = { expr = false }},
+    }
+}
+
+M.null_ls = {
+    plugin = true,
+    n = {
+        ["<leader>nlr"] = {function()
+            require('null-ls').toggle({
+                name = 'revive'
+            })
+        end, "null-ls toggle golang linter <revive>"},
     }
 }
 

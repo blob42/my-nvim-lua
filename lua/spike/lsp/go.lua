@@ -27,7 +27,7 @@ function  M.gopls_onattach(client, bufnr)
   --   end
   -- })
 
-  require("core.utils").load_mappings "golang"
+  -- require("core.utils").load_mappings "golang"
     
 end
 

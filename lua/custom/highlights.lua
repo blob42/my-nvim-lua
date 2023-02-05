@@ -34,11 +34,14 @@ M.override = {
         St_LspInfo = {
             fg = "white"
         },
+        LineNr = {
+            fg = "#5f4468"
+        },
     }
 
 M.add =  {
         Visual                   = {
-            bg = "blue",
+            bg = "#ff7775",
             fg = "black",
         },
         BookmarkSign             = {

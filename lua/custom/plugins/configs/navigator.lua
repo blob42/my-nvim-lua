@@ -27,9 +27,11 @@ local config = {
     { key = 'gd', func = require('navigator.definition').definition, desc = 'lsp definition' },
     { key = 'gD', func = vim.lsp.buf.declaration, desc = 'lsp declaration' },
     { key = 'gp', func = require('navigator.definition').definition_preview, desc = 'lsp definition_preview' },
-    { key = '<Leader>gt', func = require('navigator.treesitter').buf_ts, desc = 'lsp buf_ts' },
-    { key = '<Leader>gT', func = require('navigator.treesitter').bufs_ts, desc = 'lsp bufs_ts' },
-    { key = '<Leader>ct', func = require('navigator.ctags').ctags, desc = 'lsp ctags' },
+    -- handled by main mappings
+    -- { key = '<Leader>gt', func = require('navigator.treesitter').buf_ts, desc = 'lsp buf_ts' },
+    -- { key = '<Leader>gT', func = require('navigator.treesitter').bufs_ts, desc = 'lsp bufs_ts' },
+    -- { key = '<Leader>ct', func = require('navigator.ctags').ctags, desc = 'lsp ctags' },
+
     { key = 'K', func = vim.lsp.buf.hover, desc = 'lsp hover' },
     { key = '<M-a>', mode = 'n', func = require('navigator.codeAction').code_action, desc = 'lsp code_action' },
     { key = '<M-a>', mode = 'i', func = require('navigator.codeAction').code_action, desc = 'lsp code_action' },
@@ -48,8 +50,8 @@ local config = {
     { key = '<Space>D', func = vim.lsp.buf.type_definition, desc = 'lsp type_definition' },
     { key = 'gL', func = require('navigator.diagnostics').show_diagnostics, desc = 'lsp show_diagnostics' },
     { key = 'gG', func = require('navigator.diagnostics').show_buf_diagnostics, desc = 'lsp show_buf_diagnostics' },
-    { key = '<Leader>dt', func = require('navigator.diagnostics').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
-    { key = '<Leader>td', func = require('spike.diagnostics').toggle, desc = 'lsp toggle_diagnostics' },
+    -- { key = '<Leader>dt', func = require('navigator.diagnostics').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
+    -- { key = '<Leader>td', func = require('spike.diagnostics').toggle, desc = 'lsp toggle_diagnostics' },
     { key = ']d', func = vim.diagnostic.goto_next, desc = 'lsp next diagnostics' },
     { key = '[d', func = vim.diagnostic.goto_prev, desc = 'lsp prev diagnostics' },
     { key = ']O', func = vim.diagnostic.set_loclist, desc = 'lsp diagnostics set loclist' },
@@ -144,7 +146,7 @@ local config = {
     },
 
     diagnostic_scrollbar_sign = false,
-    display_diagnostic_qf = false,
+    disply_diagnostic_qf = false,
 
     disable_lsp = {"clangd", "rust_analyzer"},
 
@@ -169,18 +171,22 @@ local config = {
         }
       }
     },
+    sumneko_lua = {
+        before_init=require("neodev.lsp").before_init,
+    }
 
-    ["neodev"] = {
-      library = {
-        enabled = true,
-        runtime = true,
-        -- plugins = true,
-        plugins = {"plenary.nvim"},
-        -- plugins = {"navigator.lua", "guihua.lua", "go.nvim", "plenary.nvim"},
-        types = true,
-      },
-      setup_jsonls = true,
-    },
+    -- FIX: deperecated https://github.com/ray-x/navigator.lua/commit/1b2a0856f4adfffc5c4e785a6779c62759c8c926
+    -- ["neodev"] = {
+    --   library = {
+    --     enabled = true,
+    --     runtime = true,
+    --     -- plugins = true,
+    --     plugins = {"plenary.nvim"},
+    --     -- plugins = {"navigator.lua", "guihua.lua", "go.nvim", "plenary.nvim"},
+    --     types = true,
+    --   },
+    --   setup_jsonls = true,
+    -- },
   }
 }
 
