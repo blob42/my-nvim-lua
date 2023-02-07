@@ -37,6 +37,19 @@ return M
 
         ),
 
+        -- add a custom mapping
+        s({ trig = 'map', dscr = 'add custom mapping'}, fmt([[
+        ['{}'] = {{ {}, '{}' }},
+        ]], {
+            i(1, 'from'),
+            c(3, {
+                sn(nil, fmt([['{}']], {i(1)})),
+                sn(nil, fmt([[function() {} end]], {i(1)})),
+            }),
+            i(2, "desc")
+        })),
+
+
         -- add packer plugin
         s({ trig = "plug", dscr = "add packer plugin"}, fmt([[
         ["{}"] = {{

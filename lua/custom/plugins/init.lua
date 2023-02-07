@@ -568,8 +568,9 @@ return {
         end,
     },
     ["ray-x/guihua.lua"] = {
-        lock = true,
+        -- lock = true,
         module = { "navigator" },
+        module_pattern = {"guihua*"},
         run = "cd lua/fzy && make",
         config = function()
             require("guihua.maps").setup {

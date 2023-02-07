@@ -19,6 +19,9 @@ local config = {
   -- dap_debug_gui = false,
   -- dap_debug_vt = false,
   log_path = vim.fn.stdpath('cache') .. '/gonvim.log',
+  lsp_inlay_hints = {
+      enable = true,
+  }
 }
 
 function M.setup()

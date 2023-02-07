@@ -11,10 +11,22 @@ M.config = {
     default_timeout = 5000,
     sources = {
         null_ls.builtins.code_actions.gitsigns,
-        -- null_ls.builtins.diagnostics.golangci_lint,
+        null_ls.builtins.code_actions.refactoring,
+        null_ls.builtins.code_actions.shellcheck,
 
-        -- golang revive
-        null_ls.builtins.diagnostics.revive,
+        null_ls.builtins.diagnostics.checkmake,
+        null_ls.builtins.diagnostics.fish,
+        null_ls.builtins.diagnostics.hadolint,
+        null_ls.builtins.diagnostics.jshint,
+        null_ls.builtins.diagnostics.flake8,
+        -- null_ls.builtins.diagnostics.pylint,
+
+
+        null_ls.builtins.formatting.autoflake,
+        null_ls.builtins.formatting.autopep8,
+
+        -- golang revive (manually enabled with shortcut from mappings)
+        -- null_ls.builtins.diagnostics.revive,
     },
     on_attach = function(client, bufnr)
         local util = require('navigator.util')

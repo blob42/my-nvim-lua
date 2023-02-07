@@ -58,9 +58,19 @@ M.general = { --{{{
         ["<leader>="] = { "<C-w>=", "adjust viewports " },
 
         -- quit dont save
-        ["<leader>qq"] = { "<cmd> quitall! <cr>", "quit/close all windows, don't save" },
+        ["<leader>qq"] = {function()
+            local Job = require("plenary.job")
+            local msg = 'use ZQ or ZX for (!qa)'
+            Job:new({
+                command = 'dunstify',
+                args = {'-a', 'neovim', 'mapping changed', msg}
+            }):sync()
+        end, "quit/close all windows, don't save" },
+
+        ["ZX"] = { ":qa!<CR>", "quit all no save" },
 
         -- ["Q"] = { "<cmd> q!<cr>", "quit now" },
+
 
         -- easier horizontal scrolling
         ["zl"] = { "zL", "horizontal scroll left" },
@@ -773,6 +783,12 @@ M.nvterm = { --{{{
             end,
             "toggle horizontal term",
         },
+        ["<A-v>"] = {
+            function()
+                require("nvterm.terminal").toggle "vertical"
+            end,
+            "toggle vertical term",
+        },
     },
 
     n = {
@@ -892,7 +908,8 @@ M.asyncrun = { --{{{
         -- ["``"] = { "<cmd> call asyncrun#quickfix_toggle(8)<CR>", "toggle quickfix window" },
         -- HELP: 
         -- adding ! after AsyncRun disables autoscroll
-        ["<leader>m"] = { ":AsyncRun -program=" .. vim.o.makeprg .. "<CR>", "make using quickfix asyncrun" },
+        -- -raw disables matchint errorformat, remove raw to enable it again
+        ["<leader>m"] = { ":AsyncRun -raw -program=" .. vim.o.makeprg .. "<CR>", "make using quickfix asyncrun" },
         ["<leader>mf"] = { function()
             require('spike.utils.nvterm').run_cmd(vim.o.makeprg, { mode = "float"} )
         end, "run make in a floating terminal" },
@@ -1108,10 +1125,16 @@ M.null_ls = {
     plugin = true,
     n = {
         ["<leader>nlr"] = {function()
-            require('null-ls').toggle({
-                name = 'revive'
-            })
+            local null_ls = require('null-ls')
+            if not null_ls.is_registered({ name = 'revive'}) then
+                null_ls.register(null_ls.builtins.diagnostics.revive)
+            else
+                null_ls.toggle({ name = 'revive' })
+            end
         end, "null-ls toggle golang linter <revive>"},
+        ['<leader>nls'] = { function()
+		require('spike.nullls').select_sources()
+	end, 'desc' },
     }
 }
 

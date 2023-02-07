@@ -171,6 +171,19 @@ local config = {
         }
       }
     },
+    pylsp = {
+        settings = {
+            pylsp = {
+                plugins = {
+                    autopep8 = { enabled = false },
+                    -- pylint = { enabled = false },
+                    flake8 = { enabled = false },
+                    pycodestyle= { enabled = false},
+                    pyflakes = { enabled = false },
+                }
+            }
+        }
+    },
     sumneko_lua = {
         before_init=require("neodev.lsp").before_init,
     }

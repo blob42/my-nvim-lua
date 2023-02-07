@@ -175,7 +175,7 @@ M.packer_sync = function(...)
 end
 
 M.bufilter = function()
-  local bufs = vim.t.bufs
+  local bufs = vim.t.bufs or {}
 
   for i = #bufs, 1, -1 do
     if not vim.api.nvim_buf_is_valid(bufs[i]) then

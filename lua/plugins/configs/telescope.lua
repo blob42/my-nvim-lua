@@ -1,6 +1,7 @@
 local present, telescope = pcall(require, "telescope")
 
 if not present then
+    vim.notify("missing module telescope", vim.log.levels.WARN)
   return
 end
 
@@ -54,7 +55,8 @@ local options = {
     -- Developer configurations: Not meant for general override
     buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     mappings = {
-      n = { ["q"] = require("telescope.actions").close },
+      n = { ["q"] = require("telescope.actions").close
+  },
     },
   },
 
@@ -64,6 +66,7 @@ local options = {
 -- check for any override
 options = require("core.utils").load_override(options, "nvim-telescope/telescope.nvim")
 telescope.setup(options)
+
 
 -- load extensions
 pcall(function()

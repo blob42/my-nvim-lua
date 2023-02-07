@@ -14,12 +14,12 @@ local options = {
     ext_opts = {
         [types.choiceNode] = {
             passive = {
-                virt_text = { { " ", "LuaSnipChoice" } },
+                virt_text = { { " ", "LuaSnipChoice" } },
             }
         },
         [types.insertNode] = {
             passive = {
-                virt_text = { { " ", "LuaSnipInsert" } },
+                virt_text = { { " ", "LuaSnipInsert" } },
             }
         }
     },
