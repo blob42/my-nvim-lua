@@ -8,5 +8,6 @@ augroup END
 let g:lexical#thesaurus_key = '<leader>ts'
 let g:lexical#dictionary_key = '<leader>kk'
 let g:lexical#thesaurus = ['~/.local/share/mthesaur.txt',]
+let g:lexical#dictionary = ['/usr/share/dict/words', '/usr/share/dict/spanish', '/usr/share/dict/french']
 
 
