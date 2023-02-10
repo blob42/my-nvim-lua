@@ -97,7 +97,7 @@ M.general = { --{{{
         ["<BS>n"] = { "<cmd> set nu!<CR><cmd> set rnu!<CR>", "toggle line number" },
 
         -- option toggle cursor line
-        ["<BS>l"] = { "<cmd> set cul!<CR>", "toggle line number" },
+        ["<BS>l"] = { "<cmd> set cul!<CR>", "toggle cursor line" },
 
         ["<BS>c"] = { "<cmd>cclose<CR><cmd>lclose<CR>", "close quickfix" },
 
@@ -267,8 +267,13 @@ M.general = { --{{{
             return "g@l"
         end, "TS swap left with sibling", opts = { expr = true } },
 
+        -- quickfix
         ["]e"] = { "<cmd> cn <CR>", "quickfix next error" },
         ["[e"] = { "<cmd> cp <CR>", "quickfix previous error" },
+
+        -- loclist
+        ["]l"] = { "<cmd> lne <CR>", "quickfix next error" },
+        ["[l"] = { "<cmd> lp <CR>", "quickfix previous error" },
 
 
         -- Tabularize mappings
@@ -474,6 +479,9 @@ M.comment = { --{{{
     },
 } --}}}
 
+-- keys relatd to lsp, to be loaded inside `on_attach`. these are generic lsp
+-- keys, refer to navigator's config for the rest.
+-- see ../custom/plugins/configs/navigator.lua
 M.lspconfig = { --{{{
     plugin = true,
 
@@ -508,13 +516,6 @@ M.lspconfig = { --{{{
             "lsp implementation",
         },
 
-        ["<leader>ls"] = {
-            function()
-                vim.lsp.buf.signature_help()
-            end,
-            "lsp signature_help",
-        },
-
         ["<leader>D"] = {
             function()
                 vim.lsp.buf.type_definition()
@@ -522,83 +523,24 @@ M.lspconfig = { --{{{
             "lsp definition type",
         },
 
-        ["<leader>ra"] = {
-            function()
-                require("nvchad_ui.renamer").open()
-            end,
-            "lsp rename",
+
+        ["[d"] = { vim.diagnostic.goto_prev , "lsp goto prev" },
+
+        ["]d"] = { vim.diagnostic.goto_next, "lsp goto_next",
         },
 
-        ["<leader>ca"] = {
-            function()
-                vim.lsp.buf.code_action()
-            end,
-            "lsp code_action",
-        },
+        [']O'] = { vim.diagnostic.setloclist, "lsp diagnostic setloclist" },
 
-        ["gr"] = {
-            function()
-                vim.lsp.buf.references()
-            end,
-            "lsp references",
-        },
+        ["<space>fm"] = { vim.lsp.buf.format, "lsp formatting" },
+        ['<leader>gi'] = { vim.lsp.buf.incoming_calls, 'lsp incoming_calls' },
+        ['<leader>go'] = { vim.lsp.buf.outgoing_calls, 'lsp outgoing_calls' },
+        ['<C-LeftMouse>'] = { vim.lsp.buf.definition, 'lsp definition' },
+        ['g<LeftMouse>'] = { vim.lsp.buf.implementation, 'lsp implementation' },
 
-        ["<leader>f"] = {
-            function()
-                vim.diagnostic.open_float()
-            end,
-            "lsp floating diagnostic",
-        },
-
-        ["[d"] = {
-            function()
-                vim.diagnostic.goto_prev()
-            end,
-            "lsp goto prev",
-        },
-
-        ["d]"] = {
-            function()
-                vim.diagnostic.goto_next()
-            end,
-            "lsp goto_next",
-        },
-
-        ["<leader>q"] = {
-            function()
-                vim.diagnostic.setloclist()
-            end,
-            "lsp diagnostic setloclist",
-        },
-
-        ["<leader>fm"] = {
-            function()
-                vim.lsp.buf.formatting {}
-            end,
-            "lsp formatting",
-        },
-
-        ["<leader>wa"] = {
-            function()
-                vim.lsp.buf.add_workspace_folder()
-            end,
-            "lsp add workspace folder",
-        },
-
-        ["<leader>wr"] = {
-            function()
-                vim.lsp.buf.remove_workspace_folder()
-            end,
-            "lsp remove workspace folder",
-        },
-
-        ["<leader>wl"] = {
-            function()
-                print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-            end,
-            "lsp list workspace folders",
-        },
     },
+    i = {
+        ['<M-i>'] = {  vim.lsp.buf.signature_help, 'lsp signature help' },
+    }
 } --}}}
 
 M.dap = { -- {{{
@@ -1137,5 +1079,6 @@ M.null_ls = {
 	end, 'desc' },
     }
 }
+
 
 return M

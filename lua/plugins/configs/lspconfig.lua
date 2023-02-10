@@ -20,6 +20,11 @@ function M.setup()
 
 end
 
+-- my custom on_attach to inject in other lsp clients
+M.on_attach = function(client, bufnr)
+    require('core.utils').load_mappings 'lspconfig'
+end
+
 
 -- local utils = require "core.utils"
 --

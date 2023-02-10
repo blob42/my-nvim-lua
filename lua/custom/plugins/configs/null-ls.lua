@@ -24,11 +24,13 @@ M.config = {
 
         null_ls.builtins.formatting.autoflake,
         null_ls.builtins.formatting.autopep8,
+        null_ls.builtins.formatting.black,
 
         -- golang revive (manually enabled with shortcut from mappings)
         -- null_ls.builtins.diagnostics.revive,
     },
     on_attach = function(client, bufnr)
+        require('plugins.configs.lspconfig').on_attach(client, bufnr)
         local util = require('navigator.util')
         local log = util.log
         local trace = util.trace

@@ -11,28 +11,41 @@ local config = {
   transparency = 5,
   lsp_signature_help = false, -- needs plugin lsp_signature 
   default_mapping = false,
+  on_attach = require('plugins.configs.lspconfig').on_attach,
   keymaps = {
     { key = 'gr', func = require('navigator.reference').async_ref, desc = 'lsp async_ref' },
     -- { key = '<Leader>gr', func = require('navigator.reference').reference, desc = 'lsp reference' }, -- reference deprecated
-    {
-      key = '<M-i>',
-      mode = 'i',
-      func = vim.lsp.buf.signature_help,
-      desc = 'lsp signature_help'
-    },
     -- { key = '<C-i>', func = vim.lsp.buf.signature_help, desc = 'lsp signature_help' },
     { key = 'g0', func = require('navigator.symbols').document_symbols, desc = 'lsp document_symbols' },
     { key = 'gW', func = require('navigator.workspace').workspace_symbol_live, desc = 'lsp workspace_symbol_live' },
     { key = '<c-]>', func = require('navigator.definition').definition, desc = 'lsp definition' },
     { key = 'gd', func = require('navigator.definition').definition, desc = 'lsp definition' },
-    { key = 'gD', func = vim.lsp.buf.declaration, desc = 'lsp declaration' },
     { key = 'gp', func = require('navigator.definition').definition_preview, desc = 'lsp definition_preview' },
     -- handled by main mappings
     -- { key = '<Leader>gt', func = require('navigator.treesitter').buf_ts, desc = 'lsp buf_ts' },
     -- { key = '<Leader>gT', func = require('navigator.treesitter').bufs_ts, desc = 'lsp bufs_ts' },
     -- { key = '<Leader>ct', func = require('navigator.ctags').ctags, desc = 'lsp ctags' },
 
-    { key = 'K', func = vim.lsp.buf.hover, desc = 'lsp hover' },
+    -- handled by main mappings (lspconfig section)
+    -- { key = 'gD', func = vim.lsp.buf.declaration, desc = 'lsp declaration' },
+    -- {
+    --   key = '<M-i>',
+    --   mode = 'i',
+    --   func = vim.lsp.buf.signature_help,
+    --   desc = 'lsp signature_help'
+    -- },
+    -- { key = 'K', func = vim.lsp.buf.hover, desc = 'lsp hover' },
+    -- { key = '<Leader>gm', func = vim.lsp.buf.implementation, desc = 'lsp implementation' },
+    -- { key = '<Space>D', func = vim.lsp.buf.type_definition, desc = 'lsp type_definition' },
+    -- { key = ']d', func = vim.diagnostic.goto_next, desc = 'lsp next diagnostics' },
+    -- { key = '[d', func = vim.diagnostic.goto_prev, desc = 'lsp prev diagnostics' },
+    -- { key = ']O', func = vim.diagnostic.setloclist, desc = 'lsp diagnostics set loclist' },
+    -- { key = '<space>fm', func = vim.lsp.buf.format, mode = 'n', desc = 'lsp format' },
+    -- { key = '<Leader>gi', func = vim.lsp.buf.incoming_calls, desc = 'lsp incoming_calls' },
+    -- { key = '<Leader>go', func = vim.lsp.buf.outgoing_calls, desc = 'lsp outgoing_calls' },
+    -- { key = '<C-LeftMouse>', func = vim.lsp.buf.definition, desc = 'lsp definition' },
+    -- { key = 'g<LeftMouse>', func = vim.lsp.buf.implementation, desc = 'lsp implementation' },
+
     { key = '<M-a>', mode = 'n', func = require('navigator.codeAction').code_action, desc = 'lsp code_action' },
     { key = '<M-a>', mode = 'i', func = require('navigator.codeAction').code_action, desc = 'lsp code_action' },
     { key = '<BS><Right>', mode = 'n', func = require('navigator.symbols').side_panel, desc = 'toggle lsp outline pannel'},
@@ -44,21 +57,12 @@ local config = {
     },
     -- { key = '<Leader>re', func = 'rename()' },
     { key = '<Space>rn', func = require('navigator.rename').rename, desc = 'lsp rename' },
-    { key = '<Leader>gi', func = vim.lsp.buf.incoming_calls, desc = 'lsp incoming_calls' },
-    { key = '<Leader>go', func = vim.lsp.buf.outgoing_calls, desc = 'lsp outgoing_calls' },
-    { key = '<Leader>gm', func = vim.lsp.buf.implementation, desc = 'lsp implementation' },
-    { key = '<Space>D', func = vim.lsp.buf.type_definition, desc = 'lsp type_definition' },
     { key = 'gL', func = require('navigator.diagnostics').show_diagnostics, desc = 'lsp show_diagnostics' },
     { key = 'gG', func = require('navigator.diagnostics').show_buf_diagnostics, desc = 'lsp show_buf_diagnostics' },
     -- { key = '<Leader>dt', func = require('navigator.diagnostics').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
     -- { key = '<Leader>td', func = require('spike.diagnostics').toggle, desc = 'lsp toggle_diagnostics' },
-    { key = ']d', func = vim.diagnostic.goto_next, desc = 'lsp next diagnostics' },
-    { key = '[d', func = vim.diagnostic.goto_prev, desc = 'lsp prev diagnostics' },
-    { key = ']O', func = vim.diagnostic.set_loclist, desc = 'lsp diagnostics set loclist' },
     { key = ']r', func = require('navigator.treesitter').goto_next_usage, desc = 'lsp goto_next_usage' },
     { key = '[r', func = require('navigator.treesitter').goto_previous_usage, desc = 'lsp goto_previous_usage' },
-    { key = '<C-LeftMouse>', func = vim.lsp.buf.definition, desc = 'lsp definition' },
-    { key = 'g<LeftMouse>', func = vim.lsp.buf.implementation, desc = 'lsp implementation' },
     { key = '<Leader>k', func = require('navigator.dochighlight').hi_symbol, desc = 'lsp hi_symbol' },
     { key = '<leader>wa', func = require('navigator.workspace').add_workspace_folder, desc = 'lsp add_workspace_folder' },
     {
@@ -66,7 +70,6 @@ local config = {
       func = require('navigator.workspace').remove_workspace_folder,
       desc = 'lsp lsp remove_workspace_folder',
     },
-    { key = '<space>fm', func = vim.lsp.buf.format, mode = 'n', desc = 'lsp format' },
     -- { key = '<Space>ff', func = vim.lsp.buf.range_formatting, mode = 'v', desc = 'lsp range format' },
     -- DEPRECATED 
     -- {
@@ -176,7 +179,7 @@ local config = {
             pylsp = {
                 plugins = {
                     autopep8 = { enabled = false },
-                    -- pylint = { enabled = false },
+                    -- pylint = { enabled = false }, -- disabled in null-ls
                     flake8 = { enabled = false },
                     pycodestyle= { enabled = false},
                     pyflakes = { enabled = false },
