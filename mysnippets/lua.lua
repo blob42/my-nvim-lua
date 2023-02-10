@@ -45,6 +45,7 @@ return M
             c(3, {
                 sn(nil, fmt([['{}']], {i(1)})),
                 sn(nil, fmt([[function() {} end]], {i(1)})),
+                sn(nil, fmt([[{}]], {i(1)})),
             }),
             i(2, "desc")
         })),
