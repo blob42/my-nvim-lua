@@ -787,10 +787,23 @@ return {
         end
     },
 
-    -- Python
-    ["dccsillag/magma-nvim"] = {
+    -- Python jupyter notebooks
+    -- actual jupter kernel to neovim adapter
+    -- ["dccsillag/magma-nvim"] = {
+    --     keys = '<leader>jup',
+    --     opt = true,
+    --     run = ':UpdateRemotePlugins',
+    -- },
+
+    -- edit ipynb files 
+    -- ["goerz/jupytext.vim"] = {
+    --     after = {"magma-nvim"},
+    -- },
+
+    -- jupyter notebook
+    ["luk400/vim-jukit"] = {
+        keys = '<leader>jup',
         opt = true,
-        run = ':UpdateRemotePlugins',
     },
 
     -- theseraus{{{
