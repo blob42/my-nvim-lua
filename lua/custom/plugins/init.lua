@@ -54,7 +54,7 @@ return {
     -- treesitter
 
     ["nvim-treesitter/nvim-treesitter"] = { -- {{{
-        commit = "4f8b2480", -- pin to latest working commit
+        -- commit = "4f8b2480", -- pin to latest working commit
         -- custom config in chadrc -> custom.configs.treesitter
         setup = function()
             require("core.lazy_load").on_file_open "nvim-treesitter"
