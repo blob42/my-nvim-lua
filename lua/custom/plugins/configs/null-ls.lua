@@ -16,15 +16,18 @@ M.config = {
 
         null_ls.builtins.diagnostics.checkmake,
         null_ls.builtins.diagnostics.fish,
+        null_ls.builtins.formatting.fish_indent,
         null_ls.builtins.diagnostics.hadolint,
         null_ls.builtins.diagnostics.jshint,
         null_ls.builtins.diagnostics.flake8,
+        null_ls.builtins.diagnostics.pydocstyle,
         -- null_ls.builtins.diagnostics.pylint,
 
 
         null_ls.builtins.formatting.autoflake,
         null_ls.builtins.formatting.autopep8,
         null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.isort,
 
         -- golang revive (manually enabled with shortcut from mappings)
         -- null_ls.builtins.diagnostics.revive,

@@ -16,10 +16,20 @@ M.select_sources = function()
     vim.ui.select(sources, {
         prompt = "select source to toggle:",
         format_item = function (item)
+            P(item)
             local enabled = item._disabled
             local entry = item._disabled and '' or ''
 
-            return entry .. ' ' .. item.name
+            local filetypes = ''
+            for ft, _ in pairs(item.filetypes) do
+                P(ft)
+                filetypes = filetypes .. ft .. '|'
+            end
+            filetypes = filetypes:gsub('|$', '')
+
+            entry_text = string.format("%s %-20s%s", entry, item.name, filetypes)
+            -- return entry .. ' ' .. item.name .. '\t\t' .. filetypes
+            return entry_text
         end,
     }, function(item)
          if item then null_ls.toggle({name = item.name }) end
