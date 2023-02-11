@@ -531,11 +531,11 @@ M.lspconfig = { --{{{
 
         [']O'] = { vim.diagnostic.setloclist, "lsp diagnostic setloclist" },
 
-        ["<space>fm"] = { vim.lsp.buf.format, "lsp formatting" },
-        ['<leader>gi'] = { vim.lsp.buf.incoming_calls, 'lsp incoming_calls' },
-        ['<leader>go'] = { vim.lsp.buf.outgoing_calls, 'lsp outgoing_calls' },
-        ['<C-LeftMouse>'] = { vim.lsp.buf.definition, 'lsp definition' },
-        ['g<LeftMouse>'] = { vim.lsp.buf.implementation, 'lsp implementation' },
+        ["<Space>fm"] = { vim.lsp.buf.format, "lsp formatting" },
+        ["<leader>gi"] = { vim.lsp.buf.incoming_calls, "lsp incoming_calls" },
+        ["<leader>go"] = { vim.lsp.buf.outgoing_calls, "lsp outgoing_calls" },
+        ["<C-LeftMouse>"] = { vim.lsp.buf.definition, "lsp definition" },
+        ["g<LeftMouse>"] = { vim.lsp.buf.implementation, "lsp implementation" },
 
     },
     i = {
