@@ -803,6 +803,12 @@ return {
     -- jupyter notebook
     ["luk400/vim-jukit"] = {
         keys = '<leader>jup',
+        setup = function()
+            patterns = {
+                '.*ipynb$'
+            }
+            require('spike.utils').lazy_load_module(patterns, 'vim-jukit')
+        end,
         opt = true,
     },
 

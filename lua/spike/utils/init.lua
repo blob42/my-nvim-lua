@@ -1,3 +1,5 @@
+local autocmd = vim.api.nvim_create_autocmd
+local api = vim.api
 local M = {}
 
 M["unload_lua_ns"] = function (prefix)
@@ -63,6 +65,27 @@ end
 -- 1663878015759000
 -- 1670185951498000
 -- M.human_timestamp()
+
+--lazy loads a packer plugin when a file matches {patterns}
+---@param patterns table matched patterns
+---@param plugin string plugin to load whan pattern is matched
+M.lazy_load_module = function(patterns, plugin)
+
+    autocmd({"BufRead", "BufNewFile"},{
+        group = api.nvim_create_augroup("blob42_lazyload_plugin", {}),
+        callback = function()
+
+            local bufname = api.nvim_buf_get_name(0)
+            for _,pt in ipairs(patterns) do
+                if vim.fn.fnamemodify(bufname, ":t"):match(pt) then
+                    require("packer").loader(plugin)
+                end
+            end
+
+        end
+    })
+end
+
 
 return M
 
