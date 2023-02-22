@@ -75,8 +75,10 @@ local opts = {
     }
 }
 
+
 M.setup = function()
     dapui.setup(opts)
 end
+
 
 return M

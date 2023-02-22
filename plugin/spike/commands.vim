@@ -9,3 +9,9 @@ command! -bang WA wa<bang>
 command! -bang Q q<bang>
 command! -bang QA qa<bang>
 command! -bang Qa qa<bang>
+
+" preview markdown in browser
+command! -bang MDPreview silent !md2html --github % | pipe-to-browser 
+
+" migrate git config to blob42
+command! -bang GitBlob42 %S/sp4ke.{xyz,com}/blob42.xyz/ge|%S/sp4ke/blob42/ge

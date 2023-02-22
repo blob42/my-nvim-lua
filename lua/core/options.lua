@@ -26,7 +26,9 @@ opt.showmode = false
 opt.title = true
 opt.clipboard = "unnamed"
 opt.cul = true -- cursor line
-opt.colorcolumn = "80"
+-- opt.colorcolumn = "80"
+opt.colorcolumn = '+0' -- make colorcolumn follow text width
+opt.textwidth = 80
 opt.rulerformat = "%30(%=:b%n%y%m%r%w %l,%c%V %P%)" -- NvChad has custom ruler !
 
 -- Indenting

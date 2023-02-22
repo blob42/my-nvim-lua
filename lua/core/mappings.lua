@@ -1,4 +1,4 @@
--- vim: foldmethod=marker foldlevel=1
+
 -- n, v, i, t, c = mode name.s
 
 local function termcodes(str)
@@ -336,9 +336,34 @@ M.general = { --{{{
         -- ["<leader>lsp"] = { "<cmd> lua require('custom.plugins.configs.navigator').enable()<CR>", "lsp enable"},
         ["<leader>lsp"] = { "<cmd> LspStart<CR>", "lsp enable" },
         ["<M-s><M-s>"] = { "<cmd> LspStart<CR>", "lsp enable" },
-        ["<M-t><M-t>"] = { "<cmd> LspStop<CR>", "lsp disable" },
+        ["<M-t><M-t>"] = {function()
+            local bufnr = vim.api.nvim_get_current_buf()
+            -- get all clients for buffer
+            local clients = vim.lsp.get_active_clients({
+                bufnr = bufnr
+            })
+
+            if #clients > 1 then
+                -- select clients to turn off
+                vim.ui.select(clients, {
+                    prompt = 'Stop LSP Clients',
+                    format_item = function (item)
+                        return item.name
+                    end
+                }, function(item)
+                    if item then vim.lsp.stop_client(item.id) end
+                end)
+            elseif #clients == 1 then
+                vim.lsp.stop_client(clients[1].id)
+            else
+                return
+            end
+
+        end, "lsp disable" },
         ["<leader>lst"] = { "<cmd> LspStop<CR>", "lsp disable" },
 
+        -- My custom commands
+        ["<leader>gB"] = {"<cmd> GitBlob<CR>"},
 
 
         ---------------
@@ -381,6 +406,7 @@ M.general = { --{{{
         -- Change Working Directory to that of the current file
         ["cwd"] = { "lcd %:p:h", "change dir to current file" },
         ["cd."] = { "lcd %:p:h", "change dir to current file" },
+        ["cdv"] = { "lcd ~/.config/nvim<CR>", "change to vim directory" },
         ["w!!"] = { "w !doas tee %", "write file with root perms" },
         ["%%"]  = { "<C-R>=fnameescape(expand('%:h')).'/'<cr>",
             "alias to current working dir" },
@@ -784,6 +810,10 @@ M.nvterm = { --{{{
             nvterm_utils.run_cmd(nil, { mode = "vertical" })
         end, "run cmd in vertical terminal"},
 
+        ["<leader>rh"] = {function()
+            local nvterm_utils = require('spike.utils.nvterm')
+            nvterm_utils.run_cmd(nil, { mode = "horizontal" })
+        end, "run cmd in horizontal terminal"},
 
         ["<leader><UP>"] = {function()
             local nvterm_utils = require('spike.utils.nvterm')
@@ -975,6 +1005,23 @@ M.gitsigns = {
     }
 }
 
+
+-- selects a grapple key given a scope and resets
+-- the `git` scope
+local function grapple_scope_select(scope, key)
+    local grapple = require("grapple")
+    grapple.setup({scope = scope })
+    grapple.select({key=key})
+    grapple.setup({scope = "git"})
+end
+
+local function grapple_scope_tag(scope, key)
+    local grapple = require("grapple")
+    grapple.setup({scope = scope})
+    grapple.tag({key=key})
+    grapple.setup({scope = "git"})
+end
+
 M.grapple = {
     plugin = true,
     n = {
@@ -986,11 +1033,21 @@ M.grapple = {
                 require("grapple").tag({ key = input })
             end)
         end, "grapple tag with name" },
+        ["<leader>GN"] = { function()
+            local grapple = require("grapple")
+            vim.ui.input({ prompt = "tag: " }, function(input)
+                grapple_scope_tag("global", input)
+            end)
+        end, "grapple global tag with name" },
         --TODO: keybind for popup select names
-        ["<leader><leader>m"] = { "<cmd> lua require'grapple'.select({key='mappings'})<CR>" },
-        ["<leader><leader>p"] = { "<cmd> lua require'grapple'.select({key='plugins'})<CR>" },
+        -- ["<leader><leader>m"] = { "<cmd> lua require'grapple'.scope_select('global', 'mappings')<CR>" },
+        ["<leader><leader>m"] = { function() grapple_scope_select("global", "mappings") end},
+        ["<leader><leader>p"] = { function() grapple_scope_select("global", "plugins") end },
+        ["<leader><leader>b"] = { function() grapple_scope_select("global", "bonzai") end },
         ["<leader><leader>P"] = { "<cmd> lua require'grapple'.select({key='Plugins'})<CR>" },
+        ["<leader><leader>o"] = { "<cmd> lua require'grapple'.select({key='options'})<CR>" },
         ["<leader><leader>g"] =  { "<cmd> lua require'grapple'.popup_tags()<CR>" },
+        ["<leader><leader>G"] =  { "<cmd> lua require'grapple'.popup_tags('global')<CR>" },
     }
 }
 

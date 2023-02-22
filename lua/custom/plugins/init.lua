@@ -28,7 +28,7 @@
 -- - Execute :PackerCompile
 --
 -- This doesn't seem to work:
--- - XXX ~~Reload all lua modules with `"pleanery.reload".reload_module(mod)`~~ XXX
+-- - XXX ~~Reload all lua modules with `"plenaery.reload".reload_module(mod)`~~ XXX
 
 return {
 
@@ -56,6 +56,7 @@ return {
     ["nvim-treesitter/nvim-treesitter"] = { -- {{{
         -- commit = "4f8b2480", -- pin to latest working commit
         -- custom config in chadrc -> custom.configs.treesitter
+        lock = true,
         setup = function()
             require("core.lazy_load").on_file_open "nvim-treesitter"
             require("core.lazy_load").on_file_open "nvim-treesitter-textobjects"
@@ -66,6 +67,7 @@ return {
         end,
     },
     ["nvim-treesitter/nvim-treesitter-textobjects"] = {
+        lock = true,
         opt = true,
     },
     -- ["RRethy/nvim-treesitter-textsubjects"] = {
@@ -73,6 +75,7 @@ return {
     -- },
 
     ["ziontee113/syntax-tree-surfer"] = {
+        lock = true,
         opt = true,
         config = function()
             require("syntax-tree-surfer").setup()
@@ -80,11 +83,13 @@ return {
     },
     -- Treesitter dev/exploration tool
     ["nvim-treesitter/playground"] = {
+        lock = true,
         opt = true,
         cmd = { "TSPlayground*" },
     },
 
     ["nvim-treesitter/nvim-treesitter-context"] = {
+        lock = true,
         opt = true,
         config = function()
             require("custom.plugins.configs.treesitter-context").setup()
@@ -129,7 +134,7 @@ return {
         end,
         after = {"telescope.nvim"},
         requires = {
-            {"nvim-lua/pleanery.nvim"},
+            {"nvim-lua/plenary.nvim"},
             {"nvim-treesitter/nvim-treesitter"}
         }
     },
@@ -149,6 +154,7 @@ return {
     },
 
     ["jackMort/ChatGPT.nvim"] = {
+        -- lock = true,
         opt = true,
         keys = {"<leader>gpt"},
         module_pattern = {"chatgpt*"},
@@ -207,6 +213,7 @@ return {
     },
 
     ["folke/todo-comments.nvim"] = { -- {{{
+        lock = true,
         -- commit = "6124066",
         -- after = "nvim-treesitter",
         setup = function()
@@ -220,8 +227,10 @@ return {
 
     ["tpope/vim-surround"] = {},
 
+    ["tpope/vim-abolish"] = {},
+
     ["godlygeek/tabular"] = {
-        lcmd = "Tabularize"
+        cmd = {"Tabularize"}
     }, -- }}}
 
 
@@ -246,6 +255,7 @@ return {
 
     ["rcarriga/nvim-dap-ui"] = {
         -- tag = "*",
+        lock = true,
         commit = "1e21b3b",
         after = "nvim-dap",
         config = function()
@@ -255,30 +265,17 @@ return {
 
     ["theHamsta/nvim-dap-virtual-text"] = {
         lock = true,
-        after = "nvim-dap",
+        -- opt = true,
+        after = {"nvim-dap"},
         config = function()
-            require("nvim-dap-virtual-text").setup({
-                enabled = true, -- enable this plugin (the default)
-                enabled_commands = true, -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
-                highlight_changed_variables = true, -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
-                highlight_new_as_changed = false, -- highlight new variables in the same way as changed variables (if highlight_changed_variables)
-                show_stop_reason = true, -- show stop reason when stopped for exceptions
-                commented = false, -- prefix virtual text with comment string
-                only_first_definition = true, -- only show virtual text at first definition (if there are multiple)
-                all_references = false, -- show virtual text on all all references of the variable (not only definitions)
-                filter_references_pattern = '<module', -- filter references (not definitions) pattern when all_references is activated (Lua gmatch pattern, default filters out Python modules)
-                -- experimental features:
-                virt_text_pos = 'eol', -- position of virtual text, see `:h nvim_buf_set_extmark()`
-                all_frames = true, -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
-                virt_lines = false, -- show virtual lines instead of virtual text (will flicker!)
-                virt_text_win_col = 80 -- position the virtual text at a fixed window column (starting from the first text column) ,
-                -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
-            })
+            require("custom.plugins.configs.dap").setup_virt_text()
+            -- P("config dap ui virt text")
         end
     }, -- }}}
 
     -- User Interface / UX
     ["stevearc/dressing.nvim"] = {
+        lock = true,
         config = function()
             require("custom.plugins.configs.dressing").setup()
         end
@@ -288,6 +285,7 @@ return {
     -- the current registerd norm command works by first selecting a visual selection
     -- then doing the changes, it's an enhanced multi cursor
     ["smjonas/live-command.nvim"] = {
+        lock = true,
         cmd = require("custom.plugins.configs.live-command").get_cmds(),
         opt = true,
         config = function()
@@ -406,7 +404,7 @@ return {
     -- TODO: replace with https://github.com/skywind3000/asynctasks.vim
 
     ["skywind3000/asyncrun.vim"] = { -- {{{
-        lock = true,
+        -- lock = true,
         cmd = "AsyncRun",
         setup = function()
             require("core.utils").load_mappings "asyncrun"
@@ -514,6 +512,7 @@ return {
                     "db*",
                     "aerial*",
                     "grapple",
+                    "fugitive"
                 },
             })
         end
@@ -551,15 +550,15 @@ return {
     -- ------------------
 
     ["neovim/nvim-lspconfig"] = { -- {{{
+        lock = true,
         after = {"mason.nvim", "mason-lspconfig.nvim", "neodev.nvim" },
         module = { "lspconfig" },
-        lock = false,
         config = function()
             require("plugins.configs.lspconfig").setup()
         end
     },
     ["williamboman/mason-lspconfig.nvim"] = {
-        lock = false,
+        lock = true,
         requires = { "williamboman/mason.nvim", "nvim-lspconfig" },
         -- after = "mason.nvim",
         module = { "mson-lspconfig.nvim", "mason.nvim" },
@@ -568,7 +567,7 @@ return {
         end,
     },
     ["ray-x/guihua.lua"] = {
-        -- lock = true,
+        lock = true,
         module = { "navigator" },
         module_pattern = {"guihua*"},
         run = "cd lua/fzy && make",
@@ -584,7 +583,7 @@ return {
     -- ["https://git.sp4ke.xyz/sp4ke/navigator.lua"] =
     --
     ["ray-x/navigator.lua"] = {
-        lock = false,
+        lock = true,
         opt = true,
         module = "navigator",
         after = { "nvim-lspconfig", "base46", "ui", "mason.nvim", "mason-lspconfig.nvim", "neodev.nvim", "null-ls.nvim"},
@@ -612,6 +611,7 @@ return {
     }, -- }}}
 
     ["jose-elias-alvarez/null-ls.nvim"] = {
+        lock = true,
         requires = {"nvim-lua/plenary.nvim"},
         setup = function()
             require('core.utils').load_mappings 'null_ls'
@@ -631,7 +631,7 @@ return {
     --
 
     ['stevearc/aerial.nvim'] = {
-        -- lock = true,
+        lock = true,
         after = { "base46" },
         keys = { "<Right>" },
         cmd = { "Aerial*" },
@@ -714,6 +714,7 @@ return {
 
     -- neodev (replaces lua-dev)
     ["folke/neodev.nvim"] = {
+        lock = true,
         -- commit = "d6212c1"
         -- module = "neodev",
         ft = {'lua'},
@@ -729,6 +730,7 @@ return {
     -- golang dev
 
     ["ray-x/go.nvim"] = { -- {{{
+        lock = true,
         -- after = {"nvim-lspconfig", "navigator.lua", "guihua.lua"},
         ft = { "go" },
         opt = true,
@@ -779,6 +781,7 @@ return {
 
     -- zk nvim
     ["mickael-menu/zk-nvim"] = {
+        lock = true,
         setup = function()
             require("core.utils").load_mappings "zk"
         end,
@@ -801,7 +804,9 @@ return {
     -- },
 
     -- jupyter notebook
+    -- dependencies: jupyter jupytext
     ["luk400/vim-jukit"] = {
+        lock = true,
         keys = '<leader>jup',
         setup = function()
             patterns = {

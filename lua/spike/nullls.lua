@@ -16,13 +16,11 @@ M.select_sources = function()
     vim.ui.select(sources, {
         prompt = "select source to toggle:",
         format_item = function (item)
-            P(item)
             local enabled = item._disabled
             local entry = item._disabled and '' or ''
 
             local filetypes = ''
             for ft, _ in pairs(item.filetypes) do
-                P(ft)
                 filetypes = filetypes .. ft .. '|'
             end
             filetypes = filetypes:gsub('|$', '')
