@@ -21,7 +21,8 @@ return {
     -- function node
     s("pwd", f(function()
         return vim.fn.getcwd()
-    end))
+    end)),
+
 }, { --autosnippets
     -- s("uuid#", f(gen_uuid))
 }

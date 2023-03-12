@@ -84,6 +84,9 @@ M.general = { --{{{
         -- Just in case you need to go to the very beginning of a line
         ["^"] = { "0" },
 
+        -- delete all empty lines
+        ["<BS><BS>"] = { "<cmd> .,/\\S\\|\\%$/g/^\\s*$/d <CR><cmd>noh<CR>", "delete empty next contiguous empty lines" },
+
 
         ["<leader>ww"] = { "<cmd> set wrap! <CR><cmd> echo 'wrap = '.&wrap <CR>" },
 
@@ -217,6 +220,7 @@ M.general = { --{{{
 
         ["<leader>tf"] = { "<cmd> set foldmethod=expr<CR>|<cmd> set foldexpr=nvim_treesitter#foldexpr()<CR>",
             "enable Treesitter folding" },
+
 
         ["<leader>tp"] = {
             function()
@@ -927,7 +931,7 @@ M.iron = { -- {{{{{{
 M.ccc = {
     plugin = true,
     n = {
-        ["<leader>cp"] = { "<cmd>CccPick<CR>", "color picker" }
+        ["<leader>clp"] = { "<cmd>CccPick<CR>", "color picker" }
     },
 }
 -- }}}
@@ -1006,44 +1010,32 @@ M.gitsigns = {
 }
 
 
--- selects a grapple key given a scope and resets
--- the `git` scope
-local function grapple_scope_select(scope, key)
-    local grapple = require("grapple")
-    grapple.setup({scope = scope })
-    grapple.select({key=key})
-    grapple.setup({scope = "git"})
-end
-
-local function grapple_scope_tag(scope, key)
-    local grapple = require("grapple")
-    grapple.setup({scope = scope})
-    grapple.tag({key=key})
-    grapple.setup({scope = "git"})
-end
-
 M.grapple = {
     plugin = true,
     n = {
         ["<leader>J"] = { "<cmd> lua require'grapple'.cycle_forward()<CR>" },
         ["<leader>K"] = { "<cmd> lua require'grapple'.cycle_backward()<CR>" },
         ["<leader>T"] = { "<cmd> GrappleTag<CR>"},
+        ["<leader>GT"] = { function()
+            vim.ui.input({ prompt = "tag: " }, function(input)
+                require("grapple").tag({scope="global"})
+            end)
+        end, "grapple global tag" },
         ["<leader>N"] = { function()
             vim.ui.input({ prompt = "tag: " }, function(input)
                 require("grapple").tag({ key = input })
             end)
         end, "grapple tag with name" },
         ["<leader>GN"] = { function()
-            local grapple = require("grapple")
             vim.ui.input({ prompt = "tag: " }, function(input)
-                grapple_scope_tag("global", input)
+                require("grapple").tag({scope="global", key = input})
             end)
         end, "grapple global tag with name" },
         --TODO: keybind for popup select names
         -- ["<leader><leader>m"] = { "<cmd> lua require'grapple'.scope_select('global', 'mappings')<CR>" },
-        ["<leader><leader>m"] = { function() grapple_scope_select("global", "mappings") end},
-        ["<leader><leader>p"] = { function() grapple_scope_select("global", "plugins") end },
-        ["<leader><leader>b"] = { function() grapple_scope_select("global", "bonzai") end },
+        ["<leader><leader>m"] = { "<cmd> lua require'grapple'.select {key='mappings', scope='global'}<CR>" },
+        ["<leader><leader>p"] = { "<cmd> lua require'grapple'.select {key='plugins', scope='global'}<CR>" },
+        ["<leader><leader>b"] = { "<cmd> lua require'grapple'.select {key='bonzai', scope='global'}<CR>" },
         ["<leader><leader>P"] = { "<cmd> lua require'grapple'.select({key='Plugins'})<CR>" },
         ["<leader><leader>o"] = { "<cmd> lua require'grapple'.select({key='options'})<CR>" },
         ["<leader><leader>g"] =  { "<cmd> lua require'grapple'.popup_tags()<CR>" },
@@ -1101,15 +1093,18 @@ M.copilot = {
     plugin = true,
     n = {
         -- copilot options here
+        ["<leader>cpn"] = { "<cmd> lua require'copilot.panel'.open()<CR>", "copilot panel" },
+        ["]p"] = { "<cmd> lua require'copilot.panel'.jump_next()<CR> ", "copilot panel next" },
+        ["[p"] = { "<cmd> lua require'copilot.panel'.jump_prev()<CR> ", "copilot panel prev" },
     }
 }
 
 M.navigator = {
     plugin = true,
     n = {
-        ["<leader>gt"] = { function() require('navigator.treesitter').buf_ts() end, 'TS buf symbols'},
-        ["<leader>gT"] = { function() require('navigator.treesitter').bufs_ts() end, 'TS bufs symbols'},
-        ['<Leader>ct'] = { function() require('navigator.ctags').ctags() end, 'lsp ctags' },
+        ["<leader>gt"] = { function() require("navigator.treesitter").buf_ts() end, "TS buf symbols"},
+        ["<leader>gT"] = { function() require("navigator.treesitter").bufs_ts() end, "TS bufs symbols"},
+        ["<Leader>ct"] = { function() require("navigator.ctags").ctags() end, "lsp ctags" },
     }
 }
 
@@ -1136,6 +1131,5 @@ M.null_ls = {
 	end, 'desc' },
     }
 }
-
 
 return M

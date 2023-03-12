@@ -15,14 +15,14 @@ return M
         -- repeat nodes
         -- TODO: split dot and pull last name
         -- local require
-        s("lreq", fmt("local {} = require('{}')", {
+        s("lreq", fmt("local {} = require(\"{}\")", {
             i(1, "default"),
             rep(1)
         })  ),
 
         -- if require
         s("ifreq", fmt([[
-    local ok, {} = pcall(require, '{}')
+    local ok, {} = pcall(require, "{}")
     if not ok then 
         vim.notify("missing module {}", vim.log.levels.WARN)
         return
@@ -38,12 +38,12 @@ return M
         ),
 
         -- add a custom mapping
-        s({ trig = 'map', dscr = 'add custom mapping'}, fmt([[
-        ['{}'] = {{ {}, '{}' }},
+        s({ trig = "map", dscr = "add custom mapping"}, fmt([[
+        ["{}"] = {{ {}, "{}" }},
         ]], {
             i(1, 'from'),
             c(3, {
-                sn(nil, fmt([['{}']], {i(1)})),
+                sn(nil, fmt([["{}"]], {i(1)})),
                 sn(nil, fmt([[function() {} end]], {i(1)})),
                 sn(nil, fmt([[{}]], {i(1)})),
             }),

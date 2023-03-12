@@ -12,7 +12,7 @@ local opts = {
         },
     },
 
-    debug = true,
+    debug = false,
     commands = {
         Norm = { cmd = "norm" },
         Reg = {

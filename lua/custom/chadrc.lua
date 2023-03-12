@@ -17,7 +17,8 @@ local highlights = require "custom.highlights"
 
 M.ui = {
     -- theme = "gruvbox_material",
-    theme = "ayu-dark",
+    -- theme = "ayu-dark",
+    theme = "catppuccin",
     theme_toggle = { "gruvbox_material", "gruvbox_light" },
     transparency = true,
     hl_override = highlights.override,

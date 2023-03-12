@@ -119,8 +119,11 @@ return {
         end
     }, -- }}}
 
-    ["hrsh7th/cmp-copilot"] = {
-        after = "copilot.vim"
+    ["zbirenbaum/copilot-cmp"] = {
+        after = {"copilot.lua"},
+        config = function()
+            require("copilot_cmp").setup()
+        end
     },
 
 
@@ -141,13 +144,27 @@ return {
 
     -- AI/Deep Learning Helpers
     -- Github Copilot
-    ["github/copilot.vim"] = {
+
+    ["zbirenbaum/copilot.lua"] = {
         opt = true,
+        cmd = "Copilot",
         keys = {"<leader>ghp"},
-        setup= function()
+        setup = function()
             require("core.utils").load_mappings "copilot"
-        end
+        end,
+        config = function()
+            require("custom.plugins.configs.copilot").setup()
+        end,
     },
+
+    -- ["github/copilot.vim"] = {
+    --     opt = true,
+    --     keys = {"<leader>ghp"},
+    --     setup= function()
+    --         require("core.utils").load_mappings "copilot"
+    --     end
+    -- },
+
     ["MunifTanjim/nui.nvim"] = {
         module = {"nui.layout", "nui.popup"},
         module_pattern = {"nui.*"}
@@ -348,6 +365,7 @@ return {
     }, -- }}}
 
     -- Theme customization
+    -- Color picker
     ["uga-rosa/ccc.nvim"] = { -- {{{{{{
         -- commit = "427471b",
         cmd    = { "Ccc*", "<Plug>(ccc-insert)" },
@@ -743,7 +761,7 @@ return {
 
     -- Rust dev
     ["simrat39/rust-tools.nvim"] = { -- {{{
-        lock = true,
+        lock = false,
         ft = { "rust" },
         opt = true,
         config = function()
@@ -806,7 +824,7 @@ return {
     -- jupyter notebook
     -- dependencies: jupyter jupytext
     ["luk400/vim-jukit"] = {
-        lock = true,
+        lock = false,
         keys = '<leader>jup',
         setup = function()
             patterns = {
