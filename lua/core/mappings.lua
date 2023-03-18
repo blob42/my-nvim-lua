@@ -1130,8 +1130,11 @@ M.null_ls = {
             end
         end, "null-ls toggle golang linter <revive>"},
         ['<leader>nls'] = { function()
-		require('spike.nullls').select_sources()
-	end, 'desc' },
+                require('spike.nullls').select_sources()
+            end, 'desc' },
+        ['<leader>nlS'] = { function()
+                require('spike.nullls').register_sources()
+            end, 'desc' },
     }
 }
 
