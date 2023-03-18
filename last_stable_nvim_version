@@ -1,10 +1,10 @@
-NVIM v0.9.0-dev-77-gf175ca9f7
+NVIM v0.9.0-dev-888+g81c5483dc
 Build type: RelWithDebInfo
 LuaJIT 2.1.0-beta3
-Compilation: /usr/bin/gcc-10 -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1 -DNVIM_TS_HAS_SET_MATCH_LIMIT -DNVIM_TS_HAS_SET_ALLOCATOR -O2 -g -Og -g -Wall -Wextra -pedantic -Wno-unused-parameter -Wstrict-prototypes -std=gnu99 -Wshadow -Wconversion -Wdouble-promotion -Wmissing-noreturn -Wmissing-format-attribute -Wmissing-prototypes -Wimplicit-fallthrough -Wvla -fstack-protector-strong -fno-common -fdiagnostics-color=always -DINCLUDE_GENERATED_DECLARATIONS -D_GNU_SOURCE -DNVIM_MSGPACK_HAS_FLOAT32 -DNVIM_UNIBI_HAS_VAR_FROM -DMIN_LOG_LEVEL=3 -I/home/runner/work/neovim/neovim/build/cmake.config -I/home/runner/work/neovim/neovim/src -I/home/runner/work/neovim/neovim/.deps/usr/include -I/usr/include -I/home/runner/work/neovim/neovim/build/src/nvim/auto -I/home/runner/work/neovim/neovim/build/include
-Compiled by runner@fv-az47-468
+Compilation: /usr/bin/gcc-10 -Wall -Wextra -pedantic -Wno-unused-parameter -Wstrict-prototypes -std=gnu99 -Wshadow -Wconversion -Wdouble-promotion -Wmissing-noreturn -Wmissing-format-attribute -Wmissing-prototypes -Wimplicit-fallthrough -Wvla -fno-common -fdiagnostics-color=always -fstack-protector-strong -DNVIM_MSGPACK_HAS_FLOAT32 -DNVIM_TS_HAS_SET_MATCH_LIMIT -DNVIM_TS_HAS_SET_ALLOCATOR -DINCLUDE_GENERATED_DECLARATIONS -D_GNU_SOURCE -DMIN_LOG_LEVEL=3 -DNVIM_UNIBI_HAS_VAR_FROM -I/home/runner/work/neovim/neovim/.deps/usr/include/luajit-2.1 -I/usr/include -I/home/runner/work/neovim/neovim/.deps/usr/include -I/home/runner/work/neovim/neovim/.deps/usr/include -I/home/runner/work/neovim/neovim/.deps/usr/include -I/home/runner/work/neovim/neovim/.deps/usr/include -I/home/runner/work/neovim/neovim/build/src/nvim/auto -I/home/runner/work/neovim/neovim/build/include -I/home/runner/work/neovim/neovim/build/cmake.config -I/home/runner/work/neovim/neovim/src -I/home/runner/work/neovim/neovim/.deps/usr/include -I/home/runner/work/neovim/neovim/.deps/usr/include -I/home/runner/work/neovim/neovim/.deps/usr/include
+Compiled by runner@fv-az454-10
 
-Features: +acl +iconv +tui
+Features: +acl +tui
 See ":help feature-compile"
 
    system vimrc file: "$VIM/sysinit.vim"

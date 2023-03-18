@@ -170,6 +170,12 @@ return {
         module_pattern = {"nui.*"}
     },
 
+    -- TODO: review/test the following
+    -- https://github.com/dpayne/CodeGPT.nvim
+    -- https://github.com/thmsmlr/gpt.nvim
+    ["dpayne/CodeGPT.nvim"] = {
+        keys = {"<leader>gpT"},
+    },
     ["jackMort/ChatGPT.nvim"] = {
         -- lock = true,
         opt = true,
@@ -260,13 +266,13 @@ return {
 
     ["mfussenegger/nvim-dap"] = { -- {{{
         lock = true,
-        module = "dap",
+        module = {"dap"},
         setup = function()
             require("core.utils").load_mappings "dap"
-            require('spike.dap').setup()
         end,
         config = function()
-            require("custom.plugins.configs.dap").setup()
+            require('spike.dap').setup()
+            -- require("custom.plugins.configs.dap").setup()
         end
     },
 
@@ -274,7 +280,7 @@ return {
         -- tag = "*",
         lock = true,
         commit = "1e21b3b",
-        after = "nvim-dap",
+        after = {"nvim-dap"},
         config = function()
             require('custom.plugins.configs.dapui').setup()
         end
@@ -282,11 +288,9 @@ return {
 
     ["theHamsta/nvim-dap-virtual-text"] = {
         lock = true,
-        -- opt = true,
         after = {"nvim-dap"},
         config = function()
-            require("custom.plugins.configs.dap").setup_virt_text()
-            -- P("config dap ui virt text")
+            require("custom.plugins.configs.dap-virt-text").setup_virt_text()
         end
     }, -- }}}
 

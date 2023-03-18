@@ -1096,6 +1096,9 @@ M.copilot = {
         ["<leader>cpn"] = { "<cmd> lua require'copilot.panel'.open()<CR>", "copilot panel" },
         ["]p"] = { "<cmd> lua require'copilot.panel'.jump_next()<CR> ", "copilot panel next" },
         ["[p"] = { "<cmd> lua require'copilot.panel'.jump_prev()<CR> ", "copilot panel prev" },
+    },
+    i = {
+        ["<M-c>p"] = { "<cmd> lua require'copilot.panel'.open()<CR>", "copilot panel" },
     }
 }
 

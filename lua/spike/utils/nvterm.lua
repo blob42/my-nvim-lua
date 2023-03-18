@@ -29,7 +29,6 @@ M.run_cmd = function(input, opts)
 end
 
 M.rerun_last_cmd = function()
-    P(M.last_cmds)
     if #M.last_cmds > 0 then terminal.send(M.last_cmds[1]) end
 end
 

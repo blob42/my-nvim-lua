@@ -41,6 +41,7 @@ local modes = {
 }
 
 local function is_dapmode()
+    if not _BLOB42_DAPMODE_LOADED then return false end
     return require("spike.dap.dapmode").is_active()
     -- return false
 end
@@ -139,11 +140,13 @@ return {
         end
 
 
-        local present, dap = pcall(require, "dap")
-        if present then
-            local session = dap.session()
-            if session ~= nil and session.initialized == true then
-                dap_status = "%#St_Dap#" .. "%* "
+        if _BLOB42_DAPMODE_LOADED then
+            local present, dap = pcall(require, "dap")
+            if present then
+                local session = dap.session()
+                if session ~= nil and session.initialized == true then
+                    dap_status = "%#St_Dap#" .. "%* "
+                end
             end
         end
 

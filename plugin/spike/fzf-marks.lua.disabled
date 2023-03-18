@@ -7,7 +7,6 @@
  local M = {}
 
  local function fzf_display_bookmarks(bookmarks)
-   P(bookmarks)
 
    local fzf_exec_opts = {
      previewer = "builtin",

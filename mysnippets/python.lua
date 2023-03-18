@@ -22,4 +22,5 @@ return {
     }))
 }, { --autosnippets
     -- s("uuid#", f(gen_uuid))
+    s("ret ", t("return "))
 }

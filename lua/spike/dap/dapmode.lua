@@ -3,6 +3,7 @@ local daputils = require 'spike.dap.utils'
 
 local M = {}
 M.layer = nil
+_BLOB42_DAPMODE_LOADED = _BLOB42_DAPMODE_LOADED or true
 
 
 local config = {
