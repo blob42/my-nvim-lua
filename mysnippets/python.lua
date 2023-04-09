@@ -22,5 +22,6 @@ return {
     }))
 }, { --autosnippets
     -- s("uuid#", f(gen_uuid))
-    s("ret ", t("return "))
+    s("ret ", t("return ")),
+    s("#ign", t"  # type: ignore")
 }

@@ -9,3 +9,5 @@ let g:bookmark_no_default_key_mappings = 1
 let g:bookmark_highlight_lines = 0
 let g:bookmark_auto_save = 1
 let g:bookmark_auto_save_file = stdpath('data') . '/bookmarks'
+
+let g:python3_host_prog = '/home/spike/.pyenv/shims/python'

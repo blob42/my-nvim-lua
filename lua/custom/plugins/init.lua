@@ -572,7 +572,7 @@ return {
     -- ------------------
 
     ["neovim/nvim-lspconfig"] = { -- {{{
-        lock = true,
+        -- lock = true,
         after = {"mason.nvim", "mason-lspconfig.nvim", "neodev.nvim" },
         module = { "lspconfig" },
         config = function()
@@ -580,7 +580,7 @@ return {
         end
     },
     ["williamboman/mason-lspconfig.nvim"] = {
-        lock = true,
+        -- lock = true,
         requires = { "williamboman/mason.nvim", "nvim-lspconfig" },
         -- after = "mason.nvim",
         module = { "mson-lspconfig.nvim", "mason.nvim" },
@@ -589,7 +589,7 @@ return {
         end,
     },
     ["ray-x/guihua.lua"] = {
-        lock = true,
+        -- lock = true,
         module = { "navigator" },
         module_pattern = {"guihua*"},
         run = "cd lua/fzy && make",
@@ -605,7 +605,7 @@ return {
     -- ["https://git.sp4ke.xyz/sp4ke/navigator.lua"] =
     --
     ["ray-x/navigator.lua"] = {
-        lock = true,
+        -- lock = true,
         opt = true,
         module = "navigator",
         after = { "nvim-lspconfig", "base46", "ui", "mason.nvim", "mason-lspconfig.nvim", "neodev.nvim", "null-ls.nvim"},

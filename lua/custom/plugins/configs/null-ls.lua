@@ -15,6 +15,10 @@ M.default_sources = {
     null_ls.builtins.diagnostics.fish,
     null_ls.builtins.formatting.fish_indent,
     null_ls.builtins.diagnostics.hadolint,
+    null_ls.builtins.formatting.autoflake,
+    null_ls.builtins.formatting.autopep8,
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.isort,
 }
 
 M.extra_sources = {
@@ -24,10 +28,6 @@ M.extra_sources = {
     -- null_ls.builtins.diagnostics.pylint,
 
 
-    null_ls.builtins.formatting.autoflake,
-    null_ls.builtins.formatting.autopep8,
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.isort,
     -- golang revive (manually enabled with shortcut from mappings)
     -- null_ls.builtins.diagnostics.revive,
 }

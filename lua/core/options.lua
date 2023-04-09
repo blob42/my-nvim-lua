@@ -168,6 +168,7 @@ for _, plugin in pairs(default_plugins) do
   g["loaded_" .. plugin] = 1
 end
 
+-- disable some default providers
 local default_providers = {
   "node",
   "perl",
