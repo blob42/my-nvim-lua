@@ -510,8 +510,8 @@ return {
     }, -- }}}
 
     -- get rid of bad habits
-    -- ["ja-ford/delaytrain.nvim"] = {
-    ["~/src/delaytrain.nvim"] = {
+    ["ja-ford/delaytrain.nvim"] = {
+    -- ["~/src/delaytrain.nvim"] = {
         config = function()
             require('delaytrain').setup({
                 delay_ms = 1000, -- How long repeated usage of a key should be prevented

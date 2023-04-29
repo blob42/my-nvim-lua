@@ -161,7 +161,7 @@ local config = {
     },
 
     diagnostic_scrollbar_sign = false,
-    disply_diagnostic_qf = false,
+    display_diagnostic_qf = false,
 
     disable_lsp = {"clangd", "rust_analyzer"},
 
@@ -222,6 +222,7 @@ local config = {
         settings = {
             pylsp = {
                 plugins = {
+                    black = { enabled = true},
                     autopep8 = { enabled = false },
                     -- pylint = { enabled = false }, -- disabled in null-ls
                     flake8 = { enabled = false },
