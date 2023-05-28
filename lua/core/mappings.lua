@@ -335,6 +335,8 @@ M.general = { --{{{
                     "notify <scripts/utils/fifo_watch>"
                 }, ]]
 
+        ["<leader>A"] = { "<cmd>ArgWrap<CR>", "arg wrap" },
+
 
         -- TODO: move to lspconfig section
         -- ["<leader>lsp"] = { "<cmd> lua require('custom.plugins.configs.navigator').enable()<CR>", "lsp enable"},

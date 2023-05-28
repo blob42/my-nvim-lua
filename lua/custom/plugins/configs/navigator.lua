@@ -226,6 +226,7 @@ local config = {
                     autopep8 = { enabled = false },
                     -- pylint = { enabled = false }, -- disabled in null-ls
                     flake8 = { enabled = false },
+                    mccabe = { enabled = false },
                     pycodestyle= { enabled = false},
                     pyflakes = { enabled = false },
                 }

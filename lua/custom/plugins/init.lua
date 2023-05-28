@@ -82,10 +82,14 @@ return {
         end
     },
     -- Treesitter dev/exploration tool
-    ["nvim-treesitter/playground"] = {
+    -- https://git.blob42.xyz/blob42/playground/commit/460fe1b3e3b2971c52c5f02a7dbbb132f1f30584
+    -- ["nvim-treesitter/playground"] = {
+    ["https://git.blob42.xyz/blob42/playground"] = {
         lock = true,
         opt = true,
         cmd = { "TSPlayground*" },
+        commit = "460fe1b3e3b2971c52c5f02a7dbbb132f1f30584",
+
     },
 
     ["nvim-treesitter/nvim-treesitter-context"] = {
@@ -256,6 +260,12 @@ return {
         cmd = {"Tabularize"}
     }, -- }}}
 
+    ["FooSoft/vim-argwrap"] = {
+        -- setup = function()
+        --     
+        -- end
+    },
+
 
     -- ["p00f/nvim-ts-rainbow"] = {
     --   opt = true,
@@ -322,12 +332,12 @@ return {
 
 
     -- scren saver
-    ["folke/drop.nvim"] = {
-        opt = true,
-        config = function()
-            require("drop").setup()
-        end
-    },
+    -- ["folke/drop.nvim"] = {
+    --     opt = true,
+    --     config = function()
+    --         require("drop").setup()
+    --     end
+    -- },
 
     -- repeat operator for plugin commands
     ["tpope/vim-repeat"] = {
