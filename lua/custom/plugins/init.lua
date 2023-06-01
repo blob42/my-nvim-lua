@@ -88,8 +88,7 @@ return {
         lock = true,
         opt = true,
         cmd = { "TSPlayground*" },
-        commit = "460fe1b3e3b2971c52c5f02a7dbbb132f1f30584",
-
+        -- commit = "460fe1b3e3b2971c52c5f02a7dbbb132f1f30584",
     },
 
     ["nvim-treesitter/nvim-treesitter-context"] = {

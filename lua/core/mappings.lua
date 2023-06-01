@@ -242,9 +242,10 @@ M.general = { --{{{
         -- swappint up/down
 
         ["vU"] = { function()
-            vim.opt.opfunc = "v:lua.STSSwapUpNormal_Dot"
+            vim.opt.opfUnc = "v:lua.STSSwapUpNormal_Dot"
             return "g@l"
         end, "TS swap Up master node with sibling", opts = { expr = true } },
+
         ["<BS><Up>"] = { function()
             vim.opt.opfunc = "v:lua.STSSwapUpNormal_Dot"
             return "g@l"
