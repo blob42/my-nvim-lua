@@ -27,9 +27,14 @@ local _PP_CONF = {
   callbacks = pp_callbacks,
 }
 
+-- these are the custom callbacks that can be enabled from perproject files
+-- setting manually the callbacks here is a safety measure from auto running
+-- untrusted code from perproject files
+-- TODO: load callbacks from a `callbacks_file` under `runtimepath`
 local pp_callbacks = {
   -- @enabled: bool
 
+  -- auto start lsp for this project
   lsp_autostart = function(enabled)
     if enabled then
       local other_matching_configs = require('lspconfig.util').get_other_matching_providers(vim.bo.filetype)
@@ -37,6 +42,15 @@ local pp_callbacks = {
         config.launch()
       end
     end
+  end,
+
+  -- used for testing
+  -- create a `.pnvim.json` file with this content:
+  -- {
+  --   "test_callback": true
+  -- }
+  test_callback = function(enabled)
+    P("test callback")
   end
 
 }
@@ -59,7 +73,8 @@ end
 
 -- local scandir = require("plenary.scandir")
 
-local function per_project_file()
+--TODO:
+local function per_project_dir()
   local cwd = Path.new(vim.fn.getcwd())
   local pp_dir = cwd:joinpath(_PP_CONF_.basename)
 
@@ -82,8 +97,8 @@ local function per_project_file()
     print("no " .. _PP_CONF.basename)
   end
 
-  -- TODO:
-  -- check if there is a custom .nvim-lsp dir in working dir
+  -- TODO: handle directoryies
+  -- check if there is a custom .pnvim.json dir in working dir
   -- each file inside .nvim-lsp represent a active option if
   -- it is present
   -- example
@@ -95,6 +110,7 @@ end
 M.per_project_jsonfile = function()
   local cwd = Path.new(vim.fn.getcwd())
   local pp_file = cwd:joinpath(_PP_CONF.basename)
+  -- if is file then load the file
   if pp_file:is_file() then
     local ok, decoded = pcall(vim.json.decode, (pp_file:read()))
     if not ok then

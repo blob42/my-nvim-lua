@@ -229,7 +229,17 @@ return {
                 override_priority = 2000, -- highest priority for my luasnips
             }
         end
-    }, -- }}}
+    },
+
+
+    -- vim templates 
+    ["https://codeberg.org/jgoguen/tmpl.vim"] = {
+        setup = function()
+            
+        end
+    },
+
+    -- }}}
 
     -- text formatting
     --
@@ -482,7 +492,7 @@ return {
         end
     },
 
-    -- session and view
+    -- sessions, projects and views
 
     ["vim-scripts/restore_view.vim"] = {}, -- TODO: check if still needed
 
@@ -496,6 +506,11 @@ return {
     --   end
     -- },
 
+    ["windwp/nvim-projectconfig"] = {
+        config = function()
+            require("custom.plugins.configs.projectconfig").setup()
+        end,
+    },
 
     --
     -- Misc / General plugins
@@ -662,7 +677,7 @@ return {
     --
 
     ['stevearc/aerial.nvim'] = {
-        lock = true,
+        -- lock = true,
         after = { "base46" },
         keys = { "<Right>" },
         cmd = { "Aerial*" },

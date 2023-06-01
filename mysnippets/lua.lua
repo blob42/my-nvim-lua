@@ -23,7 +23,7 @@ return M
         -- if require
         s("ifreq", fmt([[
     local ok, {} = pcall(require, "{}")
-    if not ok then 
+    if not ok then
         vim.notify("missing module {}", vim.log.levels.WARN)
         return
     end
