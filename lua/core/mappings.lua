@@ -1040,7 +1040,7 @@ M.grapple = {
         ["<leader><leader>p"] = { "<cmd> lua require'grapple'.select {key='plugins', scope='global'}<CR>" },
         ["<leader><leader>b"] = { "<cmd> lua require'grapple'.select {key='bonzai', scope='global'}<CR>" },
         ["<leader><leader>P"] = { "<cmd> lua require'grapple'.select({key='Plugins'})<CR>" },
-        ["<leader><leader>o"] = { "<cmd> lua require'grapple'.select({key='options'})<CR>" },
+        ["<leader><leader>o"] = { "<cmd> lua require'grapple'.select {key='options', scope='global'}<CR>" },
         ["<leader><leader>g"] =  { "<cmd> lua require'grapple'.popup_tags()<CR>" },
         ["<leader><leader>G"] =  { "<cmd> lua require'grapple'.popup_tags('global')<CR>" },
     }
@@ -1097,6 +1097,8 @@ M.copilot = {
     n = {
         -- copilot options here
         ["<leader>cpn"] = { "<cmd> lua require'copilot.panel'.open()<CR>", "copilot panel" },
+        ["<leader>c<CR>"] = { ":lua require'copilot.panel'.accept()<CR>", "copilot panel accept" },
+        ["<leader>cr"] = { ":lua require'copilot.panel'.refresh()<CR>", "copilot panel refresh" },
         ["]p"] = { "<cmd> lua require'copilot.panel'.jump_next()<CR> ", "copilot panel next" },
         ["[p"] = { "<cmd> lua require'copilot.panel'.jump_prev()<CR> ", "copilot panel prev" },
     },
