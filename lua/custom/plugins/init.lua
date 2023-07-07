@@ -67,7 +67,7 @@ return {
         end,
     },
     ["nvim-treesitter/nvim-treesitter-textobjects"] = {
-        lock = true,
+        -- lock = true,
         opt = true,
     },
     -- ["RRethy/nvim-treesitter-textsubjects"] = {
@@ -776,7 +776,7 @@ return {
     -- golang dev
 
     ["ray-x/go.nvim"] = { -- {{{
-        lock = true,
+        -- lock = true,
         -- after = {"nvim-lspconfig", "navigator.lua", "guihua.lua"},
         ft = { "go" },
         opt = true,
