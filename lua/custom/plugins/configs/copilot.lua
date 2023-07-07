@@ -8,7 +8,7 @@ local M = {}
 
 local config = {
   panel = {
-    enabled = true,
+    enabled = false,
     auto_refresh = false,
     keymap = {
       jump_prev = "[[",
@@ -23,7 +23,7 @@ local config = {
     },
   },
   suggestion = {
-    enabled = true,
+    enabled = false,
     auto_trigger = false,
     debounce = 75,
     keymap = {
@@ -36,8 +36,9 @@ local config = {
     },
   },
   filetypes = {
+    python = true,
     yaml = false,
-    markdown = false,
+    markdown = true,
     help = false,
     gitcommit = false,
     gitrebase = false,
@@ -47,7 +48,9 @@ local config = {
     ["."] = false,
   },
   copilot_node_command = 'node', -- Node.js version must be > 16.x
-  server_opts_overrides = {},
+  server_opts_overrides = {
+      -- trace = "verbose"
+  },
 }
 
 M.setup = function()

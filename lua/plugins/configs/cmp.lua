@@ -35,6 +35,12 @@ cmp_window.info = function(self)
     return info
 end
 
+local has_words_before = function()
+  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+end
+
 local options = {
     -- preselect = cmp.PreselectMode.None,
     window = {
@@ -117,7 +123,7 @@ local options = {
         }),
         ["<Tab>"] = cmp.mapping(function(fallback)
             local luasnip = require("luasnip")
-            if cmp.visible() then
+            if cmp.visible() and has_words_before() then
                 cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
@@ -132,7 +138,7 @@ local options = {
         }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             local luasnip = require("luasnip")
-            if cmp.visible() then
+            if cmp.visible() and has_words_before() then
                 cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
                 luasnip.jump(-1)
@@ -146,6 +152,7 @@ local options = {
     },
     sources = {
         { name = "luasnip", priority = 1000 },
+        { name = "nvim_lua", priority = 900 },
         { name = "nvim_lsp", priority = 800 },
         {
             name = "buffer",
@@ -158,10 +165,10 @@ local options = {
                     return vim.tbl_keys(bufs)
                 end
             },
+            priority = 700
         },
-        { name = "nvim_lua", priority = 900 },
+        { name = "copilot", priority = 100 },
         { name = "path" },
-        { name = "copilot" },
     },
 }
 

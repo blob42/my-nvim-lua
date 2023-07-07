@@ -178,6 +178,10 @@ return {
     -- https://github.com/thmsmlr/gpt.nvim
     ["dpayne/CodeGPT.nvim"] = {
         keys = {"<leader>gpT"},
+        config = function()
+            require("codegpt.config")
+            require("custom.plugins.configs.code-gpt").setup()
+        end
     },
     ["jackMort/ChatGPT.nvim"] = {
         -- lock = true,
