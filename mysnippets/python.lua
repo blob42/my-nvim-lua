@@ -19,7 +19,8 @@ return {
     # along with this program.  If not, see <http://www.gnu.org/licenses/>.
     ]], {
         i(1), i(0)
-    }))
+    })),
+    s("tyt", t("import typing as t")),
 }, { --autosnippets
     -- s("uuid#", f(gen_uuid))
     s("ret ", t("return ")),
