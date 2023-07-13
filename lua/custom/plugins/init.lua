@@ -280,6 +280,19 @@ return {
     },
 
 
+    -- helper to select icons and fonts
+    ["ziontee113/icon-picker.nvim"] = {
+        cmd = {"IconPicker*"},
+        setup = function()
+            require("core.utils").load_mappings "iconpicker"
+        end,
+        config = function()
+            require("icon-picker").setup({
+                disable_legacy_commands = true
+            })
+        end,
+    },
+
     -- ["p00f/nvim-ts-rainbow"] = {
     --   opt = true,
     -- },
@@ -815,6 +828,15 @@ return {
     ["scrooloose/vim-slumlord"] = {
         opt = true,
         -- ft = {"plantuml"},
+    },
+
+    -- Diagram Tools
+    ["jbyuki/venn.nvim"] = {
+        keys = { "<leader>V" },
+        config = function()
+            require("custom.plugins.configs.venn").enable()
+            require("core.utils").load_mappings "venn"
+        end,
     },
 
     -- sql tools

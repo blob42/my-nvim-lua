@@ -1143,4 +1143,21 @@ M.null_ls = {
     }
 }
 
+M.venn = {
+    plugin = true,
+    n = {
+        ["<leader>nv"] = { "<cmd>lua require'custom.plugins.configs.venn'.disable()<CR>", "disable venn" },
+    }
+}
+
+M.iconpicker = {
+    plugin = true,
+    n = {
+        ["<leader>ip"] = { "<cmd>IconPickerNormal<cr>", "Icon Picker" },
+    },
+    i = {
+        ["<M-c>ip"] = { "<cmd>IconPickerInsert<CR>", "icon picker insert" },
+    }
+}
+
 return M
