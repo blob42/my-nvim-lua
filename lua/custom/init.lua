@@ -1,8 +1,28 @@
 -- vim modeline
 -- vim: foldmarker={,} foldmethod=marker foldlevel=0
 
--- local augroup = vim.api.nvim_create_augroup
--- local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
+local windowGroup = augroup("dkowindow", {})
+
+-- FIXME: temporary fix for bug introduced in
+-- https://github.com/neovim/neovim/commit/d52cc668c736ef6ca7ee3655a7eb7fe6475afadc
+-- https://github.com/davidosomething/dotfiles/commit/95c0ac68936a8517d9c60b3e461b3e7b7fd076c1
+-- Remove on next update
+autocmd("WinLeave", {
+  callback = function()
+    if vim.bo.ft == "TelescopePrompt" and vim.fn.mode() == "i" then
+      vim.api.nvim_feedkeys(
+        vim.api.nvim_replace_termcodes("<Esc>", true, false, true),
+        "i",
+        false
+      )
+    end
+  end,
+  desc = "https://github.com/nvim-telescope/telescope.nvim/issues/2027",
+  group = windowGroup,
+})
 
 -- window closing
 -- TODO: using dynamic C-x command

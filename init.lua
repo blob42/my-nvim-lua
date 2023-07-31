@@ -24,7 +24,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   vim.cmd "PackerSync"
 end
 
--- pcall(require, "custom")
+pcall(require, "custom")
 
 local xdg_config = vim.env["XDG_CONFIG_HOME"] or '~/.config'
 local vimscriptsfolder = xdg_config .. "/nvim/myvimscript" -- relative to .config/nvim dir
