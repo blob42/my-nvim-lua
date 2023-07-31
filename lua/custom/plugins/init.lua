@@ -56,7 +56,7 @@ return {
     ["nvim-treesitter/nvim-treesitter"] = { -- {{{
         -- commit = "4f8b2480", -- pin to latest working commit
         -- custom config in chadrc -> custom.configs.treesitter
-        lock = true,
+        -- lock = true,
         setup = function()
             require("core.lazy_load").on_file_open "nvim-treesitter"
             require("core.lazy_load").on_file_open "nvim-treesitter-textobjects"
@@ -92,7 +92,7 @@ return {
     },
 
     ["nvim-treesitter/nvim-treesitter-context"] = {
-        lock = true,
+        -- lock = true,
         opt = true,
         config = function()
             require("custom.plugins.configs.treesitter-context").setup()
@@ -307,7 +307,7 @@ return {
             require("core.utils").load_mappings "dap"
         end,
         config = function()
-            require('spike.dap').setup()
+            -- require('spike.dap').setup()
             -- require("custom.plugins.configs.dap").setup()
         end
     },
