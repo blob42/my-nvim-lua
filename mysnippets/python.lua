@@ -21,8 +21,18 @@ return {
         i(1), i(0)
     })),
     s("tyt", t("import typing as t")),
+    -- docstring
+    s("d", fmt([["""{}"""]], {i(1)})),
+
+    -- mypy reveal_type
+    s("revl", fmt([[reveal_type({})]], {i(1)})),
 }, { --autosnippets
     -- s("uuid#", f(gen_uuid))
     s("ret ", t("return ")),
-    s("#ign", t"  # type: ignore")
+
+    -- f-string
+    s("f-", fmt([[f"{}"]], {i(1)})),
+
+    -- mypy #ignore
+    s("#ign", t"  # type: ignore"),
 }
