@@ -47,7 +47,7 @@ opt.mouse = "a"
 opt.cpoptions:append ">" --  When appending to registers use newline
 
 -- GUI
-opt.mousehide = true
+-- opt.mousehide = true
 
 -- Numbers
 opt.number = true
