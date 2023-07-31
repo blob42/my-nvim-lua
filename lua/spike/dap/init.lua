@@ -1,3 +1,8 @@
+local present, dap = pcall(require, "dap")
+if not present then
+    print("nvim-dap missing !")
+    return
+end
 local dapmode = require("spike.dap.dapmode")
 local daputils = require('spike.dap.utils')
 local dapui = require("dapui")
@@ -26,19 +31,14 @@ M.signs = {
     }
 }
 
-local function register_listeners()
-    local present, dap = pcall(require, "dap")
-    if not present then
-        print("nvim-dap missing !")
-        return
-    end
 
-    dap.listeners.before['event_initialized']['spike-dap'] = function(session, body)
+local function register_listeners()
+    dap.listeners.before['event_initialized']['spike-dap'] = function(_, _)
         dapmode.start()
         dapui.open()
     end
 
-    dap.listeners.after['event_terminated']['spike-dap'] = function(session, body)
+    dap.listeners.after['event_terminated']['spike-dap'] = function(_, _)
         -- print("dap session ended")
         dapmode.stop()
         dapui.close()
@@ -57,13 +57,33 @@ local function set_signs()
     end
 end
 
+local function dap_setup()
+    -- set default externalTerminal
+    dap.defaults.fallback.external_terminal = {
+        command = "/usr/bin/alacritty",
+        args = {
+            "--class",
+            "dap",
+            "-o",
+            "window.dimensions.lines=30",
+            "-o",
+            "window.dimensions.columns=100",
+            "-e"
+        }
+    }
+
+
+end
+
 function M.prepare_launch()
 end
 
 function M.setup()
+    dap_setup()
     dapmode.setup({})
     register_listeners()
     set_signs()
+    daputils.load_launch_json()
 end
 
 

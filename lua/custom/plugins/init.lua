@@ -301,7 +301,7 @@ return {
     -- dap
 
     ["mfussenegger/nvim-dap"] = { -- {{{
-        lock = true,
+        -- lock = true,
         module = {"dap"},
         setup = function()
             require("core.utils").load_mappings "dap"
@@ -309,6 +309,19 @@ return {
         config = function()
             -- require('spike.dap').setup()
             -- require("custom.plugins.configs.dap").setup()
+        end
+    },
+
+    ["mfussenegger/nvim-dap-python"] = {
+        after = {"nvim-dap"},
+        config = function()
+            -- expand share folder
+            venv_path = vim.fn.stdpath('data') .. '/mason/packages/debugpy/venv/bin/python'
+            require('dap-python').setup(venv_path)
+        end,
+        cond = function()
+            -- filetype is python
+            return vim.bo.filetype == "python"
         end
     },
 

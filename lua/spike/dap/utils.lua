@@ -32,4 +32,17 @@ M.init_breakpoints = function()
     end
 end
 
+--- Load the DAP launch.json file
+--- If the file does not exist, create it at the default location.
+M.load_launch_json = function()
+    local Path = require("plenary.path")
+    local fpath = Path:new(vim.fn.getcwd() .. "/.vscode/launch.json")
+    -- if path does not exist print message
+    if not fpath:exists() then
+        vim.notify('launch.json not found at ' .. fpath.filename)
+        return
+    end
+    require("dap.ext.vscode").load_launchjs()
+end
+
 return M
