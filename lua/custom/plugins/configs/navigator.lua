@@ -116,9 +116,11 @@ local config = {
     diagnostic_head_description = ' ',
     diagnostic_virtual_text = '',
     diagnostic_file = '🚑',
+
     -- Values
+    --
     value_changed = '碑',
-    value_definition = '什', -- it is easier to see than 🦕
+    value_definition = ':', -- it is easier to see than 🦕
     side_panel = {
       section_separator = '',
       line_num_left = '',
@@ -130,10 +132,10 @@ local config = {
     },
     -- Treesitter
     match_kinds = {
-      var = ' ', 
-      method = 'ƒ ', 
-      ['function'] = ' ', 
-      parameter = '', 
+      var = ' ',
+      method = 'ƒ ',
+      ['function'] = ' ',
+      parameter = '',
       associated = '',
       namespace = '',
       type = ' ',
