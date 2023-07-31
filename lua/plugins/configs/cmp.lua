@@ -151,9 +151,9 @@ local options = {
         }),
     },
     sources = {
-        { name = "luasnip", priority = 1000 },
-        { name = "nvim_lua", priority = 900 },
-        { name = "nvim_lsp", priority = 800 },
+        { name = "luasnip", priority = 1000, group_index = 2 },
+        { name = "nvim_lua", priority = 900, group_index = 2 },
+        { name = "nvim_lsp", priority = 800, group_index = 2 },
         {
             name = "buffer",
             option = {
@@ -165,10 +165,11 @@ local options = {
                     return vim.tbl_keys(bufs)
                 end
             },
-            priority = 700
+            priority = 700,
+            group_index = 2,
         },
-        { name = "copilot", priority = 100 },
-        { name = "path" },
+        { name = "copilot", priority = 100, group_index = 2 },
+        { name = "path", group_index = 2 },
     },
 }
 
