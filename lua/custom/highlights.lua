@@ -11,6 +11,9 @@ M.override = {
         CursorLine = {
             bg = "#3b2a41"
         },
+        CursorColumn = {
+            bg = "#3b2a41"
+        },
         ColorColumn = {
             bg = "#3b2a41"
         },
