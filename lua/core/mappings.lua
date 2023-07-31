@@ -582,6 +582,7 @@ M.dap = { -- {{{
         ["<leader>ds"] = {
             function()
                 local mydap = require("spike.dap")
+                local dap = require("dap")
 
                 mydap.setup()
                 require('spike.dap.utils').init_breakpoints()
@@ -594,6 +595,8 @@ M.dap = { -- {{{
                     local rt = require("rust-tools")
                     -- make sure lsp is running ?
                     rt.debuggables.debuggables()
+                else
+                    dap.continue()
                 end
             end,
             "start dap session"
@@ -618,6 +621,7 @@ M.dap = { -- {{{
             end,
             "dap conditional breakpoint"
         },
+        ["<leader>dC"] = { "<cmd>lua require'dap'.continue()<CR>", "Dap Continue" },
         ["<leader>dm"] = {
             function()
                 require('spike.dap.dapmode').start()
