@@ -2,7 +2,7 @@
 - !{motion}{filter} filter text lines through ext program
 - !!{filter} filter lines through ext program
 - review using C-x C-l with context aware situation
-- gR *virtual replace* mode
+- gR *virtual replace* mode ( set ve=all | ve=none )
 
 - C-\ atlernate between windows
 - C-^ alternate buffer
