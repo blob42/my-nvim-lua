@@ -22,6 +22,8 @@ local config = {
         c = true,
         java = true,
     },
+    printf_statements = {},
+    print_var_statements = {},
 }
 
 M.setup = function()

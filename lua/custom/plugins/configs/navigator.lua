@@ -1,5 +1,6 @@
 local present, navigator = pcall(require, "navigator")
 
+
 if not present then
   return
 end
@@ -18,6 +19,8 @@ local get_current_gomod = function()
   return mod_name
 end
 
+-- default config 
+-- "~/.local/share/nvim/site/pack/packer/opt/navigator.lua/lua/navigator.lua"
 local config = {
   debug = false,
   transparency = 5,
@@ -32,7 +35,8 @@ local config = {
     { key = 'gW', func = require('navigator.workspace').workspace_symbol_live, desc = 'lsp workspace_symbol_live' },
     { key = '<c-]>', func = require('navigator.definition').definition, desc = 'lsp definition' },
     { key = 'gd', func = require('navigator.definition').definition, desc = 'lsp definition' },
-    { key = 'gp', func = require('navigator.definition').definition_preview, desc = 'lsp definition_preview' },
+    { key = 'gp', func = require('navigator.definition').definition_preview, desc = 'lsp definition preview' },
+    { key = 'gP', func = require('navigator.definition').type_definition_preview, desc = 'lsp type definition preview' },
     -- handled by main mappings
     -- { key = '<Leader>gt', func = require('navigator.treesitter').buf_ts, desc = 'lsp buf_ts' },
     -- { key = '<Leader>gT', func = require('navigator.treesitter').bufs_ts, desc = 'lsp bufs_ts' },
@@ -97,7 +101,7 @@ local config = {
   icons = {
     icons = true, -- set to false to use system default ( if you using a terminal does not have nerd/icon)
     -- Code action
-    code_action_icon = ' ', -- "",
+    code_action_icon = '', -- "",
 
     -- code lens
     code_lens_action_icon = '',
@@ -106,7 +110,7 @@ local config = {
     diagnostic_head = '',   -- default diagnostic head on dialogs
     diagnostic_err =  '',    -- severity 1
     diagnostic_warn = '',   --          2
-    diagnostic_info = '',   --          3
+    diagnostic_info = '',   --          3
     diagnostic_hint = '',   --          4
 
     -- used in the diagnostics summary window
@@ -115,7 +119,7 @@ local config = {
     diagnostic_head_severity_3 = 'i',
     diagnostic_head_description = ' ',
     diagnostic_virtual_text = '',
-    diagnostic_file = '🚑',
+    diagnostic_file = ' ',
 
     -- Values
     --
@@ -143,7 +147,7 @@ local config = {
       module = '',
       flag = '',
     },
-    treesitter_defult = '🌲',
+    treesitter_defult = '',
     doc_symbols = '',
   },
   mason = true,
@@ -160,6 +164,11 @@ local config = {
       }, -- show virtual for diagnostic message
       update_in_insert = false, -- update diagnostic message in insert mode
       severity_sort = { reverse = false },
+    },
+
+    code_action = {
+        delay = 5000, -- 5 sec delay
+        virtual_text_icon = false,
     },
 
     diagnostic_scrollbar_sign = false,
