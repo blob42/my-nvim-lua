@@ -1,6 +1,9 @@
 
 -- n, v, i, t, c = mode name.s
 
+local opt = vim.opt
+local g = vim.g
+
 local function termcodes(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
@@ -97,10 +100,36 @@ M.general = { --{{{
         ["<leader>Y"] = { "<cmd> %y+ <CR>", "copy whole file" },
 
         -- line numbers
-        ["<BS>n"] = { "<cmd> set nu!<CR><cmd> set rnu!<CR>", "toggle line number" },
+        ["<BS>N"] = { "<cmd> set nu!<CR><cmd> set rnu!<CR>", "toggle line number" },
+
+        ["<BS>ts"] = {function()
+           if g.sign_column_enbaled then
+               opt.signcolumn="no"
+               g.sign_column_enbaled = false
+           else
+               opt.signcolumn="yes"
+               g.sign_column_enbaled = true
+           end
+    
+        end, "toggle sign column" },
+
+        ["<BS>z"] = { function()
+            require("spike.utils").zenmode()
+        end, "silent mode (no distraction)" },
+        ["<BS>Z"] = { function()
+            require("spike.utils").zenmode(true)
+        end, "maximum zen" },
+        ["<BS>qz"] = { function()
+            require("spike.utils").exitzen()
+        end, "exit zen" },
+        ["<BS>zz"] = { function()
+            require("spike.utils").togglezen()
+        end, "toggle zen" },
 
         -- option toggle cursor line
         ["<BS>l"] = { "<cmd> set cul!<CR>", "toggle cursor line" },
+
+
 
         ["<BS>c"] = { "<cmd>cclose<CR><cmd>lclose<CR>", "close quickfix" },
 
@@ -1122,9 +1151,20 @@ M.navigator = {
 
 M.refactoring = {
     plugin = true,
-    v = {
-        ["<leader>rr"] = {":lua require'refactoring'.select_refactor()<CR>", "refactoring using telescope", opts = { expr = false }},
-    }
+    x = {
+        ["<leader>rr"] = {
+        function()
+            require('telescope').extensions.refactoring.refactors()
+        end,
+        "refactoring using telescope", opts = { expr = false }},
+    },
+    n = {
+        ["<leader>rr"] = {
+        function()
+            require('telescope').extensions.refactoring.refactors()
+        end,
+        "refactoring using telescope", opts = { expr = false }},
+    },
 }
 
 M.null_ls = {
