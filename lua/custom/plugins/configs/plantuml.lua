@@ -7,7 +7,7 @@ M.lazy_load_module = function()
     autocmd({"BufRead", "BufNewFile"},{
         group = vim.api.nvim_create_augroup("plantuml", {}),
         callback = function()
-            plantuml_patterns = {
+            local plantuml_patterns = {
                 "%.pu", "%.uml", "%.plantuml", "%.puml", "%.iuml"
             }
 
@@ -20,8 +20,7 @@ M.lazy_load_module = function()
                     return
                 end
             end
-
-            firstline = vim.api.nvim_buf_get_lines(0,0,1,true)[1]
+            local firstline = vim.api.nvim_buf_get_lines(0,0,1,true)[1]
             if firestline ~= "" and firstline:match("^@startuml%s*") then
                 vim.defer_fn(function()
                     require("packer").loader("plantuml-syntax")
