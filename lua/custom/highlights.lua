@@ -37,6 +37,9 @@ M.override = {
         St_LspInfo = {
             fg = "white"
         },
+        St_LspStatus = {
+            fg = "sun"
+        },
         LineNr = {
             fg = "#5f4468"
         },
@@ -65,10 +68,11 @@ M.add =  {
             fg = "white",
             italic = true,
         },
-        DiagnosticUnderlineError = {
-            fg = "black",
-            bg = "pink",
-        },
+        -- Definied in custom theme parameters (after/plugin/theme.lua)
+        -- DiagnosticUnderlineError = {
+        --     fg = "red",
+        --     underline = true,
+        -- },
         -- Code Lens related colors
         LspCodeLens              = {
             fg = "vibrant_green",

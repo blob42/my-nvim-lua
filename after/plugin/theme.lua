@@ -20,7 +20,12 @@ local highlights = {
     St_file_sep_rev = {
         fg = colors.statusline_bg,
         bg = colors.lightbg,
-    }
+    },
+    DiagnosticUnderlineError = {
+        fg = c.change_hex_lightness(colors["red"], 5),
+        underline = true,
+    },
+
 }
 
 function set_hl()

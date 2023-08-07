@@ -18,9 +18,9 @@ local highlights = require "custom.highlights"
 M.ui = {
     -- theme = "gruvbox_material",
     -- theme = "ayu-dark",
-    theme = "catppuccin",
-    theme_toggle = { "gruvbox_material", "gruvbox_light" },
-    transparency = true,
+    theme = "chadracula",
+    theme_toggle = { "catppuccin", "chadracula"},
+    -- transparency = true,
     hl_override = highlights.override,
     hl_add = highlights.add,
     -- hl_override = {
@@ -31,9 +31,9 @@ M.ui = {
     myicons = {
         lsp = {
             diagnostic_head = '', -- default diagnostic head on dialogs
-            diagnostic_err = '', -- severity 1
+            diagnostic_err = '', -- severity 1
             diagnostic_warn = '', --          2
-            diagnostic_info = '', --          3
+            diagnostic_info = '', --          3
             diagnostic_hint = '', --          4
         }
     },

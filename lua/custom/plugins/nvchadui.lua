@@ -98,7 +98,11 @@ return {
         hints = (hints and hints > 0) and ("%#St_lspHints#" .. myicons.lsp.diagnostic_hint .. " " .. hints .. " ") or ""
         info = (info and info > 0) and ("%#St_lspInfo#" .. myicons.lsp.diagnostic_info .. " " .. info .. " ") or ""
 
-        return errors .. warnings .. hints .. info
+        if vim.o.columns > 120 then
+            return errors .. warnings .. hints .. info
+        else
+            return ""
+        end
     end,
 
     LSP_progress = function()
@@ -134,7 +138,7 @@ return {
         if rawget(vim, "lsp") then
             for _, client in ipairs(vim.lsp.get_active_clients()) do
                 if client.attached_buffers[vim.api.nvim_get_current_buf()] then
-                    lsp_status = (vim.o.columns > 100 and "%#St_LspStatus#" .. "  [" .. client.name .. "] ") or "   "
+                    lsp_status = (vim.o.columns > 100 and "%#St_LspStatus#" .. "[" .. client.name .. "]") or "%#St_LspStatus#" .. " "
                 end
             end
         end
@@ -164,6 +168,25 @@ return {
         text = '%l,%c%V%\\ %p%%'
 
         return "%#St_pos_text#" .. " " .. text .. " "
+    end,
+
+    git = function()
+      if not vim.b.gitsigns_head or vim.b.gitsigns_git_status then
+        return ""
+      end
+
+      local git_status = vim.b.gitsigns_status_dict
+
+      local added = (git_status.added and git_status.added ~= 0) and ("  " .. git_status.added) or ""
+      local changed = (git_status.changed and git_status.changed ~= 0) and ("  " .. git_status.changed) or ""
+      local removed = (git_status.removed and git_status.removed ~= 0) and ("  " .. git_status.removed) or ""
+      local branch_name = "   " .. git_status.head .. " "
+
+      if vim.o.columns > 120 then
+          return "%#St_gitIcons#" .. branch_name .. added .. changed .. removed
+      else
+          return ""
+      end
     end
 
 }

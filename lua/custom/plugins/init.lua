@@ -132,6 +132,7 @@ return {
 
     -- Code Refactoring
     ["ThePrimeagen/refactoring.nvim"] = {
+        module = {"refactoring"},
         setup = function()
             require("core.utils").load_mappings "refactoring"
         end,

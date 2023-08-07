@@ -16,6 +16,7 @@ local config = {
     WIP = { color = "default"},
     NOTE = { alt = { "TIP", "INFO", "TRICK", "RELEASE"}},
     DEBUG = {},
+    REVIEW = { color = "info" }
   },
   colors = {
     -- info = {"#2563EB"},
