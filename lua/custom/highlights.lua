@@ -40,9 +40,9 @@ M.override = {
         St_LspStatus = {
             fg = "sun"
         },
-        LineNr = {
-            fg = "#5f4468"
-        },
+        -- LineNr = {
+            -- fg = "#5f4468" -- outrun
+        -- },
     }
 
 M.add =  {
