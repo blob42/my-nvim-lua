@@ -24,6 +24,16 @@ autocmd("WinLeave", {
   group = windowGroup,
 })
 
+-- silence unwanted warnings
+local notify = vim.notify
+vim.notify = function(msg, ...)
+    if msg:match("warning: multiple different client offset_encodings") then
+        return
+    end
+
+    notify(msg, ...)
+end
+
 -- window closing
 -- TODO: using dynamic C-x command
 -- if character under cursor is number
