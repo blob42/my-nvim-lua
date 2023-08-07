@@ -159,7 +159,7 @@ local default_plugins = {
   "syntax",
   "synmenu",
   "optwin",
-  "compiler",
+  -- "compiler",
   "bugreport",
   "ftplugin",
 }
