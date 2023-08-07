@@ -14,9 +14,9 @@ M.override = {
         CursorColumn = {
             bg = "#3b2a41"
         },
-        ColorColumn = {
-            bg = "#3b2a41"
-        },
+        -- ColorColumn = { -- outrun
+        --     bg = "#3b2a41"
+        -- },
         DiagnosticWarn = {
             fg = "yellow",
             italic = true,
