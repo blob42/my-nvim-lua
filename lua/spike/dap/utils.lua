@@ -6,9 +6,11 @@ local M = {}
 
 M.disconnect_dap = function()
   local has_dap, dap = pcall(require, 'dap')
+  local _, dapui = pcall(require, 'dapui')
   if has_dap then
     dap.disconnect()
     dap.repl.close()
+    dapui.close()
     vim.cmd('sleep 100m') -- allow cleanup
   else
     vim.notify('dap not found')
