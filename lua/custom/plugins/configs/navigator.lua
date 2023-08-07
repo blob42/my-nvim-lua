@@ -108,7 +108,7 @@ local config = {
 
     -- Diagnostics
     diagnostic_head = '',   -- default diagnostic head on dialogs
-    diagnostic_err =  '',    -- severity 1
+    diagnostic_err =  '',    -- severity 1
     diagnostic_warn = '',   --          2
     diagnostic_info = '',   --          3
     diagnostic_hint = '',   --          4

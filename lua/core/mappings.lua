@@ -172,6 +172,15 @@ M.general = { --{{{
         },
 
 
+        ["<leader>tT"] = {
+            function()
+                require("base46").toggle_transparency()
+            end,
+            "toggle transparency",
+        },
+
+
+
 
         -- luasnip edit snippets
         ["<leader>sne"] = {

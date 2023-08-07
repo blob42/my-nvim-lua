@@ -25,7 +25,7 @@ opt.showmode = false
 
 opt.title = true
 opt.clipboard = "unnamed"
-opt.cul = true -- cursor line
+opt.cul = false -- cursor line
 -- opt.colorcolumn = "80"
 opt.colorcolumn = '+0' -- make colorcolumn follow text width
 opt.textwidth = 80
@@ -77,7 +77,7 @@ opt.foldlevelstart = 1
 opt.conceallevel=1 -- how to show text with :syn-conceal syntax
 
 opt.list = true -- show tabs,trailing spaces and non-breakable spaces
-opt.listchars = "tab: ,trail:,extends:#,nbsp:⋅,eol:↴" -- Highlight problematic whitespace
+opt.listchars = "tab: ,trail:,extends:#,nbsp:⋅,eol:" -- Highlight problematic whitespace
 opt.diffopt:append("vertical")
 opt.completeopt = "menu,menuone,noselect"
 opt.wrap = false
