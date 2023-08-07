@@ -7,6 +7,8 @@ local dapmode = require("spike.dap.dapmode")
 local daputils = require('spike.dap.utils')
 local dapui = require("dapui")
 
+local liblldb_path = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/lldb/lib/liblldb.so"
+
 local M = {}
 M.signs = {
     DapBreakpoint = {
@@ -72,6 +74,59 @@ local function dap_setup()
         }
     }
 
+    -- dap.adapters["codelldb-c"] = {
+    --     type = 'server',
+    --     host = "127.0.0.1",
+    --     port = "${port}",
+    --     executable = {
+    --         command = "/home/spike/.local/share/nvim/mason/packages/codelldb/extension/adapter/codelldb",
+    --         args = {"--liblldb", liblldb_path,"--port", "${port}"},
+    --     }
+    -- }
+
+    dap.adapters["codelldb-c"] = {
+        type = 'server',
+        host = "127.0.0.1",
+        port = "${port}",
+        executable = {
+            command = "/home/spike/.local/share/nvim/mason/packages/codelldb/extension/adapter/codelldb",
+            args = {"--liblldb", liblldb_path,"--port", "${port}"},
+        }
+    }
+
+
+    dap.configurations.c = {
+        {
+            name = "Launch file",
+            type = "codelldb-c",
+            request = "launch",
+            program = function()
+                return vim.fn.input("path to exe: ", vim.fn.getcwd() .. '/',  'file')
+            end,
+            cwd = '${workspaceFolder}',
+            stopOnEntry = false,
+            -- runInTerminal = true,
+        },
+
+        {
+            name = "Launch file (custom args)",
+            type = "codelldb-c",
+            request = "launch",
+            program = function()
+                -- local custom_args = vim.ui.input({ prompt = "custom args: "}
+                return vim.fn.input("path to exe: ", vim.fn.getcwd() .. '/',  'file')
+            end,
+            cwd = '${workspaceFolder}',
+            stopOnEntry = false,
+            args = function()
+                local args = vim.fn.input("args: ", "")
+                -- return a table of args
+                return vim.split(args, "%s+")
+            end
+            -- runInTerminal = true,
+        },
+
+    }
 
 end
 
