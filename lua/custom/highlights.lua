@@ -38,7 +38,7 @@ M.override = {
             fg = "white"
         },
         St_LspStatus = {
-            fg = "sun"
+            fg = "blue"
         },
         -- LineNr = {
             -- fg = "#5f4468" -- outrun
@@ -47,7 +47,7 @@ M.override = {
 
 M.add =  {
         Visual                   = {
-            bg = "#ff7775",
+            bg = "cyan",
             fg = "black",
         },
         BookmarkSign             = {
@@ -128,6 +128,9 @@ M.add =  {
            fg = "white",
            bold = true
        },
+       TreesitterContext = {
+           bg = "one_bg3"
+       }
 
     }
 

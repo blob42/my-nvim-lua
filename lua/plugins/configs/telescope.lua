@@ -47,7 +47,7 @@ local options = {
     winblend = 0,
     border = {},
     borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-    color_devicons = true,
+    color_devicons = false,
     set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
     file_previewer = require("telescope.previewers").vim_buffer_cat.new,
     grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,

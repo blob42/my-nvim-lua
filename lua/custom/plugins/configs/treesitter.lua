@@ -23,7 +23,7 @@ return {
     },
 
     highlight = {
-        enable = true,
+        enable = false,
         disable = function(lang, bufnr)
             return lang == "help"
         end

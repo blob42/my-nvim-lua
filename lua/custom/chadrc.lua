@@ -18,8 +18,8 @@ local highlights = require "custom.highlights"
 M.ui = {
     -- theme = "gruvbox_material",
     -- theme = "ayu-dark",
-    theme = "chadracula",
-    theme_toggle = { "catppuccin", "chadracula"},
+    theme = "blob42",
+    theme_toggle = { "blob42", "chadracula"},
     -- transparency = true,
     hl_override = highlights.override,
     hl_add = highlights.add,
@@ -31,7 +31,7 @@ M.ui = {
     myicons = {
         lsp = {
             diagnostic_head = '', -- default diagnostic head on dialogs
-            diagnostic_err = '', -- severity 1
+            diagnostic_err = '',  -- severity 1
             diagnostic_warn = '', --          2
             diagnostic_info = '', --          3
             diagnostic_hint = '', --          4
@@ -54,8 +54,6 @@ M.plugins = {
             tabufline = {
                 enabled = false,
             }
-
-
         },
         ["windwp/nvim-autopairs"] = {
             disable_filetype = {

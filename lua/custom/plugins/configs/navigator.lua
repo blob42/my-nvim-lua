@@ -5,6 +5,8 @@ if not present then
   return
 end
 
+local myicons = require("custom.chadrc").ui.myicons
+
 M = {}
 
 local get_current_gomod = function()
@@ -21,6 +23,7 @@ end
 
 -- default config 
 -- "~/.local/share/nvim/site/pack/packer/opt/navigator.lua/lua/navigator.lua"
+-- "~/.local/share/nvim/site/pack/packer/opt/navigator.lua/lua/navigator/lspclient/mapping.lua"
 local config = {
   debug = false,
   transparency = 5,
@@ -29,38 +32,12 @@ local config = {
   on_attach = require('plugins.configs.lspconfig').on_attach,
   keymaps = {
     { key = 'gr', func = require('navigator.reference').async_ref, desc = 'lsp async_ref' },
-    -- { key = '<Leader>gr', func = require('navigator.reference').reference, desc = 'lsp reference' }, -- reference deprecated
-    -- { key = '<C-i>', func = vim.lsp.buf.signature_help, desc = 'lsp signature_help' },
     { key = 'g0', func = require('navigator.symbols').document_symbols, desc = 'lsp document_symbols' },
     { key = 'gW', func = require('navigator.workspace').workspace_symbol_live, desc = 'lsp workspace_symbol_live' },
     { key = '<c-]>', func = require('navigator.definition').definition, desc = 'lsp definition' },
     { key = 'gd', func = require('navigator.definition').definition, desc = 'lsp definition' },
     { key = 'gp', func = require('navigator.definition').definition_preview, desc = 'lsp definition preview' },
     { key = 'gP', func = require('navigator.definition').type_definition_preview, desc = 'lsp type definition preview' },
-    -- handled by main mappings
-    -- { key = '<Leader>gt', func = require('navigator.treesitter').buf_ts, desc = 'lsp buf_ts' },
-    -- { key = '<Leader>gT', func = require('navigator.treesitter').bufs_ts, desc = 'lsp bufs_ts' },
-    -- { key = '<Leader>ct', func = require('navigator.ctags').ctags, desc = 'lsp ctags' },
-
-    -- handled by main mappings (lspconfig section)
-    -- { key = 'gD', func = vim.lsp.buf.declaration, desc = 'lsp declaration' },
-    -- {
-    --   key = '<M-i>',
-    --   mode = 'i',
-    --   func = vim.lsp.buf.signature_help,
-    --   desc = 'lsp signature_help'
-    -- },
-    -- { key = 'K', func = vim.lsp.buf.hover, desc = 'lsp hover' },
-    -- { key = '<Leader>gm', func = vim.lsp.buf.implementation, desc = 'lsp implementation' },
-    -- { key = '<Space>D', func = vim.lsp.buf.type_definition, desc = 'lsp type_definition' },
-    -- { key = ']d', func = vim.diagnostic.goto_next, desc = 'lsp next diagnostics' },
-    -- { key = '[d', func = vim.diagnostic.goto_prev, desc = 'lsp prev diagnostics' },
-    -- { key = ']O', func = vim.diagnostic.setloclist, desc = 'lsp diagnostics set loclist' },
-    -- { key = '<space>fm', func = vim.lsp.buf.format, mode = 'n', desc = 'lsp format' },
-    -- { key = '<Leader>gi', func = vim.lsp.buf.incoming_calls, desc = 'lsp incoming_calls' },
-    -- { key = '<Leader>go', func = vim.lsp.buf.outgoing_calls, desc = 'lsp outgoing_calls' },
-    -- { key = '<C-LeftMouse>', func = vim.lsp.buf.definition, desc = 'lsp definition' },
-    -- { key = 'g<LeftMouse>', func = vim.lsp.buf.implementation, desc = 'lsp implementation' },
 
     { key = '<M-a>', mode = 'n', func = require('navigator.codeAction').code_action, desc = 'lsp code_action' },
     { key = '<M-a>', mode = 'i', func = require('navigator.codeAction').code_action, desc = 'lsp code_action' },
@@ -71,12 +48,9 @@ local config = {
       func = require('navigator.codeAction').range_code_action,
       desc = 'lsp range_code_action',
     },
-    -- { key = '<Leader>re', func = 'rename()' },
     { key = '<Space>rn', func = require('navigator.rename').rename, desc = 'lsp rename' },
     { key = 'gL', func = require('navigator.diagnostics').show_diagnostics, desc = 'lsp show_diagnostics' },
     { key = 'gG', func = require('navigator.diagnostics').show_buf_diagnostics, desc = 'lsp show_buf_diagnostics' },
-    -- { key = '<Leader>dt', func = require('navigator.diagnostics').toggle_diagnostics, desc = 'lsp toggle_diagnostics' },
-    -- { key = '<Leader>td', func = require('spike.diagnostics').toggle, desc = 'lsp toggle_diagnostics' },
     { key = ']r', func = require('navigator.treesitter').goto_next_usage, desc = 'lsp goto_next_usage' },
     { key = '[r', func = require('navigator.treesitter').goto_previous_usage, desc = 'lsp goto_previous_usage' },
     { key = '<Leader>k', func = require('navigator.dochighlight').hi_symbol, desc = 'lsp hi_symbol' },
@@ -86,14 +60,6 @@ local config = {
       func = require('navigator.workspace').remove_workspace_folder,
       desc = 'lsp lsp remove_workspace_folder',
     },
-    -- { key = '<Space>ff', func = vim.lsp.buf.range_formatting, mode = 'v', desc = 'lsp range format' },
-    -- DEPRECATED 
-    -- {
-    --   key = '<Space>gm',
-    --   func = require('navigator.formatting').range_format,
-    --   mode = 'n',
-    --   desc = 'lsp range format operator e.g gmip',
-    -- },
     { key = '<leader>wl', func = require('navigator.workspace').list_workspace_folders, desc = 'lsp list_workspace_folders' },
     { key = '<leader>ll', mode = 'n', func = require('navigator.codelens').run_action, desc = 'lsp run code lens action' },
   },
@@ -107,11 +73,11 @@ local config = {
     code_lens_action_icon = '',
 
     -- Diagnostics
-    diagnostic_head = '',   -- default diagnostic head on dialogs
-    diagnostic_err =  '',    -- severity 1
-    diagnostic_warn = '',   --          2
-    diagnostic_info = '',   --          3
-    diagnostic_hint = '',   --          4
+    diagnostic_head = myicons.lsp.diagnostic_head,   -- default diagnostic head on dialogs
+    diagnostic_err =  myicons.lsp.diagnostic_err,    -- severity 1
+    diagnostic_warn = myicons.lsp.diagnostic_warn,   --          2
+    diagnostic_info = myicons.lsp.diagnostic_info,   --          3
+    diagnostic_hint = myicons.lsp.diagnostic_hint,   --          4
 
     -- used in the diagnostics summary window
     diagnostic_head_severity_1 = '',
@@ -240,6 +206,12 @@ local config = {
                     mccabe = { enabled = false },
                     pycodestyle= { enabled = false},
                     pyflakes = { enabled = false },
+
+                    -- install python-lsp-ruff
+                    -- if using mason activate venv from mason package 
+                    -- and install inside venv
+                    -- select isort and pycodestyle
+                    ruff = { enabled = true, select = {"I", "E"}} 
                 }
             }
         }

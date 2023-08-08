@@ -8,9 +8,9 @@ local ts_context_hl = c.change_hex_lightness(ts_context_hl, -55)
 
 
 local highlights = {
-    TreesitterContext = {
-      bg = ts_context_hl,
-    },
+    -- TreesitterContext = {
+    --   bg = ts_context_hl,
+    -- },
     InlayHint = {
         fg = "#a9a19a",
     },

@@ -31,7 +31,7 @@ M.reload_theme = function()
 end
 
  M.set_plugin_mappings = function(plugin_name, mapping_opt)
-   mappings = require("core.utils").load_config().mappings[plugin_name]
+   local mappings = require("core.utils").load_config().mappings[plugin_name]
    mappings.plugin = nil
 
   for mode, mode_values in pairs(mappings) do
@@ -52,7 +52,7 @@ end
 -- @param timestamp in milliseconds
 -- @return human readable string
 M.human_timestamp = function()
-    cword = vim.fn.expand('<cword>')
+    local cword = vim.fn.expand('<cword>')
 
 
     -- make sure cword is a number
@@ -60,7 +60,7 @@ M.human_timestamp = function()
     if n == nil then return end
 
     local time = os.date("*t", cword / (1000*1000))
-    format = string.format("%04d-%02d-%02d %02d:%02d:%02d", time.year, time.month, time.day, time.hour, time.min, time.sec)
+    local format = string.format("%04d-%02d-%02d %02d:%02d:%02d", time.year, time.month, time.day, time.hour, time.min, time.sec)
     vim.notify(format, vim.lsp.log_levels.INFO)
 end
 

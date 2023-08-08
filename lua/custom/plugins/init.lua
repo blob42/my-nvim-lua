@@ -1,6 +1,6 @@
 -- vim: foldlevel=1 foldmethod=marker
 --
--- TODO: interesting plugins to install
+-- TODO: plugins to test
 -- - neovim minisurround to replace vim-surround
 --
 -- #### notes on Lua and requiring modules
@@ -419,6 +419,16 @@ return {
     }, -- }}}
 
     -- Theme customization
+
+
+    ["jesseleite/nvim-noirbuddy"] = {
+        opt = true,
+        requires = {"tjdevries/colorbuddy.nvim", branch = "dev"},
+        config = function()
+            require("custom.plugins.configs.noirbuddy").setup()
+        end,
+    },
+
     -- Color picker
     ["uga-rosa/ccc.nvim"] = { -- {{{{{{
         -- commit = "427471b",
@@ -569,7 +579,7 @@ return {
     -- ["~/src/delaytrain.nvim"] = {
         config = function()
             require('delaytrain').setup({
-                delay_ms = 1000, -- How long repeated usage of a key should be prevented
+                delay_ms = 1001, -- How long repeated usage of a key should be prevented
                 grace_period = 1, -- How many repeated keypresses are allowed
                 keys = { -- Which keys (in which modes) should be delayed
                     ['n'] = { 'h', 'j', 'k', 'l' },
