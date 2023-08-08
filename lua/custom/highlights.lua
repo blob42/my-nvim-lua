@@ -2,7 +2,7 @@ local M = {}
 
 M.override = {
         IndentBlanklineContextChar = {
-            fg = "yellow",
+            fg = "baby_pink",
             nocombine = true,
         },
         Comment = {

@@ -16,16 +16,17 @@ M.base_30 = {
   baby_pink     = "#ef9d9d",
   pink          = "#ec8cc3",
   line          = "#3c3d49", -- for lines like vertsplit
-  green         = "#7ddc95",
-  vibrant_green = "#5dff88",
+  green         = "#95cb7f",
+  vibrant_green = "#5ffd89",
   nord_blue     = "#8b9bcd",
   blue          = "#a1b1e3",
-  yellow        = "#8d90e2",
+  yellow        = "#d7e28d",
   sun           = "#dea946",
   purple        = "#BD93F9",
   dark_purple   = "#BD93F9",
   teal          = "#92a2d4",
-  orange        = "#FFB86C",
+  -- orange        = "#FFB86C",
+  orange        = "#e9b782",
   cyan          = "#74a9e1",
   statusline_bg = "#2d2f3b",
   lightbg       = "#41434f",
@@ -52,10 +53,34 @@ M.base_16 = {
   base0F = "#f7f7f3",
 }
 
--- M.polish_hl = {
---   ["@function.builtin"] = { fg = M.base_30.cyan },
---   ["@number"] = { fg = M.base_30.purple },
--- }
+M.polish_hl = {
+  -- ["@function.builtin"] = { fg = M.base_30.cyan },
+  -- ["@number"] = { fg = M.base_30.purple },
+    -- ["@function"] 		= { fg = M.base_16.base0D, bold = true },
+    ["@function"]       = { fg = "none" },
+    ["@variable.builtin"]       = { fg = "none" },
+    ["Conditional"]     = { fg = M.base_16.base0D, bold = true },
+    ["Repeat"]          = { fg = M.base_16.base0D, bold = true },
+    ["@keyword.return"] = { fg = M.base_16.base0D, bold = true 	},
+
+    ["@keyword"]   = { fg = M.base_16.base08,  },
+    ["@keyword.function"]   = { fg = M.base_16.base08,  },
+    ["@keyword.coroutine"]   = { fg = M.base_16.base08,  },
+    ["@type.builtin"]   = { fg = M.base_16.base08,  },
+    ["@type"]           = { fg = M.base_16.base08,  },
+    ["Type"]            = { fg = M.base_16.base08,  },
+
+    ["Constant"]        = { fg = M.base_30.orange },
+    ["Variable"]          = { fg = "none" },
+    ["String"]          = { fg = M.base_30.green },
+
+    ["Identifier"]      = { fg = M.base_16.base07 },
+    ["@parameter"]      = { fg = "none" },
+    ["@attribute"]      = { fg = "none" },
+    ["@constructor"]      = { fg = M.base_16.base07 },
+
+}
+
 
 vim.opt.bg = "dark"
 

@@ -66,6 +66,7 @@ M.plugins = {
             }
         },
         ["nvim-treesitter/nvim-treesitter"] = require "custom.plugins.configs.treesitter",
+        ["lukas-reineke/indent-blankline.nvim"] = {},
     }
 }
 
