@@ -4,10 +4,13 @@ if not present then
   return
 end
 
+local colors = require("custom.themes.blob42").base_30
+
 local M = {}
 
 local config = {
   keywords = {
+    TODO = { icon = "✓"},
     ["_TODO"] = {
         color = "warning",
         alt = {"TODO!"}, -- a set of other keywords that all map to this FIX keywords
@@ -19,10 +22,11 @@ local config = {
     REVIEW = { color = "info" }
   },
   colors = {
-    -- info = {"#2563EB"},
-     info = {"#dddddd"},
-    hint = {"#10B981"},
-    default = {"#8C3AED" },
+      hint = {colors.green},
+      info = {colors.blue},
+      default = {colors.nord_blue},
+      warning = {colors.orange},
+      error =  { colors.pink }
   },
   highlight = {
       -- multiline = false,

@@ -15,20 +15,20 @@ local plugins = {
   ["NvChad/extensions"] = { module = { "telescope", "nvchad" }, lock = true },
 
   ["NvChad/base46"] = {
-    lock = false,
+    lock = true,
     config = function()
       local ok, base46 = pcall(require, "base46")
 
-      if ok then
-        base46.load_theme()
-      end
+      -- if ok then
+      --   base46.load_theme()
+      -- end
     end,
   },
 
   ["NvChad/ui"] = {
     lock = true,
     disable = false,
-    after = "base46",
+    after = {"base46", "nvim-noirbuddy"},
     config = function()
       require("plugins.configs.others").nvchad_ui()
     end,

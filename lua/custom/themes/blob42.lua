@@ -54,36 +54,33 @@ M.base_16 = {
 }
 
 M.polish_hl = {
-  -- ["@function.builtin"] = { fg = M.base_30.cyan },
-  -- ["@number"] = { fg = M.base_30.purple },
     -- ["@function"] 		= { fg = M.base_16.base0D, bold = true },
-    ["@function"]       = { fg = "none" },
-    ["@variable.builtin"]       = { fg = "none" },
-    ["Conditional"]     = { fg = M.base_16.base0D, bold = true },
-    ["Repeat"]          = { fg = M.base_16.base0D, bold = true },
-    ["@keyword.return"] = { fg = M.base_16.base0D, bold = true 	},
-
-    ["@keyword"]   = { fg = M.base_16.base08,  },
-    ["@keyword.function"]   = { fg = M.base_16.base08,  },
-    ["@keyword.coroutine"]   = { fg = M.base_16.base08,  },
-    ["@type.builtin"]   = { fg = M.base_16.base08,  },
-    ["@type"]           = { fg = M.base_16.base08,  },
-    ["Type"]            = { fg = M.base_16.base08,  },
-
-    ["Constant"]        = { fg = M.base_30.orange },
-    ["Variable"]          = { fg = "none" },
-    ["String"]          = { fg = M.base_30.green },
-
-    ["Identifier"]      = { fg = M.base_16.base07 },
-    ["@parameter"]      = { fg = "none" },
-    ["@attribute"]      = { fg = "none" },
-    ["@constructor"]      = { fg = M.base_16.base07 },
+    -- ["@function"]       = { fg = "none" },
+    -- ["@variable.builtin"]       = { fg = "none" },
+    -- ["Conditional"]     = { fg = M.base_16.base0D, bold = true },
+    -- ["Repeat"]          = { fg = M.base_16.base0D, bold = true },
+    -- ["@keyword.return"] = { fg = M.base_16.base0D, bold = true 	},
+    --
+    -- ["@keyword"]   = { fg = M.base_16.base08,  },
+    -- ["@keyword.function"]   = { fg = M.base_16.base08,  },
+    -- ["@keyword.coroutine"]   = { fg = M.base_16.base08,  },
+    -- ["@type.builtin"]   = { fg = M.base_16.base08,  },
+    -- ["@type"]           = { fg = M.base_16.base08,  },
+    -- ["Type"]            = { fg = M.base_16.base08,  },
+    --
+    -- ["Constant"]        = { fg = M.base_30.orange },
+    -- ["Variable"]          = { fg = "none" },
+    -- ["String"]          = { fg = M.base_30.green },
+    --
+    -- ["Identifier"]      = { fg = M.base_16.base07 },
+    -- ["@parameter"]      = { fg = "none" },
+    -- ["@attribute"]      = { fg = "none" },
+    -- ["@constructor"]      = { fg = M.base_16.base07 },
 
 }
 
 
 vim.opt.bg = "dark"
-
 M = require("base46").override_theme(M, "blob42")
 
 return M

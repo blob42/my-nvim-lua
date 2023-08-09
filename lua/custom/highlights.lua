@@ -46,10 +46,10 @@ M.override = {
     }
 
 M.add =  {
-        Visual                   = {
-            bg = "cyan",
-            fg = "black",
-        },
+        -- Visual                   = {
+        --     bg = "cyan",
+        --     fg = "black",
+        -- },
         BookmarkSign             = {
             fg = "blue",
         },
@@ -101,9 +101,9 @@ M.add =  {
         DapBreakpoint            = {
             fg = "green"
         },
-        DapStopped               = {
-            fg = "#ff4848"
-        },
+        -- DapStopped               = {
+        --     fg = "#ff4848"
+        -- },
         DapLogPoint              = {
             fg = "vibrant_green"
         },
@@ -121,9 +121,9 @@ M.add =  {
             fg = "teal",
             -- bg = "one_bg3",
         },
-        NvimDapVirtualText = {
-            fg = '#f99540'
-       },
+       --  NvimDapVirtualText = {
+       --      fg = '#f99540'
+       -- },
        TabLineSel = {
            fg = "white",
            bold = true

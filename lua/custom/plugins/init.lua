@@ -56,7 +56,7 @@ return {
     ["nvim-treesitter/nvim-treesitter"] = { -- {{{
         -- commit = "4f8b2480", -- pin to latest working commit
         -- custom config in chadrc -> custom.configs.treesitter
-        -- lock = true,
+        lock = true,
         setup = function()
             require("core.lazy_load").on_file_open "nvim-treesitter"
             require("core.lazy_load").on_file_open "nvim-treesitter-textobjects"
@@ -67,7 +67,7 @@ return {
         end,
     },
     ["nvim-treesitter/nvim-treesitter-textobjects"] = {
-        -- lock = true,
+        lock = true,
         opt = true,
     },
     -- ["RRethy/nvim-treesitter-textsubjects"] = {
@@ -83,16 +83,16 @@ return {
     },
     -- Treesitter dev/exploration tool
     -- https://git.blob42.xyz/blob42/playground/commit/460fe1b3e3b2971c52c5f02a7dbbb132f1f30584
-    -- ["nvim-treesitter/playground"] = {
-    ["https://git.blob42.xyz/blob42/playground"] = {
+    ["nvim-treesitter/playground"] = {
+    -- ["https://git.blob42.xyz/blob42/playground"] = {
         lock = true,
-        opt = true,
+        -- opt = true,
         cmd = { "TSPlayground*" },
         -- commit = "460fe1b3e3b2971c52c5f02a7dbbb132f1f30584",
     },
 
     ["nvim-treesitter/nvim-treesitter-context"] = {
-        -- lock = true,
+        lock = true,
         opt = true,
         config = function()
             require("custom.plugins.configs.treesitter-context").setup()
@@ -422,10 +422,11 @@ return {
 
 
     ["jesseleite/nvim-noirbuddy"] = {
-        opt = true,
         requires = {"tjdevries/colorbuddy.nvim", branch = "dev"},
+        after = {"base46"},
         config = function()
             require("custom.plugins.configs.noirbuddy").setup()
+            -- require("noirbuddy").setup()
         end,
     },
 

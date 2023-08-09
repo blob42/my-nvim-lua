@@ -25,7 +25,8 @@ opt.showmode = false
 
 opt.title = true
 opt.clipboard = "unnamed"
-opt.cul = false -- cursor line
+opt.cul = true -- cursor line
+opt.cursorlineopt="number"
 -- opt.colorcolumn = "80"
 opt.colorcolumn = '+0' -- make colorcolumn follow text width
 opt.textwidth = 80
