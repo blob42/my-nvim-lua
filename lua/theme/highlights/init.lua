@@ -4,6 +4,8 @@ local modifiers = require('colorbuddy.modifiers').modifiers
 local blob42 = require("custom.themes.blob42")
 
 Color.new("green", blob42.base_30.green)
+Color.new("yellow", blob42.base_30.yellow)
+Color.new("sun", blob42.base_30.sun)
 Color.new("base03", blob42.base_16.base03)
 Color.new("dap_stop", "#ff4848")
 Color.new("dap_virtual_text", "#f99540")
@@ -39,8 +41,9 @@ Group.link("@type", groups.Type)
 Group.new("Macro", colors.primary)
 Group.link("@function.macro", groups.Macro)
 
-Group.new("String", colors.green)
+Group.new("String", colors.sun)
 Group.link("@string", groups.String)
+Group.new("@string.escape", colors.secondary)
 
 Group.link("@constant.builtin", groups.Constant)
 Group.link("@constant", groups.Constant)
