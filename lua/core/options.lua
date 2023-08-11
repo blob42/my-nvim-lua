@@ -77,7 +77,7 @@ opt.foldminlines = 2
 opt.foldlevelstart = 1
 opt.conceallevel=1 -- how to show text with :syn-conceal syntax
 
-opt.list = true -- show tabs,trailing spaces and non-breakable spaces
+opt.list = false -- show tabs,trailing spaces and non-breakable spaces
 opt.listchars = "tab: ,trail:,extends:#,nbsp:⋅,eol:" -- Highlight problematic whitespace
 opt.diffopt:append("vertical")
 opt.completeopt = "menu,menuone,noselect"

@@ -110,7 +110,7 @@ M.general = { --{{{
                opt.signcolumn="yes"
                g.sign_column_enbaled = true
            end
-    
+
         end, "toggle sign column" },
 
         ["<BS>z"] = { function()
@@ -128,6 +128,19 @@ M.general = { --{{{
 
         -- option toggle cursor line
         ["<BS>l"] = { "<cmd> set cul!<CR>", "toggle cursor line" },
+
+        --  toggle list mode (shows listchars)
+        -- ["<BS>L"] = { "<cmd> set list!<CR>", "toggle list mode" },
+        ["<BS>L"] = { function()
+            if vim.o.list then
+                vim.o.list = false
+                require"theme.highlights".blankline()
+            else
+                vim.o.list = true
+                require"theme.highlights".show_blank_tabs()
+            end
+        end, "toggle list mode" },
+
 
 
 

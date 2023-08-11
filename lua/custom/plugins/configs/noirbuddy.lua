@@ -24,6 +24,7 @@ M.palette = {
         noir_9 = "#222430",
 
 }
+
 local config = {
     preset = 'slate',
     colors = M.palette
@@ -37,10 +38,7 @@ M.setup = function()
     base46.load_highlight "defaults"
     base46.load_highlight "statusline"
     base46.load_highlight(base46.turn_str_to_color(g_config.ui.hl_add))
-    require('theme.highlights')
+    require('theme.highlights').setup()
 end
 
 return M
-
-
-

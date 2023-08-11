@@ -100,21 +100,12 @@ end
 ---@param full? boolean maximum zen
 M.zenmode = function(full) 
     opt.colorcolumn= '0'
-    g.indent_blankline_show_current_context = false
-    local ok, indent  = pcall(require, "indent_blankline")
-    if ok then
-        indent.refresh()
-    end
-    opt.listchars:remove("eol")
-    opt.listchars:append("tab:  ")
     vim.cmd("TSDisable highlight")
     if full then
+        vim.cmd("IndentBlanklineDisable")
         opt.signcolumn = 'no'
         opt.number = false
         opt.relativenumber = false
-        -- opt.listchars:append("tab:  ")
-        -- opt.listchars:remove("eol")
-        opt.fillchars:append("eob: ")
         opt.cmdheight = 0
     end
     g.zenmode = true
@@ -124,18 +115,11 @@ end
 M.exitzen = function() 
     opt.colorcolumn= '+0'
     opt.signcolumn = 'yes'
-    g.indent_blankline_show_current_context = true
-    local ok, indent  = pcall(require, "indent_blankline")
-    if ok then
-        indent.refresh()
-    end
-    opt.listchars:append("eol:")
-    opt.listchars:append("tab: ")
     opt.number = true
     opt.relativenumber = true
-    opt.fillchars:append("eob:∼")
     opt.cmdheight = 1
     g.zenmode = false
+    vim.cmd("IndentBlanklineEnable")
     vim.cmd("TSEnable highlight")
 end
 

@@ -1,10 +1,14 @@
 local M = {}
 
 M.override = {
-        IndentBlanklineContextChar = {
-            fg = "baby_pink",
-            nocombine = true,
-        },
+        -- IndentBlanklineContextChar = {
+        --     fg = "baby_pink",
+        --     nocombine = true,
+        -- },
+        -- IndentBlanklineChar= {
+        --     fg = "black",
+        --     nocombine = true,
+        -- },
         Comment = {
             fg = "light_grey"
         },

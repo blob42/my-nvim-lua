@@ -62,6 +62,7 @@ M.blankline = function()
 
   options = load_override(options, "lukas-reineke/indent-blankline.nvim")
   blankline.setup(options)
+  require("theme.highlights").blankline()
 end
 
 M.colorizer = function()
