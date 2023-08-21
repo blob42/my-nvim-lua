@@ -56,7 +56,7 @@ local config = {
       S = {
         rhs = function()
             daputils.disconnect_dap()
-            M.layer:exit()
+            -- M.layer:exit() -- already done in dap listener
             vim.cmd("redrawstatus")
         end,
         desc = '[dap] stop'
@@ -153,6 +153,5 @@ end
 -- --
 -- layer:enter()
 --
-M.disconnect_dap = disconnect_dap
 
 return M

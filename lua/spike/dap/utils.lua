@@ -1,7 +1,11 @@
+---@diagnostic disable: redefined-local
 local ok, dap = pcall(require, 'dap')
 if not ok then
     vim.notify('dap module missing')
 end
+local api = vim.api
+local keymap_restore = {}
+
 local M = {}
 
 M.disconnect_dap = function()
@@ -45,6 +49,36 @@ M.load_launch_json = function()
         return
     end
     require("dap.ext.vscode").load_launchjs()
+end
+
+M.register_keymaps = function()
+    for _, buf in pairs(api.nvim_list_bufs()) do
+        local keymaps = api.nvim_buf_get_keymap(buf, 'n')
+        for _, keymap in pairs(keymaps) do
+            if keymap.lhs == "K" then
+                table.insert(keymap_restore, keymap)
+                api.nvim_buf_del_keymap(buf, 'n', 'K')
+            end
+        end
+    end
+    api.nvim_set_keymap(
+    'n', 'K', '<cmd>lua require("dap.ui.widgets").hover()<CR>',
+    {silent = true}
+    )
+end
+
+M.unregister_keymaps = function()
+
+    for _,keymap in pairs(keymap_restore) do
+        api.nvim_buf_set_keymap(
+        keymap.buffer,
+        keymap.mode,
+        keymap.lhs,
+        keymap.rhs,
+        { silent = keymap.silent == 1 }
+        )
+    end
+    keymap_restore = {}
 end
 
 return M
