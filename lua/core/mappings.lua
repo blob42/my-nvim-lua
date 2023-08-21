@@ -99,6 +99,10 @@ M.general = { --{{{
         -- Copy all
         ["<leader>Y"] = { "<cmd> %y+ <CR>", "copy whole file" },
 
+
+        -- toggle undotree
+        ["<leader>U"] = { vim.cmd.UndotreeToggle, "toggle undotree panel" },
+
         -- line numbers
         ["<BS>N"] = { "<cmd> set nu!<CR><cmd> set rnu!<CR>", "toggle line number" },
 
@@ -627,15 +631,19 @@ M.lspconfig = { --{{{
     }
 } --}}}
 
+local setup_dap = function()
+    local mydap = require("spike.dap")
+    local dap = require("dap")
+    mydap.setup()
+    return {dap, mydap}
+end
+
 M.dap = { -- {{{
     plugin = true,
     n = {
         ["<leader>ds"] = {
             function()
-                local mydap = require("spike.dap")
-                local dap = require("dap")
-
-                mydap.setup()
+                local dap, mydap = unpack (setup_dap())
                 require('spike.dap.utils').init_breakpoints()
                 -- set a breakpoint at current line if there are none in
                 --  the project
@@ -687,6 +695,13 @@ M.dap = { -- {{{
             "[dap] add log point"
         },
         ["<leader>dt"] = { "<cmd>lua require'dapui'.toggle()<CR>", "[dap] toggle UI" },
+    },
+    v = {
+        ["<leader>d"] = { function()
+            if vim.o.filetype == 'python' then
+                require('dap-python').debug_selection()
+            end
+        end, "dap debug visual selection" },
     },
 
 } -- }}}

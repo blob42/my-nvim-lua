@@ -8,6 +8,12 @@ local M = {}
 
 M.setup = function()
     vim.g["codegpt_commands"] = {
+        ["q4"] = {
+            callback_type = "text_popup",
+            system_message_template = "You are a {{filetype}} software pair assistant AI. Answer my questions. Think step by step out loud.",
+            user_message_template = "I have a question about the following {{language}} code: ```{{filetype}} {{text_selection}}``` {{command_args}}"
+
+        },
         ["tests"] = {
             language_instructions = {
                 python = "Use pytest framework."
