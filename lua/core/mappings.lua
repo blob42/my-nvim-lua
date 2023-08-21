@@ -379,13 +379,13 @@ M.general = { --{{{
         },
 
         -- Notify cmd watcher (see /scripts/utils/fifo_watch.sh)
-        --[[ ["<leader><down>"] = {
-                    function()
-                        local fifo_patch = "/tmp/fifo_vimnotify"
-                        os.execute("echo do >" .. fifo_patch)
-                    end,
-                    "notify <scripts/utils/fifo_watch>"
-                }, ]]
+        -- ["<leader><down>"] = {
+        --             function()
+        --                 local fifo_patch = "/tmp/fifo_vimnotify"
+        --                 os.execute("echo do >" .. fifo_patch)
+        --             end,
+        --             "notify <scripts/utils/fifo_watch>"
+        -- },
 
         ["<leader>A"] = { "<cmd>ArgWrap<CR>", "arg wrap" },
 
