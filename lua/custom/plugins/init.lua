@@ -178,7 +178,7 @@ return {
     -- https://github.com/dpayne/CodeGPT.nvim
     -- https://github.com/thmsmlr/gpt.nvim
     ["dpayne/CodeGPT.nvim"] = {
-        keys = {"<leader>gpT"},
+        -- keys = {"<leader>gpT"},
         config = function()
             require("codegpt.config")
             require("custom.plugins.configs.code-gpt").setup()
@@ -347,7 +347,7 @@ return {
     },
 
     ["theHamsta/nvim-dap-virtual-text"] = {
-        lock = true,
+        lock = false,
         after = {"nvim-dap"},
         config = function()
             require("custom.plugins.configs.dap-virt-text").setup_virt_text()
@@ -559,6 +559,7 @@ return {
     -- },
 
     ["windwp/nvim-projectconfig"] = {
+        after = {"CodeGPT.nvim"},
         config = function()
             require("custom.plugins.configs.projectconfig").setup()
         end,
