@@ -16,9 +16,9 @@ local config = {
         alt = {"TODO!"}, -- a set of other keywords that all map to this FIX keywords
     },
     LEARN  = { color = "hint" },
-    WIP = { color = "default"},
+    WIP = { color = "default", alt = {"REFACT"}},
     NOTE = { alt = { "TIP", "INFO", "TRICK", "RELEASE"}},
-    DEBUG = {},
+    DEBUG = { alt = { "DBG", }, color = "debug" },
     REVIEW = { color = "info" }
   },
   colors = {
@@ -26,7 +26,8 @@ local config = {
       info = {colors.blue},
       default = {colors.nord_blue},
       warning = {colors.orange},
-      error =  { colors.pink }
+      error =  { colors.red },
+      debug = { colors.purple }
   },
   highlight = {
       -- multiline = false,

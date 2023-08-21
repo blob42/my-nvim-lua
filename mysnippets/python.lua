@@ -26,6 +26,9 @@ return {
 
     -- mypy reveal_type
     s("revl", fmt([[reveal_type({})]], {i(1)})),
+
+    -- quick print debug
+    s("dbgp", fmt([[print(f"---\n\n{{{}}}---\n\n")]], {i(0)})),
 }, { --autosnippets
     -- s("uuid#", f(gen_uuid))
     s("ret ", t("return ")),

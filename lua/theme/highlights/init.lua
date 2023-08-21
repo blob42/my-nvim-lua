@@ -29,6 +29,7 @@ M.blankline = function()
     --  indentline
     Group.new("IndentBlanklineChar", colors.background)
     Group.new("IndentBlanklineContextChar", colors.primary)
+    Group.new("IndentBlanklineContextStart", nil, colors.base02)
 end
 
 M.show_blank_tabs = function()
@@ -46,12 +47,14 @@ M.setup = function()
 
     Group.new("Error", colors.primary, nil, styles.underline)
 
+    Group.new("Visual", colors.background, colors.base0D)
+
 
     -- search
     -- select
 
     -- menus
-    Group.new("PmenuSel", nil, colors.noir_8 )
+    Group.new("PmenuSel", nil, colors.noir_6 )
 
     Group.new('LineNr', colors.gray2:light())
     Group.new('CursorLineNr', colors.gray3)

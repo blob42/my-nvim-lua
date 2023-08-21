@@ -56,7 +56,7 @@ return {
     ["nvim-treesitter/nvim-treesitter"] = { -- {{{
         -- commit = "4f8b2480", -- pin to latest working commit
         -- custom config in chadrc -> custom.configs.treesitter
-        lock = true,
+        lock = false,
         setup = function()
             require("core.lazy_load").on_file_open "nvim-treesitter"
             require("core.lazy_load").on_file_open "nvim-treesitter-textobjects"
@@ -67,7 +67,7 @@ return {
         end,
     },
     ["nvim-treesitter/nvim-treesitter-textobjects"] = {
-        lock = true,
+        lock = false,
         opt = true,
     },
     -- ["RRethy/nvim-treesitter-textsubjects"] = {
@@ -75,7 +75,7 @@ return {
     -- },
 
     ["ziontee113/syntax-tree-surfer"] = {
-        lock = true,
+        lock = false,
         opt = true,
         config = function()
             require("syntax-tree-surfer").setup()
@@ -85,14 +85,14 @@ return {
     -- https://git.blob42.xyz/blob42/playground/commit/460fe1b3e3b2971c52c5f02a7dbbb132f1f30584
     ["nvim-treesitter/playground"] = {
     -- ["https://git.blob42.xyz/blob42/playground"] = {
-        lock = true,
+        lock = false,
         -- opt = true,
         cmd = { "TSPlayground*" },
         -- commit = "460fe1b3e3b2971c52c5f02a7dbbb132f1f30584",
     },
 
     ["nvim-treesitter/nvim-treesitter-context"] = {
-        lock = true,
+        lock = false,
         opt = true,
         config = function()
             require("custom.plugins.configs.treesitter-context").setup()
@@ -280,6 +280,10 @@ return {
         -- end
     },
 
+    ["mbbill/undotree"] = {
+        cmd = {"UndotreeToggle"}
+    },
+
 
     -- helper to select icons and fonts
     ["ziontee113/icon-picker.nvim"] = {
@@ -301,7 +305,7 @@ return {
 
     -- dap
 
-    ["mfussenegger/nvim-dap"] = { -- {{{
+    ["mfussenegger/nvim-dap"] = { 
         -- lock = true,
         module = {"dap"},
         setup = function()
@@ -317,8 +321,14 @@ return {
         after = {"nvim-dap"},
         config = function()
             -- expand share folder
-            venv_path = vim.fn.stdpath('data') .. '/mason/packages/debugpy/venv/bin/python'
-            require('dap-python').setup(venv_path)
+            local venv_path = vim.fn.stdpath('data') .. '/mason/packages/debugpy/venv/bin/python'
+            local ok, dappy = pcall(require, 'dap-python')
+                if not ok then
+                    vim.notify("dap-python not found", vim.log.levels.ERROR)
+                    return
+                end
+            dappy.setup(venv_path)
+            dappy.test_runner = 'pytest'
         end,
         cond = function()
             -- filetype is python
@@ -342,7 +352,7 @@ return {
         config = function()
             require("custom.plugins.configs.dap-virt-text").setup_virt_text()
         end
-    }, -- }}}
+    }, 
 
     -- User Interface / UX
     ["stevearc/dressing.nvim"] = {

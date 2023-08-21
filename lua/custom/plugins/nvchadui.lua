@@ -106,11 +106,11 @@ return {
     end,
 
     LSP_progress = function()
-        if not rawget(vim, "lsp") then
+        if not rawget(vim, "lsp") or vim.lsp.status then
             return ""
         end
 
-        local Lsp = vim.lsp.util.get_progress_messages()[1]
+        local Lsp = vim.lsp.status()[1]
 
         -- hide spammy null-ls progress
         if Lsp and Lsp.name:match "null%-ls" then
