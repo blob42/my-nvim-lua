@@ -60,9 +60,9 @@ return {
         setup = function()
             require("core.lazy_load").on_file_open "nvim-treesitter"
             require("core.lazy_load").on_file_open "nvim-treesitter-textobjects"
-            -- require("core.lazy_load").on_file_open "nvim-treesitter-textsubjects"
             require("core.lazy_load").on_file_open "nvim-treesitter-context"
             require("core.lazy_load").on_file_open "syntax-tree-surfer"
+            -- require("core.lazy_load").on_file_open "nvim-treesitter-textsubjects"
             -- require("core.lazy_load").on_file_open "nvim-ts-rainbow"
         end,
     },
@@ -179,6 +179,7 @@ return {
     -- https://github.com/thmsmlr/gpt.nvim
     ["dpayne/CodeGPT.nvim"] = {
         -- keys = {"<leader>gpT"},
+        event = "BufRead",
         config = function()
             require("codegpt.config")
             require("custom.plugins.configs.code-gpt").setup()
@@ -467,6 +468,9 @@ return {
 
     ["cbochs/grapple.nvim"] = {
         -- commit = "50b8271",
+        cmd = {"Grapple*"},
+        module = {"grapple"},
+
         setup = function()
             require("core.utils").load_mappings "grapple"
         end,
@@ -560,6 +564,7 @@ return {
 
     ["windwp/nvim-projectconfig"] = {
         after = {"CodeGPT.nvim"},
+        event = "BufRead",
         config = function()
             require("custom.plugins.configs.projectconfig").setup()
         end,
@@ -584,11 +589,13 @@ return {
     -- create new vim modes
     ["Iron-E/nvim-libmodal"] = { -- {{{
         lock = true,
+        module = "libmodal",
     }, -- }}}
 
     -- get rid of bad habits
     ["ja-ford/delaytrain.nvim"] = {
     -- ["~/src/delaytrain.nvim"] = {
+        event = "BufRead",
         config = function()
             require('delaytrain').setup({
                 delay_ms = 1001, -- How long repeated usage of a key should be prevented
@@ -617,6 +624,11 @@ return {
             })
         end
     },
+
+    ["dstein64/vim-startuptime"] = {
+        cmd = {"StartupTime"}
+    },
+
     -- ["takac/vim-hardtime"] = {-- {{{
     --   -- keys = { "h", "j", "k", "l" },
     --   setup = function()
@@ -713,6 +725,7 @@ return {
     ["jose-elias-alvarez/null-ls.nvim"] = {
         lock = true,
         requires = {"nvim-lua/plenary.nvim"},
+        event = "BufRead",
         setup = function()
             require('core.utils').load_mappings 'null_ls'
         end,
@@ -891,6 +904,8 @@ return {
     -- zk nvim
     ["mickael-menu/zk-nvim"] = {
         lock = true,
+        module = {"zk"},
+        cmd = {"Zk*"},
         setup = function()
             require("core.utils").load_mappings "zk"
         end,

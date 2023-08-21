@@ -116,6 +116,7 @@ local function dap_setup()
     --     }
     -- }
 
+
     dap.adapters["codelldb-c"] = {
         type = 'server',
         host = "127.0.0.1",
@@ -127,7 +128,19 @@ local function dap_setup()
     }
 
 
+    -- NOTE: if compilation is done in diffferent folder then debugging workind
+    -- dir (like using symlinked folder when building) source maps are needed 
+    --  "sourceMap": { "/build/time/source/path" : "/current/source/path" }
     dap.configurations.c = {
+        {
+            -- If you get an "Operation not permitted" error using this, try disabling YAMA:
+            --  echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+            name = "Attach to process",
+            type = 'codelldb-c',  -- Adjust this to match your adapter name (`dap.adapters.<name>`)
+            request = 'attach',
+            pid = require('dap.utils').pick_process,
+            args = {},
+        },
         {
             name = "Launch file",
             type = "codelldb-c",
