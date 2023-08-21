@@ -610,7 +610,8 @@ return {
                     "db*",
                     "aerial*",
                     "grapple",
-                    "fugitive"
+                    "fugitive",
+                    "query"
                 },
             })
         end
