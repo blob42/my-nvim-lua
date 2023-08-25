@@ -3,3 +3,5 @@ Abolish place{ho,h}ler{} placeholder
 Abolish improt import
 Abolish flase false
 Abolish optinoal optional
+Abolish n{O}ne none
+Abolish n{O}ne none

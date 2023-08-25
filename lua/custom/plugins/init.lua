@@ -122,12 +122,12 @@ return {
         end
     }, -- }}}
 
-    ["zbirenbaum/copilot-cmp"] = {
-        after = {"copilot.lua"},
-        config = function()
-            require("copilot_cmp").setup()
-        end
-    },
+    -- ["zbirenbaum/copilot-cmp"] = {
+    --     after = {"copilot.lua"},
+    --     config = function()
+    --         require("copilot_cmp").setup()
+    --     end
+    -- },
 
 
     -- Code Refactoring
@@ -239,11 +239,7 @@ return {
 
 
     -- vim templates 
-    ["https://codeberg.org/jgoguen/tmpl.vim"] = {
-        setup = function()
-            
-        end
-    },
+    ["https://codeberg.org/jgoguen/tmpl.vim"] = {},
 
     -- }}}
 

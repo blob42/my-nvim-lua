@@ -168,13 +168,13 @@ local options = {
             priority = 700,
             group_index = 2,
         },
-        { name = "copilot", priority = 100, group_index = 2 },
+        -- { name = "copilot", priority = 100, group_index = 2 },
         { name = "path", group_index = 2 },
     },
     sorting = {
         priority_weight = 2,
         comparators = {
-            require("copilot_cmp.comparators").prioritize,
+            -- require("copilot_cmp.comparators").prioritize,
 
             -- Below is the default comparitor list and order for nvim-cmp
             cmp.config.compare.offset,

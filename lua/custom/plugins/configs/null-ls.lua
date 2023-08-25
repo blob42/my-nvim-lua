@@ -1,5 +1,5 @@
 local ok, null_ls = pcall(require, 'null-ls')
-if not ok then 
+if not ok then
     vim.notify("missing module null-ls", vim.log.levels.WARN)
     return
 end
@@ -63,7 +63,7 @@ M.config = {
 }
 
 M.setup = function()
-    null_ls.setup(M.config)   
+    null_ls.setup(M.config)
 end
 
 

@@ -8,7 +8,7 @@ local M = {}
 
 local config = {
     project_dir = "~/.config/nvim-project-confs/", -- trailing slash important
-    selint = false,
+    silent = false,
 }
 
 M.setup = function()

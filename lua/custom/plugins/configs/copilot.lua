@@ -8,7 +8,7 @@ local M = {}
 
 local config = {
   panel = {
-    enabled = false,
+    enabled = true,
     auto_refresh = false,
     keymap = {
       jump_prev = "[[",
@@ -23,16 +23,16 @@ local config = {
     },
   },
   suggestion = {
-    enabled = false,
+    enabled = true,
     auto_trigger = false,
     debounce = 75,
     keymap = {
-      accept = "<M-l>",
+      accept = "<M-j>",
       accept_word = false,
       accept_line = false,
-      next = "<M-]>",
-      prev = "<M-[>",
-      dismiss = "<C-]>",
+      next = "<M-Right>",
+      prev = "<M-Left>",
+      dismiss = "<M-Down>",
     },
   },
   filetypes = {
