@@ -84,8 +84,12 @@ M.setup = function()
 
     Group.link("@constant.builtin", groups.Constant)
     Group.link("@constant", groups.Constant)
+    Group.link("Number", groups.Constant)
+    Group.link("Float", groups.Number)
+    Group.link("@float", groups.Float)
 
     Group.new("@variable", colors.noir_0)
+
 
 
     --  defined in chadrc custom

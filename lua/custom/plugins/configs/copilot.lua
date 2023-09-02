@@ -24,8 +24,8 @@ local config = {
   },
   suggestion = {
     enabled = true,
-    auto_trigger = false,
-    debounce = 75,
+    auto_trigger = true,
+    debounce = 100,
     keymap = {
       accept = "<M-j>",
       accept_word = false,
@@ -50,6 +50,7 @@ local config = {
   copilot_node_command = 'node', -- Node.js version must be > 16.x
   server_opts_overrides = {
       -- trace = "verbose"
+      inlineSuggestCount = 4,
   },
 }
 
