@@ -21,6 +21,7 @@ function M.setup()
 end
 
 -- my custom on_attach to inject in other lsp clients
+-- called from navigator config
 M.on_attach = function(client, bufnr)
     require('core.utils').load_mappings 'lspconfig'
 end

@@ -11,6 +11,9 @@ require("base46").load_highlight "telescope"
 
 local options = {
   defaults = {
+    preview = {
+        treesitter = false
+    },
     vimgrep_arguments = {
       "rg",
       "--color=never",
