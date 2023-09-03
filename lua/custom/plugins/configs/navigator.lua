@@ -35,7 +35,6 @@ local config = {
     { key = 'g0', func = require('navigator.symbols').document_symbols, desc = 'lsp document_symbols' },
     { key = 'gW', func = require('navigator.workspace').workspace_symbol_live, desc = 'lsp workspace_symbol_live' },
     { key = '<c-]>', func = require('navigator.definition').definition, desc = 'lsp definition' },
-    { key = 'gd', func = require('navigator.definition').definition, desc = 'lsp definition' },
     { key = 'gp', func = require('navigator.definition').definition_preview, desc = 'lsp definition preview' },
     { key = 'gP', func = require('navigator.definition').type_definition_preview, desc = 'lsp type definition preview' },
 

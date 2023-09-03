@@ -276,6 +276,9 @@ M.general = { --{{{
         ["<leader>tf"] = { "<cmd> set foldmethod=expr<CR>|<cmd> set foldexpr=nvim_treesitter#foldexpr()<CR>",
             "enable Treesitter folding" },
 
+        ["<leader>ts"] = { "<cmd> TSEnable highlight <CR>", "enable treesitter" },
+        ["<leader>tS"] = { "<cmd> TSDisable highlight <CR>", "enable treesitter" },
+
 
         ["<leader>tp"] = {
             function()
@@ -576,40 +579,14 @@ M.lspconfig = { --{{{
     -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
 
     n = {
-        ["gD"] = {
-            function()
-                vim.lsp.buf.declaration()
-            end,
+        ["gD"] = { vim.lsp.buf.declaration,
             "lsp declaration",
         },
+        ["K"] = { vim.lsp.buf.hover, "lsp hover", },
 
-        ["gd"] = {
-            function()
-                vim.lsp.buf.definition()
-            end,
-            "lsp definition",
-        },
+        ["gm"] = { vim.lsp.buf.implementation, "lsp implementation", },
 
-        ["K"] = {
-            function()
-                vim.lsp.buf.hover()
-            end,
-            "lsp hover",
-        },
-
-        ["gm"] = {
-            function()
-                vim.lsp.buf.implementation()
-            end,
-            "lsp implementation",
-        },
-
-        ["<leader>D"] = {
-            function()
-                vim.lsp.buf.type_definition()
-            end,
-            "lsp definition type",
-        },
+        ["<leader>D"] = { vim.lsp.buf.type_definition, "lsp definition type", },
 
 
         ["[d"] = { vim.diagnostic.goto_prev , "lsp goto prev" },
@@ -1207,6 +1184,9 @@ M.refactoring = {
 M.null_ls = {
     plugin = true,
     n = {
+        ["<leader>nul"] = { function()
+            require("custom.plugins.configs.null-ls").setup()
+        end, "start null-ls" },
         ["<leader>nlr"] = {function()
             local null_ls = require('null-ls')
             if not null_ls.is_registered({ name = 'revive'}) then
