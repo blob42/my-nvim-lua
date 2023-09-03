@@ -65,6 +65,9 @@ return {
             -- require("core.lazy_load").on_file_open "nvim-treesitter-textsubjects"
             -- require("core.lazy_load").on_file_open "nvim-ts-rainbow"
         end,
+        config = function()
+          require "plugins.configs.treesitter"
+        end
     },
     ["nvim-treesitter/nvim-treesitter-textobjects"] = {
         lock = false,
@@ -416,7 +419,7 @@ return {
     ["ibhagwan/fzf-lua"] = {
         lock = true,
         after = "ui",
-        eonfig = function()
+        config = function()
             require("custom.plugins.configs.fzflua")
             require("plugins.configs.others").devicons()
         end,
@@ -724,9 +727,6 @@ return {
         event = "BufRead",
         setup = function()
             require('core.utils').load_mappings 'null_ls'
-        end,
-        config = function()
-            require("custom.plugins.configs.null-ls").setup()
         end,
     },
 
