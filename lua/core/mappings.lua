@@ -601,6 +601,9 @@ M.lspconfig = { --{{{
         ["<leader>go"] = { vim.lsp.buf.outgoing_calls, "lsp outgoing_calls" },
         ["<C-LeftMouse>"] = { vim.lsp.buf.definition, "lsp definition" },
         ["g<LeftMouse>"] = { vim.lsp.buf.implementation, "lsp implementation" },
+        ["<BS>h"] = { function()
+            vim.lsp.inlay_hint(0, nil)
+        end, "toggle lsp hints" },
 
     },
     i = {
