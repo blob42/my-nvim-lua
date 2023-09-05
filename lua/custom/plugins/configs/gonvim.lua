@@ -20,7 +20,9 @@ local config = {
   -- dap_debug_vt = false,
   log_path = vim.fn.stdpath('cache') .. '/gonvim.log',
   lsp_inlay_hints = {
-      enable = true,
+      enable = false,
+      -- only_current_line = true,
+
   }
 }
 

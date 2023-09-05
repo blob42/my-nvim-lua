@@ -17,6 +17,9 @@ function  M.gopls_onattach(client, bufnr)
   end
 
 
+  -- vim.lsp.inlay_hint(bufnr, true)
+
+
   -- Auto import on save
   -- autocmd({"BufWritePre", "InsertLeave"}, {
   -- autocmd({"BufWritePre"}, {
