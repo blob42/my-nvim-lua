@@ -578,34 +578,7 @@ M.lspconfig = { --{{{
 
     -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
 
-    n = {
-        ["gD"] = { vim.lsp.buf.declaration,
-            "lsp declaration",
-        },
-        ["K"] = { vim.lsp.buf.hover, "lsp hover", },
-
-        ["gm"] = { vim.lsp.buf.implementation, "lsp implementation", },
-
-        ["<leader>D"] = { vim.lsp.buf.type_definition, "lsp definition type", },
-
-
-        ["[d"] = { vim.diagnostic.goto_prev , "lsp goto prev" },
-
-        ["]d"] = { vim.diagnostic.goto_next, "lsp goto_next",
-        },
-
-        [']O'] = { vim.diagnostic.setloclist, "lsp diagnostic setloclist" },
-
-        ["<Space>fm"] = { vim.lsp.buf.format, "lsp formatting" },
-        ["<leader>gi"] = { vim.lsp.buf.incoming_calls, "lsp incoming_calls" },
-        ["<leader>go"] = { vim.lsp.buf.outgoing_calls, "lsp outgoing_calls" },
-        ["<C-LeftMouse>"] = { vim.lsp.buf.definition, "lsp definition" },
-        ["g<LeftMouse>"] = { vim.lsp.buf.implementation, "lsp implementation" },
-        ["<BS>h"] = { function()
-            vim.lsp.inlay_hint(0, nil)
-        end, "toggle lsp hints" },
-
-    },
+    n = { },
     i = {
         ['<M-i>'] = {  vim.lsp.buf.signature_help, 'lsp signature help' },
     }

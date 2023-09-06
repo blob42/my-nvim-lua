@@ -31,12 +31,50 @@ local config = {
   default_mapping = false,
   on_attach = require('plugins.configs.lspconfig').on_attach,
   keymaps = {
-    { key = 'gr', func = require('navigator.reference').async_ref, desc = 'lsp async_ref' },
-    { key = 'g0', func = require('navigator.symbols').document_symbols, desc = 'lsp document_symbols' },
-    { key = 'gW', func = require('navigator.workspace').workspace_symbol_live, desc = 'lsp workspace_symbol_live' },
-    { key = '<c-]>', func = require('navigator.definition').definition, desc = 'lsp definition' },
-    { key = 'gp', func = require('navigator.definition').definition_preview, desc = 'lsp definition preview' },
-    { key = 'gP', func = require('navigator.definition').type_definition_preview, desc = 'lsp type definition preview' },
+    {
+        key = 'gr',
+        func = require('navigator.reference').async_ref,
+        desc = 'lsp async_ref'
+    },
+    {
+        key = '<leader>lr',
+        func = require('navigator.reference').reference,
+        desc = 'lsp reference'
+    },
+    {
+        key = 'g0',
+        func = require('navigator.symbols').document_symbols,
+        desc = 'lsp document_symbols'
+    },
+    {
+        key = 'gW',
+        func = require('navigator.workspace').workspace_symbol_live,
+        desc = 'lsp workspace_symbol_live'
+    },
+    {
+        key = '<c-]>',
+        func = require('navigator.definition').definition,
+        desc = 'lsp definition'
+    },
+    {
+        key = '<C-LeftMouse>',
+        func = require('navigator.definition').definition,
+        desc = "lsp definition"
+    },
+    { key = 'gd', func = require('navigator.definition').definition, desc = 'definition' },
+    { key = 'gD', func = vim.lsp.buf.declaration, desc = 'declaration' },
+    { key = 'gm', func = vim.lsp.buf.implementation, desc = 'implementation' },
+    { key = 'g<LeftMouse>', func = vim.lsp.buf.implementation, desc = 'implementation' },
+    {
+        key = 'gp',
+        func = require('navigator.definition').definition_preview,
+        desc = 'lsp definition preview'
+    },
+    { key = "<BS>h", func = function()
+        vim.lsp.inlay_hint(0, nil)
+    end, desc = "toggle lsp hints"},
+    { key = '<leader>D', func = vim.lsp.buf.type_definition, desc = 'type_definition' },
+    { key = '<leader>Dp', func = require('navigator.definition').type_definition_preview, desc = 'lsp type definition preview' },
 
     { key = '<M-a>', mode = 'n', func = require('navigator.codeAction').code_action, desc = 'lsp code_action' },
     { key = '<M-a>', mode = 'i', func = require('navigator.codeAction').code_action, desc = 'lsp code_action' },
@@ -48,10 +86,40 @@ local config = {
       desc = 'lsp range_code_action',
     },
     { key = '<Space>rn', func = require('navigator.rename').rename, desc = 'lsp rename' },
+    { key = '<Leader>gi', func = vim.lsp.buf.incoming_calls, desc = 'lsp incoming_calls' },
+    { key = '<Leader>go', func = vim.lsp.buf.outgoing_calls, desc = 'lsp outgoing_calls' },
     { key = 'gL', func = require('navigator.diagnostics').show_diagnostics, desc = 'lsp show_diagnostics' },
     { key = 'gG', func = require('navigator.diagnostics').show_buf_diagnostics, desc = 'lsp show_buf_diagnostics' },
+    --TODO: toggle diagnostics
+    {
+        key = ']d',
+        func = vim.diagnostic.goto_next,
+        desc = 'next diagnostics',
+    },
+    {
+        key = '[d',
+        func = vim.diagnostic.goto_prev,
+        desc = 'prev diagnostics',
+    },
+    {
+        key = ']O',
+        func = vim.diagnostic.set_loclist,
+        desc = 'diagnostics set loclist',
+    },
     { key = ']r', func = require('navigator.treesitter').goto_next_usage, desc = 'lsp goto_next_usage' },
     { key = '[r', func = require('navigator.treesitter').goto_previous_usage, desc = 'lsp goto_previous_usage' },
+    {
+        key = '<leader>lf',
+        func = vim.lsp.buf.format,
+        mode = 'n',
+        desc = 'lsp format'
+    },
+    {
+        key = '<leader>lf',
+        func = vim.lsp.buf.range_formatting,
+        mode = 'v',
+        desc = 'lsp range format'
+    },
     { key = '<Leader>k', func = require('navigator.dochighlight').hi_symbol, desc = 'lsp hi_symbol' },
     { key = '<leader>wa', func = require('navigator.workspace').add_workspace_folder, desc = 'lsp add_workspace_folder' },
     {
