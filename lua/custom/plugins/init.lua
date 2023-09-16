@@ -242,6 +242,7 @@ return {
 
 
     -- vim templates 
+    -- templates are stored in ~/.local/share/nvim/site/templates/
     ["https://codeberg.org/jgoguen/tmpl.vim"] = {},
 
     -- }}}
