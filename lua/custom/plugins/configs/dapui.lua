@@ -1,4 +1,3 @@
-local dapui = require('dapui')
 
 local M = {}
 local opts = {
@@ -76,6 +75,12 @@ local opts = {
 
 
 M.setup = function()
+    local ok, dapui = pcall(require, "dapui")
+    if not ok then
+        vim.notify("missing module dapui", vim.log.levels.WARN)
+        return
+    end
+
     dapui.setup(opts)
 end
 

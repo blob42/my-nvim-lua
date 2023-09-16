@@ -1,8 +1,3 @@
-local ok, null_ls = pcall(require, 'null-ls')
-if not ok then 
-    vim.notify("missing module null-ls", vim.log.levels.WARN)
-end
-
 local dapui_cfg = require("custom.plugins.configs.dapui").opts
 
 local M = {}
@@ -29,6 +24,11 @@ local config = {
 }
 
 function M.setup()
+    local ok, null_ls = pcall(require, 'null-ls')
+    if not ok then 
+        vim.notify("missing module null-ls", vim.log.levels.WARN)
+    end
+
     require("go").setup(config)
     local gotest = require('go.null_ls').gotest()
     local gotest_codeaction = require("go.null_ls").gotest_action()

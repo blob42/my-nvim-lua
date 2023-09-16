@@ -338,9 +338,10 @@ return {
 
     ["rcarriga/nvim-dap-ui"] = {
         -- tag = "*",
-        lock = true,
-        commit = "1e21b3b",
-        after = {"nvim-dap"},
+        -- lock = true,
+        -- commit = "1e21b3b",
+        -- after = {"nvim-dap"},
+        module = {"dapui"},
         config = function()
             require('custom.plugins.configs.dapui').setup()
         end
@@ -723,8 +724,9 @@ return {
 
     ["jose-elias-alvarez/null-ls.nvim"] = {
         lock = true,
+        opt = true,
+        module = {"null-ls"},
         requires = {"nvim-lua/plenary.nvim"},
-        event = "BufRead",
         setup = function()
             require('core.utils').load_mappings 'null_ls'
         end,
