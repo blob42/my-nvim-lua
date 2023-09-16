@@ -378,7 +378,7 @@ return {
         lock = true,
         disable = false,
         keys = { "<leader>", "<BS>", "<Space>", "\"", "`", "'", "z", "g" }
-    },
+},
 
 
     -- scren saver

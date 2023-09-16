@@ -200,7 +200,7 @@ local config = {
     },
 
     code_action = {
-        delay = 5000, -- 5 sec delay
+        delay = 6000, -- 5 sec delay
         virtual_text_icon = false,
     },
 
