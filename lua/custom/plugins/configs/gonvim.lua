@@ -3,6 +3,8 @@ if not ok then
     vim.notify("missing module null-ls", vim.log.levels.WARN)
 end
 
+local dapui_cfg = require("custom.plugins.configs.dapui").opts
+
 local M = {}
 
 local config = {
@@ -16,7 +18,7 @@ local config = {
   lsp_codelens = false, -- use navigator
   textobjects = true,
   dap_debug_keymap = false,
-  -- dap_debug_gui = false,
+  dap_debug_gui = dapui_cfg,
   -- dap_debug_vt = false,
   log_path = vim.fn.stdpath('cache') .. '/gonvim.log',
   lsp_inlay_hints = {

@@ -47,7 +47,7 @@ local config = {
         end,
         desc = '[dap] step out'
       },
-      r = {
+      R = {
         rhs = function()
           require('dap').run_last()
         end,

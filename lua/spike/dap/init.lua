@@ -47,6 +47,11 @@ local function register_listeners()
         dapmode.stop()
         dapui.close()
     end
+    dap.listeners.after['event_exited']['blob42-dap'] = function(_, _)
+        -- print("dap session ended")
+        dapmode.stop()
+        dapui.close()
+    end
 end
 
 function M.go_debug()

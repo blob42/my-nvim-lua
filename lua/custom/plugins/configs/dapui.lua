@@ -14,7 +14,7 @@ local opts = {
     },
     -- Expand lines larger than the window
     -- Requires >= 0.7
-    expand_lines = vim.fn.has("nvim-0.7") == 1,
+    expand_lines = true,
     -- Layouts define sections of the screen to place windows.
     -- The position can be "left", "right", "top" or "bottom".
     -- The size specifies the height/width depending on position. It can be an Int
@@ -26,9 +26,9 @@ local opts = {
         {
             elements = {
                 -- Elements can be strings or table with id and size keys.
-                { id = "scopes", size = 0.25 },
-                "breakpoints",
-                "stacks",
+                { id = "scopes", size = 0.5 },
+                { id = "breakpoints", size = 0.25 },
+                { id = "stacks", size = 0.25 },
                 -- "watches",
             },
             size = 40, -- 40 columns
@@ -36,17 +36,19 @@ local opts = {
         },
         {
             elements = {
-                "repl",
-                "watches"
+                { id = "repl", size = 0.7 },
+                { id = "watches", size = 0.5 },
                 -- "console",
             },
-            size = 0.25, -- 25% of total lines
+            size = 10, -- 25% of total lines
             position = "bottom",
         },
     },
+    -- where to display controls
     controls = {
         -- Requires Neovim nightly (or 0.8 when released)
         enabled = true,
+
         -- Display controls in this element
         element = "repl",
         icons = {
@@ -61,14 +63,11 @@ local opts = {
         },
     },
     floating = {
-        max_height = nil, -- These can be integers or a float between 0 and 1.
-        max_width = nil, -- Floats will be treated as percentage of your screen.
         border = "single", -- Border style. Can be "single", "double" or "rounded"
         mappings = {
             close = { "q", "<Esc>" },
         },
     },
-    windows = { indent = 1 },
     render = {
         max_type_length = nil, -- Can be integer or nil.
         max_value_lines = 100, -- Can be integer or nil.
@@ -79,6 +78,8 @@ local opts = {
 M.setup = function()
     dapui.setup(opts)
 end
+
+M.opts = opts
 
 
 return M
