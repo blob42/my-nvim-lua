@@ -101,7 +101,7 @@ M.general = { --{{{
 
 
         -- toggle undotree
-        ["<leader>U"] = { vim.cmd.UndotreeToggle, "toggle undotree panel" },
+        ["<leader>u"] = { vim.cmd.UndotreeToggle, "toggle undotree panel" },
 
         -- line numbers
         ["<BS>N"] = { "<cmd> set nu!<CR><cmd> set rnu!<CR>", "toggle line number" },
@@ -1040,8 +1040,13 @@ M.grapple = {
     plugin = true,
     n = {
         ["<leader>J"] = { "<cmd> lua require'grapple'.cycle_forward()<CR>" },
+        ["<C-m>"] = { "<cmd> lua require'grapple'.cycle_forward()<CR>" },
+        ["<Down>"] = { "<cmd> lua require'grapple'.cycle_forward()<CR>" },
         ["<leader>K"] = { "<cmd> lua require'grapple'.cycle_backward()<CR>" },
+        ["<S-Tab>"] = { "<cmd> lua require'grapple'.cycle_backward()<CR>" },
+        ["<Up>"] = { "<cmd> lua require'grapple'.cycle_backward()<CR>" },
         ["<leader>T"] = { "<cmd> GrappleTag<CR>"},
+        ["<leader>U"] = { "<cmd> GrappleUntag<CR>"},
         ["<leader>GT"] = { function()
             vim.ui.input({ prompt = "tag: " }, function(input)
                 require("grapple").tag({scope="global"})
