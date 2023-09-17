@@ -1,8 +1,3 @@
-" DWM
-augroup DWM
-    au BufWritePost */suckless/*/{*.c,*.h} :AsyncRun make && make install
-"       au BufWritePost */suckless/*/{*.h,*.c} :AsyncRun! make clean && make && doas make install"
-augroup END
 
 augroup PlantUml
     au FileType plantuml let g:plantuml_previewer#plantuml_jar_path = get(
