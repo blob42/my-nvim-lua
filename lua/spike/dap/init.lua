@@ -10,6 +10,7 @@ local dapui = require("dapui")
 local keymap_restore = {}
 
 local liblldb_path = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/lldb/lib/liblldb.so"
+local adapter_path = vim.fn.stdpath('data') .. '/mason/packages/codelldb/extension/adapter/codelldb'
 
 local M = {}
 M.signs = {
@@ -127,7 +128,8 @@ local function dap_setup()
         host = "127.0.0.1",
         port = "${port}",
         executable = {
-            command = "/home/spike/.local/share/nvim/mason/packages/codelldb/extension/adapter/codelldb",
+
+            command = adapter_path,
             args = {"--liblldb", liblldb_path,"--port", "${port}"},
         }
     }
