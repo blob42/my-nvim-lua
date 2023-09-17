@@ -649,6 +649,7 @@ M.dap = { -- {{{
         ["<leader>dm"] = {
             function()
                 require('spike.dap.dapmode').start()
+                vim.cmd.redrawstatus()
             end,
             "enter dap mode"
         },

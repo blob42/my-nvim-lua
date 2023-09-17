@@ -47,6 +47,7 @@ M.plugins = {
             --   lazyload = false,
             -- },
             statusline = {
+                separator_style = 'block',
                 overriden_modules = function()
                     return require "custom.plugins.nvchadui"
                 end

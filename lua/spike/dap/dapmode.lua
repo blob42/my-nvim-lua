@@ -93,6 +93,7 @@ local config = {
       ['Q'] = {
         rhs = function()
           M.layer:exit()
+          vim.cmd.redrawstatus()
         end,
         desc = '[dap] exit dap mode'
       },
@@ -136,7 +137,9 @@ function M.start()
 end
 
 function M.stop()
-  if M.layer ~= nil then M.layer:exit() end
+  if M.layer ~= nil then
+      M.layer:exit() 
+  end
 end
 
 function M.setup (opts)

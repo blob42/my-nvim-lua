@@ -19,8 +19,13 @@ if g.vim_version < 8 then
 end
 
 opt.laststatus = 3 -- global statusline
+
 -- for statusline format see lua/custom/plugins/nvchadui.lua
-opt.cmdheight = 1
+if vim.env.STREAMING ~= nil then
+    opt.cmdheight = 0
+else
+    opt.cmdheight = 1
+end
 opt.showmode = false
 
 opt.title = true

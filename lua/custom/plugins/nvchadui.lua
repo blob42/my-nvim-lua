@@ -53,11 +53,11 @@ return {
         local mode_sep1 = "%#" .. modes[m][2] .. "Sep" .. "#" .. sep_r
 
         if is_dapmode() then
-            local dap_mode = "%#St_DapMode#DAP" .. "%#St_DapModeSep#"
-            return current_mode .. mode_sep1 .. "%#St_DapModeSep2#" .. sep_r .. dap_mode .. sep_r
+            local dap_mode = "%#St_DapMode# DAP" .. "%#St_DapModeSep#"
+            return current_mode .. mode_sep1 .. dap_mode .. sep_r
         end
 
-        return current_mode .. mode_sep1 .. "%#ST_EmptySpace#" .. sep_r
+        return current_mode .. mode_sep1
     end,
 
     fileInfo = function()
