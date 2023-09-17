@@ -1,5 +1,9 @@
+-- nvchad custom highlights
+-- most highlights are set in the noirbuddy custom highlights
 local M = {}
 
+
+-- being migrated to noirbuddy, only statusline is defined here
 M.override = {
         -- IndentBlanklineContextChar = {
         --     fg = "baby_pink",
@@ -137,6 +141,5 @@ M.add =  {
        }
 
     }
-
 
 return M

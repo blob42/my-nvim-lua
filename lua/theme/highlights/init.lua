@@ -5,21 +5,15 @@ local blob42 = require("custom.themes.blob42")
 
 local import_theme_colors = function()
     for i, color in pairs(blob42.base_16) do
-        Color.new(i, color)
+        Color.new(i, color, {})
     end
     for i, color in pairs(blob42.base_30) do
-        Color.new(i, color)
+        Color.new(i, color, {})
     end
 end
 
 import_theme_colors()
 
--- Color.new("green", blob42.base_30.green)
--- Color.new("yellow", blob42.base_30.yellow)
--- Color.new("orange", blob42.base_30.orange)
--- Color.new("sun", blob42.base_30.sun)
--- Color.new("base03", blob42.base_16.base03)
--- Color.new("base0E", blob42.base_16.base0E)
 Color.new("dap_stop", "#ff4848", {})
 Color.new("dap_virtual_text", "#f99540", {})
 
@@ -91,6 +85,8 @@ M.setup = function()
     Group.new("@variable", colors.noir_0)
 
 
+    -- Command line area
+    Group.new("msgarea", colors.noir_3)
 
     --  defined in chadrc custom
 
