@@ -11,6 +11,9 @@ g.theme_switcher_loaded = false
 
 
 -- if vim.fn.executable("sh") then opt.shell = vim.fn.exepath("sh") end
+if vim.fn.executable("fish") then
+    opt.shell = 'fish -C vim_prompt'
+end
 
 -- use filetype.lua instead of filetype.vim. it's enabled by default in neovim 0.8 (nightly)
 if g.vim_version < 8 then
