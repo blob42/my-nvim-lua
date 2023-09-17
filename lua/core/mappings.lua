@@ -1,6 +1,7 @@
 
 -- n, v, i, t, c = mode name.s
 
+local o = vim.o
 local opt = vim.opt
 local g = vim.g
 
@@ -105,6 +106,17 @@ M.general = { --{{{
 
         -- line numbers
         ["<BS>N"] = { "<cmd> set nu!<CR><cmd> set rnu!<CR>", "toggle line number" },
+
+        -- toggle cmdheight
+        ["<BS>C"] = { 
+            function()
+                local prev = o.cmdheight
+                if o.cmdheight > 0 then
+                    opt.cmdheight = 0
+                else
+                    opt.cmdheight = 1
+                end
+            end, "toggle cmd height"},
 
         ["<BS>ts"] = {function()
            if g.sign_column_enbaled then
