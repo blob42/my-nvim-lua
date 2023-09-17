@@ -119,7 +119,7 @@ M.general = { --{{{
             end, "toggle cmd height"},
 
         ["<BS>ts"] = {function()
-           if g.sign_column_enbaled then
+           if g.sign_column_enbaled or (g.sign_column_enbaled == nil) then
                opt.signcolumn="no"
                g.sign_column_enbaled = false
            else
