@@ -3,19 +3,20 @@ local ok, dap = pcall(require, 'dap')
 if not ok then
     vim.notify('dap module missing')
 end
-local api = vim.api
-local keymap_restore = {}
+-- local api = vim.api
+-- local keymap_restore = {}
 
 local M = {}
 
 M.disconnect_dap = function()
   local has_dap, dap = pcall(require, 'dap')
   local _, dapui = pcall(require, 'dapui')
+
   if has_dap then
-    dap.disconnect()
-    dap.repl.close()
-    dapui.close()
-    vim.cmd('sleep 100m') -- allow cleanup
+      dap.disconnect()
+      dap.repl.close()
+      dapui.close()
+      vim.cmd('sleep 100m') -- allow cleanup
   else
     vim.notify('dap not found')
   end
@@ -51,34 +52,33 @@ M.load_launch_json = function()
     require("dap.ext.vscode").load_launchjs()
 end
 
+-- NOTE: dapmode handles keymaps for now
+-- manually setting keymaps
+-- Map K to hover while session is active https://github.com/mfussenegger/nvim-dap/wiki/Cookbook#map-k-to-hover-while-session-is-active
+-- see: update with https://github.com/jonboh/nvim-dap-rr/blob/f1678d5524aac8321c538883e77daa17d6be44f5/lua/nvim-dap-rr.lua
 M.register_keymaps = function()
-    for _, buf in pairs(api.nvim_list_bufs()) do
-        local keymaps = api.nvim_buf_get_keymap(buf, 'n')
-        for _, keymap in pairs(keymaps) do
-            if keymap.lhs == "K" then
-                table.insert(keymap_restore, keymap)
-                api.nvim_buf_del_keymap(buf, 'n', 'K')
-            end
-        end
-    end
-    api.nvim_set_keymap(
-    'n', 'K', '<cmd>lua require("dap.ui.widgets").hover()<CR>',
-    {silent = true}
-    )
+    -- for _, buf in pairs(api.nvim_list_bufs()) do
+    --     local keymaps = api.nvim_buf_get_keymap(buf, 'n')
+    --     for _, keymap in pairs(keymaps) do
+    --         if keymap.lhs == "K" then
+    --             table.insert(keymap_restore, keymap)
+    --             api.nvim_buf_del_keymap(buf, 'n', 'K')
+    --         end
+    --     end
+    -- end
+    -- api.nvim_set_keymap(
+    -- 'n', 'K', '<cmd>lua require("dap.ui.widgets").hover()<CR>',
+    -- {silent = true}
+    -- )
 end
 
 M.unregister_keymaps = function()
-
-    for _,keymap in pairs(keymap_restore) do
-        api.nvim_buf_set_keymap(
-        keymap.buffer,
-        keymap.mode,
-        keymap.lhs,
-        keymap.rhs,
-        { silent = keymap.silent == 1 }
-        )
-    end
-    keymap_restore = {}
+    -- vim.keymap.del('n', 'K', {silent=true})
+    -- for _,keymap in pairs(keymap_restore) do
+    --     vim.keymap.set(keymap.mode, keymap.lhs, keymap.rhs or keymap.callback,
+    --                     {buffer=keymap.buffer, silent=keymap.silent==1})
+    -- end
+    -- keymap_restore = {}
 end
 
 return M

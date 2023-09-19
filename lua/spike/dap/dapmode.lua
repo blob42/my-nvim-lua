@@ -61,6 +61,12 @@ local config = {
         end,
         desc = '[dap] stop'
       },
+      K = {
+        rhs = function()
+          require('dap.ui.widgets').hover()
+        end,
+        desc = '[dap] hover'
+      },
       C = {
         rhs = function()
           require('dap').run_to_cursor()

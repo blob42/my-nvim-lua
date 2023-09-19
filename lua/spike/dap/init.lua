@@ -7,7 +7,6 @@ local api = vim.api
 local dapmode = require("spike.dap.dapmode")
 local daputils = require('spike.dap.utils')
 local dapui = require("dapui")
-local keymap_restore = {}
 
 local liblldb_path = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/lldb/lib/liblldb.so"
 local adapter_path = vim.fn.stdpath('data') .. '/mason/packages/codelldb/extension/adapter/codelldb'
@@ -41,24 +40,26 @@ local function register_listeners()
     dap.listeners.before['event_initialized']['blob42-dap'] = function(_, _)
         dapmode.start()
         dapui.open()
+        daputils.register_keymaps()
     end
 
     dap.listeners.after['event_terminated']['blob42-dap'] = function(_, _)
         -- print("dap session ended")
         dapmode.stop()
         dapui.close()
+        daputils.unregister_keymaps()
     end
     dap.listeners.after['event_exited']['blob42-dap'] = function(_, _)
         -- print("dap session ended")
         dapmode.stop()
         dapui.close()
+        daputils.unregister_keymaps()
     end
 end
 
 function M.go_debug()
-    local present, gdap = pcall(require, "go.dap")
-    if not present then return end
-    gdap.run()
+    local ok, gdap = pcall(require, "go.dap")
+    if ok then gdap.run() end
 end
 
 local function set_signs()
@@ -81,36 +82,6 @@ local function dap_setup()
             "-e"
         }
     }
-
-    -- Map K to hover while session is active https://github.com/mfussenegger/nvim-dap/wiki/Cookbook#map-k-to-hover-while-session-is-active
-    dap.listeners.after['event_initialized']['blob42-dap'] = function() -- takes session,body
-        for _, buf in pairs(api.nvim_list_bufs()) do
-            local keymaps = api.nvim_buf_get_keymap(buf, 'n')
-            for _, keymap in pairs(keymaps) do
-                if keymap.lhs == "K" then
-                    table.insert(keymap_restore, keymap)
-                    api.nvim_buf_del_keymap(buf, 'n', 'K')
-                end
-            end
-        end
-        api.nvim_set_keymap(
-        'n', 'K', '<cmd>lua require("dap.ui.widgets").hover()<CR>',
-        {silent = true}
-        )
-    end
-
-    dap.listeners.after['event_terminated']['blob42-dap'] = function()
-        for _,keymap in pairs(keymap_restore) do
-            api.nvim_buf_set_keymap(
-                keymap.buffer,
-                keymap.mode,
-                keymap.lhs,
-                keymap.rhs,
-                { silent = keymap.silent == 1 }
-            )
-        end
-        keymap_restore = {}
-    end
 
     -- dap.adapters["codelldb-c"] = {
     --     type = 'server',
