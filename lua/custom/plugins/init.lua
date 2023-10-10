@@ -535,7 +535,10 @@ return {
     },
 
     ["tpope/vim-fugitive"] = {
-        cmd = { "G", "Git", "G*" }
+        cmd = { "G", "Git", "G*" },
+        setup = function()
+            require("core.utils").load_mappings 'git'
+        end,
     },
 
     ["sindrets/diffview.nvim"] = {

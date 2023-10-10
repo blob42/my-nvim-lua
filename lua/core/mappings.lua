@@ -1018,6 +1018,13 @@ M["todo-comments"] = {
 }
 
 -- git
+M.git = {
+    plugin = true,
+    n = {
+        ["<leader>gP"] = { "<cmd> Git push<CR>", "git push" },
+    }
+}
+
 M.gitsigns = {
     plugin = true,
     n = {
