@@ -35,8 +35,8 @@ local opts = {
         },
         {
             elements = {
-                { id = "repl", size = 0.7 },
-                { id = "watches", size = 0.5 },
+                { id = "repl", size = 0.4 },
+                { id = "watches", size = 0.6 },
                 -- "console",
             },
             size = 10, -- 25% of total lines

@@ -21,6 +21,7 @@ local config = {
         "nvim-dap",
         "nvchad_ui",
         "base46",
+        "go.nvim",
         "colorbuddy.nvim",
         "navigator.lua"
     },
