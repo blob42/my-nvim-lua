@@ -14,7 +14,7 @@ local M = {}
 M.general = { --{{{
     i = { --{{{
 
-        ["jk"] = { "<esc>", "escape" },
+        -- ["jk"] = { "<esc>", "escape" },
 
 
         -- navigate within insert mode
