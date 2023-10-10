@@ -152,11 +152,49 @@ local function dap_setup()
 
     dap.configurations.go ={
         {
-            name = "Attach to process",
+            name       = "Debug current package" ,
+            type       = "go",
+            request    = "launch" ,
+            mode       = "debug" ,
+            remotePath = "" ,
+            port       = 38697,
+            host       = " 127.0.0.1" ,
+            program    = " ${fileDirname}" ,
+            env        = {
+            },
+            args       = {" daemon" },
+            cwd        = " ${workspaceFolder}" ,
+            envFile    = " ${workspaceFolder}/.env"
+        },
+        {
+            name       = "Attach main" ,
+            type       = "go" ,
+            request    = "attach" ,
+            mode       = "debug" ,
+            remotePath = "" ,
+            port       = 38697,
+            host       = " 127.0.0.1" ,
+            program    = "${workspaceFolder}/main.go" ,
+            env        = {},
+            args       = {},
+            cwd        = "${workspaceFolder}" ,
+            processId  = "" ,
+            envFile    = "${workspaceFolder}/.env" ,
+            buildFlags = ""
+        },
+        {
+            name = "Launch file",
+            type = "go",
+            request = "launch",
+            mode = "debug",
+            program = "${file}"
+        },
+        {
+            name = "Attach process",
             type = "go",  -- Adjust this to match your adapter name (`dap.adapters.<name>`)
             request = "attach",
-            processId = require('dap.utils').pick_process,
             mode = "local",
+            processId = require('dap.utils').pick_process,
             args = {},
         },
     }
