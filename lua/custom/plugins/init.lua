@@ -152,17 +152,17 @@ return {
     -- AI/Deep Learning Helpers
     -- Github Copilot
 
-    ["zbirenbaum/copilot.lua"] = {
-        opt = true,
-        cmd = "Copilot",
-        keys = {"<leader>ghp"},
-        setup = function()
-            require("core.utils").load_mappings "copilot"
-        end,
-        config = function()
-            require("custom.plugins.configs.copilot").setup()
-        end,
-    },
+    -- ["zbirenbaum/copilot.lua"] = {
+    --     opt = true,
+    --     cmd = "Copilot",
+    --     keys = {"<leader>ghp"},
+    --     setup = function()
+    --         require("core.utils").load_mappings "copilot"
+    --     end,
+    --     config = function()
+    --         require("custom.plugins.configs.copilot").setup()
+    --     end,
+    -- },
 
     -- ["github/copilot.vim"] = {
     --     opt = true,
@@ -188,22 +188,14 @@ return {
             require("custom.plugins.configs.code-gpt").setup()
         end
     },
-    ["jackMort/ChatGPT.nvim"] = {
-        -- lock = true,
-        opt = true,
-        keys = {"<leader>gpt"},
-        module_pattern = {"chatgpt*"},
-        after = {"nui.nvim", "telescope.nvim"},
-        setup = function()
-            require("custom.plugins.configs.chat-gpt").load_api_key()
-        end,
+
+    ["Bryley/neoai.nvim"] = {
+        cmd = {"NeoAI*"},
         config = function()
-            require("custom.plugins.configs.chat-gpt").setup()
+            require("custom.plugins.configs.neoai").setup()
         end,
         requires = {
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim"
+            "MunifTanjim/nui.nvim"
         }
     },
 

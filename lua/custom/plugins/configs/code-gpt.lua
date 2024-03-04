@@ -7,6 +7,8 @@ end
 local M = {}
 
 M.setup = function()
+    vim.g["codegpt_chat_completions_url"] = "http://localai.srvlan:8080/v1/chat/completions"
+
     vim.g["codegpt_commands"] = {
         ["q4"] = {
             callback_type = "code_popup",
