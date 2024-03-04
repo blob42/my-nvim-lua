@@ -7,7 +7,7 @@ local function dwm()
         group = group,
         pattern = '*/suckless/*/{*.c,*.h}',
         callback = function()
-            local make_cmd = 'make && make install'
+            local make_cmd = 'make && doas make install'
             -- if vim.env.STREAMING ~= nil then
             --     make_cmd = 'make && make install'
             -- end
