@@ -207,6 +207,34 @@ return {
         }
     },
 
+    ["TabbyML/vim-tabby"] = {
+    keys = {"<leader>tb"},
+    -- event = "BufRead",
+	cmd = {"Tabby*"},
+    config = function()
+        require("custom.plugins.configs.tabby").setup()
+        vim.fn["tabby#OnVimEnter"]()
+    end
+    },
+    -- ["jackMort/ChatGPT.nvim"] = {
+    --     -- lock = true,
+    --     opt = true,
+    --     keys = {"<leader>gpt"},
+    --     module_pattern = {"chatgpt*"},
+    --     after = {"nui.nvim", "telescope.nvim"},
+    --     setup = function()
+    --         require("custom.plugins.configs.chat-gpt").load_api_key()
+    --     end,
+    --     config = function()
+    --         require("custom.plugins.configs.chat-gpt").setup()
+    --     end,
+    --     requires = {
+    --         "MunifTanjim/nui.nvim",
+    --         "nvim-lua/plenary.nvim",
+    --         "nvim-telescope/telescope.nvim"
+    --     }
+    -- },
+
     -- snippets
     ["honza/vim-snippets"] = { -- {{{
         module = { "cmp", "cmp_nvim_lsp" },
