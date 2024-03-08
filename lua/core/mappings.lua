@@ -478,7 +478,7 @@ M.general = { --{{{
 
     -- command line mappings
     c = { --{{{
-        ["Tabe"] = { "tabe" },
+        -- ["Tabe"] = { "tabe" },
 
         -- Change Working Directory to that of the current file
         ["cwd"] = { "lcd %:p:h", "change dir to current file" },
@@ -487,7 +487,7 @@ M.general = { --{{{
         ["w!!"] = { "w !doas tee %", "write file with root perms" },
         ["%%"]  = { "<C-R>=fnameescape(expand('%:h')).'/'<cr>",
             "alias to current working dir" },
-        ["Tab"] = { "Tabularize" },
+        ["!T"] = { "Tabularize" },
 
 
         ["%c"] = { "~/.config/nvim/", "shortcut to nvim config dir" },
