@@ -20,6 +20,7 @@ return {
         "yaml",
         "toml",
         "vue",
+        "xml"
     },
 
     highlight = {

@@ -215,6 +215,7 @@ return {
     --     module_pattern = {"chatgpt*"},
     --     after = {"nui.nvim", "telescope.nvim"},
     --     setup = function()
+        --         this func moved to utils/openai
     --         require("custom.plugins.configs.chat-gpt").load_api_key()
     --     end,
     --     config = function()
@@ -377,6 +378,7 @@ return {
     }, 
 
     -- User Interface / UX
+
     ["stevearc/dressing.nvim"] = {
         lock = true,
         config = function()
@@ -877,15 +879,21 @@ return {
     }, -- }}}
 
     -- Rust dev
-    ["simrat39/rust-tools.nvim"] = { -- {{{
-        lock = false,
-        ft = { "rust" },
-        opt = true,
-        config = function()
-            require("custom.plugins.configs.rust-tools").setup()
-        end
-    }, -- }}}
+    -- ["simrat39/rust-tools.nvim"] = { -- {{{
+    --     lock = false,
+    --     ft = { "rust" },
+    --     opt = true,
+    --     config = function()
+    --         require("custom.plugins.configs.rust-tools").setup()
+    --     end
+    -- }, -- }}}
 
+    ["mrcjkb/rustaceanvim"] = {
+        tag = "4.22.8",
+        setup = function()
+            require("custom.plugins.configs.rustaceanvim").setup()
+        end,
+    },
 
     -- PlantUML
     ["aklt/plantuml-syntax"] = {

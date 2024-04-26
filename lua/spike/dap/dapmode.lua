@@ -143,8 +143,9 @@ function M.start()
 end
 
 function M.stop()
-  if M.layer ~= nil then
-      M.layer:exit() 
+  if M.layer ~= nil and 
+      M.layer:is_active() then
+      M.layer:exit()
   end
 end
 

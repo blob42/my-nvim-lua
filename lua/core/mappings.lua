@@ -288,8 +288,8 @@ M.general = { --{{{
         ["<leader>tf"] = { "<cmd> set foldmethod=expr<CR>|<cmd> set foldexpr=nvim_treesitter#foldexpr()<CR>",
             "enable Treesitter folding" },
 
-        ["<leader>ts"] = { "<cmd> TSEnable highlight <CR>", "enable treesitter" },
-        ["<leader>tS"] = { "<cmd> TSDisable highlight <CR>", "enable treesitter" },
+        ["<leader>ts"] = { "<cmd> TSEnable highlight <CR>", "enable treesitter highlights" },
+        ["<leader>tS"] = { "<cmd> TSDisable highlight <CR>", "disable treesitter higlights" },
 
 
         ["<leader>tp"] = {
@@ -347,8 +347,8 @@ M.general = { --{{{
         ["[e"] = { "<cmd> cp <CR>", "quickfix previous error" },
 
         -- loclist
-        ["]l"] = { "<cmd> lne <CR>", "quickfix next error" },
-        ["[l"] = { "<cmd> lp <CR>", "quickfix previous error" },
+        ["]l"] = { "<cmd> lne <CR>", "loclist next error" },
+        ["[l"] = { "<cmd> lp <CR>", "loclist previous error" },
 
 
         -- Tabularize mappings
@@ -411,8 +411,22 @@ M.general = { --{{{
 
         -- TODO: move to lspconfig section
         -- ["<leader>lsp"] = { "<cmd> lua require('custom.plugins.configs.navigator').enable()<CR>", "lsp enable"},
-        ["<leader>lsp"] = { "<cmd> LspStart<CR>", "lsp enable" },
-        ["<M-s><M-s>"] = { "<cmd> LspStart<CR>", "lsp enable" },
+        ["<leader>lsp"] = { function()
+           if vim.o.filetype == "rust" then
+                    require('rustaceanvim.lsp').start()
+                else
+                    vim.cmd("LspStart")
+                end 
+        end, "lsp enable" },
+        -- ["<M-s><M-s>"] = { "<cmd> LspStart<CR>", "lsp enable" },
+        ["<M-s><M-s>"] = { function()
+                if vim.o.filetype == "rust" then
+                    require('rustaceanvim.lsp').start()
+                else
+                    vim.cmd("LspStart")
+                end
+
+        end, "lsp enable" },
         ["<M-t><M-t>"] = {function()
             local bufnr = vim.api.nvim_get_current_buf()
             -- get all clients for buffer
@@ -615,10 +629,9 @@ M.dap = { -- {{{
 
                 if vim.o.filetype == "go" then
                     mydap.go_debug()
+                -- TODO!: use rustaceanvim 
                 elseif vim.o.filetype == "rust" then
-                    local rt = require("rust-tools")
-                    -- make sure lsp is running ?
-                    rt.debuggables.debuggables()
+                    vim.cmd("RustLsp debug")
                 else
                     dap.continue()
                 end
@@ -1059,38 +1072,44 @@ M.gitsigns = {
 M.grapple = {
     plugin = true,
     n = {
-        ["<leader>J"] = { "<cmd> lua require'grapple'.cycle_forward()<CR>" },
-        ["<CR>"] = { "<cmd> lua require'grapple'.cycle_forward()<CR>" },
-        ["<Down>"] = { "<cmd> lua require'grapple'.cycle_forward()<CR>" },
-        ["<leader>K"] = { "<cmd> lua require'grapple'.cycle_backward()<CR>" },
-        ["<S-Tab>"] = { "<cmd> lua require'grapple'.cycle_backward()<CR>" },
-        ["<Up>"] = { "<cmd> lua require'grapple'.cycle_backward()<CR>" },
-        ["<leader>T"] = { "<cmd> GrappleTag<CR>"},
-        ["<leader>U"] = { "<cmd> GrappleUntag<CR>"},
+        -- ["<leader>J"] = { "<cmd> lua require'grapple'.cycle_forward()<CR>" },
+    -- "<cmd>Grapple cycle forward<CR>" 
+        ["<CR>"] = { function()
+            if vim.o.filetype == "qf" then
+                vim.api.nvim_feedkeys(termcodes('<CR>'), 'n', false)
+            else
+                vim.cmd("Grapple cycle forward")
+            end
+        end, "grapple cycle forward"},
+        ["<Down>"] = { "<cmd>Grapple cycle forward scope=global <CR>" },
+        -- ["<leader>K"] = { "<cmd> lua require'grapple'.cycle_backward()<CR>" },
+        ["<S-Tab>"] = { "<cmd> Grapple cycle backward<CR>" },
+        ["<Up>"] = { "<cmd>Grapple cycle backward scope=global<CR>" },
+        ["<leader>T"] = { "<cmd> Grapple tag<CR>"},
+        ["<leader>U"] = { "<cmd> Grapple untag<CR>"},
         ["<leader>GT"] = { function()
-            vim.ui.input({ prompt = "tag: " }, function(input)
-                require("grapple").tag({scope="global"})
-            end)
+            require("grapple").tag({ scope="global"})
         end, "grapple global tag" },
         ["<leader>N"] = { function()
             vim.ui.input({ prompt = "tag: " }, function(input)
-                require("grapple").tag({ key = input })
+                require("grapple").tag({ name = input })
             end)
         end, "grapple tag with name" },
         ["<leader>GN"] = { function()
             vim.ui.input({ prompt = "tag: " }, function(input)
-                require("grapple").tag({scope="global", key = input})
+                require("grapple").tag({scope="global", name = input})
             end)
         end, "grapple global tag with name" },
         --TODO: keybind for popup select names
         -- ["<leader><leader>m"] = { "<cmd> lua require'grapple'.scope_select('global', 'mappings')<CR>" },
-        ["<leader><leader>m"] = { "<cmd> lua require'grapple'.select {key='mappings', scope='global'}<CR>" },
-        ["<leader><leader>p"] = { "<cmd> lua require'grapple'.select {key='plugins', scope='global'}<CR>" },
-        ["<leader><leader>b"] = { "<cmd> lua require'grapple'.select {key='bonzai', scope='global'}<CR>" },
-        ["<leader><leader>P"] = { "<cmd> lua require'grapple'.select({key='Plugins'})<CR>" },
-        ["<leader><leader>o"] = { "<cmd> lua require'grapple'.select {key='options', scope='global'}<CR>" },
-        ["<leader><leader>g"] =  { "<cmd> lua require'grapple'.popup_tags()<CR>" },
-        ["<leader><leader>G"] =  { "<cmd> lua require'grapple'.popup_tags('global')<CR>" },
+        ["<leader><leader>m"] = { "<cmd> lua require'grapple'.select {name='mappings', scope='global'}<CR>" },
+        ["<leader><leader>p"] = { "<cmd> lua require'grapple'.select {name='plugins', scope='global'}<CR>" },
+        ["<leader><leader>b"] = { "<cmd> lua require'grapple'.select {name='bonzai', scope='global'}<CR>" },
+        ["<leader><leader>P"] = { "<cmd> lua require'grapple'.select({name='Plugins', scope='global'})<CR>" },
+        ["<leader><leader>o"] = { "<cmd> lua require'grapple'.select {name='options', scope='global'}<CR>" },
+        ["<leader><leader>ar"] = { "<cmd> lua require'grapple'.select {name='aichat-roles', scope='global'}<CR>" },
+        ["<leader><leader>g"] =  { "<cmd> Grapple open_tags<CR>" },
+        ["<leader><leader>G"] =  { "<cmd> Grapple open_tags scope=global <CR>" },
     }
 }
 
