@@ -71,7 +71,11 @@ local config = {
         desc = 'lsp definition preview'
     },
     { key = "<BS>h", func = function()
-        vim.lsp.inlay_hint(0, nil)
+        if vim.lsp.inlay_hint.is_enabled({bufnr = 0}) then
+            vim.lsp.inlay_hint.enable(false)
+        else
+            vim.lsp.inlay_hint.enable(true)
+        end
     end, desc = "toggle lsp hints"},
     { key = '<leader>D', func = vim.lsp.buf.type_definition, desc = 'type_definition' },
     { key = '<leader>Dp', func = require('navigator.definition').type_definition_preview, desc = 'lsp type definition preview' },

@@ -16,7 +16,7 @@ M.setup = function()
         javascript = "javascript"
     }
     
-
+    vim.cmd("call tabby#OnVimEnter()")
 end
 
 return M

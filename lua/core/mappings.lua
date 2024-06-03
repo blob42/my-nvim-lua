@@ -1047,11 +1047,14 @@ M.gitsigns = {
         ["<leader>gS"] = { "<cmd> lua require'gitsigns'.stage_buffer()<CR>",
             "Git stage buffer",
         },
-        ["<leader>gR"] = { "<cmd> lua require'gitsigns'.reset_buffer_index()<CR>",
+        ["<leader>gU"] = { "<cmd> lua require'gitsigns'.reset_buffer_index()<CR>",
             "Unstage all hunks for current buffer in the index",
         },
-        ["<leader>gr"] = { "<cmd> lua require'gitsigns'.reset_buffer()<CR>",
+        ["<leader>grb"] = { "<cmd> lua require'gitsigns'.reset_buffer()<CR>",
             "Reset the lines of all hunks in the buffer",
+        },
+        ["<leader>grh"] = { "<cmd> lua require'gitsigns'.reset_hunk()<CR>",
+            "Reset hunk at current position",
         },
         ["<leader>gpr"] = { "<cmd> lua require'gitsigns'.preview_hunk()<CR>",
             "Git preview hunk",
@@ -1171,6 +1174,21 @@ M.copilot = {
     },
     i = {
         ["<M-c>p"] = { "<cmd> lua require'copilot.panel'.open()<CR>", "copilot panel" },
+    }
+}
+
+M.tabby = {
+    plugin = true,
+    n = {
+        ["<leader>tbS"] = { function()
+            vim.cmd [[
+                augroup tabby
+                au!
+                augroup END
+                call tabby#agent#Close()
+            ]]
+        end, "close tabby" },
+        ["<leader>tbs"] = { "<cmd> call tabby#OnVimEnter() <CR>", "start tabby" },
     }
 }
 

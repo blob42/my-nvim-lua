@@ -1,5 +1,6 @@
 vim.defer_fn(function()
   pcall(require, "impatient")
+  -- vim.loader.enable()
 end, 0)
 
 require "spike.globals"
@@ -29,3 +30,29 @@ pcall(require, "custom")
 local xdg_config = vim.env["XDG_CONFIG_HOME"] or '~/.config'
 local vimscriptsfolder = xdg_config .. "/nvim/myvimscript" -- relative to .config/nvim dir
 vim.opt.runtimepath:prepend(vimscriptsfolder)
+
+local should_profile = os.getenv("NVIM_PROFILE")
+if should_profile then
+  require("profile").instrument_autocmds()
+  if should_profile:lower():match("^start") then
+    require("profile").start("*")
+  else
+    require("profile").instrument("*")
+  end
+end
+
+local function toggle_profile()
+  local prof = require("profile")
+  if prof.is_recording() then
+    prof.stop()
+    vim.ui.input({ prompt = "Save profile to:", completion = "file", default = "profile.json" }, function(filename)
+      if filename then
+        prof.export(filename)
+        vim.notify(string.format("Wrote %s", filename))
+      end
+    end)
+  else
+    prof.start("*")
+  end
+end
+vim.keymap.set("", "<f1>", toggle_profile)

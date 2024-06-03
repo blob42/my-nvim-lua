@@ -200,12 +200,14 @@ return {
     },
 
     ["TabbyML/vim-tabby"] = {
-    keys = {"<leader>tb"},
+    keys = {"<leader>tB"},
     -- event = "BufRead",
 	cmd = {"Tabby*"},
     config = function()
         require("custom.plugins.configs.tabby").setup()
-        vim.fn["tabby#OnVimEnter"]()
+        require("core.utils").load_mappings "tabby"
+	-- FIX: this is the trigger to start tabby, slows down vim
+	--vim.fn["tabby#OnVimEnter"]()
     end
     },
     -- ["jackMort/ChatGPT.nvim"] = {
@@ -235,6 +237,7 @@ return {
     },
 
     ["L3MON4D3/LuaSnip"] = {
+        tag = "v2.3.0",
         lock = false,
         module = "luasnip",
         config = function() -- overriding default nvchad config here

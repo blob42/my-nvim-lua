@@ -34,4 +34,11 @@ return {
     })
 
     ),
+}, { --autosnippets
+    -- s("uuid#", f(gen_uuid))
+    s("dbg", fmt([[
+    fmt.Printf("%#v", {})
+
+    ]], {i(0)}))
 }
+

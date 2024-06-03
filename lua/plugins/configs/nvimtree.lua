@@ -34,6 +34,11 @@ local options = {
   },
   filesystem_watchers = {
     enable = true,
+    debounce_delay = 50,
+    ignore_dirs = {
+        "node_modules",
+        ".git"
+    }
   },
   actions = {
     open_file = {

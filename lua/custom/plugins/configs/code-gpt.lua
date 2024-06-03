@@ -18,9 +18,9 @@ M.setup = function()
 
     vim.g["codegpt_global_commands_defaults"] = { 
         -- model = "dolphin-mixtral",
-        model = "llama3-8b-inst",
+        model = "llama3-8b-inst-dpo",
         max_tokens = 8192,
-        temperature = 0.4,
+        temperature = 0.6,
         -- extra_params = {
         --     presence_penalty = 0,
         --     frequency_penalty= 0
