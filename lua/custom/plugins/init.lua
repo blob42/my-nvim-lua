@@ -84,15 +84,16 @@ return {
             require("syntax-tree-surfer").setup()
         end
     },
-    -- Treesitter dev/exploration tool
+    -- Treesitter dev/exploration tool 
+    -- NOTE: builtin in neovim :InspectTree
     -- https://git.blob42.xyz/blob42/playground/commit/460fe1b3e3b2971c52c5f02a7dbbb132f1f30584
-    ["nvim-treesitter/playground"] = {
-    -- ["https://git.blob42.xyz/blob42/playground"] = {
-        lock = false,
-        -- opt = true,
-        cmd = { "TSPlayground*" },
-        -- commit = "460fe1b3e3b2971c52c5f02a7dbbb132f1f30584",
-    },
+    -- ["nvim-treesitter/playground"] = {
+    -- -- ["https://git.blob42.xyz/blob42/playground"] = {
+    --     lock = false,
+    --     -- opt = true,
+    --     cmd = { "TSPlayground*" },
+    --     -- commit = "460fe1b3e3b2971c52c5f02a7dbbb132f1f30584",
+    -- },
 
     ["nvim-treesitter/nvim-treesitter-context"] = {
         lock = false,
@@ -773,7 +774,7 @@ return {
     ['stevearc/aerial.nvim'] = {
         -- lock = true,
         after = { "base46" },
-        keys = { "<Right>" },
+        keys = { "<Right><Right>" },
         cmd = { "Aerial*" },
         config = function()
             require("core.utils").load_mappings "aerial"

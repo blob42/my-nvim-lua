@@ -97,17 +97,17 @@ local config = {
     --TODO: toggle diagnostics
     {
         key = ']d',
-        func = vim.diagnostic.goto_next,
+        func = function() vim.diagnostic.jump {count=1} end,
         desc = 'next diagnostics',
     },
     {
         key = '[d',
-        func = vim.diagnostic.goto_prev,
+        func = function() vim.diagnostic.jump {count=-1} end,
         desc = 'prev diagnostics',
     },
     {
         key = ']O',
-        func = vim.diagnostic.set_loclist,
+        func = vim.diagnostic.setloclist,
         desc = 'diagnostics set loclist',
     },
     { key = ']r', func = require('navigator.treesitter').goto_next_usage, desc = 'lsp goto_next_usage' },

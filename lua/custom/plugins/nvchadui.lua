@@ -136,7 +136,7 @@ return {
         local lsp_status = ""
         local dap_status = ""
         if rawget(vim, "lsp") then
-            for _, client in ipairs(vim.lsp.get_active_clients()) do
+            for _, client in ipairs(vim.lsp.get_clients()) do
                 if client.attached_buffers[vim.api.nvim_get_current_buf()] then
                     lsp_status = (vim.o.columns > 100 and "%#St_LspStatus#" .. "[" .. client.name .. "]") or "%#St_LspStatus#" .. " "
                 end

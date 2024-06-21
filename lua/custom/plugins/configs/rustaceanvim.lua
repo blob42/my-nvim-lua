@@ -1,6 +1,9 @@
 local M = {}
 
 local config = {
+    inlay_hints = {
+        highlight = "NonText"
+    },
     server = {
         cmd = {"run-rust-analyzer"},
         auto_attach = false,

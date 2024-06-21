@@ -292,13 +292,6 @@ M.general = { --{{{
         ["<leader>tS"] = { "<cmd> TSDisable highlight <CR>", "disable treesitter higlights" },
 
 
-        ["<leader>tp"] = {
-            function()
-                vim.cmd("TSPlaygroundToggle")
-            end,
-            "Treesitter playground"
-        },
-
         -- Moving lines around
         ["<M-Down>"] = { "<cmd>:m +1<CR>==", "move line up" },
         ["<M-Up>"] = { "<cmd>:m .-2<CR>==", "move line up" },
@@ -343,12 +336,16 @@ M.general = { --{{{
         end, "TS swap left with sibling", opts = { expr = true } },
 
         -- quickfix
-        ["]e"] = { "<cmd> cn <CR>", "quickfix next error" },
-        ["[e"] = { "<cmd> cp <CR>", "quickfix previous error" },
+        ["]e"] = { "<cmd> cn <CR>", "quickfix next" },
+        ["[e"] = { "<cmd> cp <CR>", "quickfix previous" },
+        ["<Right>k"] = { "<cmd> cn <CR>", "quickfix next" },
+        ["<Left>k"] = { "<cmd> cp <CR>", "quickfix previous" },
 
         -- loclist
-        ["]l"] = { "<cmd> lne <CR>", "loclist next error" },
-        ["[l"] = { "<cmd> lp <CR>", "loclist previous error" },
+        ["]l"] = { "<cmd> lne <CR>", "loclist next" },
+        ["[l"] = { "<cmd> lp <CR>", "loclist previous" },
+        ["<Right>l"] = { "<cmd> lne <CR>", "loclist next" },
+        ["<Left>l"] = { "<cmd> lp <CR>", "loclist previous" },
 
 
         -- Tabularize mappings
@@ -409,6 +406,7 @@ M.general = { --{{{
         ["<leader>A"] = { "<cmd>ArgWrap<CR>", "arg wrap" },
 
 
+        -- LSP {{{
         -- TODO: move to lspconfig section
         -- ["<leader>lsp"] = { "<cmd> lua require('custom.plugins.configs.navigator').enable()<CR>", "lsp enable"},
         ["<leader>lsp"] = { function()
@@ -416,7 +414,7 @@ M.general = { --{{{
                     require('rustaceanvim.lsp').start()
                 else
                     vim.cmd("LspStart")
-                end 
+	    end 
         end, "lsp enable" },
         -- ["<M-s><M-s>"] = { "<cmd> LspStart<CR>", "lsp enable" },
         ["<M-s><M-s>"] = { function()
@@ -430,7 +428,7 @@ M.general = { --{{{
         ["<M-t><M-t>"] = {function()
             local bufnr = vim.api.nvim_get_current_buf()
             -- get all clients for buffer
-            local clients = vim.lsp.get_active_clients({
+            local clients = vim.lsp.get_clients({
                 bufnr = bufnr
             })
 
@@ -451,8 +449,9 @@ M.general = { --{{{
             end
 
         end, "lsp disable" },
-        ["<leader>lst"] = { "<cmd> LspStop<CR>", "lsp disable" },
-
+        ["<leader>lst"] = { "<cmd> LspStop<CR>", "lsp disable" },-- }}}
+       ["<Right>j"] = {function() vim.diagnostic.jump({count=1}) end,"diagnostic next" },
+        ["<Left>j"] = {function() vim.diagnostic.jump({count=-1}) end,"diagnostic previous" },
         -- My custom commands
         ["<leader>gB"] = {"<cmd> GitBlob<CR>"},
 
@@ -690,7 +689,7 @@ M.nvimtree = { --{{{
 
     n = {
         -- toggle
-        ["<Left>"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
+        ["<Left><Left>"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
     },
 } --}}}
 
@@ -924,7 +923,7 @@ M.blankline = { --{{{
 M.aerial = {
     plugin = true,
     n = {
-        ["<Right>"] = { "<cmd> AerialToggle right<CR>" },
+        ["<Right><Right>"] = { "<cmd> AerialToggle right<CR>" },
     }
 }
 

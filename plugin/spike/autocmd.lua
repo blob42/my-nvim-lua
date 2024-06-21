@@ -17,4 +17,16 @@ local function dwm()
     })
 end
 
+local function xremap()
+    local group = augroup('xremap', {})
+    autocmd({'BufWritePost'}, {
+        group = group,
+        pattern = '*/.config/xremap/*.yml',
+        callback = function()
+            vim.system({"systemctl", "--user", "restart", "xremap"}):wait()
+        end
+    })
+end
+
 dwm()
+xremap()
